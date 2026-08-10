@@ -13,6 +13,17 @@ from .trainer import (
     validate_one_epoch,
 )
 
+from .br_lora_objectives import (
+    BRLoRAObjectiveError,
+    BRLoRAVariationalObjective,
+    RegionalReconstructionLoss,
+    br_lora_objective,
+    linear_kl_warmup_multiplier,
+    normalized_variational_objective,
+    reconstruction_matches_baseline,
+    regional_reconstruction_loss,
+)
+
 __all__ = [
     "DEFAULT_OUTSIDE_LOSS_WEIGHT",
     "build_checkpoint_payload",
@@ -22,4 +33,12 @@ __all__ = [
     "save_checkpoint",
     "train_one_epoch",
     "validate_one_epoch",
+    "BRLoRAObjectiveError",
+    "BRLoRAVariationalObjective",
+    "RegionalReconstructionLoss",
+    "br_lora_objective",
+    "linear_kl_warmup_multiplier",
+    "normalized_variational_objective",
+    "reconstruction_matches_baseline",
+    "regional_reconstruction_loss",
 ]
