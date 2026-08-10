@@ -24,7 +24,7 @@ br_lora:
 
 training:
   # Multi-epoch BR-LoRA training settings.
-  epochs: 30
+  epochs: 50
   learning_rate: 1.0e-4
   weight_decay: 0.0
 
