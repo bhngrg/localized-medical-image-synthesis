@@ -4,27 +4,24 @@ A modular research framework for localized medical image synthesis, regional
 composition, parameter-efficient adaptation, Bayesian Regional LoRA (BR-LoRA),
 and image-level reliability assessment.
 
-The repository is being developed through incremental refactoring of the
-original research notebook into a reproducible, modular Python codebase while
-preserving identical functionality at every stage.
+> **Project Status:** Active development. The original baseline notebook has
+> been refactored into modular Python components and validated against the
+> reference implementation. Current development focuses on extending the
+> validated baseline without changing its default behavior.
 
 ---
 
-# Overview
+## Overview
 
-This project investigates **localized lesion synthesis** using conditional
-diffusion models together with parameter-efficient adaptation methods.
+This project investigates localized lesion synthesis using conditional diffusion
+models together with parameter-efficient adaptation methods.
 
-Unlike conventional image synthesis pipelines, the framework explicitly
-separates
+The framework explicitly separates
 
 - tumor-free base anatomy,
 - donor pathological appearance,
 - prescribed lesion masks, and
-- regional image composition,
-
-allowing only the specified lesion region to be synthesized while preserving the
-remaining anatomy by construction.
+- regional image composition.
 
 The long-term research goals include
 
@@ -39,26 +36,55 @@ The long-term research goals include
 
 ---
 
-# Current Status
+## Current Status
 
-**Current development phase**
+The repository now contains a validated modular implementation of the baseline
+patch-conditioned x0 diffusion workflow.
 
-✅ Repository foundation complete
+Completed infrastructure includes
 
-Current implemented infrastructure includes
+- BraTS 2020 training-dataset registration,
+- BraTS 2020 validation-dataset registration,
+- machine-readable dataset specifications,
+- reproducible reconstruction of the historical H5 dataset,
+- slice-level manifest generation,
+- modular data loading and sampling,
+- modular diffusion scheduling,
+- modular baseline U-Net implementation,
+- modular training and checkpointing,
+- reconstruction inference,
+- tumor-free base / donor-mask pair selection, and
+- localized regional composition.
 
-- BraTS 2020 dataset registration
-- automatic dataset validation
-- historical H5 reconstruction
-- dataset manifest generation
-- reconstruction verification against the historical preprocessing
-
-The next development phase focuses on refactoring the original notebook into a
-modular Python implementation.
+The modular implementation has been checked directly against the original
+notebook for exact numerical equivalence across the core workflow.
 
 ---
 
-# Repository Organization
+## Baseline Equivalence Validation
+
+Explicit equivalence checks have passed for
+
+- dataset filtering and train/validation splitting,
+- diffusion schedule construction and q-sampling,
+- model parameterization and seeded initialization,
+- forward inference,
+- masked training loss,
+- gradients,
+- AdamW parameter updates,
+- optimizer state,
+- epoch-level training and validation losses,
+- best and final checkpoint contents,
+- reconstruction inference,
+- candidate discovery and seeded pair selection, and
+- final localized composition.
+
+The baseline notebook remains the scientific reference implementation, while
+the modular code is now the primary development surface.
+
+---
+
+## Repository Organization
 
 ```text
 localized-medical-image-synthesis/
@@ -66,23 +92,30 @@ localized-medical-image-synthesis/
 ├── checkpoints/          Saved model checkpoints
 ├── configs/              Experiment configuration files
 ├── data/                 Dataset documentation
+├── docs/                 Extended project documentation
 ├── notebooks/            Original research notebooks
 ├── outputs/              Generated figures and synthesized images
-├── scripts/              Executable utilities and pipelines
+├── scripts/              Executable workflows and utilities
 ├── src/                  Modular Python implementation
+│   ├── data/
+│   ├── diffusion/
+│   ├── inference/
+│   ├── models/
+│   └── training/
 │
 ├── README.md
 ├── PROJECT_PLAN.md
+├── LICENSE
 └── .gitignore
 ```
 
 ---
 
-# Dataset Pipeline
+## Dataset Pipeline
 
-The repository operates directly from the official BraTS 2020 NIfTI releases.
+The repository operates from the official BraTS 2020 NIfTI releases.
 
-The preprocessing workflow is
+Training-data preparation:
 
 ```text
 Raw BraTS Training NIfTI
@@ -97,7 +130,7 @@ dataset.yaml
 build_h5_dataset.py
         │
         ▼
-57,195 historical H5 slices
+57,195 reconstructed H5 slices
         │
         ▼
 create_dataset_manifest.py
@@ -106,94 +139,106 @@ create_dataset_manifest.py
 manifest.csv
 ```
 
-Validation data are registered independently using
+The official BraTS 2020 validation release is registered independently:
 
 ```text
+Raw BraTS Validation NIfTI
+        │
+        ▼
 register_validation_dataset.py
+        │
+        ▼
+validation_dataset.yaml
 ```
 
-Further details are provided in
+The official validation release does not contain segmentation masks. It
+therefore cannot directly replace the baseline masked validation loss used for
+checkpoint selection. It is reserved for downstream inference and evaluation
+protocols that do not require ground-truth segmentation.
 
-```text
-data/README.md
-```
+See `data/README.md` for dataset setup details.
 
 ---
 
-# Repository Design Principles
+## Training Split Modes
 
-Development follows several guiding principles.
+The baseline configuration preserves the notebook's original behavior:
+
+```yaml
+data:
+  split_mode: internal
+  train_fraction: 0.9
+```
+
+This uses 90% of eligible tumor-containing training slices for optimization and
+10% for internal validation.
+
+A second mode is available for fixed-epoch training on all eligible training
+slices:
+
+```yaml
+data:
+  split_mode: full_train
+```
+
+`full_train` uses 100% of the eligible BraTS training slices and does not compute
+the notebook's masked validation loss. This mode is intended for final
+fixed-epoch refits after model-selection settings have already been established.
+
+The official BraTS validation release remains separate from both modes.
+
+---
+
+## Repository Design Principles
 
 - Preserve the original notebook as the reference implementation.
-- Refactor incrementally while maintaining identical behavior.
-- Validate every extracted module before introducing new functionality.
-- Assign every module a single, well-defined responsibility.
-- Prefer explicit, readable implementations over unnecessary abstractions.
+- Preserve notebook behavior as the default configuration.
+- Expose legitimate experiment parameters rather than hard-coding them.
+- Refactor incrementally and validate every extracted component.
+- Avoid implicit dataset discovery and hidden preprocessing assumptions.
 - Separate reusable library code from executable scripts.
-- Reproduce historical preprocessing exactly before extending the framework.
+- Perform expensive dataset validation once and reuse generated metadata.
+- Do not silently change scientific behavior during engineering refactors.
 
 ---
 
-# Development Roadmap
-
-Repository development proceeds through six major phases.
-
-1. Repository foundation
-2. Baseline implementation refactoring
-3. Regional composition framework
-4. Parameter-efficient adaptation
-5. Bayesian Regional LoRA (BR-LoRA)
-6. Image-level reliability assessment and benchmarking
-
-A detailed roadmap is available in
+## Current User-Facing Scripts
 
 ```text
-PROJECT_PLAN.md
+scripts/register_dataset.py
+scripts/register_validation_dataset.py
+scripts/build_h5_dataset.py
+scripts/create_dataset_manifest.py
+scripts/train_patch_x0.py
+scripts/synthesize_patch_x0.py
 ```
 
----
+The historical reverse-engineering utility
 
-# Current Verification Status
+```text
+scripts/verify_h5_conversion.py
+```
 
-The repository currently includes verification procedures for
-
-- raw dataset registration,
-- H5 reconstruction,
-- MRI channel ordering,
-- segmentation channel ordering,
-- slice-level manifest generation, and
-- historical preprocessing reproducibility.
-
-These tests ensure that the modular implementation reproduces the original
-research pipeline before additional functionality is introduced.
+is retained for preprocessing audit purposes.
 
 ---
 
-# Planned Components
+## Development Roadmap
 
-The completed framework will include reusable modules for
-
-- dataset management,
-- diffusion utilities,
-- localized regional composition,
-- parameter-efficient adaptation methods,
-- Bayesian Regional LoRA (BR-LoRA),
-- training and inference pipelines,
-- image-level reliability assessment, and
-- reproducible benchmarking.
+See `PROJECT_PLAN.md` for the detailed engineering and research roadmap.
 
 ---
 
-# Citation
+## Citation
 
 If you use this repository in academic work, please cite
 
 - the BraTS challenge and dataset, and
-- this repository (once publicly released).
+- this repository once publicly released.
 
 ---
 
-# License
+## License
 
 This repository is distributed under the terms of the license provided in
 `LICENSE`.

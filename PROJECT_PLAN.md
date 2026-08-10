@@ -1,64 +1,35 @@
 # Localized Medical Image Synthesis
 ## Repository Development Roadmap
 
-This document describes the engineering roadmap for the repository.
+This document tracks the engineering and research roadmap for the repository.
 
-The objective is to transform the original research notebook into a modular,
-reproducible, and extensible Python framework while preserving identical
-behavior throughout the refactoring process.
-
-The notebook under `notebooks/` remains the reference implementation until each
-component has been independently validated.
-
----
-
-# Repository Development Philosophy
-
-Development follows a staged approach.
-
-Each phase must satisfy two requirements before progressing:
-
-1. Functional equivalence with the corresponding notebook implementation.
-2. Independent validation using dedicated verification utilities.
-
-New functionality is introduced **only after** the baseline implementation has
-been reproduced.
-
----
-
-# Guiding Principles
-
-The repository is developed according to the following principles.
-
-- Preserve the original notebook as the reference implementation.
-- Refactor incrementally rather than rewriting everything at once.
-- Validate every extracted module independently.
-- Assign each module a single, well-defined responsibility.
-- Separate reusable library code from executable scripts.
-- Prefer explicit implementations over unnecessary abstractions.
-- Maintain reproducibility throughout development.
+The original notebook under `notebooks/` remains the scientific reference
+implementation. The modular implementation is validated against it before new
+functionality is introduced.
 
 ---
 
 # Current Status
 
-**Current phase**
+**Active milestone:** Full-training baseline refit and external-evaluation
+infrastructure.
 
-✅ Phase 0 — Repository Foundation
+The repository foundation, data infrastructure, and baseline notebook refactor
+are complete.
 
-Completed infrastructure
+---
 
-- Repository organization
-- Documentation
-- Dataset registration
-- Dataset validation
-- Historical H5 reconstruction
-- Slice-level manifest generation
-- Reconstruction verification
-- Validation dataset registration
+# Guiding Principles
 
-The repository now has a fully reproducible dataset pipeline that recreates the
-historical preprocessing directly from the official BraTS 2020 NIfTI releases.
+- Preserve the original notebook as the reference implementation.
+- Preserve original settings as default values.
+- Expose legitimate user-tunable experiment parameters.
+- Do not silently change scientific behavior.
+- Validate every extracted module before extending it.
+- Separate fixed data contracts from experiment settings.
+- Avoid repeated raw-data scans when validated metadata already exist.
+- Keep training, inference, composition, and evaluation responsibilities
+  separate.
 
 ---
 
@@ -66,195 +37,245 @@ historical preprocessing directly from the official BraTS 2020 NIfTI releases.
 
 **Status:** ✅ Complete
 
-## Goal
-
-Establish the repository structure and reproducible dataset pipeline before
-refactoring model code.
-
-## Completed
-
-- Git repository initialized
-- Project directory structure established
-- Repository documentation
-- Dataset documentation
-- Training dataset registration
-- Validation dataset registration
-- Historical H5 reconstruction
-- Dataset manifest generation
-- Historical reconstruction verification
+- [x] Initialize Git repository
+- [x] Create repository structure
+- [x] Configure `.gitignore`
+- [x] Create root documentation
+- [x] Create dataset documentation
+- [x] Create initial repository commit
 
 ---
 
-# Phase 1 — Baseline Notebook Refactoring
+# Phase 1 — Dataset Infrastructure
 
-**Status:** 🚧 Active
+**Status:** ✅ Complete
 
-## Goal
-
-Refactor the original notebook into reusable Python modules while preserving
-identical behavior.
-
-## Planned Components
-
-- Data loading
-- Dataset utilities
-- Image preprocessing
-- Diffusion utilities
-- Model implementation
-- Training pipeline
-- Inference pipeline
-
-## Validation
-
-Every extracted component must reproduce the corresponding notebook behavior
-before the notebook implementation is retired.
+- [x] Register BraTS 2020 training NIfTI release
+- [x] Register BraTS 2020 validation NIfTI release
+- [x] Write machine-readable dataset specifications
+- [x] Reconstruct historical NIfTI-to-H5 preprocessing
+- [x] Generate all 57,195 training H5 slices
+- [x] Verify representative reconstructed H5 slices
+- [x] Generate `manifest.csv`
+- [x] Verify manifest against historical metadata
+- [x] Preserve historical preprocessing conventions explicitly
 
 ---
 
-# Phase 2 — Regional Composition Framework
+# Phase 2 — Baseline Notebook Refactor
+
+**Status:** ✅ Complete
+
+## Data
+
+- [x] H5 preprocessing utilities
+- [x] Manifest-backed dataset
+- [x] Dataset splitting
+- [x] DataLoader construction
+
+## Diffusion
+
+- [x] Linear beta schedule
+- [x] Forward q-sampling
+- [x] Schedule encapsulation without notebook-global state
+
+## Model
+
+- [x] Sinusoidal timestep embedding
+- [x] Conditioning MLP
+- [x] Conditional residual blocks
+- [x] Patch-conditioned x0 U-Net
+
+## Training
+
+- [x] Masked x0 loss
+- [x] Batch preparation
+- [x] One-epoch training
+- [x] Stochastic internal validation
+- [x] Best-checkpoint saving
+- [x] Final-checkpoint saving
+- [x] Executable training script
+
+## Inference and Composition
+
+- [x] Reconstruction inference
+- [x] Manifest-backed candidate discovery
+- [x] Seeded tumor-free base / donor-mask pair selection
+- [x] Tumor-free regional insertion
+- [x] Hard outside-mask preservation
+- [x] Executable synthesis script
+
+---
+
+# Phase 2 Validation Record
+
+**Status:** ✅ Complete
+
+Exact equivalence has been demonstrated for
+
+| Component | Result |
+|---|---|
+| Eligible training slice count | ✅ |
+| Internal 90/10 split | ✅ |
+| Diffusion tensors | ✅ |
+| q-sampling | ✅ |
+| Model parameter count | ✅ |
+| State-dict structure | ✅ |
+| Seeded initialization | ✅ |
+| Forward output | ✅ |
+| Model input preparation | ✅ |
+| Masked loss | ✅ |
+| Gradients | ✅ |
+| AdamW update | ✅ |
+| Optimizer state | ✅ |
+| Epoch train loss | ✅ |
+| Epoch validation loss | ✅ |
+| Best checkpoint | ✅ |
+| Final checkpoint | ✅ |
+| Reconstruction inference | ✅ |
+| Candidate membership | ✅ |
+| Candidate ordering | ✅ |
+| Seeded pair selection | ✅ |
+| Regional synthesis tensors | ✅ |
+| Outside-mask preservation | ✅ |
+
+---
+
+# Phase 3 — Full-Training Baseline and External Evaluation
+
+**Status:** 🚧 In Progress
+
+## Goal
+
+Extend the validated baseline without altering its default notebook-compatible
+behavior.
+
+## Training Modes
+
+- [x] Preserve `internal` mode as the default:
+  - 90% optimization
+  - 10% internal validation
+  - best-checkpoint selection by masked validation loss
+
+- [ ] Add `full_train` mode:
+  - 100% of eligible training slices used for optimization
+  - fixed number of epochs
+  - final checkpoint saved
+  - no fabricated masked validation loss
+
+## Official BraTS Validation Release
+
+The official BraTS 2020 validation release contains MRI modalities but no
+segmentation masks.
+
+Therefore:
+
+- it cannot directly provide the baseline masked validation loss;
+- it must not be used as if ground-truth lesion masks were available;
+- it will be used only through an explicitly defined mask-free or
+  externally-conditioned evaluation protocol.
+
+## Deliverables
+
+- [ ] Full-training DataLoader path
+- [ ] Full-training trainer path
+- [ ] Backward-compatible training CLI
+- [ ] Overnight baseline full-training run
+- [ ] External-validation inference loader
+- [ ] Explicit evaluation protocol for unlabeled validation subjects
+
+---
+
+# Phase 4 — Regional Composition Framework
 
 **Status:** ⏳ Planned
 
 ## Goal
 
-Separate regional composition from the diffusion backbone so that localized
-composition becomes an independent component usable by any adaptation strategy.
+Generalize localized composition into reusable components independent of the
+adaptation strategy.
 
-## Planned Components
-
-- Base-image handling
-- Donor-image handling
-- Lesion-mask handling
-- Regional composition utilities
-- Common synthesis interface
+- [ ] Base-image interface
+- [ ] Donor-image interface
+- [ ] Lesion-mask interface
+- [ ] Regional composition utilities
+- [ ] Common synthesis interface
+- [ ] True regional-composition ablations
 
 ---
 
-# Phase 3 — Parameter-Efficient Adaptation
+# Phase 5 — Parameter-Efficient Adaptation
 
 **Status:** ⏳ Planned
 
-## Goal
-
-Provide a unified implementation of multiple parameter-efficient fine-tuning
-strategies using a common training and evaluation framework.
-
-## Planned Methods
-
-- Frozen backbone
-- Full fine-tuning
-- BitFit
-- LoRA
-- DoRA
-- LoKr
-- Regional LoRA
+- [ ] Frozen backbone
+- [ ] Full fine-tuning
+- [ ] BitFit
+- [ ] LoRA
+- [ ] DoRA
+- [ ] LoKr
+- [ ] Regional LoRA
 
 ---
 
-# Phase 4 — Bayesian Regional LoRA (BR-LoRA)
+# Phase 6 — Bayesian Regional LoRA
 
 **Status:** ⏳ Planned
 
-## Goal
-
-Develop Bayesian Regional LoRA for uncertainty-aware localized medical image
-synthesis.
-
-## Planned Components
-
-- Bayesian low-rank adapters
-- Variational optimization
-- Posterior sampling
-- Predictive uncertainty estimation
+- [ ] Bayesian low-rank adapters
+- [ ] Variational optimization
+- [ ] Posterior sampling
+- [ ] Predictive uncertainty estimation
 
 ---
 
-# Phase 5 — Reliability Framework
+# Phase 7 — Image-Level Reliability Framework
 
 **Status:** ⏳ Planned
 
-## Goal
-
-Develop an image-level reliability assessment framework for localized synthesis.
-
-## Planned Components
-
-- Predictive uncertainty
-- Structural consistency analysis
-- Topological analysis
-- Repeat stability
-- Controlled perturbation analysis
-- Continuous review prioritization
+- [ ] Predictive uncertainty
+- [ ] Structural consistency
+- [ ] Topology-aware summaries
+- [ ] Repeat stability
+- [ ] Controlled perturbation analysis
+- [ ] Review prioritization
 
 ---
 
-# Phase 6 — Benchmarking and Evaluation
+# Phase 8 — Benchmarking and Reproducibility
 
 **Status:** ⏳ Planned
 
-## Goal
-
-Provide a unified evaluation framework for comparing localized synthesis methods
-under identical experimental conditions.
-
-## Planned Components
-
-- Accuracy metrics
-- Efficiency metrics
-- Reliability metrics
-- Visualization
-- Statistical summaries
-- Reproducible experiment configurations
+- [ ] Common evaluation protocol
+- [ ] Accuracy metrics
+- [ ] Efficiency metrics
+- [ ] Reliability metrics
+- [ ] Statistical summaries
+- [ ] Visualization
+- [ ] Reproducible experiment configurations
 
 ---
 
-# Validation Strategy
+# Current Next Actions
 
-Validation accompanies every development phase.
-
-Current verification utilities include
-
-- raw dataset validation
-- validation dataset registration
-- historical H5 reconstruction verification
-- MRI channel verification
-- segmentation verification
-- slice manifest verification
-
-Additional verification procedures will be added as new modules are
-implemented.
-
----
-
-# Notebook-to-Module Mapping
-
-This section will be updated as notebook functionality is migrated into the
-modular implementation.
-
-| Notebook Component | Modular Component | Status |
-|--------------------|------------------|--------|
-| Dataset preparation | `src/data/` | 🚧 |
-| Image preprocessing | `src/preprocessing/` | ⏳ |
-| Diffusion utilities | `src/diffusion/` | ⏳ |
-| Model implementation | `src/models/` | ⏳ |
-| Training | `src/training/` | ⏳ |
-| Inference | `src/inference/` | ⏳ |
-| Evaluation | `src/evaluation/` | ⏳ |
+1. Add backward-compatible `full_train` mode.
+2. Validate that `internal` mode remains unchanged.
+3. Validate that `full_train` uses all 19,941 currently eligible slices.
+4. Launch the fixed-epoch full-training baseline.
+5. Define the appropriate mask-free use of the official BraTS validation
+   release before treating it as an evaluation dataset.
 
 ---
 
 # Long-Term Vision
 
-The completed repository will provide a reproducible research framework for
+The completed repository will provide independently testable and reusable
+components for
 
 - localized medical image synthesis,
-- regional image composition,
+- regional composition,
 - parameter-efficient adaptation,
 - Bayesian Regional LoRA,
 - uncertainty estimation,
-- topology-aware reliability assessment,
-- reproducible benchmarking, and
-- future extension to additional medical imaging datasets.
-
-Every component will be independently testable, reusable, and validated against
-the original research implementation before new functionality is introduced.
+- topology-aware reliability assessment, and
+- reproducible benchmarking.

@@ -1,0 +1,45 @@
+# Baseline settings from the reference notebook.
+#
+# User-tunable experiment parameters are exposed here while retaining the
+# notebook values as defaults. Dataset paths are intentionally not hard-coded.
+
+seed: 42
+
+data:
+  image_channel: 0
+  min_tumor_pixels: 300
+  use_whole_tumor: true
+  train_fraction: 0.9
+  batch_size: 8
+  num_workers: 0
+  pin_memory: false
+
+model:
+  in_channels: 4
+  out_channels: 1
+  base_channels: 32
+  time_dim: 128
+  cond_dim: 4
+
+training:
+  epochs: 30
+  learning_rate: 1.0e-4
+  weight_decay: 0.01
+  outside_loss_weight: 0.05
+
+diffusion:
+  timesteps: 200
+  beta_start: 1.0e-4
+  beta_end: 0.02
+
+inference:
+  timestep_fraction: 0.75
+  max_samples: 4
+  max_base_candidates: 300
+  max_mask_candidates: 500
+  max_pairs: 4
+  min_overlap: 0.80
+
+inference_helpers:
+  brain_threshold: 0.05
+  mask_margin: 10
