@@ -3,12 +3,10 @@
 """
 Construct the BR-LoRA training stack on top of a trained baseline backbone.
 
-This first CLI increment performs configuration loading, dataset construction,
-strict baseline-checkpoint restoration, BR-LoRA adapter construction, and
-optimizer creation.
-
-It intentionally does not start training yet. The construction path is audited
-before wiring in the validated multi-epoch ``fit_br_lora()`` orchestrator.
+This CLI supports both fresh BR-LoRA training and exact continuation from a
+validated BR-LoRA checkpoint. A resumed run reconstructs the baseline and
+adapter structure, restores model/optimizer/RNG state, reconstructs typed fit
+history and progress state, and then delegates continuation to ``fit_br_lora()``.
 """
 
 from __future__ import annotations
@@ -52,7 +50,13 @@ from src.models.adapters import (
 )
 from src.training.br_lora_fit import (
     BRLoRAFitConfig,
+    BRLoRAFitState,
     fit_br_lora,
+    history_from_dicts,
+)
+from src.training.br_lora_checkpoint import (
+    load_br_lora_checkpoint,
+    restore_br_lora_checkpoint,
 )
 
 
@@ -123,6 +127,16 @@ def parse_args() -> argparse.Namespace:
             "checkpoints/br_lora"
         ),
         help="Future BR-LoRA checkpoint output directory.",
+    )
+
+    parser.add_argument(
+        "--resume-checkpoint",
+        type=Path,
+        default=None,
+        help=(
+            "Optional BR-LoRA latest checkpoint from which model, optimizer, "
+            "history, fit state, and RNG state are restored before training."
+        ),
     )
 
     parser.add_argument(
@@ -699,8 +713,137 @@ def make_optional_capped_loader(
     )
 
 
+def infer_best_completed_epoch(
+    *,
+    history,
+    best_validation_loss: float | None,
+) -> int | None:
+    """Recover the epoch that established the stored running best loss."""
+
+    if best_validation_loss is None:
+        return None
+
+    for record in history:
+        if (
+            record.validation_loss
+            == best_validation_loss
+        ):
+            return record.completed_epoch
+
+    raise RuntimeError(
+        "Checkpoint best_validation_loss does not match any "
+        "stored history record."
+    )
+
+
+def validate_resume_metadata(
+    *,
+    payload: dict,
+    current_br_lora_config: dict,
+    current_fit_config: BRLoRAFitConfig,
+    current_model_config: dict,
+    current_data_config: dict,
+) -> None:
+    """
+    Require resume metadata to match the current scientific configuration.
+
+    ``epochs`` is intentionally allowed to increase during resume. All other
+    fit settings must match exactly.
+    """
+
+    checkpoint_br_lora = dict(
+        payload[
+            "br_lora_config"
+        ]
+    )
+
+    if checkpoint_br_lora != current_br_lora_config:
+        raise RuntimeError(
+            "Resume checkpoint BR-LoRA configuration does not match "
+            "the current BR-LoRA configuration."
+        )
+
+    checkpoint_training = dict(
+        payload[
+            "training_config"
+        ]
+    )
+
+    current_training = (
+        current_fit_config.to_dict()
+    )
+
+    checkpoint_epochs = int(
+        checkpoint_training.pop(
+            "epochs"
+        )
+    )
+
+    current_epochs = int(
+        current_training.pop(
+            "epochs"
+        )
+    )
+
+    if checkpoint_training != current_training:
+        raise RuntimeError(
+            "Resume checkpoint training configuration does not match "
+            "the current training configuration apart from total epochs."
+        )
+
+    completed_epochs = int(
+        payload[
+            "completed_epochs"
+        ]
+    )
+
+    if current_epochs < completed_epochs:
+        raise RuntimeError(
+            "Requested total epochs cannot be smaller than the number "
+            "already completed in the resume checkpoint."
+        )
+
+    if current_epochs < checkpoint_epochs:
+        raise RuntimeError(
+            "A resumed run cannot reduce the total epoch target stored "
+            "in the checkpoint."
+        )
+
+    checkpoint_model_config = payload[
+        "model_config"
+    ]
+
+    if (
+        checkpoint_model_config is None
+        or dict(
+            checkpoint_model_config
+        )
+        != current_model_config
+    ):
+        raise RuntimeError(
+            "Resume checkpoint model configuration does not match "
+            "the current baseline model configuration."
+        )
+
+    checkpoint_data_config = payload[
+        "data_config"
+    ]
+
+    if (
+        checkpoint_data_config is None
+        or dict(
+            checkpoint_data_config
+        )
+        != current_data_config
+    ):
+        raise RuntimeError(
+            "Resume checkpoint data configuration does not match "
+            "the current effective data configuration."
+        )
+
+
 def main() -> None:
-    """Construct, audit, and optionally execute the BR-LoRA training stack."""
+    """Construct, audit, and execute fresh or resumed BR-LoRA training."""
 
     args = parse_args()
 
@@ -778,6 +921,15 @@ def main() -> None:
     base_checkpoint = resolve_existing_file(
         args.base_checkpoint,
         name="Base checkpoint",
+    )
+
+    resume_checkpoint = (
+        None
+        if args.resume_checkpoint is None
+        else resolve_existing_file(
+            args.resume_checkpoint,
+            name="Resume checkpoint",
+        )
     )
 
     checkpoint_dir = (
@@ -995,6 +1147,14 @@ def main() -> None:
     print(
         "Base checkpoint          :",
         base_checkpoint,
+    )
+    print(
+        "Resume checkpoint        :",
+        (
+            "none"
+            if resume_checkpoint is None
+            else resume_checkpoint
+        ),
     )
     print(
         "H5 root                  :",
@@ -1293,6 +1453,126 @@ def main() -> None:
         "max_validation_samples"
     ] = args.max_validation_samples
 
+    initial_state = None
+    initial_history = ()
+
+    if resume_checkpoint is not None:
+
+        resume_payload = load_br_lora_checkpoint(
+            resume_checkpoint,
+            map_location=device,
+        )
+
+        validate_resume_metadata(
+            payload=resume_payload,
+            current_br_lora_config=dict(
+                br_lora_cfg
+            ),
+            current_fit_config=fit_config,
+            current_model_config=dict(
+                model_cfg
+            ),
+            current_data_config=checkpoint_data_config,
+        )
+
+        restored = restore_br_lora_checkpoint(
+            payload=resume_payload,
+            model=model,
+            optimizer=optimizer,
+            strict=True,
+            restore_rng=True,
+        )
+
+        initial_history = history_from_dicts(
+            restored[
+                "history"
+            ]
+        )
+
+        best_completed_epoch = infer_best_completed_epoch(
+            history=initial_history,
+            best_validation_loss=restored[
+                "best_validation_loss"
+            ],
+        )
+
+        initial_state = BRLoRAFitState(
+            completed_epochs=restored[
+                "completed_epochs"
+            ],
+            global_step=restored[
+                "global_step"
+            ],
+            best_validation_loss=restored[
+                "best_validation_loss"
+            ],
+            best_completed_epoch=best_completed_epoch,
+        )
+
+        if (
+            len(
+                initial_history
+            )
+            != initial_state.completed_epochs
+        ):
+            raise RuntimeError(
+                "Restored history length does not equal the checkpoint "
+                "completed-epoch count."
+            )
+
+        print()
+        print(
+            "=" * 78
+        )
+        print(
+            "BR-LoRA RESUME RESTORATION"
+        )
+        print(
+            "=" * 78
+        )
+        print(
+            "Resume mode              : True"
+        )
+        print(
+            "Checkpoint               :",
+            resume_checkpoint,
+        )
+        print(
+            "Completed epochs         :",
+            initial_state.completed_epochs,
+        )
+        print(
+            "Global step              :",
+            initial_state.global_step,
+        )
+        print(
+            "History length           :",
+            len(
+                initial_history
+            ),
+        )
+        print(
+            "Best completed epoch     :",
+            initial_state.best_completed_epoch,
+        )
+        print(
+            "Best validation loss     :",
+            initial_state.best_validation_loss,
+        )
+        print(
+            "RNG restored             : True"
+        )
+        print(
+            "=" * 78
+        )
+
+    else:
+
+        print()
+        print(
+            "Resume mode              : False"
+        )
+
     def epoch_callback(
         record,
         state,
@@ -1337,8 +1617,24 @@ def main() -> None:
         "=" * 78
     )
     print(
-        "Epochs                   :",
+        "Epoch target             :",
         fit_config.epochs,
+    )
+    print(
+        "Starting completed epochs:",
+        (
+            0
+            if initial_state is None
+            else initial_state.completed_epochs
+        ),
+    )
+    print(
+        "Starting global step     :",
+        (
+            0
+            if initial_state is None
+            else initial_state.global_step
+        ),
     )
     print(
         "Training samples         :",
@@ -1373,6 +1669,8 @@ def main() -> None:
             model_cfg
         ),
         data_config=checkpoint_data_config,
+        initial_state=initial_state,
+        initial_history=initial_history,
         epoch_callback=epoch_callback,
     )
 

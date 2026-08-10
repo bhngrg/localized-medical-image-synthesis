@@ -34,6 +34,7 @@ from src.diffusion import DiffusionSchedule
 
 from .br_lora_checkpoint import (
     build_br_lora_checkpoint_payload,
+    load_br_lora_checkpoint,
     save_br_lora_checkpoint,
 )
 from .br_lora_trainer import (
@@ -1028,6 +1029,37 @@ def fit_br_lora(
                 state,
                 improved,
             )
+
+    #
+    # Refresh run-level metadata in the retained best checkpoint.
+    #
+    # A resumed run may increase the total epoch target without producing
+    # a new best validation loss. In that case best.pt still contains the
+    # correct best-epoch scientific state, but its training_config["epochs"]
+    # reflects the earlier invocation.
+    #
+    # Refresh only the run-level training configuration while preserving
+    # the stored best model, optimizer, RNG state, history, epoch,
+    # global step, and validation loss exactly.
+    #
+
+    if best_checkpoint_path.is_file():
+
+        best_payload = (
+            load_br_lora_checkpoint(
+                best_checkpoint_path,
+                map_location=device,
+            )
+        )
+
+        best_payload[
+            "training_config"
+        ] = config.to_dict()
+
+        save_br_lora_checkpoint(
+            best_checkpoint_path,
+            best_payload,
+        )
 
     if not latest_checkpoint_path.is_file():
         raise BRLoRAFitError(
