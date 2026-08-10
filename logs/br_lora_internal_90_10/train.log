@@ -1,0 +1,483 @@
+Found 19941 tumor-containing H5 slices.
+
+==============================================================================
+BR-LoRA TRAINING STACK CONSTRUCTION
+==============================================================================
+
+Paths
+------------------------------------------------------------------------------
+Baseline config          : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/configs/baseline_patch_x0.yaml
+BR-LoRA config           : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/configs/br_lora.yaml
+Base checkpoint          : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/checkpoints/internal_90_10/best_patch_x0_diffusion.pt
+Resume checkpoint        : none
+H5 root                  : /Users/bhanugarg/archive/BraTS2020_H5_Rebuilt
+Manifest                 : /Users/bhanugarg/archive/manifest.csv
+Future checkpoint dir    : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/checkpoints/br_lora_internal_90_10
+
+Data
+------------------------------------------------------------------------------
+Eligible samples         : 19,941
+Training samples         : 17,946
+Validation samples       : 1,995
+Training batches         : 2,244
+Validation batches       : 250
+Batch size               : 8
+
+Backbone
+------------------------------------------------------------------------------
+Device                   : mps
+Strict checkpoint load   : True
+Checkpoint epoch         : 23
+
+BR-LoRA
+------------------------------------------------------------------------------
+Injected adapters        : 7
+Converted adapters       : 7
+Target layers exact      : True
+Variational parameters   : 36,104
+Expected parameters      : 36,104
+Parameter count exact    : True
+Trainable tensors        : 28
+Expected tensors         : 28
+Trainable tensors exact  : True
+
+Optimizer
+------------------------------------------------------------------------------
+Type                     : AdamW
+Learning rate            : 0.0001
+Weight decay             : 0.0
+
+Diffusion
+------------------------------------------------------------------------------
+Timesteps                : 200
+Beta start               : 0.0001
+Beta end                 : 0.02
+
+==============================================================================
+CONSTRUCTION VERDICT: PASS
+The trained baseline backbone was restored strictly and converted to the expected BR-LoRA training stack.
+==============================================================================
+
+Resume mode              : False
+
+==============================================================================
+BR-LoRA FIT
+==============================================================================
+Epoch target             : 50
+Starting completed epochs: 0
+Starting global step     : 0
+Training samples         : 17,946
+Validation samples       : 1,995
+Training posterior draws : True
+Validation posterior draws: False
+
+Epoch 1/50
+Global step              : 2244
+Training loss            : 0.00223751
+Training reconstruction  : 0.00223592
+Validation loss          : 0.00093057
+Validation reconstruction: 0.00092852
+Best checkpoint updated  : True
+
+Epoch 2/50
+Global step              : 4488
+Training loss            : 0.00134279
+Training reconstruction  : 0.00134074
+Validation loss          : 0.00086887
+Validation reconstruction: 0.00086681
+Best checkpoint updated  : True
+
+Epoch 3/50
+Global step              : 6732
+Training loss            : 0.00119840
+Training reconstruction  : 0.00119635
+Validation loss          : 0.00086771
+Validation reconstruction: 0.00086566
+Best checkpoint updated  : True
+
+Epoch 4/50
+Global step              : 8976
+Training loss            : 0.00114358
+Training reconstruction  : 0.00114152
+Validation loss          : 0.00085135
+Validation reconstruction: 0.00084929
+Best checkpoint updated  : True
+
+Epoch 5/50
+Global step              : 11220
+Training loss            : 0.00110894
+Training reconstruction  : 0.00110689
+Validation loss          : 0.00085334
+Validation reconstruction: 0.00085128
+Best checkpoint updated  : False
+
+Epoch 6/50
+Global step              : 13464
+Training loss            : 0.00107764
+Training reconstruction  : 0.00107558
+Validation loss          : 0.00085457
+Validation reconstruction: 0.00085251
+Best checkpoint updated  : False
+
+Epoch 7/50
+Global step              : 15708
+Training loss            : 0.00105555
+Training reconstruction  : 0.00105349
+Validation loss          : 0.00083999
+Validation reconstruction: 0.00083793
+Best checkpoint updated  : True
+
+Epoch 8/50
+Global step              : 17952
+Training loss            : 0.00104064
+Training reconstruction  : 0.00103858
+Validation loss          : 0.00083809
+Validation reconstruction: 0.00083602
+Best checkpoint updated  : True
+
+Epoch 9/50
+Global step              : 20196
+Training loss            : 0.00102098
+Training reconstruction  : 0.00101891
+Validation loss          : 0.00084214
+Validation reconstruction: 0.00084008
+Best checkpoint updated  : False
+
+Epoch 10/50
+Global step              : 22440
+Training loss            : 0.00101026
+Training reconstruction  : 0.00100820
+Validation loss          : 0.00085569
+Validation reconstruction: 0.00085362
+Best checkpoint updated  : False
+
+Epoch 11/50
+Global step              : 24684
+Training loss            : 0.00099799
+Training reconstruction  : 0.00099593
+Validation loss          : 0.00082909
+Validation reconstruction: 0.00082702
+Best checkpoint updated  : True
+
+Epoch 12/50
+Global step              : 26928
+Training loss            : 0.00098718
+Training reconstruction  : 0.00098511
+Validation loss          : 0.00083495
+Validation reconstruction: 0.00083288
+Best checkpoint updated  : False
+
+Epoch 13/50
+Global step              : 29172
+Training loss            : 0.00097901
+Training reconstruction  : 0.00097694
+Validation loss          : 0.00083433
+Validation reconstruction: 0.00083226
+Best checkpoint updated  : False
+
+Epoch 14/50
+Global step              : 31416
+Training loss            : 0.00096806
+Training reconstruction  : 0.00096599
+Validation loss          : 0.00082972
+Validation reconstruction: 0.00082765
+Best checkpoint updated  : False
+
+Epoch 15/50
+Global step              : 33660
+Training loss            : 0.00096235
+Training reconstruction  : 0.00096028
+Validation loss          : 0.00082730
+Validation reconstruction: 0.00082523
+Best checkpoint updated  : True
+
+Epoch 16/50
+Global step              : 35904
+Training loss            : 0.00094764
+Training reconstruction  : 0.00094557
+Validation loss          : 0.00082352
+Validation reconstruction: 0.00082144
+Best checkpoint updated  : True
+
+Epoch 17/50
+Global step              : 38148
+Training loss            : 0.00094548
+Training reconstruction  : 0.00094341
+Validation loss          : 0.00082495
+Validation reconstruction: 0.00082288
+Best checkpoint updated  : False
+
+Epoch 18/50
+Global step              : 40392
+Training loss            : 0.00093665
+Training reconstruction  : 0.00093458
+Validation loss          : 0.00082151
+Validation reconstruction: 0.00081943
+Best checkpoint updated  : True
+
+Epoch 19/50
+Global step              : 42636
+Training loss            : 0.00093315
+Training reconstruction  : 0.00093107
+Validation loss          : 0.00082172
+Validation reconstruction: 0.00081964
+Best checkpoint updated  : False
+
+Epoch 20/50
+Global step              : 44880
+Training loss            : 0.00092587
+Training reconstruction  : 0.00092379
+Validation loss          : 0.00081945
+Validation reconstruction: 0.00081737
+Best checkpoint updated  : True
+
+Epoch 21/50
+Global step              : 47124
+Training loss            : 0.00091851
+Training reconstruction  : 0.00091643
+Validation loss          : 0.00081987
+Validation reconstruction: 0.00081779
+Best checkpoint updated  : False
+
+Epoch 22/50
+Global step              : 49368
+Training loss            : 0.00091547
+Training reconstruction  : 0.00091339
+Validation loss          : 0.00081740
+Validation reconstruction: 0.00081531
+Best checkpoint updated  : True
+
+Epoch 23/50
+Global step              : 51612
+Training loss            : 0.00090839
+Training reconstruction  : 0.00090631
+Validation loss          : 0.00081562
+Validation reconstruction: 0.00081354
+Best checkpoint updated  : True
+
+Epoch 24/50
+Global step              : 53856
+Training loss            : 0.00090590
+Training reconstruction  : 0.00090382
+Validation loss          : 0.00081280
+Validation reconstruction: 0.00081072
+Best checkpoint updated  : True
+
+Epoch 25/50
+Global step              : 56100
+Training loss            : 0.00090231
+Training reconstruction  : 0.00090022
+Validation loss          : 0.00081173
+Validation reconstruction: 0.00080964
+Best checkpoint updated  : True
+
+Epoch 26/50
+Global step              : 58344
+Training loss            : 0.00089562
+Training reconstruction  : 0.00089354
+Validation loss          : 0.00081753
+Validation reconstruction: 0.00081544
+Best checkpoint updated  : False
+
+Epoch 27/50
+Global step              : 60588
+Training loss            : 0.00089341
+Training reconstruction  : 0.00089132
+Validation loss          : 0.00081029
+Validation reconstruction: 0.00080820
+Best checkpoint updated  : True
+
+Epoch 28/50
+Global step              : 62832
+Training loss            : 0.00089018
+Training reconstruction  : 0.00088809
+Validation loss          : 0.00081086
+Validation reconstruction: 0.00080877
+Best checkpoint updated  : False
+
+Epoch 29/50
+Global step              : 65076
+Training loss            : 0.00088653
+Training reconstruction  : 0.00088444
+Validation loss          : 0.00080994
+Validation reconstruction: 0.00080785
+Best checkpoint updated  : True
+
+Epoch 30/50
+Global step              : 67320
+Training loss            : 0.00088211
+Training reconstruction  : 0.00088001
+Validation loss          : 0.00080440
+Validation reconstruction: 0.00080231
+Best checkpoint updated  : True
+
+Epoch 31/50
+Global step              : 69564
+Training loss            : 0.00088041
+Training reconstruction  : 0.00087832
+Validation loss          : 0.00080772
+Validation reconstruction: 0.00080562
+Best checkpoint updated  : False
+
+Epoch 32/50
+Global step              : 71808
+Training loss            : 0.00087680
+Training reconstruction  : 0.00087470
+Validation loss          : 0.00080774
+Validation reconstruction: 0.00080564
+Best checkpoint updated  : False
+
+Epoch 33/50
+Global step              : 74052
+Training loss            : 0.00087482
+Training reconstruction  : 0.00087272
+Validation loss          : 0.00080365
+Validation reconstruction: 0.00080155
+Best checkpoint updated  : True
+
+Epoch 34/50
+Global step              : 76296
+Training loss            : 0.00087132
+Training reconstruction  : 0.00086922
+Validation loss          : 0.00080412
+Validation reconstruction: 0.00080202
+Best checkpoint updated  : False
+
+Epoch 35/50
+Global step              : 78540
+Training loss            : 0.00086646
+Training reconstruction  : 0.00086436
+Validation loss          : 0.00080274
+Validation reconstruction: 0.00080063
+Best checkpoint updated  : True
+
+Epoch 36/50
+Global step              : 80784
+Training loss            : 0.00086583
+Training reconstruction  : 0.00086373
+Validation loss          : 0.00079877
+Validation reconstruction: 0.00079667
+Best checkpoint updated  : True
+
+Epoch 37/50
+Global step              : 83028
+Training loss            : 0.00086421
+Training reconstruction  : 0.00086210
+Validation loss          : 0.00080093
+Validation reconstruction: 0.00079882
+Best checkpoint updated  : False
+
+Epoch 38/50
+Global step              : 85272
+Training loss            : 0.00086113
+Training reconstruction  : 0.00085903
+Validation loss          : 0.00079822
+Validation reconstruction: 0.00079611
+Best checkpoint updated  : True
+
+Epoch 39/50
+Global step              : 87516
+Training loss            : 0.00085959
+Training reconstruction  : 0.00085748
+Validation loss          : 0.00079827
+Validation reconstruction: 0.00079616
+Best checkpoint updated  : False
+
+Epoch 40/50
+Global step              : 89760
+Training loss            : 0.00085560
+Training reconstruction  : 0.00085349
+Validation loss          : 0.00079383
+Validation reconstruction: 0.00079172
+Best checkpoint updated  : True
+
+Epoch 41/50
+Global step              : 92004
+Training loss            : 0.00085383
+Training reconstruction  : 0.00085172
+Validation loss          : 0.00079458
+Validation reconstruction: 0.00079247
+Best checkpoint updated  : False
+
+Epoch 42/50
+Global step              : 94248
+Training loss            : 0.00085287
+Training reconstruction  : 0.00085075
+Validation loss          : 0.00079392
+Validation reconstruction: 0.00079181
+Best checkpoint updated  : False
+
+Epoch 43/50
+Global step              : 96492
+Training loss            : 0.00084882
+Training reconstruction  : 0.00084671
+Validation loss          : 0.00079410
+Validation reconstruction: 0.00079198
+Best checkpoint updated  : False
+
+Epoch 44/50
+Global step              : 98736
+Training loss            : 0.00084797
+Training reconstruction  : 0.00084585
+Validation loss          : 0.00078852
+Validation reconstruction: 0.00078640
+Best checkpoint updated  : True
+
+Epoch 45/50
+Global step              : 100980
+Training loss            : 0.00084409
+Training reconstruction  : 0.00084198
+Validation loss          : 0.00079252
+Validation reconstruction: 0.00079040
+Best checkpoint updated  : False
+
+Epoch 46/50
+Global step              : 103224
+Training loss            : 0.00084405
+Training reconstruction  : 0.00084193
+Validation loss          : 0.00078835
+Validation reconstruction: 0.00078623
+Best checkpoint updated  : True
+
+Epoch 47/50
+Global step              : 105468
+Training loss            : 0.00084136
+Training reconstruction  : 0.00083924
+Validation loss          : 0.00079098
+Validation reconstruction: 0.00078885
+Best checkpoint updated  : False
+
+Epoch 48/50
+Global step              : 107712
+Training loss            : 0.00083831
+Training reconstruction  : 0.00083619
+Validation loss          : 0.00078549
+Validation reconstruction: 0.00078336
+Best checkpoint updated  : True
+
+Epoch 49/50
+Global step              : 109956
+Training loss            : 0.00083706
+Training reconstruction  : 0.00083494
+Validation loss          : 0.00078806
+Validation reconstruction: 0.00078593
+Best checkpoint updated  : False
+
+Epoch 50/50
+Global step              : 112200
+Training loss            : 0.00083526
+Training reconstruction  : 0.00083313
+Validation loss          : 0.00078285
+Validation reconstruction: 0.00078072
+Best checkpoint updated  : True
+
+==============================================================================
+BR-LoRA TRAINING COMPLETE
+==============================================================================
+Completed epochs         : 50
+Global step              : 112200
+Best completed epoch     : 50
+Best validation loss     : 0.0007828452297892506
+Latest checkpoint        : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/checkpoints/br_lora_internal_90_10/latest.pt
+Best checkpoint          : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/checkpoints/br_lora_internal_90_10/best.pt
+==============================================================================

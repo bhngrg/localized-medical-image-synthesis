@@ -44,9 +44,11 @@ outputs/*
 # Logs
 # ============================================================
 
-# Ignore log files by default
+# Ignore generic log/error files outside the experiment log directory
 *.log
+*.err
 
 # Keep experiment logs under version control
 !logs/
 !logs/**/*.log
+!logs/**/*.err
