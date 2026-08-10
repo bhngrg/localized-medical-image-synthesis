@@ -20,6 +20,7 @@ interfaces.
 
 from __future__ import annotations
 
+import copy
 import math
 from pathlib import Path
 import random
@@ -338,11 +339,11 @@ def build_br_lora_checkpoint_payload(
             BR_LORA_TRAINING_MODE
         ),
 
-        "model_state_dict": (
+        "model_state_dict": copy.deepcopy(
             model.state_dict()
         ),
 
-        "optimizer_state_dict": (
+        "optimizer_state_dict": copy.deepcopy(
             optimizer.state_dict()
         ),
 
