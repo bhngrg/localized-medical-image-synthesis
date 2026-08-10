@@ -1,0 +1,51 @@
+Using device: mps
+Split mode: internal
+Found 19941 tumor-containing H5 slices.
+Training samples   : 17,946
+Validation samples : 1,995
+Epoch 1: train_loss=0.0289, val_loss=0.0131
+Saved best patch-conditioned x0 model.
+Epoch 2: train_loss=0.0104, val_loss=0.0081
+Saved best patch-conditioned x0 model.
+Epoch 3: train_loss=0.0067, val_loss=0.0051
+Saved best patch-conditioned x0 model.
+Epoch 4: train_loss=0.0052, val_loss=0.0044
+Saved best patch-conditioned x0 model.
+Epoch 5: train_loss=0.0041, val_loss=0.0050
+Epoch 6: train_loss=0.0038, val_loss=0.0033
+Saved best patch-conditioned x0 model.
+Epoch 7: train_loss=0.0033, val_loss=0.0031
+Saved best patch-conditioned x0 model.
+Epoch 8: train_loss=0.0030, val_loss=0.0024
+Saved best patch-conditioned x0 model.
+Epoch 9: train_loss=0.0027, val_loss=0.0019
+Saved best patch-conditioned x0 model.
+Epoch 10: train_loss=0.0026, val_loss=0.0029
+Epoch 11: train_loss=0.0024, val_loss=0.0018
+Saved best patch-conditioned x0 model.
+Epoch 12: train_loss=0.0023, val_loss=0.0022
+Epoch 13: train_loss=0.0022, val_loss=0.0023
+Epoch 14: train_loss=0.0021, val_loss=0.0017
+Saved best patch-conditioned x0 model.
+Epoch 15: train_loss=0.0020, val_loss=0.0018
+Epoch 16: train_loss=0.0019, val_loss=0.0015
+Saved best patch-conditioned x0 model.
+Epoch 17: train_loss=0.0019, val_loss=0.0017
+Epoch 18: train_loss=0.0017, val_loss=0.0025
+Epoch 19: train_loss=0.0017, val_loss=0.0014
+Saved best patch-conditioned x0 model.
+Epoch 20: train_loss=0.0017, val_loss=0.0021
+Epoch 21: train_loss=0.0016, val_loss=0.0012
+Saved best patch-conditioned x0 model.
+Epoch 22: train_loss=0.0015, val_loss=0.0012
+Saved best patch-conditioned x0 model.
+Epoch 23: train_loss=0.0015, val_loss=0.0010
+Saved best patch-conditioned x0 model.
+Epoch 24: train_loss=0.0015, val_loss=0.0027
+Epoch 25: train_loss=0.0014, val_loss=0.0012
+Epoch 26: train_loss=0.0014, val_loss=0.0011
+Epoch 27: train_loss=0.0014, val_loss=0.0011
+Epoch 28: train_loss=0.0013, val_loss=0.0011
+Epoch 29: train_loss=0.0013, val_loss=0.0011
+Epoch 30: train_loss=0.0013, val_loss=0.0021
+Saved final model to checkpoints/internal_90_10/final_patch_x0_diffusion.pt

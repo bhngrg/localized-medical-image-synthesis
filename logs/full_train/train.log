@@ -1,0 +1,36 @@
+Using device: mps
+Split mode: full_train
+Found 19941 tumor-containing H5 slices.
+Training samples   : 19,941
+Validation samples : none (full_train mode)
+Epoch 1: train_loss=0.0271
+Epoch 2: train_loss=0.0096
+Epoch 3: train_loss=0.0062
+Epoch 4: train_loss=0.0047
+Epoch 5: train_loss=0.0040
+Epoch 6: train_loss=0.0035
+Epoch 7: train_loss=0.0031
+Epoch 8: train_loss=0.0029
+Epoch 9: train_loss=0.0026
+Epoch 10: train_loss=0.0024
+Epoch 11: train_loss=0.0023
+Epoch 12: train_loss=0.0022
+Epoch 13: train_loss=0.0020
+Epoch 14: train_loss=0.0020
+Epoch 15: train_loss=0.0018
+Epoch 16: train_loss=0.0018
+Epoch 17: train_loss=0.0017
+Epoch 18: train_loss=0.0016
+Epoch 19: train_loss=0.0016
+Epoch 20: train_loss=0.0016
+Epoch 21: train_loss=0.0015
+Epoch 22: train_loss=0.0015
+Epoch 23: train_loss=0.0014
+Epoch 24: train_loss=0.0014
+Epoch 25: train_loss=0.0013
+Epoch 26: train_loss=0.0013
+Epoch 27: train_loss=0.0012
+Epoch 28: train_loss=0.0012
+Epoch 29: train_loss=0.0012
+Epoch 30: train_loss=0.0011
+Saved final model to checkpoints/full_train/final_patch_x0_diffusion_full_train.pt

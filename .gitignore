@@ -43,4 +43,10 @@ outputs/*
 # ============================================================
 # Logs
 # ============================================================
+
+# Ignore log files by default
 *.log
+
+# Keep experiment logs under version control
+!logs/
+!logs/**/*.log
