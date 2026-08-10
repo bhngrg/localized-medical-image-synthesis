@@ -39,6 +39,18 @@ from .br_lora_trainer import (
     validate_br_lora_epoch,
 )
 
+from .br_lora_checkpoint import (
+    BR_LORA_CHECKPOINT_SCHEMA_VERSION,
+    BR_LORA_TRAINING_MODE,
+    BRLoRACheckpointError,
+    build_br_lora_checkpoint_payload,
+    capture_rng_state,
+    load_br_lora_checkpoint,
+    restore_br_lora_checkpoint,
+    restore_rng_state,
+    save_br_lora_checkpoint,
+)
+
 __all__ = [
     "DEFAULT_OUTSIDE_LOSS_WEIGHT",
     "build_checkpoint_payload",
@@ -65,4 +77,13 @@ __all__ = [
     "BRLoRAValidationEpochResult",
     "train_br_lora_epoch",
     "validate_br_lora_epoch",
+    "BR_LORA_CHECKPOINT_SCHEMA_VERSION",
+    "BR_LORA_TRAINING_MODE",
+    "BRLoRACheckpointError",
+    "build_br_lora_checkpoint_payload",
+    "capture_rng_state",
+    "load_br_lora_checkpoint",
+    "restore_br_lora_checkpoint",
+    "restore_rng_state",
+    "save_br_lora_checkpoint",
 ]
