@@ -14,7 +14,15 @@ import argparse
 from pathlib import Path
 import sys
 
-# Keep current macOS environment import order during development.
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(
+        0,
+        str(PROJECT_ROOT),
+    )
+
+# Keep NumPy before PyTorch for the current macOS development environment.
 import numpy as np
 import matplotlib.pyplot as plt
 import torch

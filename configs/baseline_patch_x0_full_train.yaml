@@ -1,13 +1,15 @@
-# Baseline configuration reproducing the validated reference notebook.
+# Full-training refit of the validated patch-conditioned x0 baseline.
+#
+# Uses all eligible BraTS 2020 training slices.
+# No internal validation split or validation-loss checkpoint selection.
 
 seed: 42
 
 data:
-  split_mode: internal
+  split_mode: full_train
   image_channel: 0
   min_tumor_pixels: 300
   use_whole_tumor: true
-  train_fraction: 0.9
   batch_size: 8
   num_workers: 0
   pin_memory: false

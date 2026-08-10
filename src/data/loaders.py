@@ -1,11 +1,15 @@
 """
-Dataset splitting and DataLoader construction extracted from notebook Cell 4.
+Dataset splitting and DataLoader construction.
+
+The default ``internal`` mode reproduces notebook Cell 4 exactly.
+``full_train`` is an explicit extension that uses the complete eligible
+training dataset without creating an internal validation split.
 """
 
 from __future__ import annotations
 
-from torch.utils.data import DataLoader, Dataset, Subset, random_split
 import torch
+from torch.utils.data import DataLoader, Dataset, Subset, random_split
 
 
 def split_dataset(
@@ -15,14 +19,6 @@ def split_dataset(
 ) -> tuple[Subset, Subset]:
     """
     Split a Dataset exactly as in notebook Cell 4.
-
-    Notebook defaults
-    -----------------
-    train_fraction = 0.9
-    seed = 42
-
-    The training size uses ``int(train_fraction * len(dataset))`` and the
-    remainder is assigned to validation, matching the notebook.
     """
     if not (
         0.0 < train_fraction < 1.0
@@ -70,23 +66,7 @@ def create_train_val_loaders(
     Subset,
 ]:
     """
-    Create training and validation DataLoaders.
-
-    Defaults reproduce notebook Cell 4:
-    - batch_size = 8
-    - train_fraction = 0.9
-    - seed = 42
-    - num_workers = 0
-    - training shuffle = True
-    - validation shuffle = False
-
-    ``pin_memory`` is exposed for users but defaults to False so the notebook
-    behavior is unchanged.
-
-    Returns
-    -------
-    tuple
-        ``(train_loader, val_loader, train_dataset, val_dataset)``
+    Create notebook-equivalent internal train/validation loaders.
     """
     if batch_size <= 0:
         raise ValueError(
@@ -125,4 +105,35 @@ def create_train_val_loaders(
         val_loader,
         train_dataset,
         val_dataset,
+    )
+
+
+def create_full_train_loader(
+    dataset: Dataset,
+    batch_size: int = 8,
+    num_workers: int = 0,
+    pin_memory: bool = False,
+) -> DataLoader:
+    """
+    Create a shuffled loader over 100% of the eligible training dataset.
+
+    This is an explicit extension of the notebook baseline. No internal
+    validation dataset is created.
+    """
+    if batch_size <= 0:
+        raise ValueError(
+            "batch_size must be positive."
+        )
+
+    if num_workers < 0:
+        raise ValueError(
+            "num_workers must be non-negative."
+        )
+
+    return DataLoader(
+        dataset,
+        batch_size=batch_size,
+        shuffle=True,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
     )
