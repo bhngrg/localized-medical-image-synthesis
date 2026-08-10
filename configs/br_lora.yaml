@@ -1,7 +1,7 @@
 # Bayesian Regional LoRA settings.
 #
-# BR-LoRA is applied to the validated local AppearanceX0UNet backbone.
-# Reference values are preserved as defaults while remaining user-configurable.
+# BR-LoRA is applied to a trained, validated local AppearanceX0UNet backbone.
+# Data/model/diffusion settings continue to come from the baseline configuration.
 
 br_lora:
   target_layers:
@@ -23,8 +23,16 @@ br_lora:
   minimum_std: 1.0e-8
 
 training:
-  # Variational training uses reparameterized posterior draws.
+  # Multi-epoch BR-LoRA training settings.
+  epochs: 30
+  learning_rate: 1.0e-4
+  weight_decay: 0.0
+
+  # Variational optimization uses reparameterized posterior draws.
   sample_posterior: true
+
+  # Validation uses posterior means by default for stable checkpoint selection.
+  validation_sample_posterior: false
 
   kl_weight: 1.0e-6
   kl_warmup_steps: 1000
