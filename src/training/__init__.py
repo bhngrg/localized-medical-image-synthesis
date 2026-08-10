@@ -24,6 +24,12 @@ from .br_lora_objectives import (
     regional_reconstruction_loss,
 )
 
+from .br_lora_step import (
+    BRLoRAStepError,
+    BRLoRAStepResult,
+    train_br_lora_step,
+)
+
 __all__ = [
     "DEFAULT_OUTSIDE_LOSS_WEIGHT",
     "build_checkpoint_payload",
@@ -41,4 +47,7 @@ __all__ = [
     "normalized_variational_objective",
     "reconstruction_matches_baseline",
     "regional_reconstruction_loss",
+    "BRLoRAStepError",
+    "BRLoRAStepResult",
+    "train_br_lora_step",
 ]
