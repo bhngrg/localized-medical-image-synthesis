@@ -6,8 +6,9 @@ and image-level reliability assessment.
 
 > **Project Status:** Active development. The original baseline notebook has
 > been refactored into modular Python components and validated against the
-> reference implementation. Current development focuses on extending the
-> validated baseline without changing its default behavior.
+> reference implementation. Current development focuses on integrating
+> Bayesian Regional LoRA into the end-to-end training and inference workflow
+> while preserving the validated baseline behavior.
 
 ---
 
@@ -23,12 +24,23 @@ The framework explicitly separates
 - prescribed lesion masks, and
 - regional image composition.
 
-The long-term research goals include
+The repository currently supports
 
 - localized lesion synthesis,
-- regional image composition,
-- parameter-efficient fine-tuning,
+- hard regional image composition,
+- deterministic convolutional LoRA,
 - Bayesian Regional LoRA (BR-LoRA),
+- mean-field Gaussian variational posteriors,
+- reparameterized posterior sampling,
+- posterior-mean evaluation,
+- parameter-normalized KL regularization, and
+- BR-LoRA optimization and epoch-level training.
+
+Ongoing development is focused on
+
+- multi-epoch BR-LoRA experiment orchestration,
+- checkpoint and resume support,
+- posterior realization management,
 - predictive uncertainty estimation,
 - topology-aware structural analysis,
 - image-level reliability assessment, and
@@ -38,8 +50,9 @@ The long-term research goals include
 
 ## Current Status
 
-The repository now contains a validated modular implementation of the baseline
-patch-conditioned x0 diffusion workflow.
+The repository contains a validated modular implementation of the baseline
+patch-conditioned x0 diffusion workflow together with independently validated
+BR-LoRA learning infrastructure.
 
 Completed infrastructure includes
 
@@ -53,11 +66,17 @@ Completed infrastructure includes
 - modular baseline U-Net implementation,
 - modular training and checkpointing,
 - reconstruction inference,
-- tumor-free base / donor-mask pair selection, and
-- localized regional composition.
-
-The modular implementation has been checked directly against the original
-notebook for exact numerical equivalence across the core workflow.
+- tumor-free base / donor-mask pair selection,
+- localized regional composition,
+- fixed-epoch training on all eligible training slices,
+- deterministic convolutional LoRA,
+- mean-field Gaussian variational parameters,
+- Bayesian Regional LoRA adapters,
+- posterior sampling and posterior-mean modes,
+- analytic KL divergence,
+- BR-LoRA variational optimization,
+- single-step BR-LoRA training, and
+- BR-LoRA train/validation epoch runners.
 
 ---
 
@@ -84,6 +103,41 @@ the modular code is now the primary development surface.
 
 ---
 
+## Bayesian Regional LoRA Validation
+
+The BR-LoRA infrastructure has been validated independently on the same local
+`AppearanceX0UNet` backbone used by the baseline workflow.
+
+Completed checks include
+
+- exact seven-layer target selection,
+- deterministic LoRA parameter accounting,
+- variational posterior parameter accounting,
+- frozen-backbone preservation,
+- exact zero-update initialization of fresh LoRA,
+- exact posterior-mean equivalence at initialization,
+- seeded posterior sampling reproducibility,
+- distinct realizations under distinct posterior seeds,
+- analytic KL divergence,
+- KL gradients through all posterior tensors,
+- exact reconstruction-loss equivalence to the validated baseline,
+- parameter-normalized KL regularization,
+- linear KL warmup,
+- complete BR-LoRA variational objective,
+- real-H5 single-step optimization,
+- gradient clipping,
+- optimizer updates restricted to posterior parameters,
+- epoch-level BR-LoRA training,
+- global-step bookkeeping,
+- sample-weighted metric aggregation, and
+- deterministic posterior-mean validation with zero parameter changes.
+
+For the currently validated rank-4, alpha-8 configuration, the seven adapted
+convolutional layers contain 18,052 deterministic LoRA parameters and 36,104
+variational posterior parameters across 28 trainable posterior tensors.
+
+---
+
 ## Repository Organization
 
 ```text
@@ -91,8 +145,12 @@ localized-medical-image-synthesis/
 │
 ├── checkpoints/          Saved model checkpoints
 ├── configs/              Experiment configuration files
+│   ├── baseline_patch_x0.yaml
+│   ├── baseline_patch_x0_full_train.yaml
+│   └── br_lora.yaml
 ├── data/                 Dataset documentation
 ├── docs/                 Extended project documentation
+├── logs/                 Retained training/runtime logs
 ├── notebooks/            Original research notebooks
 ├── outputs/              Generated figures and synthesized images
 ├── scripts/              Executable workflows and utilities
@@ -101,7 +159,18 @@ localized-medical-image-synthesis/
 │   ├── diffusion/
 │   ├── inference/
 │   ├── models/
+│   │   └── adapters/
+│   │       ├── base.py
+│   │       ├── lora.py
+│   │       ├── selection.py
+│   │       ├── variational.py
+│   │       └── variational_lora.py
 │   └── training/
+│       ├── br_lora_objectives.py
+│       ├── br_lora_step.py
+│       ├── br_lora_trainer.py
+│       ├── losses.py
+│       └── trainer.py
 │
 ├── README.md
 ├── PROJECT_PLAN.md
@@ -138,6 +207,9 @@ create_dataset_manifest.py
         ▼
 manifest.csv
 ```
+
+The current baseline dataset contains 19,941 eligible tumor-containing H5
+slices after applying the validated slice-selection criteria.
 
 The official BraTS 2020 validation release is registered independently:
 
@@ -185,19 +257,103 @@ data:
 the notebook's masked validation loss. This mode is intended for final
 fixed-epoch refits after model-selection settings have already been established.
 
+The repository has completed both a 30-epoch internal 90/10 baseline run and a
+30-epoch full-training baseline run.
+
 The official BraTS validation release remains separate from both modes.
+
+---
+
+## Bayesian Regional LoRA
+
+BR-LoRA is applied on top of the validated local `AppearanceX0UNet` rather than
+replacing the backbone implementation.
+
+The current configuration adapts seven convolutional layers:
+
+```yaml
+br_lora:
+  target_layers:
+    - enc1.conv2
+    - enc2.conv2
+    - enc3.conv2
+    - mid.conv2
+    - dec2.conv2
+    - dec1.conv2
+    - out
+
+  rank: 4
+  alpha: 8.0
+  dropout: 0.0
+
+  initial_std: 0.01
+  prior_mean: 0.0
+  prior_std: 1.0
+  minimum_std: 1.0e-8
+```
+
+Each LoRA factor is represented by a trainable diagonal-Gaussian posterior. The
+model can therefore operate in either of two modes:
+
+```yaml
+sample_posterior: true
+```
+
+for reparameterized Bayesian realizations, or
+
+```yaml
+sample_posterior: false
+```
+
+for deterministic posterior-mean evaluation.
+
+The fitted posterior is represented by the posterior mean and posterior
+standard-deviation parameterization; individual posterior realizations do not
+need to be stored in the training checkpoint to reproduce future sampling.
+
+---
+
+## BR-LoRA Variational Objective
+
+The BR-LoRA training objective preserves the validated regional reconstruction
+loss and adds normalized KL regularization.
+
+Conceptually,
+
+```text
+reconstruction
+    = inside-mask L1
+    + outside_weight * outside-mask L1
+
+normalized_kl
+    = KL(q || p) / number_of_variational_parameters
+
+total
+    = reconstruction
+    + kl_weight
+      * warmup_multiplier
+      * normalized_kl
+```
+
+The current default configuration uses linear KL warmup and posterior sampling
+during variational training. Validation defaults to posterior-mean mode so
+future checkpoint selection can use a stable deterministic criterion rather
+than a single Monte Carlo realization.
 
 ---
 
 ## Repository Design Principles
 
 - Preserve the original notebook as the reference implementation.
-- Preserve notebook behavior as the default configuration.
+- Preserve notebook behavior as the default baseline configuration.
 - Expose legitimate experiment parameters rather than hard-coding them.
 - Refactor incrementally and validate every extracted component.
+- Validate Bayesian components independently before end-to-end integration.
 - Avoid implicit dataset discovery and hidden preprocessing assumptions.
 - Separate reusable library code from executable scripts.
 - Perform expensive dataset validation once and reuse generated metadata.
+- Keep training, inference, composition, uncertainty, and evaluation concerns
+  separate.
 - Do not silently change scientific behavior during engineering refactors.
 
 ---
@@ -220,6 +376,9 @@ scripts/verify_h5_conversion.py
 ```
 
 is retained for preprocessing audit purposes.
+
+A dedicated BR-LoRA experiment CLI will be added after the validated
+multi-epoch/checkpoint orchestration layer is complete.
 
 ---
 

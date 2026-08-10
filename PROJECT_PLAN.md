@@ -11,11 +11,14 @@ functionality is introduced.
 
 # Current Status
 
-**Active milestone:** Full-training baseline refit and external-evaluation
-infrastructure.
+**Active milestone:** Integration of Bayesian Regional LoRA (BR-LoRA) into the
+validated localized medical image synthesis framework.
 
-The repository foundation, data infrastructure, and baseline notebook refactor
-are complete.
+The repository foundation, data infrastructure, baseline notebook refactor,
+full-training baseline workflow, and core BR-LoRA learning infrastructure are
+complete or independently validated. Current development focuses on integrating
+BR-LoRA into the end-to-end experiment workflow while preserving the validated
+baseline implementation.
 
 ---
 
@@ -26,6 +29,8 @@ are complete.
 - Expose legitimate user-tunable experiment parameters.
 - Do not silently change scientific behavior.
 - Validate every extracted module before extending it.
+- Validate every Bayesian component independently before integrating it into
+  the end-to-end training pipeline.
 - Separate fixed data contracts from experiment settings.
 - Avoid repeated raw-data scans when validated metadata already exist.
 - Keep training, inference, composition, and evaluation responsibilities
@@ -152,16 +157,20 @@ behavior.
 
 ## Training Modes
 
-- [x] Preserve `internal` mode as the default:
+- [x] Preserve `internal` mode:
   - 90% optimization
   - 10% internal validation
   - best-checkpoint selection by masked validation loss
 
-- [ ] Add `full_train` mode:
+- [x] Add `full_train` mode:
   - 100% of eligible training slices used for optimization
   - fixed number of epochs
   - final checkpoint saved
   - no fabricated masked validation loss
+
+- [x] Validate `full_train` on all 19,941 eligible training slices
+- [x] Complete 30-epoch internal and full-training baseline runs
+- [x] Record baseline training logs
 
 ## Official BraTS Validation Release
 
@@ -175,12 +184,8 @@ Therefore:
 - it will be used only through an explicitly defined mask-free or
   externally-conditioned evaluation protocol.
 
-## Deliverables
+## Remaining Deliverables
 
-- [ ] Full-training DataLoader path
-- [ ] Full-training trainer path
-- [ ] Backward-compatible training CLI
-- [ ] Overnight baseline full-training run
 - [ ] External-validation inference loader
 - [ ] Explicit evaluation protocol for unlabeled validation subjects
 
@@ -188,48 +193,98 @@ Therefore:
 
 # Phase 4 — Regional Composition Framework
 
-**Status:** ⏳ Planned
+**Status:** 🚧 In Progress
 
 ## Goal
 
 Generalize localized composition into reusable components independent of the
 adaptation strategy.
 
-- [ ] Base-image interface
-- [ ] Donor-image interface
-- [ ] Lesion-mask interface
-- [ ] Regional composition utilities
-- [ ] Common synthesis interface
+- [x] Base-image interface through the current synthesis workflow
+- [x] Donor-image interface through the current synthesis workflow
+- [x] Lesion-mask interface through the current synthesis workflow
+- [x] Regional composition utilities
+- [x] Exact hard outside-mask preservation
+- [ ] Common synthesis interface across adaptation strategies
 - [ ] True regional-composition ablations
 
 ---
 
 # Phase 5 — Parameter-Efficient Adaptation
 
-**Status:** ⏳ Planned
+**Status:** 🚧 In Progress
 
-- [ ] Frozen backbone
-- [ ] Full fine-tuning
+- [x] Frozen backbone support
+- [x] Full fine-tuning baseline support
+- [x] Deterministic convolutional LoRA infrastructure
 - [ ] BitFit
-- [ ] LoRA
 - [ ] DoRA
 - [ ] LoKr
-- [ ] Regional LoRA
+- [ ] Unified Regional LoRA experiment integration
 
 ---
 
 # Phase 6 — Bayesian Regional LoRA
 
-**Status:** ⏳ Planned
+**Status:** 🚧 In Progress
 
-- [ ] Bayesian low-rank adapters
-- [ ] Variational optimization
-- [ ] Posterior sampling
+## Core Adapter Infrastructure
+
+- [x] Deterministic LoRA initialization bridge
+- [x] Bayesian low-rank convolutional adapters
+- [x] Mean-field Gaussian variational posteriors
+- [x] Reparameterized posterior sampling
+- [x] Posterior-mean mode
+- [x] Analytic KL divergence
+- [x] BR-LoRA parameter accounting
+- [x] Frozen-backbone preservation
+
+## Variational Optimization
+
+- [x] Mask-aware reconstruction objective
+- [x] Exact reconstruction equivalence to the validated baseline loss
+- [x] Parameter-normalized KL regularization
+- [x] Linear KL warmup
+- [x] Complete BR-LoRA variational objective
+- [x] Single BR-LoRA optimization step
+- [x] Gradient clipping
+- [x] BR-LoRA training epoch runner
+- [x] Posterior-mean validation epoch runner
+- [x] Global-step bookkeeping
+- [x] Sample-weighted epoch metrics
+
+## Validation Record
+
+The BR-LoRA implementation has been independently audited for
+
+- [x] Exact seven-layer target selection
+- [x] 18,052 deterministic LoRA parameters
+- [x] 36,104 variational posterior parameters
+- [x] 28 trainable posterior tensors
+- [x] Exact frozen-backbone preservation at fresh LoRA initialization
+- [x] Exact posterior-mean equivalence to deterministic LoRA initialization
+- [x] Reproducible seeded posterior realizations
+- [x] Distinct realizations under distinct posterior seeds
+- [x] Finite, nonnegative KL divergence
+- [x] KL gradients reaching all posterior parameters
+- [x] Real-H5 one-step optimization
+- [x] Updates restricted to posterior parameters
+- [x] Tiny train/validation epoch audit
+- [x] Validation with zero parameter changes
+
+## Remaining Deliverables
+
+- [ ] Multi-epoch BR-LoRA experiment runner
+- [ ] Best/latest/final checkpoint orchestration
+- [ ] Resume-training support
+- [ ] Training-history serialization
+- [ ] Posterior inference utilities
+- [ ] Posterior realization management
 - [ ] Predictive uncertainty estimation
 
 ---
 
-# Phase 7 — Image-Level Reliability Framework
+# Phase 7 — Reliability Assessment Framework
 
 **Status:** ⏳ Planned
 
@@ -258,12 +313,15 @@ adaptation strategy.
 
 # Current Next Actions
 
-1. Add backward-compatible `full_train` mode.
-2. Validate that `internal` mode remains unchanged.
-3. Validate that `full_train` uses all 19,941 currently eligible slices.
-4. Launch the fixed-epoch full-training baseline.
-5. Define the appropriate mask-free use of the official BraTS validation
-   release before treating it as an evaluation dataset.
+1. Add multi-epoch BR-LoRA training orchestration.
+2. Add BR-LoRA checkpoint and training-history serialization.
+3. Validate checkpoint save/load and resume behavior.
+4. Implement posterior-mean and posterior-sampled inference utilities.
+5. Preserve configurable Bayesian realizations for downstream uncertainty
+   analysis.
+6. Integrate BR-LoRA into the common benchmarking framework.
+7. Add remaining PEFT baselines and reliability analyses after the BR-LoRA
+   training path is complete.
 
 ---
 
