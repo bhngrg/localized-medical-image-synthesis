@@ -30,6 +30,15 @@ from .br_lora_step import (
     train_br_lora_step,
 )
 
+from .br_lora_trainer import (
+    BRLoRAEpochMetrics,
+    BRLoRATrainEpochResult,
+    BRLoRATrainerError,
+    BRLoRAValidationEpochResult,
+    train_br_lora_epoch,
+    validate_br_lora_epoch,
+)
+
 __all__ = [
     "DEFAULT_OUTSIDE_LOSS_WEIGHT",
     "build_checkpoint_payload",
@@ -50,4 +59,10 @@ __all__ = [
     "BRLoRAStepError",
     "BRLoRAStepResult",
     "train_br_lora_step",
+    "BRLoRAEpochMetrics",
+    "BRLoRATrainEpochResult",
+    "BRLoRATrainerError",
+    "BRLoRAValidationEpochResult",
+    "train_br_lora_epoch",
+    "validate_br_lora_epoch",
 ]
