@@ -1,0 +1,43 @@
+# Bayesian Regional LoRA settings.
+#
+# BR-LoRA is applied to the validated local AppearanceX0UNet backbone.
+# Reference values are preserved as defaults while remaining user-configurable.
+
+br_lora:
+  target_layers:
+    - enc1.conv2
+    - enc2.conv2
+    - enc3.conv2
+    - mid.conv2
+    - dec2.conv2
+    - dec1.conv2
+    - out
+
+  rank: 4
+  alpha: 8.0
+  dropout: 0.0
+
+  initial_std: 0.01
+  prior_mean: 0.0
+  prior_std: 1.0
+  minimum_std: 1.0e-8
+
+training:
+  # Variational training uses reparameterized posterior draws.
+  sample_posterior: true
+
+  kl_weight: 1.0e-6
+  kl_warmup_steps: 1000
+  outside_loss_weight: 0.05
+  max_grad_norm: 1.0
+
+inference:
+  # true  -> generate Bayesian posterior realizations
+  # false -> use posterior means as fixed point estimates
+  sample_posterior: true
+
+  # Number of independent posterior realizations per case.
+  posterior_samples: 50
+
+  # Keep diffusion noise fixed when isolating adapter uncertainty.
+  resample_diffusion_noise: false
