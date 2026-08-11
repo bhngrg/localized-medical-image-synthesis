@@ -148,12 +148,12 @@ Exact equivalence has been demonstrated for
 
 # Phase 3 — Full-Training Baseline and External Evaluation
 
-**Status:** 🚧 In Progress
+**Status:** ✅ Complete
 
 ## Goal
 
 Extend the validated baseline without altering its default notebook-compatible
-behavior.
+behavior while supporting both model-selection and final-training workflows.
 
 ## Training Modes
 
@@ -169,8 +169,9 @@ behavior.
   - no fabricated masked validation loss
 
 - [x] Validate `full_train` on all 19,941 eligible training slices
-- [x] Complete 30-epoch internal and full-training baseline runs
+- [x] Complete 50-epoch internal and full-training baseline runs
 - [x] Record baseline training logs
+- [x] Generalize the training infrastructure to support both split modes through a common training interface
 
 ## Official BraTS Validation Release
 
@@ -181,14 +182,16 @@ Therefore:
 
 - it cannot directly provide the baseline masked validation loss;
 - it must not be used as if ground-truth lesion masks were available;
-- it will be used only through an explicitly defined mask-free or
-  externally-conditioned evaluation protocol.
+- it is reserved for downstream inference and evaluation protocols that do not
+  require ground-truth segmentations.
 
-## Remaining Deliverables
+## Deliverables
 
-- [ ] External-validation inference loader
-- [ ] Explicit evaluation protocol for unlabeled validation subjects
-
+- [x] Internal-validation training workflow
+- [x] Full-training workflow
+- [x] Shared split-mode infrastructure
+- [x] Fixed-epoch checkpoint generation
+- [x] Reproducible training logs
 ---
 
 # Phase 4 — Regional Composition Framework
@@ -205,7 +208,8 @@ adaptation strategy.
 - [x] Lesion-mask interface through the current synthesis workflow
 - [x] Regional composition utilities
 - [x] Exact hard outside-mask preservation
-- [ ] Common synthesis interface across adaptation strategies
+- [x] Integration with the validated baseline synthesis workflow
+- [ ] Common synthesis interface across all adaptation strategies
 - [ ] True regional-composition ablations
 
 ---
@@ -214,13 +218,24 @@ adaptation strategy.
 
 **Status:** 🚧 In Progress
 
+## Goal
+
+Establish a common parameter-efficient adaptation framework for localized
+medical image synthesis while enabling direct comparison across adaptation
+strategies.
+
 - [x] Frozen backbone support
 - [x] Full fine-tuning baseline support
 - [x] Deterministic convolutional LoRA infrastructure
+- [x] Bayesian Regional LoRA (BR-LoRA)
+- [x] Variational low-rank adapter infrastructure
+- [x] Internal (90/10) BR-LoRA training workflow
+- [x] Full-training BR-LoRA workflow
 - [ ] BitFit
 - [ ] DoRA
 - [ ] LoKr
-- [ ] Unified Regional LoRA experiment integration
+- [ ] Unified adaptation interface across all PEFT methods
+- [ ] Common benchmarking pipeline across adaptation strategies
 
 ---
 
@@ -253,6 +268,25 @@ adaptation strategy.
 - [x] Global-step bookkeeping
 - [x] Sample-weighted epoch metrics
 
+## Experiment Infrastructure
+
+- [x] Multi-epoch BR-LoRA training orchestration
+- [x] Internal (90/10) training workflow
+- [x] Full-training workflow
+- [x] Best/latest/final checkpoint orchestration
+- [x] Resume-training support
+- [x] Training-history serialization
+- [x] Split-mode-aware training interface
+- [x] Training-log preservation
+
+## Inference Infrastructure
+
+- [x] Posterior-mean inference
+- [x] Posterior-sampled inference
+- [x] Shared diffusion-input preparation
+- [x] Strict checkpoint reconstruction
+- [x] Posterior realization management
+
 ## Validation Record
 
 The BR-LoRA implementation has been independently audited for
@@ -271,16 +305,17 @@ The BR-LoRA implementation has been independently audited for
 - [x] Updates restricted to posterior parameters
 - [x] Tiny train/validation epoch audit
 - [x] Validation with zero parameter changes
+- [x] Multi-epoch training audit
+- [x] Resume-training audit
+- [x] Full-training audit
+- [x] Posterior inference audit
 
 ## Remaining Deliverables
 
-- [ ] Multi-epoch BR-LoRA experiment runner
-- [ ] Best/latest/final checkpoint orchestration
-- [ ] Resume-training support
-- [ ] Training-history serialization
-- [ ] Posterior inference utilities
-- [ ] Posterior realization management
 - [ ] Predictive uncertainty estimation
+- [ ] Uncertainty calibration analyses
+- [ ] Reliability-score construction
+- [ ] End-to-end evaluation framework
 
 ---
 
@@ -288,12 +323,38 @@ The BR-LoRA implementation has been independently audited for
 
 **Status:** ⏳ Planned
 
-- [ ] Predictive uncertainty
-- [ ] Structural consistency
+## Goal
+
+Develop an image-level reliability framework for localized medical image
+synthesis that combines predictive uncertainty, structural analysis, repeat
+stability, and robustness under controlled perturbations.
+
+## Predictive Uncertainty
+
+- [ ] Posterior predictive uncertainty estimation
+- [ ] Pixel-level uncertainty maps
+- [ ] Image-level uncertainty summaries
+
+## Structural Reliability
+
+- [ ] Structural consistency analysis
 - [ ] Topology-aware summaries
-- [ ] Repeat stability
-- [ ] Controlled perturbation analysis
-- [ ] Review prioritization
+- [ ] Connected-component analysis
+- [ ] Shape and size consistency metrics
+
+## Stability and Robustness
+
+- [ ] Repeat synthesis stability
+- [ ] Source-image perturbation analysis
+- [ ] Base-image perturbation analysis
+- [ ] Lesion-mask perturbation analysis
+
+## Reliability Assessment
+
+- [ ] Composite image-level reliability measures
+- [ ] Continuous review prioritization
+- [ ] Reliability visualization
+- [ ] Reliability reporting utilities
 
 ---
 
@@ -301,39 +362,62 @@ The BR-LoRA implementation has been independently audited for
 
 **Status:** ⏳ Planned
 
+## Goal
+
+Establish a common benchmarking framework for localized medical image
+synthesis that enables fair comparison of adaptation strategies across
+accuracy, computational efficiency, and image-level reliability.
+
+## Adaptation Benchmarking
+
 - [ ] Common evaluation protocol
+- [ ] Frozen backbone benchmark
+- [ ] Full fine-tuning benchmark
+- [ ] LoRA benchmark
+- [ ] BR-LoRA benchmark
+- [ ] BitFit benchmark
+- [ ] DoRA benchmark
+- [ ] LoKr benchmark
+
+## Performance Evaluation
+
 - [ ] Accuracy metrics
 - [ ] Efficiency metrics
 - [ ] Reliability metrics
 - [ ] Statistical summaries
-- [ ] Visualization
+- [ ] Comparative visualizations
+
+## Reproducibility
+
 - [ ] Reproducible experiment configurations
+- [ ] Experiment manifests
+- [ ] Versioned evaluation outputs
+- [ ] End-to-end reproducibility documentation
 
 ---
 
 # Current Next Actions
 
-1. Add multi-epoch BR-LoRA training orchestration.
-2. Add BR-LoRA checkpoint and training-history serialization.
-3. Validate checkpoint save/load and resume behavior.
-4. Implement posterior-mean and posterior-sampled inference utilities.
-5. Preserve configurable Bayesian realizations for downstream uncertainty
-   analysis.
-6. Integrate BR-LoRA into the common benchmarking framework.
-7. Add remaining PEFT baselines and reliability analyses after the BR-LoRA
-   training path is complete.
+1. Implement the common BR-LoRA evaluation pipeline.
+2. Evaluate the internal (90/10) BR-LoRA model.
+3. Evaluate the full-training BR-LoRA model.
+4. Implement predictive uncertainty estimation from posterior realizations.
+5. Develop the image-level reliability assessment framework.
+6. Integrate BR-LoRA into the common benchmarking pipeline.
+7. Add the remaining PEFT baselines (BitFit, DoRA, and LoKr) for comparative evaluation.
 
 ---
 
 # Long-Term Vision
 
-The completed repository will provide independently testable and reusable
-components for
+The completed repository will provide independently testable, reusable, and
+reproducible components for
 
 - localized medical image synthesis,
-- regional composition,
+- regional image composition,
 - parameter-efficient adaptation,
 - Bayesian Regional LoRA,
-- uncertainty estimation,
-- topology-aware reliability assessment, and
-- reproducible benchmarking.
+- predictive uncertainty estimation,
+- image-level reliability assessment,
+- topology-aware structural analysis, and
+- comprehensive benchmarking of adaptation strategies.

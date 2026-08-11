@@ -4,11 +4,13 @@ A modular research framework for localized medical image synthesis, regional
 composition, parameter-efficient adaptation, Bayesian Regional LoRA (BR-LoRA),
 and image-level reliability assessment.
 
-> **Project Status:** Active development. The original baseline notebook has
-> been refactored into modular Python components and validated against the
-> reference implementation. Current development focuses on integrating
-> Bayesian Regional LoRA into the end-to-end training and inference workflow
-> while preserving the validated baseline behavior.
+> **Project Status**: Active development. The original baseline notebook has been 
+> refactored into modular Python components and validated against the reference 
+> implementation. The repository now contains validated end-to-end BR-LoRA training 
+> and inference infrastructure supporting both internal (90/10) model-selection 
+> workflows and full-training refits. Current development focuses on evaluation, 
+> uncertainty estimation, reliability assessment, and benchmarking across adaptation 
+> strategies.
 
 ---
 
@@ -33,18 +35,19 @@ The repository currently supports
 - mean-field Gaussian variational posteriors,
 - reparameterized posterior sampling,
 - posterior-mean evaluation,
-- parameter-normalized KL regularization, and
-- BR-LoRA optimization and epoch-level training.
+- parameter-normalized KL regularization,
+- multi-epoch BR-LoRA training,
+- checkpointing and resume support,
+- posterior inference, and
+- internal and full-training workflows.
 
 Ongoing development is focused on
 
-- multi-epoch BR-LoRA experiment orchestration,
-- checkpoint and resume support,
-- posterior realization management,
 - predictive uncertainty estimation,
 - topology-aware structural analysis,
-- image-level reliability assessment, and
-- reproducible benchmarking of adaptation strategies.
+- image-level reliability assessment,
+- common benchmarking across adaptation strategies, and
+- external evaluation protocols.
 
 ---
 
@@ -75,8 +78,15 @@ Completed infrastructure includes
 - posterior sampling and posterior-mean modes,
 - analytic KL divergence,
 - BR-LoRA variational optimization,
-- single-step BR-LoRA training, and
-- BR-LoRA train/validation epoch runners.
+- multi-epoch BR-LoRA training,
+- checkpoint orchestration,
+- resume-training support,
+- training-history serialization,
+- posterior-mean inference,
+- posterior-sampled inference,
+- internal (90/10) BR-LoRA training,
+- full-training BR-LoRA workflow, and
+- retained experiment logs.
 
 ---
 
@@ -131,6 +141,12 @@ Completed checks include
 - global-step bookkeeping,
 - sample-weighted metric aggregation, and
 - deterministic posterior-mean validation with zero parameter changes.
+- validated multi-epoch training,
+- checkpoint save/load,
+- resume-training restoration,
+- posterior inference reconstruction,
+- full-training workflow, and
+- split-mode-aware training orchestration.
 
 For the currently validated rank-4, alpha-8 configuration, the seven adapted
 convolutional layers contain 18,052 deterministic LoRA parameters and 36,104
@@ -170,7 +186,9 @@ localized-medical-image-synthesis/
 │       ├── br_lora_step.py
 │       ├── br_lora_trainer.py
 │       ├── losses.py
-│       └── trainer.py
+│       ├──trainer.py
+│       ├── br_lora_fit.py
+│       └── br_lora_checkpoint.py
 │
 ├── README.md
 ├── PROJECT_PLAN.md
@@ -257,8 +275,14 @@ data:
 the notebook's masked validation loss. This mode is intended for final
 fixed-epoch refits after model-selection settings have already been established.
 
-The repository has completed both a 30-epoch internal 90/10 baseline run and a
-30-epoch full-training baseline run.
+The repository has completed
+
+- a 50-epoch internal (90/10) baseline run,
+- a 50-epoch internal BR-LoRA run,
+- a 50-epoch full-training baseline run, and
+- a 50-epoch full-training BR-LoRA run.
+
+Training logs for these reference experiments are retained under `logs/`.
 
 The official BraTS validation release remains separate from both modes.
 
@@ -340,6 +364,11 @@ during variational training. Validation defaults to posterior-mean mode so
 future checkpoint selection can use a stable deterministic criterion rather
 than a single Monte Carlo realization.
 
+The training infrastructure supports both notebook-equivalent internal
+train/validation workflows for model selection and fixed-epoch full-training
+workflows for final model fitting. Both modes share the same validated BR-LoRA
+optimization pipeline while differing only in checkpoint-selection behavior.
+
 ---
 
 ## Repository Design Principles
@@ -366,6 +395,7 @@ scripts/register_validation_dataset.py
 scripts/build_h5_dataset.py
 scripts/create_dataset_manifest.py
 scripts/train_patch_x0.py
+scripts/train_br_lora.py
 scripts/synthesize_patch_x0.py
 ```
 
@@ -377,8 +407,9 @@ scripts/verify_h5_conversion.py
 
 is retained for preprocessing audit purposes.
 
-A dedicated BR-LoRA experiment CLI will be added after the validated
-multi-epoch/checkpoint orchestration layer is complete.
+The BR-LoRA training CLI supports both notebook-equivalent internal training
+and full-training workflows, including checkpointing, resume support, and
+posterior-mean validation.
 
 ---
 
