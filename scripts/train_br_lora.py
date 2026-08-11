@@ -1,12 +1,22 @@
 #!/usr/bin/env python3
 
 """
-Construct the BR-LoRA training stack on top of a trained baseline backbone.
+Construct and train Bayesian Regional LoRA (BR-LoRA) on a trained baseline.
 
-This CLI supports both fresh BR-LoRA training and exact continuation from a
-validated BR-LoRA checkpoint. A resumed run reconstructs the baseline and
-adapter structure, restores model/optimizer/RNG state, reconstructs typed fit
-history and progress state, and then delegates continuation to ``fit_br_lora()``.
+The training protocol is inherited from the baseline configuration:
+
+internal
+    Reproduce the validated internal 90/10 workflow. Training uses the internal
+    optimization split, validation is performed every epoch, ``latest.pt`` is
+    written every epoch, and ``best.pt`` is selected by validation loss.
+
+full_train
+    Use 100% of eligible training slices for a fixed number of epochs. No
+    internal validation loss or best-checkpoint rule is computed.
+    ``latest.pt`` is written every epoch for exact resume and ``final.pt`` is
+    written when the configured epoch target is reached.
+
+Both protocols support exact continuation from a validated BR-LoRA checkpoint.
 """
 
 from __future__ import annotations
@@ -38,6 +48,9 @@ from src.data import (
     BraTSH5PatchX0Dataset,
     create_train_val_loaders,
 )
+from src.data.loaders import (
+    create_full_train_loader,
+)
 from src.diffusion import DiffusionSchedule
 from src.models import AppearanceX0UNet
 from src.models.adapters import (
@@ -51,6 +64,8 @@ from src.models.adapters import (
 from src.training.br_lora_fit import (
     BRLoRAFitConfig,
     BRLoRAFitState,
+    FULL_TRAIN_SPLIT_MODE,
+    INTERNAL_SPLIT_MODE,
     fit_br_lora,
     history_from_dicts,
 )
@@ -77,7 +92,7 @@ def parse_args() -> argparse.Namespace:
 
     parser = argparse.ArgumentParser(
         description=(
-            "Construct BR-LoRA on top of a trained patch-conditioned "
+            "Train BR-LoRA on top of a trained patch-conditioned "
             "x0 diffusion backbone."
         )
     )
@@ -126,7 +141,7 @@ def parse_args() -> argparse.Namespace:
         default=Path(
             "checkpoints/br_lora"
         ),
-        help="Future BR-LoRA checkpoint output directory.",
+        help="BR-LoRA checkpoint output directory.",
     )
 
     parser.add_argument(
@@ -155,7 +170,7 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help=(
             "Optional audit-only cap on the number of training samples. "
-            "When omitted, the complete validated training split is used."
+            "When omitted, the complete configured training set is used."
         ),
     )
 
@@ -164,8 +179,8 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=None,
         help=(
-            "Optional audit-only cap on the number of validation samples. "
-            "When omitted, the complete validated validation split is used."
+            "Optional audit-only cap on validation samples. This is valid "
+            "only for data.split_mode='internal'."
         ),
     )
 
@@ -653,7 +668,7 @@ def make_optional_capped_loader(
     object,
 ]:
     """
-    Optionally cap one split for an explicit development/audit run.
+    Optionally cap one dataset for an explicit development/audit run.
 
     Production behavior is unchanged when ``max_samples`` is ``None``.
     Capped loaders use deterministic ordering and are intended only for
@@ -897,15 +912,25 @@ def main() -> None:
     split_mode = str(
         data_cfg.get(
             "split_mode",
-            "internal",
+            INTERNAL_SPLIT_MODE,
         )
     )
 
-    if split_mode != "internal":
+    if split_mode not in {
+        INTERNAL_SPLIT_MODE,
+        FULL_TRAIN_SPLIT_MODE,
+    }:
         raise ValueError(
-            "BR-LoRA construction currently requires "
-            "data.split_mode='internal' because the validated fit path "
-            "uses an internal validation loader for checkpoint selection."
+            "data.split_mode must be 'internal' or 'full_train'."
+        )
+
+    if (
+        split_mode == FULL_TRAIN_SPLIT_MODE
+        and args.max_validation_samples is not None
+    ):
+        raise ValueError(
+            "--max-validation-samples is not valid for full_train mode "
+            "because no internal validation dataset is created."
         )
 
     h5_root = resolve_existing_directory(
@@ -990,50 +1015,79 @@ def main() -> None:
         )
     )
 
-    (
-        train_loader,
-        validation_loader,
-        train_dataset,
-        validation_dataset,
-    ) = create_train_val_loaders(
-        dataset=dataset,
-        batch_size=batch_size,
-        train_fraction=float(
-            data_cfg.get(
-                "train_fraction",
-                0.9,
-            )
-        ),
-        seed=seed,
-        num_workers=num_workers,
-        pin_memory=pin_memory,
-    )
+    if split_mode == INTERNAL_SPLIT_MODE:
 
-    (
-        train_loader,
-        train_dataset,
-    ) = make_optional_capped_loader(
-        loader=train_loader,
-        dataset=train_dataset,
-        max_samples=args.max_train_samples,
-        batch_size=batch_size,
-        num_workers=num_workers,
-        pin_memory=pin_memory,
-        name="max_train_samples",
-    )
+        (
+            train_loader,
+            validation_loader,
+            train_dataset,
+            validation_dataset,
+        ) = create_train_val_loaders(
+            dataset=dataset,
+            batch_size=batch_size,
+            train_fraction=float(
+                data_cfg.get(
+                    "train_fraction",
+                    0.9,
+                )
+            ),
+            seed=seed,
+            num_workers=num_workers,
+            pin_memory=pin_memory,
+        )
 
-    (
-        validation_loader,
-        validation_dataset,
-    ) = make_optional_capped_loader(
-        loader=validation_loader,
-        dataset=validation_dataset,
-        max_samples=args.max_validation_samples,
-        batch_size=batch_size,
-        num_workers=num_workers,
-        pin_memory=pin_memory,
-        name="max_validation_samples",
-    )
+        (
+            train_loader,
+            train_dataset,
+        ) = make_optional_capped_loader(
+            loader=train_loader,
+            dataset=train_dataset,
+            max_samples=args.max_train_samples,
+            batch_size=batch_size,
+            num_workers=num_workers,
+            pin_memory=pin_memory,
+            name="max_train_samples",
+        )
+
+        (
+            validation_loader,
+            validation_dataset,
+        ) = make_optional_capped_loader(
+            loader=validation_loader,
+            dataset=validation_dataset,
+            max_samples=args.max_validation_samples,
+            batch_size=batch_size,
+            num_workers=num_workers,
+            pin_memory=pin_memory,
+            name="max_validation_samples",
+        )
+
+    else:
+
+        train_loader = create_full_train_loader(
+            dataset=dataset,
+            batch_size=batch_size,
+            num_workers=num_workers,
+            pin_memory=pin_memory,
+        )
+
+        train_dataset = dataset
+
+        (
+            train_loader,
+            train_dataset,
+        ) = make_optional_capped_loader(
+            loader=train_loader,
+            dataset=train_dataset,
+            max_samples=args.max_train_samples,
+            batch_size=batch_size,
+            num_workers=num_workers,
+            pin_memory=pin_memory,
+            name="max_train_samples",
+        )
+
+        validation_loader = None
+        validation_dataset = None
 
     schedule = DiffusionSchedule(
         timesteps=int(
@@ -1177,6 +1231,10 @@ def main() -> None:
         "-" * 78
     )
     print(
+        "Split mode               :",
+        split_mode,
+    )
+    print(
         "Eligible samples         :",
         f"{len(dataset):,}",
     )
@@ -1184,18 +1242,32 @@ def main() -> None:
         "Training samples         :",
         f"{len(train_dataset):,}",
     )
-    print(
-        "Validation samples       :",
-        f"{len(validation_dataset):,}",
-    )
+
+    if validation_dataset is None:
+        print(
+            "Validation samples       : none (full_train mode)"
+        )
+    else:
+        print(
+            "Validation samples       :",
+            f"{len(validation_dataset):,}",
+        )
+
     print(
         "Training batches         :",
         f"{len(train_loader):,}",
     )
-    print(
-        "Validation batches       :",
-        f"{len(validation_loader):,}",
-    )
+
+    if validation_loader is None:
+        print(
+            "Validation batches       : none (full_train mode)"
+        )
+    else:
+        print(
+            "Validation batches       :",
+            f"{len(validation_loader):,}",
+        )
+
     print(
         "Batch size               :",
         batch_size,
@@ -1441,8 +1513,12 @@ def main() -> None:
 
     checkpoint_data_config[
         "effective_validation_samples"
-    ] = len(
-        validation_dataset
+    ] = (
+        None
+        if validation_dataset is None
+        else len(
+            validation_dataset
+        )
     )
 
     checkpoint_data_config[
@@ -1534,6 +1610,10 @@ def main() -> None:
             "Resume mode              : True"
         )
         print(
+            "Split mode               :",
+            split_mode,
+        )
+        print(
             "Checkpoint               :",
             resume_checkpoint,
         )
@@ -1551,14 +1631,24 @@ def main() -> None:
                 initial_history
             ),
         )
-        print(
-            "Best completed epoch     :",
-            initial_state.best_completed_epoch,
-        )
-        print(
-            "Best validation loss     :",
-            initial_state.best_validation_loss,
-        )
+
+        if split_mode == INTERNAL_SPLIT_MODE:
+            print(
+                "Best completed epoch     :",
+                initial_state.best_completed_epoch,
+            )
+            print(
+                "Best validation loss     :",
+                initial_state.best_validation_loss,
+            )
+        else:
+            print(
+                "Best completed epoch     : not applicable"
+            )
+            print(
+                "Best validation loss     : not applicable"
+            )
+
         print(
             "RNG restored             : True"
         )
@@ -1594,17 +1684,23 @@ def main() -> None:
             f"Training reconstruction  : "
             f"{record.training_reconstruction:.8f}"
         )
-        print(
-            f"Validation loss          : "
-            f"{record.validation_loss:.8f}"
-        )
-        print(
-            f"Validation reconstruction: "
-            f"{record.validation_reconstruction:.8f}"
-        )
-        print(
-            f"Best checkpoint updated  : {improved}"
-        )
+
+        if record.has_validation:
+            print(
+                f"Validation loss          : "
+                f"{record.validation_loss:.8f}"
+            )
+            print(
+                f"Validation reconstruction: "
+                f"{record.validation_reconstruction:.8f}"
+            )
+            print(
+                f"Best checkpoint updated  : {improved}"
+            )
+        else:
+            print(
+                "Validation               : not performed (full_train mode)"
+            )
 
     print()
     print(
@@ -1615,6 +1711,10 @@ def main() -> None:
     )
     print(
         "=" * 78
+    )
+    print(
+        "Split mode               :",
+        split_mode,
     )
     print(
         "Epoch target             :",
@@ -1640,18 +1740,31 @@ def main() -> None:
         "Training samples         :",
         f"{len(train_dataset):,}",
     )
-    print(
-        "Validation samples       :",
-        f"{len(validation_dataset):,}",
-    )
+
+    if validation_dataset is None:
+        print(
+            "Validation samples       : none (full_train mode)"
+        )
+    else:
+        print(
+            "Validation samples       :",
+            f"{len(validation_dataset):,}",
+        )
+
     print(
         "Training posterior draws :",
         fit_config.training_sample_posterior,
     )
-    print(
-        "Validation posterior draws:",
-        fit_config.validation_sample_posterior,
-    )
+
+    if split_mode == INTERNAL_SPLIT_MODE:
+        print(
+            "Validation posterior draws:",
+            fit_config.validation_sample_posterior,
+        )
+    else:
+        print(
+            "Validation posterior draws: not applicable"
+        )
 
     result = fit_br_lora(
         model=model,
@@ -1685,6 +1798,10 @@ def main() -> None:
         "=" * 78
     )
     print(
+        "Split mode               :",
+        result.split_mode,
+    )
+    print(
         "Completed epochs         :",
         result.state.completed_epochs,
     )
@@ -1692,22 +1809,37 @@ def main() -> None:
         "Global step              :",
         result.state.global_step,
     )
-    print(
-        "Best completed epoch     :",
-        result.state.best_completed_epoch,
-    )
-    print(
-        "Best validation loss     :",
-        result.state.best_validation_loss,
-    )
-    print(
-        "Latest checkpoint        :",
-        result.latest_checkpoint_path,
-    )
-    print(
-        "Best checkpoint          :",
-        result.best_checkpoint_path,
-    )
+
+    if result.split_mode == INTERNAL_SPLIT_MODE:
+        print(
+            "Best completed epoch     :",
+            result.state.best_completed_epoch,
+        )
+        print(
+            "Best validation loss     :",
+            result.state.best_validation_loss,
+        )
+        print(
+            "Latest checkpoint        :",
+            result.latest_checkpoint_path,
+        )
+        print(
+            "Best checkpoint          :",
+            result.best_checkpoint_path,
+        )
+    else:
+        print(
+            "Validation               : not performed"
+        )
+        print(
+            "Latest checkpoint        :",
+            result.latest_checkpoint_path,
+        )
+        print(
+            "Final checkpoint         :",
+            result.final_checkpoint_path,
+        )
+
     print(
         "=" * 78
     )
@@ -1725,7 +1857,7 @@ if __name__ == "__main__":
         TypeError,
     ) as exc:
         print(
-            "\nBR-LoRA CONSTRUCTION FAILED",
+            "\nBR-LoRA TRAINING FAILED",
             file=sys.stderr,
         )
         print(
