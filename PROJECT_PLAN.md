@@ -16,9 +16,7 @@ validated localized medical image synthesis framework.
 
 The repository foundation, data infrastructure, baseline notebook refactor,
 full-training baseline workflow, and core BR-LoRA learning infrastructure are
-complete or independently validated. Current development focuses on integrating
-BR-LoRA into the end-to-end experiment workflow while preserving the validated
-baseline implementation.
+complete or independently validated. Current development focuses on evaluation, uncertainty quantification, reliability assessment, and benchmarking using the validated BR-LoRA training and inference infrastructure.
 
 ---
 
@@ -196,7 +194,7 @@ Therefore:
 
 # Phase 4 — Regional Composition Framework
 
-**Status:** 🚧 In Progress
+**Status:** 🚧 Active
 
 ## Goal
 
@@ -312,6 +310,9 @@ The BR-LoRA implementation has been independently audited for
 
 ## Remaining Deliverables
 
+- [x] Posterior sampling audit
+- [x] Monte Carlo convergence analysis
+- [x] Monte Carlo standard error (MCSE) analysis
 - [ ] Predictive uncertainty estimation
 - [ ] Uncertainty calibration analyses
 - [ ] Reliability-score construction
@@ -398,13 +399,13 @@ accuracy, computational efficiency, and image-level reliability.
 
 # Current Next Actions
 
-1. Implement the common BR-LoRA evaluation pipeline.
-2. Evaluate the internal (90/10) BR-LoRA model.
-3. Evaluate the full-training BR-LoRA model.
-4. Implement predictive uncertainty estimation from posterior realizations.
-5. Develop the image-level reliability assessment framework.
-6. Integrate BR-LoRA into the common benchmarking pipeline.
-7. Add the remaining PEFT baselines (BitFit, DoRA, and LoKr) for comparative evaluation.
+1. Evaluate the internal (90/10) BR-LoRA model on the external BraTS validation cohort.
+2. Evaluate the full-training BR-LoRA model on the external BraTS validation cohort.
+3. Implement predictive uncertainty estimation using 100 posterior realizations.
+4. Integrate image-level reliability metrics with uncertainty estimates.
+5. Complete the common evaluation pipeline for all adaptation strategies.
+6. Add the remaining PEFT baselines (BitFit, DoRA, and LoKr).
+7. Perform comparative benchmarking across accuracy, efficiency, and reliability.
 
 ---
 
