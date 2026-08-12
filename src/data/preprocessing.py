@@ -14,6 +14,64 @@ import numpy as np
 import torch
 
 
+def standardize_nifti_slice(
+    image_slice: np.ndarray,
+) -> np.ndarray:
+    """
+    Reproduce the historical per-slice all-pixel z-score standardization.
+
+    This matches ``standardize_slice`` in ``scripts/build_h5_dataset.py``.
+
+    All pixels, including background, contribute to the mean and standard
+    deviation. Population standard deviation (ddof=0) is used.
+
+    Constant slices are returned as all-zero float64 arrays.
+    """
+
+    image_slice = np.asarray(
+        image_slice,
+        dtype=np.float64,
+    )
+
+    if image_slice.ndim != 2:
+        raise ValueError(
+            "`image_slice` must be a two-dimensional array."
+        )
+
+    if not np.isfinite(
+        image_slice
+    ).all():
+        raise ValueError(
+            "`image_slice` contains non-finite values."
+        )
+
+    mean = image_slice.mean()
+
+    std = image_slice.std(
+        ddof=0
+    )
+
+    if std == 0:
+        return np.zeros_like(
+            image_slice,
+            dtype=np.float64,
+        )
+
+    standardized = (
+        image_slice
+        - mean
+    ) / std
+
+    if not np.isfinite(
+        standardized
+    ).all():
+        raise RuntimeError(
+            "Standardized NIfTI slice contains non-finite values."
+        )
+
+    return standardized
+
+
 def normalize_image_channel(x: np.ndarray) -> np.ndarray:
     """
     Normalize one 2-D MRI channel exactly as in the reference notebook.
