@@ -11,8 +11,9 @@ and image-level reliability assessment.
 > supporting both internal (90/10) model-selection workflows and full-training
 > refits. Internal posterior-sampling analyses, including Monte Carlo
 > convergence and Monte Carlo standard error (MCSE) validation, have been
-> implemented. Current development focuses on external validation,
-> reliability assessment, and benchmarking across adaptation strategies.
+> implemented. Current development focuses on screened external validation,
+> predictive uncertainty evaluation, reliability assessment, and benchmarking
+> across adaptation strategies.
 
 ---
 
@@ -41,12 +42,16 @@ The repository currently supports
 - multi-epoch BR-LoRA training,
 - checkpointing and resume support,
 - Monte Carlo convergence analysis,
-- Monte Carlo standard error (MCSE) analysis, and
+- Monte Carlo standard error (MCSE) analysis,
+- registered BraTS 2020 validation-slice loading with training-compatible preprocessing,
+- fixed-manifest external BR-LoRA evaluation,
+- retained posterior realization artifacts with posterior mean, variance, and standard deviation summaries, and
 - internal (90/10) and full-training workflows.
 
 Ongoing development is focused on
 
-- external validation of trained BR-LoRA models,
+- nnU-Net-based screening of the BraTS 2020 validation release to identify external base slices without predicted tumor involvement,
+- external evaluation of the internal (90/10) and full-training BR-LoRA models using 100 retained posterior realizations per case,
 - topology-aware structural analysis,
 - image-level reliability assessment,
 - benchmarking across adaptation strategies, and
@@ -81,6 +86,11 @@ Completed infrastructure includes
 - posterior mean and posterior sampling inference,
 - Monte Carlo convergence analysis,
 - Monte Carlo standard error (MCSE) analysis,
+- registered external BraTS validation-slice loading,
+- external preprocessing equivalence validation against the reconstructed H5 training representation,
+- fixed-manifest external BR-LoRA evaluation,
+- per-case deterministic posterior sampling with manifest-order-independent seeds,
+- retained posterior realization stacks with reproducible CPU-derived posterior summaries,
 - internal (90/10) BR-LoRA training,
 - full-training BR-LoRA workflows,
 - checkpoint management and resume support, and
@@ -147,6 +157,10 @@ Completed validation includes
 - posterior sampling inference,
 - posterior convergence analysis,
 - Monte Carlo standard error (MCSE) analysis,
+- external validation-slice preprocessing equivalence,
+- manifest-driven external posterior inference,
+- retained posterior realization and posterior-summary artifact validation,
+- case-specific posterior reproducibility independent of manifest order or subsetting,
 - shared pair-preparation consistency across synthesis and posterior inference,
 - full-training workflows, and
 - split-mode-aware training orchestration.
@@ -174,19 +188,27 @@ localized-medical-image-synthesis/
 ├── logs/                 Training and runtime logs
 ├── notebooks/            Original research notebooks
 ├── outputs/              Generated figures, analyses, and synthesized images
+├── screening/            External-cohort screening workflows
+│   └── brats_nnunet/     Planned nnU-Net screening workflow
 ├── scripts/              Executable workflows
-│   ├── train_baseline.py
+│   ├── train_patch_x0.py
 │   ├── train_br_lora.py
+│   ├── synthesize_patch_x0.py
 │   ├── synthesize_br_lora.py
+│   ├── evaluate_br_lora_external.py
 │   ├── audit_br_lora_posterior.py
 │   ├── analyze_br_lora_posterior_convergence.py
 │   └── analyze_br_lora_posterior_mcse.py
 │
 ├── src/                  Modular Python implementation
 │   ├── data/
+│   │   └── validation.py
 │   ├── diffusion/
 │   ├── inference/
-│   │   └── br_lora_pairs.py
+│   │   ├── br_lora_pairs.py
+│   │   ├── br_lora_external_pairs.py
+│   │   ├── external_manifest.py
+│   │   └── posterior_products.py
 │   ├── models/
 │   │   └── adapters/
 │   │       ├── base.py
@@ -257,8 +279,17 @@ validation_dataset.yaml
 
 The official validation release does not include tumor segmentation masks.
 Consequently, it is not used for masked reconstruction losses or checkpoint
-selection. Instead, it serves as an independent dataset for downstream
-inference, uncertainty estimation, and reliability evaluation.
+selection. A registered validation-slice loader now reproduces the effective
+training image representation from raw validation NIfTI data, and this
+preprocessing path has been numerically validated against the reconstructed H5
+training pipeline. The validation release is reserved for downstream external
+inference, predictive uncertainty estimation, and reliability evaluation.
+
+Because ground-truth tumor masks are unavailable for the validation release,
+the final external base cohort will be constructed separately using a frozen
+nnU-Net model trained on the labeled BraTS 2020 training release. The resulting
+screened case manifest will be consumed by the external evaluator without
+changing the BR-LoRA inference pipeline.
 
 See `data/README.md` for dataset setup and registration details.
 
@@ -353,8 +384,11 @@ parameters for every adapted LoRA factor. Individual posterior realizations are
 generated on demand during inference and therefore do not need to be stored.
 
 The repository additionally provides utilities for posterior-sampling audits,
-Monte Carlo convergence analysis, and Monte Carlo standard error (MCSE)
-analysis to validate BR-LoRA posterior inference.
+Monte Carlo convergence analysis, Monte Carlo standard error (MCSE) analysis,
+and fixed-manifest external posterior evaluation. External evaluation retains
+the exact posterior realization stack for each case and derives posterior mean,
+variance, and standard deviation summaries from the retained CPU stack for
+reproducible downstream analysis.
 
 ---
 
@@ -433,6 +467,10 @@ Image synthesis
 scripts/synthesize_patch_x0.py
 scripts/synthesize_br_lora.py
 
+External evaluation
+-------------------
+scripts/evaluate_br_lora_external.py
+
 Posterior analysis
 ------------------
 scripts/audit_br_lora_posterior.py
@@ -455,6 +493,9 @@ The BR-LoRA training and inference workflows support
 - checkpoint save/load and resume,
 - posterior mean inference,
 - posterior sampling inference,
+- fixed-manifest external validation inference,
+- retained posterior realization artifacts,
+- reproducible posterior mean, variance, and standard deviation products,
 - posterior convergence analysis, and
 - Monte Carlo standard error (MCSE) analysis.
 

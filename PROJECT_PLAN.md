@@ -11,12 +11,17 @@ functionality is introduced.
 
 # Current Status
 
-**Active milestone:** Integration of Bayesian Regional LoRA (BR-LoRA) into the
-validated localized medical image synthesis framework.
+**Active milestone:** External BR-LoRA evaluation and construction of a
+screened BraTS validation cohort.
 
 The repository foundation, data infrastructure, baseline notebook refactor,
-full-training baseline workflow, and core BR-LoRA learning infrastructure are
-complete or independently validated. Current development focuses on evaluation, uncertainty quantification, reliability assessment, and benchmarking using the validated BR-LoRA training and inference infrastructure.
+full-training baseline workflow, core BR-LoRA learning infrastructure,
+posterior-sampling analyses, and manifest-driven external BR-LoRA evaluation
+infrastructure are complete or independently validated. Current development
+focuses on nnU-Net-based screening of the BraTS 2020 validation release,
+external evaluation of the internal (90/10) and full-training BR-LoRA models,
+predictive uncertainty estimation using retained posterior realizations,
+reliability assessment, and benchmarking.
 
 ---
 
@@ -31,8 +36,10 @@ complete or independently validated. Current development focuses on evaluation, 
   the end-to-end training pipeline.
 - Separate fixed data contracts from experiment settings.
 - Avoid repeated raw-data scans when validated metadata already exist.
-- Keep training, inference, composition, and evaluation responsibilities
-  separate.
+- Keep training, inference, composition, external-cohort screening, posterior
+  analysis, and evaluation responsibilities separate.
+- Treat external case selection as a fixed manifest-generation problem rather
+  than embedding case discovery inside model evaluation.
 
 ---
 
@@ -190,6 +197,14 @@ Therefore:
 - [x] Shared split-mode infrastructure
 - [x] Fixed-epoch checkpoint generation
 - [x] Reproducible training logs
+- [x] Registered BraTS validation-slice loader
+- [x] Training-compatible raw-NIfTI preprocessing path
+- [x] Numerical preprocessing-equivalence audit against reconstructed training H5 slices
+- [x] Fixed external-evaluation manifest contract
+- [x] Manifest-driven BR-LoRA external evaluator
+- [x] Retained posterior realization and posterior-summary artifact contract
+- [x] Case-specific deterministic seeding independent of manifest order/subsetting
+
 ---
 
 # Phase 4 — Regional Composition Framework
@@ -284,6 +299,13 @@ strategies.
 - [x] Shared diffusion-input preparation
 - [x] Strict checkpoint reconstruction
 - [x] Posterior realization management
+- [x] Registered external BraTS validation-slice loading
+- [x] Fixed-manifest external base / training donor pair preparation
+- [x] Manifest-driven external BR-LoRA evaluation
+- [x] Per-case deterministic seeding independent of manifest order/subsetting
+- [x] Retained posterior realization stacks
+- [x] CPU-derived posterior mean, variance, and standard deviation products
+- [x] Deterministic hard-composite reconstruction from retained artifacts
 
 ## Validation Record
 
@@ -307,20 +329,72 @@ The BR-LoRA implementation has been independently audited for
 - [x] Resume-training audit
 - [x] Full-training audit
 - [x] Posterior inference audit
+- [x] External validation-slice preprocessing equivalence audit
+- [x] External posterior artifact contract audit
+- [x] Exact outside-mask reconstruction audit
+- [x] Manifest-order/subsetting reproducibility audit
 
 ## Remaining Deliverables
 
 - [x] Posterior sampling audit
 - [x] Monte Carlo convergence analysis
 - [x] Monte Carlo standard error (MCSE) analysis
-- [ ] Predictive uncertainty estimation
+- [x] External BR-LoRA evaluation infrastructure
+- [ ] Train and freeze nnU-Net screening model on labeled BraTS 2020 training data
+- [ ] Screen the official BraTS 2020 validation release for slices without predicted tumor involvement
+- [ ] Freeze the definitive external evaluation manifest
+- [ ] Run 100-realization external evaluation for the internal (90/10) BR-LoRA model
+- [ ] Run 100-realization external evaluation for the full-training BR-LoRA model
+- [ ] Predictive uncertainty summaries across the definitive external cohort
 - [ ] Uncertainty calibration analyses
 - [ ] Reliability-score construction
-- [ ] End-to-end evaluation framework
 
 ---
 
-# Phase 7 — Reliability Assessment Framework
+# Phase 7 — External Cohort Screening with nnU-Net
+
+**Status:** ⏳ Planned
+
+## Goal
+
+Construct a reproducible external BraTS validation base-image cohort without
+using unavailable ground-truth validation segmentations.
+
+The screening workflow is intentionally isolated from BR-LoRA training and
+inference. Its sole role is to generate a fixed external base manifest consumed
+by `scripts/evaluate_br_lora_external.py`.
+
+## Screening Workflow
+
+- [ ] Create `screening/brats_nnunet/` project subtree
+- [ ] Configure nnU-Net dataset conversion from the registered BraTS 2020 training release
+- [ ] Train nnU-Net using the four BraTS MRI modalities and training segmentation masks
+- [ ] Freeze the selected nnU-Net screening model
+- [ ] Run frozen nnU-Net inference on all 125 official BraTS 2020 validation subjects
+- [ ] Derive predicted whole-tumor masks
+- [ ] Identify zero- or conservatively near-zero predicted-tumor slices
+- [ ] Audit the retained external-base candidates
+- [ ] Write the definitive external evaluation manifest
+- [ ] Preserve screening model/configuration provenance
+
+## External BR-LoRA Evaluation
+
+- [x] Registered validation-dataset interface
+- [x] Training-compatible validation-slice preprocessing
+- [x] Fixed external evaluation manifest contract
+- [x] External base / training donor pair preparation
+- [x] Manifest-driven BR-LoRA evaluator
+- [x] Retained posterior realization stack
+- [x] Posterior mean, variance, and standard deviation products
+- [x] Hard-composite reconstruction from retained artifacts
+- [x] Case-specific deterministic seeding
+- [ ] Plug the screened external manifest into the evaluator
+- [ ] Run internal (90/10) BR-LoRA with 100 posterior realizations per case
+- [ ] Run full-training BR-LoRA with 100 posterior realizations per case
+
+---
+
+# Phase 8 — Reliability Assessment Framework
 
 **Status:** ⏳ Planned
 
@@ -359,7 +433,7 @@ stability, and robustness under controlled perturbations.
 
 ---
 
-# Phase 8 — Benchmarking and Reproducibility
+# Phase 9 — Benchmarking and Reproducibility
 
 **Status:** ⏳ Planned
 
@@ -399,13 +473,14 @@ accuracy, computational efficiency, and image-level reliability.
 
 # Current Next Actions
 
-1. Evaluate the internal (90/10) BR-LoRA model on the external BraTS validation cohort.
-2. Evaluate the full-training BR-LoRA model on the external BraTS validation cohort.
-3. Implement predictive uncertainty estimation using 100 posterior realizations.
-4. Integrate image-level reliability metrics with uncertainty estimates.
-5. Complete the common evaluation pipeline for all adaptation strategies.
-6. Add the remaining PEFT baselines (BitFit, DoRA, and LoKr).
-7. Perform comparative benchmarking across accuracy, efficiency, and reliability.
+1. Create the isolated `screening/brats_nnunet/` workflow inside the existing repository.
+2. Train and freeze nnU-Net on the labeled BraTS 2020 training release.
+3. Screen all 125 official BraTS 2020 validation subjects and construct the definitive external base manifest.
+4. Run the internal (90/10) BR-LoRA model on the screened external cohort with 100 retained posterior realizations per case.
+5. Run the full-training BR-LoRA model on the same screened external cohort with 100 retained posterior realizations per case.
+6. Summarize posterior mean, variance, and standard deviation products across the external cohort.
+7. Defer image-level reliability metrics until the external BR-LoRA evaluation and predictive uncertainty analyses are complete.
+8. Complete the common evaluation pipeline and remaining PEFT baselines for comparative benchmarking.
 
 ---
 
