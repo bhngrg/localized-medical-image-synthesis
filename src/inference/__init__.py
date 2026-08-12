@@ -33,3 +33,5 @@ __all__ = [
     "select_clean_insertion_pairs",
     "synthesize_insertion_pairs",
 ]
+
+from .br_lora_pairs import prepare_selected_pairs
