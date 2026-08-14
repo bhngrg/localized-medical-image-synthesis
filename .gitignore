@@ -44,11 +44,12 @@ outputs/*
 # Logs
 # ============================================================
 
-# Ignore generic log/error files outside the experiment log directory
-*.log
-*.err
-
 # Keep experiment logs under version control
 !logs/
 !logs/**/*.log
 !logs/**/*.err
+
+# Keep nnU-Net screening logs under version control
+!screening/brats_nnunet/logs/
+!screening/brats_nnunet/logs/*.log
+!screening/brats_nnunet/logs/*.err

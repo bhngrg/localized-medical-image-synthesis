@@ -1,204 +1,214 @@
 # BraTS nnU-Net External-Cohort Screening
 
-This subtree contains the nnU-Net workflow used to construct a screened
-external BraTS 2020 validation cohort for localized medical image
-synthesis evaluation.
+This subtree contains the nnU-Net workflow used to construct a screened external BraTS 2020 validation cohort for localized medical image synthesis evaluation.
 
-The screening workflow is intentionally separate from BR-LoRA training,
-inference, posterior analysis, and reliability assessment.
-
-Its sole scientific purpose is to identify BraTS 2020 validation slices
-with no predicted tumor involvement so that they can serve as candidate
-external base images.
-
-------------------------------------------------------------------------
+The screening workflow is intentionally separate from BR-LoRA training, inference, posterior analysis, and reliability assessment. Its sole scientific purpose is to identify BraTS 2020 validation slices with no predicted whole-tumor involvement so that they can serve as candidate external base images.
 
 ## Role in the Project
 
-``` text
-BraTS 2020 Training
-    four MRI modalities
-    + ground-truth segmentation
-            │
-            ▼
-       train nnU-Net
-            │
-            ▼
-       freeze model
-            │
-            ▼
-BraTS 2020 Validation
-    four MRI modalities
-    no ground-truth segmentation
-            │
-            ▼
-     nnU-Net prediction
-            │
-            ▼
- predicted whole-tumor masks
-            │
-            ▼
- identify slices with no
- predicted tumor involvement
-            │
-            ▼
- definitive external base manifest
-            │
-            ▼
- scripts/evaluate_br_lora_external.py
+```text
+BraTS 2020 training release
+    369 labeled subjects
+    FLAIR + T1 + T1ce + T2
+            |
+            v
+Dataset500_BraTS2020Screening
+    binary whole-tumor labels
+            |
+            v
+nnU-Net ResEnc L
+    3d_fullres
+    five-fold cross-validation
+            |
+            v
+frozen fold models
+            |
+            v
+BraTS 2020 validation release
+    125 unlabeled subjects
+    500 nnU-Net image files
+            |
+            v
+five-fold ensemble prediction
+            |
+            v
+125 predicted whole-tumor masks
+            |
+            v
+slice-level tumor-free screening
+            |
+            v
+external BR-LoRA base-image candidates
 ```
 
-The nnU-Net model is therefore a cohort-screening tool only.
+The nnU-Net model is a cohort-screening tool only. It is not trained jointly with BR-LoRA, used during BR-LoRA optimization, used to modify BR-LoRA predictions, or treated as ground truth for synthesized-image quality.
 
-It is **not**
+## Dataset
 
--   trained jointly with BR-LoRA,
--   used during BR-LoRA optimization,
--   used to modify BR-LoRA predictions, or
--   treated as ground truth for synthesized-image quality.
+The registered nnU-Net dataset is:
 
-------------------------------------------------------------------------
-
-## Source Datasets
-
-The screening workflow consumes the already registered BraTS 2020
-datasets.
-
-### Training release
-
-Uses the registered `dataset.yaml` and the labeled BraTS 2020 training
-release.
-
-### Validation release
-
-Uses the registered `validation_dataset.yaml`. The official validation
-release contains no ground-truth segmentations and is used only after
-the nnU-Net model has been trained and frozen.
-
-------------------------------------------------------------------------
-
-## Repository Layout
-
-``` text
-screening/brats_nnunet/
-├── README.md
-├── configs/
-├── manifests/
-└── scripts/
+```text
+Dataset500_BraTS2020Screening
 ```
-
-Large nnU-Net datasets, preprocessing products, checkpoints, and
-predictions remain outside the Git repository.
-
-Recommended local layout:
-
-``` text
-/Users/bhanugarg/archive/nnUNet_brats_screening/
-├── nnUNet_raw/
-├── nnUNet_preprocessed/
-└── nnUNet_results/
-```
-
-Paths should be supplied explicitly through configuration or the
-standard nnU-Net environment variables.
-
-------------------------------------------------------------------------
-
-## Planned nnU-Net Dataset
-
-``` text
-nnUNet_raw/
-└── DatasetXXX_BraTS2020Screening/
-    ├── imagesTr/
-    ├── labelsTr/
-    ├── imagesTs/
-    └── dataset.json
-```
-
-The dataset identifier (`XXX`) will be fixed before dataset preparation.
 
 MRI channel mapping:
 
-``` text
+```text
 0000 = FLAIR
 0001 = T1
 0002 = T1ce
 0003 = T2
 ```
 
-------------------------------------------------------------------------
+Segmentation target:
 
-## Screening Principle
-
-After training and freezing the nnU-Net model, inference will be run on
-all 125 BraTS 2020 validation subjects.
-
-For each axial slice the workflow will record:
-
-``` text
-subject_id
-slice_index
-predicted_tumor_pixels
-screening_status
+```text
+0 = background
+1 = whole_tumor
 ```
 
-Candidate external base slices will be selected using a predefined
-predicted-tumor criterion.
+The binary whole-tumor target maps original BraTS tumor labels 1, 2, and 4 to 1.
 
-The resulting fixed manifest will be consumed directly by
+Registered cohort sizes:
 
-``` text
-scripts/evaluate_br_lora_external.py
+```text
+training subjects   = 369
+validation subjects = 125
+training images     = 1476
+training labels     = 369
+validation images   = 500
 ```
 
-The evaluator performs **no** case discovery or tumor screening.
+Large nnU-Net datasets, preprocessing products, checkpoints, validation predictions, and runtime logs remain outside Git.
 
-------------------------------------------------------------------------
+## Selected nnU-Net Configuration
+
+The primary screening model uses:
+
+```text
+dataset       = 500
+trainer       = nnUNetTrainer
+configuration = 3d_fullres
+plans         = nnUNetResEncUNetLPlans
+architecture  = ResidualEncoderUNet
+device        = CUDA
+```
+
+The ResEnc L plan uses a 3D patch size of `160 x 192 x 160` at 1 mm isotropic spacing.
+
+Five-fold cross-validation uses the fixed `splits_final.json` generated for the 369 training subjects:
+
+```text
+fold 0: train=295, validation=74
+fold 1: train=295, validation=74
+fold 2: train=295, validation=74
+fold 3: train=295, validation=74
+fold 4: train=296, validation=73
+```
+
+## Training Status
+
+All five nnU-Net folds completed successfully on Falcon using `l40s_normal_q`.
+
+Mean validation Dice:
+
+```text
+fold 0 = 0.9268
+fold 1 = 0.9189
+fold 2 = 0.9187
+fold 3 = 0.9130
+fold 4 = 0.9100
+```
+
+Each fold produced both `checkpoint_best.pth` and `checkpoint_final.pth`.
+
+Repository-owned training entry points are located under:
+
+```text
+screening/brats_nnunet/training/
+```
+
+## Validation Inference
+
+External validation inference uses the 125 prepared validation subjects under Dataset500 `imagesTs`.
+
+The production launcher is:
+
+```text
+screening/brats_nnunet/inference/predict_validation.slurm
+```
+
+It uses all five folds and `checkpoint_final.pth` to generate the five-fold ensemble predictions.
+
+Falcon prediction output:
+
+```text
+/scratch/bhanug/nnUNet_brats_screening/
+validation_predictions_l40s_normal_q/
+```
+
+Expected prediction contract:
+
+```text
+BraTS20_Validation_001.nii.gz
+BraTS20_Validation_002.nii.gz
+...
+BraTS20_Validation_125.nii.gz
+```
+
+The prediction masks are transferred back to the local workstation for slice-level screening and downstream external-cohort construction.
+
+## Slice-Level Screening
+
+The repository contains the initial screening implementation:
+
+```text
+screening/brats_nnunet/scripts/screen_validation_slices.py
+```
+
+The primary tumor-free criterion mirrors the historical composition pipeline:
+
+```text
+predicted_tumor_pixels == 0
+```
+
+The script is currently a development skeleton and will be finalized and audited locally after the 125 validation prediction masks are available.
+
+The final screening output will provide a fixed, auditable set of candidate tumor-free validation slices for external BR-LoRA evaluation.
+
+## Repository Layout
+
+```text
+screening/brats_nnunet/
+├── README.md
+├── configs/
+├── inference/
+│   ├── README.md
+│   └── predict_validation.slurm
+├── manifests/
+├── scripts/
+│   ├── prepare_nnunet_dataset.py
+│   └── screen_validation_slices.py
+└── training/
+    ├── README.md
+    ├── train_all_folds.slurm
+    └── train_fold.sh
+```
 
 ## Reproducibility Requirements
 
-Record:
+Record the following for each production screening run:
 
--   nnU-Net version
--   dataset identifier
--   dataset configuration
--   training folds
--   trainer/configuration
--   frozen checkpoint
--   Git commit
--   prediction provenance
--   manifest-generation criteria
+- nnU-Net version
+- dataset identifier
+- dataset configuration
+- trainer and plans
+- cross-validation split
+- fold checkpoints
+- Git commit
+- Falcon partition
+- prediction provenance
+- slice-screening rule
+- final candidate-manifest provenance
 
-Large checkpoints and prediction volumes remain outside Git.
-
-------------------------------------------------------------------------
-
-## Planned Workflow
-
-1.  Prepare the BraTS datasets in nnU-Net format.
-2.  Validate the generated dataset.
-3.  Run nnU-Net planning and preprocessing.
-4.  Train the segmentation model.
-5.  Freeze the screening model.
-6.  Run inference on all validation subjects.
-7.  Generate slice-level tumor summaries.
-8.  Select candidate external base slices.
-9.  Audit the retained candidates.
-10. Freeze the definitive external evaluation manifest.
-11. Evaluate both BR-LoRA checkpoints using 100 posterior realizations
-    per case.
-
-------------------------------------------------------------------------
-
-## Current Status
-
-Repository scaffolding is complete.
-
-The next implementation step is:
-
-``` text
-screening/brats_nnunet/scripts/prepare_nnunet_dataset.py
-```
-
-This script will construct the nnU-Net dataset from the registered BraTS
-dataset specifications without modifying the original raw datasets.
+Generated datasets, checkpoints, predictions, and runtime logs are not stored in the Git repository.
