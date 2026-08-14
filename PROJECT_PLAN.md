@@ -353,7 +353,7 @@ The BR-LoRA implementation has been independently audited for
 
 # Phase 7 — External Cohort Screening with nnU-Net
 
-**Status:** ⏳ Planned
+**Status:** 🚧 In Progress
 
 ## Goal
 
@@ -366,10 +366,11 @@ by `scripts/evaluate_br_lora_external.py`.
 
 ## Screening Workflow
 
-- [ ] Create `screening/brats_nnunet/` project subtree
-- [ ] Configure nnU-Net dataset conversion from the registered BraTS 2020 training release
-- [ ] Train nnU-Net using the four BraTS MRI modalities and training segmentation masks
-- [ ] Freeze the selected nnU-Net screening model
+- [x] Create `screening/brats_nnunet/` project subtree
+- [x] Configure nnU-Net dataset conversion from the registered BraTS 2020 training release
+- [x] Train nnU-Net using the four BraTS MRI modalities and training segmentation masks
+- [x] Freeze the selected nnU-Net screening model
+- [x] Validation inference launcher implemented (Falcon)
 - [ ] Run frozen nnU-Net inference on all 125 official BraTS 2020 validation subjects
 - [ ] Derive predicted whole-tumor masks
 - [ ] Identify zero- or conservatively near-zero predicted-tumor slices
@@ -473,9 +474,9 @@ accuracy, computational efficiency, and image-level reliability.
 
 # Current Next Actions
 
-1. Create the isolated `screening/brats_nnunet/` workflow inside the existing repository.
-2. Train and freeze nnU-Net on the labeled BraTS 2020 training release.
-3. Screen all 125 official BraTS 2020 validation subjects and construct the definitive external base manifest.
+1. Complete validation inference on all 125 BraTS 2020 validation subjects.
+2. Generate slice-level tumor summaries using `screen_validation_slices.py`.
+3. Construct and audit the definitive external base manifest.
 4. Run the internal (90/10) BR-LoRA model on the screened external cohort with 100 retained posterior realizations per case.
 5. Run the full-training BR-LoRA model on the same screened external cohort with 100 retained posterior realizations per case.
 6. Summarize posterior mean, variance, and standard deviation products across the external cohort.

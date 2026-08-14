@@ -50,6 +50,11 @@ The repository currently supports
 
 Ongoing development is focused on
 
+- completed nnU-Net training infrastructure,
+- completed validation inference infrastructure,
+- slice-level screening of validation predictions,
+
+
 - nnU-Net-based screening of the BraTS 2020 validation release to identify external base slices without predicted tumor involvement,
 - external evaluation of the internal (90/10) and full-training BR-LoRA models using 100 retained posterior realizations per case,
 - topology-aware structural analysis,
@@ -189,7 +194,7 @@ localized-medical-image-synthesis/
 ├── notebooks/            Original research notebooks
 ├── outputs/              Generated figures, analyses, and synthesized images
 ├── screening/            External-cohort screening workflows
-│   └── brats_nnunet/     Planned nnU-Net screening workflow
+│   └── brats_nnunet/     nnU-Net screening workflow (training, inference, screening)
 ├── scripts/              Executable workflows
 │   ├── train_patch_x0.py
 │   ├── train_br_lora.py
