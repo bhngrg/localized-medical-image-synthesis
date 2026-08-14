@@ -1,0 +1,713 @@
+BraTS 2020 nnU-Net ResEnc L validation prediction
+Host: fal046
+Date: Fri Aug 14 05:41:32 PM EDT 2026
+SLURM_JOB_ID=531444
+SLURM_JOB_PARTITION=l40s_normal_q
+CUDA_VISIBLE_DEVICES=0
+
+Checking archived nnU-Net inputs...
+
+Prediction configuration
+==============================================================================
+Dataset                  : 500
+Dataset name             : Dataset500_BraTS2020Screening
+Configuration            : 3d_fullres
+Plans                    : nnUNetResEncUNetLPlans
+Trainer                  : nnUNetTrainer
+Folds                    : 0 1 2 3 4
+Checkpoint               : checkpoint_final.pth
+Device                   : cuda
+Partition                : l40s_normal_q
+Input directory          : /scratch/bhanug/archive/nnUNet_brats_screening/nnUNet_raw/Dataset500_BraTS2020Screening/imagesTs
+Prediction directory     : /scratch/bhanug/nnUNet_brats_screening/validation_predictions_l40s_normal_q
+Validation image files   : 500
+Validation subjects      : 125
+nnUNet_raw               : /scratch/bhanug/archive/nnUNet_brats_screening/nnUNet_raw
+nnUNet_preprocessed      : /scratch/bhanug/archive/nnUNet_brats_screening/nnUNet_preprocessed
+nnUNet_results           : /scratch/bhanug/nnUNet_brats_screening/nnUNet_results_l40s_normal_q
+Python                   : /home/bhanug/.conda/envs/brats-nnunet/bin/python
+Python version           : Python 3.11.15
+nnUNetv2_predict         : /home/bhanug/.conda/envs/brats-nnunet/bin/nnUNetv2_predict
+==============================================================================
+
+GPU
+==============================================================================
+Fri Aug 14 17:41:33 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L40S                    On  |   00000000:61:00.0 Off |                    0 |
+| N/A   43C    P0             60W /  350W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Torch version      : 2.13.0+cu126
+Torch CUDA build   : 12.6
+CUDA available     : True
+nnU-Net version    : 2.8.1
+CUDA device count  : 1
+CUDA device        : NVIDIA L40S
+GPU memory (GiB)   : 44.39
+==============================================================================
+
+Starting nnU-Net validation prediction
+Start time: Fri Aug 14 05:41:39 PM EDT 2026
+==============================================================================
+
+#######################################################################
+Please cite the following paper when using nnU-Net:
+Isensee, F., Jaeger, P. F., Kohl, S. A., Petersen, J., & Maier-Hein, K. H. (2021). nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation. Nature methods, 18(2), 203-211.
+#######################################################################
+
+There are 125 cases in the source folder
+I am process 0 out of 1 (max process ID is 0, we start counting with 0!)
+There are 125 cases that I would like to predict
+
+Predicting BraTS20_Validation_001:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_001
+
+Predicting BraTS20_Validation_002:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_002
+
+Predicting BraTS20_Validation_003:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_003
+
+Predicting BraTS20_Validation_004:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_004
+
+Predicting BraTS20_Validation_005:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_005
+
+Predicting BraTS20_Validation_006:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_006
+
+Predicting BraTS20_Validation_007:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_007
+
+Predicting BraTS20_Validation_008:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_008
+
+Predicting BraTS20_Validation_009:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_009
+
+Predicting BraTS20_Validation_010:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_010
+
+Predicting BraTS20_Validation_011:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_011
+
+Predicting BraTS20_Validation_012:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_012
+
+Predicting BraTS20_Validation_013:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_013
+
+Predicting BraTS20_Validation_014:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_014
+
+Predicting BraTS20_Validation_015:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_015
+
+Predicting BraTS20_Validation_016:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_016
+
+Predicting BraTS20_Validation_017:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_017
+
+Predicting BraTS20_Validation_018:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_018
+
+Predicting BraTS20_Validation_019:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_019
+
+Predicting BraTS20_Validation_020:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_020
+
+Predicting BraTS20_Validation_021:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_021
+
+Predicting BraTS20_Validation_022:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_022
+
+Predicting BraTS20_Validation_023:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_023
+
+Predicting BraTS20_Validation_024:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_024
+
+Predicting BraTS20_Validation_025:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_025
+
+Predicting BraTS20_Validation_026:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_026
+
+Predicting BraTS20_Validation_027:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_027
+
+Predicting BraTS20_Validation_028:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_028
+
+Predicting BraTS20_Validation_029:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_029
+
+Predicting BraTS20_Validation_030:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_030
+
+Predicting BraTS20_Validation_031:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_031
+
+Predicting BraTS20_Validation_032:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_032
+
+Predicting BraTS20_Validation_033:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_033
+
+Predicting BraTS20_Validation_034:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_034
+
+Predicting BraTS20_Validation_035:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_035
+
+Predicting BraTS20_Validation_036:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_036
+
+Predicting BraTS20_Validation_037:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_037
+
+Predicting BraTS20_Validation_038:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_038
+
+Predicting BraTS20_Validation_039:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_039
+
+Predicting BraTS20_Validation_040:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_040
+
+Predicting BraTS20_Validation_041:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_041
+
+Predicting BraTS20_Validation_042:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_042
+
+Predicting BraTS20_Validation_043:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_043
+
+Predicting BraTS20_Validation_044:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_044
+
+Predicting BraTS20_Validation_045:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_045
+
+Predicting BraTS20_Validation_046:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_046
+
+Predicting BraTS20_Validation_047:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_047
+
+Predicting BraTS20_Validation_048:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_048
+
+Predicting BraTS20_Validation_049:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_049
+
+Predicting BraTS20_Validation_050:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_050
+
+Predicting BraTS20_Validation_051:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_051
+
+Predicting BraTS20_Validation_052:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_052
+
+Predicting BraTS20_Validation_053:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_053
+
+Predicting BraTS20_Validation_054:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_054
+
+Predicting BraTS20_Validation_055:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_055
+
+Predicting BraTS20_Validation_056:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_056
+
+Predicting BraTS20_Validation_057:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_057
+
+Predicting BraTS20_Validation_058:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_058
+
+Predicting BraTS20_Validation_059:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_059
+
+Predicting BraTS20_Validation_060:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_060
+
+Predicting BraTS20_Validation_061:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_061
+
+Predicting BraTS20_Validation_062:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_062
+
+Predicting BraTS20_Validation_063:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_063
+
+Predicting BraTS20_Validation_064:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_064
+
+Predicting BraTS20_Validation_065:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_065
+
+Predicting BraTS20_Validation_066:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_066
+
+Predicting BraTS20_Validation_067:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_067
+
+Predicting BraTS20_Validation_068:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_068
+
+Predicting BraTS20_Validation_069:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_069
+
+Predicting BraTS20_Validation_070:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_070
+
+Predicting BraTS20_Validation_071:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_071
+
+Predicting BraTS20_Validation_072:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_072
+
+Predicting BraTS20_Validation_073:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_073
+
+Predicting BraTS20_Validation_074:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_074
+
+Predicting BraTS20_Validation_075:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_075
+
+Predicting BraTS20_Validation_076:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_076
+
+Predicting BraTS20_Validation_077:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_077
+
+Predicting BraTS20_Validation_078:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_078
+
+Predicting BraTS20_Validation_079:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_079
+
+Predicting BraTS20_Validation_080:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_080
+
+Predicting BraTS20_Validation_081:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_081
+
+Predicting BraTS20_Validation_082:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_082
+
+Predicting BraTS20_Validation_083:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_083
+
+Predicting BraTS20_Validation_084:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_084
+
+Predicting BraTS20_Validation_085:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_085
+
+Predicting BraTS20_Validation_086:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_086
+
+Predicting BraTS20_Validation_087:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_087
+
+Predicting BraTS20_Validation_088:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_088
+
+Predicting BraTS20_Validation_089:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_089
+
+Predicting BraTS20_Validation_090:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_090
+
+Predicting BraTS20_Validation_091:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_091
+
+Predicting BraTS20_Validation_092:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_092
+
+Predicting BraTS20_Validation_093:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_093
+
+Predicting BraTS20_Validation_094:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_094
+
+Predicting BraTS20_Validation_095:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_095
+
+Predicting BraTS20_Validation_096:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_096
+
+Predicting BraTS20_Validation_097:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_097
+
+Predicting BraTS20_Validation_098:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_098
+
+Predicting BraTS20_Validation_099:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_099
+
+Predicting BraTS20_Validation_100:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_100
+
+Predicting BraTS20_Validation_101:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_101
+
+Predicting BraTS20_Validation_102:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_102
+
+Predicting BraTS20_Validation_103:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_103
+
+Predicting BraTS20_Validation_104:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_104
+
+Predicting BraTS20_Validation_105:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_105
+
+Predicting BraTS20_Validation_106:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_106
+
+Predicting BraTS20_Validation_107:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_107
+
+Predicting BraTS20_Validation_108:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_108
+
+Predicting BraTS20_Validation_109:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_109
+
+Predicting BraTS20_Validation_110:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_110
+
+Predicting BraTS20_Validation_111:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_111
+
+Predicting BraTS20_Validation_112:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_112
+
+Predicting BraTS20_Validation_113:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_113
+
+Predicting BraTS20_Validation_114:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_114
+
+Predicting BraTS20_Validation_115:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_115
+
+Predicting BraTS20_Validation_116:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_116
+
+Predicting BraTS20_Validation_117:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_117
+
+Predicting BraTS20_Validation_118:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_118
+
+Predicting BraTS20_Validation_119:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_119
+
+Predicting BraTS20_Validation_120:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_120
+
+Predicting BraTS20_Validation_121:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_121
+
+Predicting BraTS20_Validation_122:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_122
+
+Predicting BraTS20_Validation_123:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_123
+
+Predicting BraTS20_Validation_124:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_124
+
+Predicting BraTS20_Validation_125:
+perform_everything_on_device: True
+sending off prediction to background worker for resampling and export
+done with BraTS20_Validation_125
+GPU prediction completed. Waiting for remaining segmentation exports to finish...
+Segmentation export complete.
+
+Auditing prediction outputs...
+Prediction masks         : 125
+
+==============================================================================
+nnU-Net validation prediction complete
+Prediction masks         : 125
+Prediction directory     : /scratch/bhanug/nnUNet_brats_screening/validation_predictions_l40s_normal_q
+Host: fal046
+Done: Fri Aug 14 05:50:30 PM EDT 2026
+==============================================================================

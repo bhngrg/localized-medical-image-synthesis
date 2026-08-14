@@ -371,8 +371,8 @@ by `scripts/evaluate_br_lora_external.py`.
 - [x] Train nnU-Net using the four BraTS MRI modalities and training segmentation masks
 - [x] Freeze the selected nnU-Net screening model
 - [x] Validation inference launcher implemented (Falcon)
-- [ ] Run frozen nnU-Net inference on all 125 official BraTS 2020 validation subjects
-- [ ] Derive predicted whole-tumor masks
+- [x] Run frozen nnU-Net inference on all 125 official BraTS 2020 validation subjects
+- [x] Derive predicted whole-tumor masks
 - [ ] Identify zero- or conservatively near-zero predicted-tumor slices
 - [ ] Audit the retained external-base candidates
 - [ ] Write the definitive external evaluation manifest
