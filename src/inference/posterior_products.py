@@ -230,7 +230,7 @@ def compute_posterior_products(
     prediction_samples: torch.Tensor,
 ) -> PosteriorProducts:
     """
-    Compute posterior mean, unbiased variance, and standard deviation.
+    Compute posterior mean, population-convention variance, and standard deviation.
 
     Parameters
     ----------
@@ -254,7 +254,7 @@ def compute_posterior_products(
 
     prediction_variance = prediction_samples.var(
         dim=0,
-        unbiased=True,
+        correction=0,
     )
 
     prediction_std = torch.sqrt(

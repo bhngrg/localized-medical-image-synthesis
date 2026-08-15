@@ -176,6 +176,17 @@ def parse_args() -> argparse.Namespace:
         ),
     )
 
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help=(
+            "Resume an interrupted evaluation by validating and skipping "
+            "case directories that already contain complete matching "
+            "artifacts. Incomplete or inconsistent existing cases cause "
+            "a hard failure."
+        ),
+    )
+
     return parser.parse_args()
 
 
@@ -379,6 +390,130 @@ def write_json(
 
         file.write(
             "\n"
+        )
+
+
+def validate_completed_case_directory(
+    *,
+    case_dir: Path,
+    case_id: str,
+    checkpoint_path: Path,
+    evaluation_manifest_path: Path,
+    evaluation_seed: int,
+    posterior_samples: int,
+) -> None:
+    """
+    Validate one existing case directory before it is accepted during resume.
+
+    Resume never trusts directory existence alone. Every expected case artifact
+    must exist and metadata must match the current evaluation contract.
+    """
+
+    required_artifacts = (
+        "posterior_samples.pt",
+        "posterior_mean.pt",
+        "posterior_variance.pt",
+        "posterior_std.pt",
+        "composite_mean.pt",
+        "metadata.json",
+    )
+
+    missing = [
+        name
+        for name in required_artifacts
+        if not (
+            case_dir
+            / name
+        ).is_file()
+    ]
+
+    if missing:
+        raise RuntimeError(
+            "Existing case directory is incomplete and cannot be resumed "
+            "safely. Remove or repair this case directory before retrying.\n\n"
+            f"Case: {case_id}\n"
+            f"Directory: {case_dir}\n"
+            "Missing artifact(s):\n"
+            + "\n".join(
+                f"  {name}"
+                for name in missing
+            )
+        )
+
+    metadata_path = (
+        case_dir
+        / "metadata.json"
+    )
+
+    try:
+        with metadata_path.open(
+            "r",
+            encoding="utf-8",
+        ) as file:
+            metadata = json.load(
+                file
+            )
+
+    except (
+        OSError,
+        json.JSONDecodeError,
+    ) as exc:
+        raise RuntimeError(
+            "Existing case metadata could not be validated for resume.\n\n"
+            f"Case: {case_id}\n"
+            f"Metadata: {metadata_path}"
+        ) from exc
+
+    expected = {
+        "evaluation_name":
+            EVALUATION_NAME,
+
+        "case_id":
+            case_id,
+
+        "checkpoint":
+            str(
+                checkpoint_path
+            ),
+
+        "evaluation_manifest":
+            str(
+                evaluation_manifest_path
+            ),
+
+        "evaluation_seed":
+            evaluation_seed,
+
+        "posterior_samples":
+            posterior_samples,
+
+        "resample_diffusion_noise":
+            False,
+    }
+
+    mismatches = []
+
+    for key, expected_value in expected.items():
+        observed_value = metadata.get(
+            key
+        )
+
+        if observed_value != expected_value:
+            mismatches.append(
+                f"  {key}: expected {expected_value!r}, "
+                f"observed {observed_value!r}"
+            )
+
+    if mismatches:
+        raise RuntimeError(
+            "Existing case directory does not match the current evaluation "
+            "contract and cannot be skipped during resume.\n\n"
+            f"Case: {case_id}\n"
+            f"Directory: {case_dir}\n"
+            "Metadata mismatch(es):\n"
+            + "\n".join(
+                mismatches
+            )
         )
 
 
@@ -661,6 +796,11 @@ def main() -> None:
         timestep_fraction,
     )
 
+    print(
+        "Resume mode              :",
+        args.resume,
+    )
+
     print()
     print(
         "External dataset"
@@ -798,6 +938,47 @@ def main() -> None:
             f"[{case_index}/{len(cases)}] {case.case_id}"
         )
 
+        case_dir = (
+            output_dir
+            / case.case_id
+        )
+
+        if case_dir.exists():
+            if not args.resume:
+                raise RuntimeError(
+                    "External evaluation case output already exists. "
+                    "Refusing to overwrite it.\n\n"
+                    f"Case: {case.case_id}\n"
+                    f"Directory: {case_dir}\n\n"
+                    "Use --resume only when continuing the same evaluation."
+                )
+
+            validate_completed_case_directory(
+                case_dir=case_dir,
+                case_id=case.case_id,
+                checkpoint_path=checkpoint_path,
+                evaluation_manifest_path=evaluation_manifest_path,
+                evaluation_seed=seed,
+                posterior_samples=posterior_samples,
+            )
+
+            completed_cases += 1
+
+            print(
+                "  Existing completed case : VALIDATED"
+            )
+
+            print(
+                "  Case output             :",
+                case_dir,
+            )
+
+            print(
+                "  Verdict                 : SKIPPED (resume)"
+            )
+
+            continue
+
         case_seed = derive_case_seed(
             evaluation_seed=seed,
             case_id=case.case_id,
@@ -903,11 +1084,6 @@ def main() -> None:
             prediction_mean=products.prediction_mean,
             base_image=base_batch_cpu,
             transferred_mask=mask_batch_cpu,
-        )
-
-        case_dir = (
-            output_dir
-            / case.case_id
         )
 
         case_dir.mkdir(
@@ -1219,6 +1395,9 @@ def main() -> None:
             posterior_samples
         ),
         "fixed_diffusion_noise": True,
+        "resume_mode": bool(
+            args.resume
+        ),
         "case_count": len(
             cases
         ),
