@@ -87,6 +87,18 @@ BraTS20_Validation_125.nii.gz
 
 The launcher performs a final count check and fails if it does not find exactly 125 predicted masks.
 
+
+
+## Relationship to the BR-LoRA Pipeline
+
+This inference stage is executed once after the screening model has been
+trained. The resulting validation predictions are treated as fixed inputs for
+the downstream BR-LoRA workflow.
+
+The predicted tumor masks identify tumor-free validation slices, which become
+the candidate base-image pool used during BR-LoRA synthetic library design.
+
+
 ## Downstream Use
 
 After inference completes, the prediction masks are transferred to the local workstation and consumed by:
@@ -104,3 +116,11 @@ predicted_tumor_pixels == 0
 The resulting slice-level screening output is used to construct the fixed external base-image cohort for downstream BR-LoRA evaluation.
 
 Prediction masks and runtime logs are generated artifacts and are not stored in Git.
+
+
+## Scientific Scope
+
+This workflow performs only inference with the frozen screening model. It does
+not perform BR-LoRA training, Bayesian adaptation, synthetic image generation,
+posterior sampling, or downstream evaluation. Those stages begin only after
+the screened cohort has been constructed.

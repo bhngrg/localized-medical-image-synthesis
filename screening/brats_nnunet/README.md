@@ -55,13 +55,24 @@ Compatibility-conditioned audit
 Frozen 250-case manifest
         │
         ▼
-BR-LoRA external evaluation
+10,000-case BR-LoRA library design
+        │
+        ▼
+Batch-wise synthetic library production
+        │
+        ▼
+Downstream segmentation evaluation
 ```
 
 The nnU-Net model is a cohort-screening tool only. It is not trained
 jointly with BR-LoRA, used during BR-LoRA optimization, used to modify
 BR-LoRA predictions, or treated as ground truth for synthesized-image
 quality.
+
+The frozen screening outputs also define the admissible external base-image
+pool used by the BR-LoRA synthetic library production pipeline. All library
+design manifests are generated downstream of this screening stage and do not
+modify the screening results.
 
 ## Slice-Level Screening
 
@@ -98,6 +109,18 @@ The completed screening workflow produced
 -   deterministic one-to-one compatibility-constrained donor matching
 -   complete compatibility-conditioned donor-selection audits
 -   complete provenance and reproducibility metadata
+
+
+## Relationship to the BR-LoRA Library Pipeline
+
+The screening workflow is executed once to produce a fixed, reproducible pool
+of compatibility-eligible external base slices.
+
+Subsequent BR-LoRA library generation consumes these frozen manifests but does
+not rerun nnU-Net inference or alter the screened cohort. This separation
+ensures that cohort selection and synthetic image generation remain
+independently reproducible.
+
 
 ## Repository Layout
 

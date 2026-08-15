@@ -11,16 +11,12 @@ functionality is introduced.
 
 # Current Status
 
-**Active milestone:** External BR-LoRA evaluation and construction of a
-screened BraTS validation cohort.
+**Active milestone:** Large-scale BR-LoRA synthetic library production, downstream evaluation infrastructure, and reliability-aware benchmarking.
 
 The repository foundation, data infrastructure, baseline notebook refactor,
 full-training baseline workflow, core BR-LoRA learning infrastructure,
 posterior-sampling analyses, and manifest-driven external BR-LoRA evaluation
-infrastructure are complete or independently validated. Current development 
-focuses on external BR-LoRA evaluation using the frozen external cohort, 
-predictive uncertainty estimation, image-level reliability assessment, and 
-comparative benchmarking.
+infrastructure are complete or independently validated. Current development focuses on large-scale BR-LoRA synthetic library production, frozen manifest generation, automated batch orchestration, downstream evaluation infrastructure, predictive uncertainty estimation, image-level reliability assessment, and comparative benchmarking.
 
 ---
 
@@ -390,6 +386,43 @@ by `scripts/evaluate_br_lora_external.py`.
 - [ ] Run internal (90/10) BR-LoRA with 100 posterior realizations per case
 - [ ] Run full-training BR-LoRA with 100 posterior realizations per case
 
+
+---
+
+# Phase 7.5 — BR-LoRA Synthetic Library Production
+
+**Status:** ✅ Complete (production infrastructure)
+
+## Goal
+
+Produce a deterministic, reproducible synthetic image library suitable for downstream segmentation experiments.
+
+## Library Design
+
+- [x] Compatibility-constrained library design
+- [x] Deterministic donor/base assignment
+- [x] Exact-flow assignment optimization
+- [x] Frozen 10,000-case design manifest
+- [x] Batch manifest generation (40 × 250 cases)
+
+## Production Pipeline
+
+- [x] Automated batch orchestration
+- [x] External evaluation manifest generation
+- [x] Production logging
+- [x] Checksum inventories
+- [x] Production audits
+- [x] Falcon synchronization
+- [x] Acceptance audits
+- [x] Resumable production workflow
+
+## Remaining
+
+- [ ] Complete production of all 40 batches
+- [ ] Final library integrity audit
+- [ ] Freeze master synthetic library manifest
+
+
 ---
 
 # Phase 8 — Reliability Assessment Framework
@@ -471,13 +504,13 @@ accuracy, computational efficiency, and image-level reliability.
 
 # Current Next Actions
 
-1. Make the definitive external evaluation manifest portable across execution environments (Mac/Falcon).
-2. Validate manifest portability on Falcon.
-3. Run the internal (90/10) BR-LoRA evaluation with 100 retained posterior realizations per case.
-4. Run the full-training BR-LoRA evaluation with 100 retained posterior realizations per case.
-5. Summarize posterior predictive uncertainty products across the external cohort.
-6. Complete the image-level reliability analyses.
-7. Finish the remaining PEFT baselines and comparative evaluation.
+1. Finish production of the remaining BR-LoRA synthetic-library batches.
+2. Complete the final production audit and freeze the master library manifest.
+3. Launch downstream segmentation experiments using the completed synthetic library.
+4. Complete image-level reliability analyses.
+5. Finish the remaining PEFT baselines.
+6. Perform comparative benchmarking.
+7. Prepare the AAAI manuscript experiments.
 
 ---
 

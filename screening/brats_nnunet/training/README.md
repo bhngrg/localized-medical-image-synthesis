@@ -90,6 +90,19 @@ debug.json
 
 Training used `--npz` so validation probability outputs are retained where supported by nnU-Net.
 
+
+
+## Relationship to the BR-LoRA Pipeline
+
+The nnU-Net model is trained once and then frozen. The resulting five-fold
+ensemble is used exclusively for external-cohort screening and is **not**
+updated during BR-LoRA development.
+
+Its outputs provide the tumor-screening predictions used to construct the
+screened external cohort, which subsequently feeds the BR-LoRA synthetic
+library design and downstream evaluation pipeline.
+
+
 ## Output Location
 
 Production results are stored outside Git under:
@@ -106,3 +119,11 @@ The completed fold models are consumed by the validation-inference launcher in:
 ```text
 screening/brats_nnunet/inference/predict_validation.slurm
 ```
+
+
+## Scientific Scope
+
+This training workflow is independent of BR-LoRA optimization, Bayesian
+adaptation, posterior uncertainty estimation, synthetic image generation,
+and downstream segmentation experiments. Its sole purpose is to produce the
+frozen screening model used for external-cohort construction.
