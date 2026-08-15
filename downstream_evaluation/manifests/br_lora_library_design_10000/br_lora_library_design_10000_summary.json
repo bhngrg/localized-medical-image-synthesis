@@ -1,0 +1,75 @@
+{
+  "design_parameters": {
+    "brain_threshold": 0.05,
+    "cases_per_external_subject": 80,
+    "donor_slice_reuse_allowed": false,
+    "donor_subject_cap": 31,
+    "downstream_training_donor_slices": 17935,
+    "downstream_training_donor_subjects": 332,
+    "exact_flow_candidate_limit_per_slot": 32,
+    "existing_batch0001_cases": 250,
+    "external_subject_count": 125,
+    "minimum_active_base_donor_support": 10,
+    "minimum_mask_inside_brain_fraction": 0.8,
+    "new_cases": 9750,
+    "random_seed": 2026,
+    "target_library_size": 10000
+  },
+  "design_role": "Prespecified 10,000-case BR-LoRA synthetic-library conditioning design. No synthesis is performed by this script.",
+  "exact_donor_assignment": {
+    "algorithm": "scipy_sparse_maximum_flow",
+    "candidate_limit_per_slot": 32,
+    "complete_flow": true,
+    "distinct_candidate_donors": 17574,
+    "donor_subjects_at_cap": 300,
+    "donor_subjects_used_final": 332,
+    "graph_edges": 338195,
+    "graph_nodes": 28019,
+    "maximum_final_donor_subject_use": 31,
+    "maximum_flow": 9750,
+    "required_flow": 9750,
+    "scipy_version": "1.17.1",
+    "slot_donor_edges": 310539,
+    "unique_assigned_donor_slices": 9750
+  },
+  "final_library": {
+    "batches": 40,
+    "cases": 10000,
+    "maximum_base_reuse": 10,
+    "maximum_cases_from_one_donor_subject": 31,
+    "median_cases_per_used_donor_subject": 31.0,
+    "minimum_cases_from_used_donor_subject": 4,
+    "unique_donor_slices": 10000,
+    "unique_donor_subjects_used": 332,
+    "unique_external_base_slices": 8145,
+    "unique_external_subjects": 125
+  },
+  "output_artifacts": {
+    "audit_csv": "/Users/bhanugarg/Desktop/localized-medical-image-synthesis/downstream_evaluation/manifests/br_lora_library_design_10000/br_lora_library_design_10000_audit.csv",
+    "design_csv": "/Users/bhanugarg/Desktop/localized-medical-image-synthesis/downstream_evaluation/manifests/br_lora_library_design_10000/br_lora_library_design_10000.csv"
+  },
+  "provenance": {
+    "base_counts_csv": "/Users/bhanugarg/archive/nnUNet_brats_screening/external_pair_space_audit/external_base_compatibility_counts.csv",
+    "base_counts_sha256": "4974be961092f75f8f1469478ee0e5b997bd275d74afe9ecf727014b4eb28948",
+    "batch0001_manifest": "/Users/bhanugarg/Desktop/localized-medical-image-synthesis/downstream_evaluation/manifests/br_lora_synthetic_250.csv",
+    "batch0001_manifest_sha256": "fc7207acb712a00cb0b8bb581c75ffa6c91e5794ca87a3a180880d7909979e16",
+    "created_at_utc": "2026-08-15T17:08:05.613584+00:00",
+    "git_commit": "ff3a42b385986eaaa7bc976ef0108f612ffd3760",
+    "git_worktree_clean": false,
+    "script_path": "/Users/bhanugarg/Desktop/localized-medical-image-synthesis/screening/brats_nnunet/scripts/design_br_lora_library_10000.py",
+    "script_sha256": "bfc0cc8705b18b22dcb76c5cee20c0e3373426a354f17aa9dcf65082af371d3e",
+    "training_donor_pool": "/Users/bhanugarg/Desktop/localized-medical-image-synthesis/downstream_evaluation/manifests/brats_downstream_training_donor_pool.csv",
+    "training_donor_pool_sha256": "dd2ea546296b4614419d8a474947258bda99fe74dfe36d5c9341abeba7b08022",
+    "validation_dataset": "/Users/bhanugarg/archive/BraTS2020_ValidationData/MICCAI_BraTS2020_ValidationData/validation_dataset.yaml",
+    "validation_dataset_sha256": "6c700e37d0516c33d7e5002004a398f9859360a843dff0f37500c010ed32c10c"
+  },
+  "status": "frozen_design_complete",
+  "training_only_compatibility": {
+    "bases_losing_all_compatibility": 5,
+    "bases_with_at_least_one_training_donor": 8627,
+    "candidate_bases_before_training_donor_restriction": 8632,
+    "maximum_training_compatible_donors": 17925,
+    "median_training_compatible_donors": 3952.0,
+    "minimum_training_compatible_donors": 1
+  }
+}

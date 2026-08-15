@@ -1,0 +1,10 @@
+check,passed,observed
+exact_library_size,True,10000
+unique_library_case_id,True,10000
+unique_pair_key,True,10000
+unique_donor_slices,True,10000
+125_external_subjects,True,125
+80_cases_per_external_subject,True,"min=80, max=80"
+donor_subject_cap_31,True,31
+40_batches_of_250,True,"batches=40, min_batch=250, max_batch=250"
+batch0001_exactly_preserved,True,True

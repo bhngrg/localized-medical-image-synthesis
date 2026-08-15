@@ -53,3 +53,5 @@ outputs/*
 !screening/brats_nnunet/logs/
 !screening/brats_nnunet/logs/*.log
 !screening/brats_nnunet/logs/*.err
+# Recomputable BR-LoRA compatibility caches
+training_only_compatibility_cache.npz

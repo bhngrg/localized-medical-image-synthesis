@@ -1,0 +1,2 @@
+case_id,external_subject_numeric_id,external_slice_index,external_modality,donor_h5_path
+synthetic_000251,1,4,flair,/Users/bhanugarg/archive/BraTS2020_H5_Rebuilt/volume_28_slice_63.h5
