@@ -17,11 +17,10 @@ screened BraTS validation cohort.
 The repository foundation, data infrastructure, baseline notebook refactor,
 full-training baseline workflow, core BR-LoRA learning infrastructure,
 posterior-sampling analyses, and manifest-driven external BR-LoRA evaluation
-infrastructure are complete or independently validated. Current development
-focuses on nnU-Net-based screening of the BraTS 2020 validation release,
-external evaluation of the internal (90/10) and full-training BR-LoRA models,
-predictive uncertainty estimation using retained posterior realizations,
-reliability assessment, and benchmarking.
+infrastructure are complete or independently validated. Current development 
+focuses on external BR-LoRA evaluation using the frozen external cohort, 
+predictive uncertainty estimation, image-level reliability assessment, and 
+comparative benchmarking.
 
 ---
 
@@ -336,13 +335,6 @@ The BR-LoRA implementation has been independently audited for
 
 ## Remaining Deliverables
 
-- [x] Posterior sampling audit
-- [x] Monte Carlo convergence analysis
-- [x] Monte Carlo standard error (MCSE) analysis
-- [x] External BR-LoRA evaluation infrastructure
-- [ ] Train and freeze nnU-Net screening model on labeled BraTS 2020 training data
-- [ ] Screen the official BraTS 2020 validation release for slices without predicted tumor involvement
-- [ ] Freeze the definitive external evaluation manifest
 - [ ] Run 100-realization external evaluation for the internal (90/10) BR-LoRA model
 - [ ] Run 100-realization external evaluation for the full-training BR-LoRA model
 - [ ] Predictive uncertainty summaries across the definitive external cohort
@@ -353,7 +345,7 @@ The BR-LoRA implementation has been independently audited for
 
 # Phase 7 — External Cohort Screening with nnU-Net
 
-**Status:** 🚧 In Progress
+**Status:** ✅ Completed
 
 ## Goal
 
@@ -373,10 +365,15 @@ by `scripts/evaluate_br_lora_external.py`.
 - [x] Validation inference launcher implemented (Falcon)
 - [x] Run frozen nnU-Net inference on all 125 official BraTS 2020 validation subjects
 - [x] Derive predicted whole-tumor masks
-- [ ] Identify zero- or conservatively near-zero predicted-tumor slices
-- [ ] Audit the retained external-base candidates
-- [ ] Write the definitive external evaluation manifest
-- [ ] Preserve screening model/configuration provenance
+- [x] Identify tumor-free external base slices from the nnU-Net predictions
+- [x] Audit the external base–donor compatibility space
+- [x] Audit eligible donor morphology
+- [x] Construct and compare nested 125/250/625 candidate evaluation cohorts
+- [x] Audit compatibility-conditioned donor-selection distributions
+- [x] Diagnose the global one-to-one matching algorithm
+- [x] Freeze the definitive 250-case external evaluation manifest
+- [x] Audit the definitive frozen donor assignments
+- [x] Preserve complete screening and manifest-construction provenance
 
 ## External BR-LoRA Evaluation
 
@@ -389,7 +386,7 @@ by `scripts/evaluate_br_lora_external.py`.
 - [x] Posterior mean, variance, and standard deviation products
 - [x] Hard-composite reconstruction from retained artifacts
 - [x] Case-specific deterministic seeding
-- [ ] Plug the screened external manifest into the evaluator
+- [x] Plug the definitive screened external manifest into the evaluator
 - [ ] Run internal (90/10) BR-LoRA with 100 posterior realizations per case
 - [ ] Run full-training BR-LoRA with 100 posterior realizations per case
 
@@ -474,14 +471,13 @@ accuracy, computational efficiency, and image-level reliability.
 
 # Current Next Actions
 
-1. Complete validation inference on all 125 BraTS 2020 validation subjects.
-2. Generate slice-level tumor summaries using `screen_validation_slices.py`.
-3. Construct and audit the definitive external base manifest.
-4. Run the internal (90/10) BR-LoRA model on the screened external cohort with 100 retained posterior realizations per case.
-5. Run the full-training BR-LoRA model on the same screened external cohort with 100 retained posterior realizations per case.
-6. Summarize posterior mean, variance, and standard deviation products across the external cohort.
-7. Defer image-level reliability metrics until the external BR-LoRA evaluation and predictive uncertainty analyses are complete.
-8. Complete the common evaluation pipeline and remaining PEFT baselines for comparative benchmarking.
+1. Make the definitive external evaluation manifest portable across execution environments (Mac/Falcon).
+2. Validate manifest portability on Falcon.
+3. Run the internal (90/10) BR-LoRA evaluation with 100 retained posterior realizations per case.
+4. Run the full-training BR-LoRA evaluation with 100 retained posterior realizations per case.
+5. Summarize posterior predictive uncertainty products across the external cohort.
+6. Complete the image-level reliability analyses.
+7. Finish the remaining PEFT baselines and comparative evaluation.
 
 ---
 

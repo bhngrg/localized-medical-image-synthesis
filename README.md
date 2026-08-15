@@ -44,22 +44,18 @@ The repository currently supports
 - Monte Carlo convergence analysis,
 - Monte Carlo standard error (MCSE) analysis,
 - registered BraTS 2020 validation-slice loading with training-compatible preprocessing,
-- fixed-manifest external BR-LoRA evaluation,
+- definitive frozen-manifest external BR-LoRA evaluation
 - retained posterior realization artifacts with posterior mean, variance, and standard deviation summaries, and
 - internal (90/10) and full-training workflows.
 
 Ongoing development is focused on
 
-- completed nnU-Net training infrastructure,
-- completed validation inference infrastructure,
-- slice-level screening of validation predictions,
-
-
-- nnU-Net-based screening of the BraTS 2020 validation release to identify external base slices without predicted tumor involvement,
-- external evaluation of the internal (90/10) and full-training BR-LoRA models using 100 retained posterior realizations per case,
+- completed nnU-Net screening and external-cohort construction,
+- external BR-LoRA evaluation using the frozen 250-case manifest,
+- predictive uncertainty estimation,
 - topology-aware structural analysis,
 - image-level reliability assessment,
-- benchmarking across adaptation strategies, and
+- benchmarking across PEFT adaptation strategies,
 - AAAI manuscript experiments and figures.
 
 ---
@@ -93,13 +89,14 @@ Completed infrastructure includes
 - Monte Carlo standard error (MCSE) analysis,
 - registered external BraTS validation-slice loading,
 - external preprocessing equivalence validation against the reconstructed H5 training representation,
-- fixed-manifest external BR-LoRA evaluation,
+- definitive frozen-manifest external BR-LoRA evaluation
 - per-case deterministic posterior sampling with manifest-order-independent seeds,
 - retained posterior realization stacks with reproducible CPU-derived posterior summaries,
 - internal (90/10) BR-LoRA training,
 - full-training BR-LoRA workflows,
 - checkpoint management and resume support, and
 - experiment logging and training-history serialization.
+- fully audited external cohort construction and deterministic manifest generation.
 
 ---
 
@@ -195,6 +192,12 @@ localized-medical-image-synthesis/
 ├── outputs/              Generated figures, analyses, and synthesized images
 ├── screening/            External-cohort screening workflows
 │   └── brats_nnunet/     nnU-Net screening workflow (training, inference, screening)
+│       ├── training/
+│       ├── inference/
+│       ├── configs/
+│       ├── manifests/
+│       ├── scripts/
+│       └── README.md
 ├── scripts/              Executable workflows
 │   ├── train_patch_x0.py
 │   ├── train_br_lora.py
@@ -290,11 +293,14 @@ preprocessing path has been numerically validated against the reconstructed H5
 training pipeline. The validation release is reserved for downstream external
 inference, predictive uncertainty estimation, and reliability evaluation.
 
-Because ground-truth tumor masks are unavailable for the validation release,
-the final external base cohort will be constructed separately using a frozen
-nnU-Net model trained on the labeled BraTS 2020 training release. The resulting
-screened case manifest will be consumed by the external evaluator without
-changing the BR-LoRA inference pipeline.
+A frozen five-fold nnU-Net ensemble was used to screen the official BraTS 2020 
+validation release. Candidate tumor-free slices were audited for anatomical 
+compatibility with eligible donor lesions, producing a reproducible nested 
+125/250/625 external cohort design. The definitive evaluation cohort consists 
+of 250 external cases (two bases per validation subject), each paired with a 
+unique donor slice through a deterministic global one-to-one 
+compatibility-constrained matching algorithm. This frozen manifest is consumed 
+directly by the external BR-LoRA evaluation pipeline.
 
 See `data/README.md` for dataset setup and registration details.
 
