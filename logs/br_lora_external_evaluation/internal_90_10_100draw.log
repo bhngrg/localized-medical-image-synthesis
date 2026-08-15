@@ -1,0 +1,2303 @@
+
+==============================================================================
+BR-LoRA EXTERNAL EVALUATION CONSTRUCTION
+==============================================================================
+
+Evaluation
+------------------------------------------------------------------------------
+Evaluation name          : br_lora_external_evaluation
+Checkpoint               : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/checkpoints/br_lora_internal_90_10/best.pt
+Device                   : mps
+Seed                     : 42
+Posterior realizations   : 100
+Fixed diffusion noise    : True
+Timestep fraction        : 0.75
+Resume mode              : False
+
+External dataset
+------------------------------------------------------------------------------
+Specification            : /Users/bhanugarg/archive/BraTS2020_ValidationData/MICCAI_BraTS2020_ValidationData/validation_dataset.yaml
+Dataset root             : /Users/bhanugarg/archive/BraTS2020_ValidationData/MICCAI_BraTS2020_ValidationData
+Registered subjects      : 125
+
+Evaluation manifest
+------------------------------------------------------------------------------
+Manifest                 : /Users/bhanugarg/archive/nnUNet_brats_screening/definitive_external_manifest_250/external_evaluation_manifest_250.csv
+Cases                    : 250
+
+BR-LoRA
+------------------------------------------------------------------------------
+Variational modules      : 7
+Variational parameters   : 36,104
+Donor image channel      : 0
+
+Provenance
+------------------------------------------------------------------------------
+Git commit               : f45355ea88500a335ac575dfe30db1912935e7f9
+Future output directory  : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw
+
+==============================================================================
+CONSTRUCTION VERDICT: PASS
+The fitted BR-LoRA checkpoint, registered external dataset, fixed evaluation manifest, and diffusion schedule were constructed successfully.
+==============================================================================
+
+==============================================================================
+RUNNING EXTERNAL POSTERIOR INFERENCE
+==============================================================================
+
+[1/250] external_s001_r01
+  Case seed              : 194212430
+  External subject       : BraTS20_Validation_001
+  External slice         : 51
+  Donor mask pixels      : 1407
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s001_r01
+  Verdict                : PASS
+
+[2/250] external_s002_r01
+  Case seed              : 98193171
+  External subject       : BraTS20_Validation_002
+  External slice         : 133
+  Donor mask pixels      : 352
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s002_r01
+  Verdict                : PASS
+
+[3/250] external_s003_r01
+  Case seed              : 1425522438
+  External subject       : BraTS20_Validation_003
+  External slice         : 43
+  Donor mask pixels      : 1216
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s003_r01
+  Verdict                : PASS
+
+[4/250] external_s004_r01
+  Case seed              : 451065566
+  External subject       : BraTS20_Validation_004
+  External slice         : 41
+  Donor mask pixels      : 315
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s004_r01
+  Verdict                : PASS
+
+[5/250] external_s005_r01
+  Case seed              : 831056440
+  External subject       : BraTS20_Validation_005
+  External slice         : 13
+  Donor mask pixels      : 971
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s005_r01
+  Verdict                : PASS
+
+[6/250] external_s006_r01
+  Case seed              : 197745967
+  External subject       : BraTS20_Validation_006
+  External slice         : 130
+  Donor mask pixels      : 917
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s006_r01
+  Verdict                : PASS
+
+[7/250] external_s007_r01
+  Case seed              : 1659246936
+  External subject       : BraTS20_Validation_007
+  External slice         : 17
+  Donor mask pixels      : 578
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s007_r01
+  Verdict                : PASS
+
+[8/250] external_s008_r01
+  Case seed              : 1821779345
+  External subject       : BraTS20_Validation_008
+  External slice         : 50
+  Donor mask pixels      : 3567
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s008_r01
+  Verdict                : PASS
+
+[9/250] external_s009_r01
+  Case seed              : 964449845
+  External subject       : BraTS20_Validation_009
+  External slice         : 94
+  Donor mask pixels      : 1994
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s009_r01
+  Verdict                : PASS
+
+[10/250] external_s010_r01
+  Case seed              : 368671507
+  External subject       : BraTS20_Validation_010
+  External slice         : 43
+  Donor mask pixels      : 1430
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s010_r01
+  Verdict                : PASS
+
+[11/250] external_s011_r01
+  Case seed              : 1687602960
+  External subject       : BraTS20_Validation_011
+  External slice         : 45
+  Donor mask pixels      : 2121
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s011_r01
+  Verdict                : PASS
+
+[12/250] external_s012_r01
+  Case seed              : 807098853
+  External subject       : BraTS20_Validation_012
+  External slice         : 15
+  Donor mask pixels      : 323
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s012_r01
+  Verdict                : PASS
+
+[13/250] external_s013_r01
+  Case seed              : 1316242848
+  External subject       : BraTS20_Validation_013
+  External slice         : 126
+  Donor mask pixels      : 323
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s013_r01
+  Verdict                : PASS
+
+[14/250] external_s014_r01
+  Case seed              : 1273581561
+  External subject       : BraTS20_Validation_014
+  External slice         : 15
+  Donor mask pixels      : 812
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s014_r01
+  Verdict                : PASS
+
+[15/250] external_s015_r01
+  Case seed              : 386745818
+  External subject       : BraTS20_Validation_015
+  External slice         : 38
+  Donor mask pixels      : 1880
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s015_r01
+  Verdict                : PASS
+
+[16/250] external_s016_r01
+  Case seed              : 94675574
+  External subject       : BraTS20_Validation_016
+  External slice         : 98
+  Donor mask pixels      : 1106
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s016_r01
+  Verdict                : PASS
+
+[17/250] external_s017_r01
+  Case seed              : 1331414525
+  External subject       : BraTS20_Validation_017
+  External slice         : 9
+  Donor mask pixels      : 329
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s017_r01
+  Verdict                : PASS
+
+[18/250] external_s018_r01
+  Case seed              : 1492782444
+  External subject       : BraTS20_Validation_018
+  External slice         : 25
+  Donor mask pixels      : 323
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s018_r01
+  Verdict                : PASS
+
+[19/250] external_s019_r01
+  Case seed              : 2143767501
+  External subject       : BraTS20_Validation_019
+  External slice         : 126
+  Donor mask pixels      : 1797
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s019_r01
+  Verdict                : PASS
+
+[20/250] external_s020_r01
+  Case seed              : 1608963551
+  External subject       : BraTS20_Validation_020
+  External slice         : 40
+  Donor mask pixels      : 1779
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s020_r01
+  Verdict                : PASS
+
+[21/250] external_s021_r01
+  Case seed              : 713726044
+  External subject       : BraTS20_Validation_021
+  External slice         : 48
+  Donor mask pixels      : 753
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s021_r01
+  Verdict                : PASS
+
+[22/250] external_s022_r01
+  Case seed              : 248958924
+  External subject       : BraTS20_Validation_022
+  External slice         : 39
+  Donor mask pixels      : 1989
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s022_r01
+  Verdict                : PASS
+
+[23/250] external_s023_r01
+  Case seed              : 1493191751
+  External subject       : BraTS20_Validation_023
+  External slice         : 23
+  Donor mask pixels      : 1618
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s023_r01
+  Verdict                : PASS
+
+[24/250] external_s024_r01
+  Case seed              : 352172237
+  External subject       : BraTS20_Validation_024
+  External slice         : 115
+  Donor mask pixels      : 400
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s024_r01
+  Verdict                : PASS
+
+[25/250] external_s025_r01
+  Case seed              : 1825987762
+  External subject       : BraTS20_Validation_025
+  External slice         : 63
+  Donor mask pixels      : 1554
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s025_r01
+  Verdict                : PASS
+
+[26/250] external_s026_r01
+  Case seed              : 658073
+  External subject       : BraTS20_Validation_026
+  External slice         : 23
+  Donor mask pixels      : 310
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s026_r01
+  Verdict                : PASS
+
+[27/250] external_s027_r01
+  Case seed              : 1855157222
+  External subject       : BraTS20_Validation_027
+  External slice         : 61
+  Donor mask pixels      : 388
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s027_r01
+  Verdict                : PASS
+
+[28/250] external_s028_r01
+  Case seed              : 522911603
+  External subject       : BraTS20_Validation_028
+  External slice         : 99
+  Donor mask pixels      : 3522
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s028_r01
+  Verdict                : PASS
+
+[29/250] external_s029_r01
+  Case seed              : 2014929156
+  External subject       : BraTS20_Validation_029
+  External slice         : 9
+  Donor mask pixels      : 731
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s029_r01
+  Verdict                : PASS
+
+[30/250] external_s030_r01
+  Case seed              : 921085418
+  External subject       : BraTS20_Validation_030
+  External slice         : 12
+  Donor mask pixels      : 320
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s030_r01
+  Verdict                : PASS
+
+[31/250] external_s031_r01
+  Case seed              : 906538329
+  External subject       : BraTS20_Validation_031
+  External slice         : 129
+  Donor mask pixels      : 965
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s031_r01
+  Verdict                : PASS
+
+[32/250] external_s032_r01
+  Case seed              : 1325603058
+  External subject       : BraTS20_Validation_032
+  External slice         : 41
+  Donor mask pixels      : 515
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s032_r01
+  Verdict                : PASS
+
+[33/250] external_s033_r01
+  Case seed              : 775437177
+  External subject       : BraTS20_Validation_033
+  External slice         : 85
+  Donor mask pixels      : 1749
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s033_r01
+  Verdict                : PASS
+
+[34/250] external_s034_r01
+  Case seed              : 2030663197
+  External subject       : BraTS20_Validation_034
+  External slice         : 1
+  Donor mask pixels      : 546
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s034_r01
+  Verdict                : PASS
+
+[35/250] external_s035_r01
+  Case seed              : 892629280
+  External subject       : BraTS20_Validation_035
+  External slice         : 29
+  Donor mask pixels      : 461
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s035_r01
+  Verdict                : PASS
+
+[36/250] external_s036_r01
+  Case seed              : 819203998
+  External subject       : BraTS20_Validation_036
+  External slice         : 133
+  Donor mask pixels      : 483
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s036_r01
+  Verdict                : PASS
+
+[37/250] external_s037_r01
+  Case seed              : 1344573484
+  External subject       : BraTS20_Validation_037
+  External slice         : 8
+  Donor mask pixels      : 459
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s037_r01
+  Verdict                : PASS
+
+[38/250] external_s038_r01
+  Case seed              : 1975935839
+  External subject       : BraTS20_Validation_038
+  External slice         : 132
+  Donor mask pixels      : 441
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s038_r01
+  Verdict                : PASS
+
+[39/250] external_s039_r01
+  Case seed              : 523197434
+  External subject       : BraTS20_Validation_039
+  External slice         : 129
+  Donor mask pixels      : 350
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s039_r01
+  Verdict                : PASS
+
+[40/250] external_s040_r01
+  Case seed              : 1607170734
+  External subject       : BraTS20_Validation_040
+  External slice         : 35
+  Donor mask pixels      : 394
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s040_r01
+  Verdict                : PASS
+
+[41/250] external_s041_r01
+  Case seed              : 762133825
+  External subject       : BraTS20_Validation_041
+  External slice         : 127
+  Donor mask pixels      : 1367
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s041_r01
+  Verdict                : PASS
+
+[42/250] external_s042_r01
+  Case seed              : 432366794
+  External subject       : BraTS20_Validation_042
+  External slice         : 22
+  Donor mask pixels      : 1793
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s042_r01
+  Verdict                : PASS
+
+[43/250] external_s043_r01
+  Case seed              : 1829338827
+  External subject       : BraTS20_Validation_043
+  External slice         : 113
+  Donor mask pixels      : 413
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s043_r01
+  Verdict                : PASS
+
+[44/250] external_s044_r01
+  Case seed              : 869047854
+  External subject       : BraTS20_Validation_044
+  External slice         : 120
+  Donor mask pixels      : 673
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s044_r01
+  Verdict                : PASS
+
+[45/250] external_s045_r01
+  Case seed              : 1257259854
+  External subject       : BraTS20_Validation_045
+  External slice         : 133
+  Donor mask pixels      : 301
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s045_r01
+  Verdict                : PASS
+
+[46/250] external_s046_r01
+  Case seed              : 1823611647
+  External subject       : BraTS20_Validation_046
+  External slice         : 23
+  Donor mask pixels      : 353
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s046_r01
+  Verdict                : PASS
+
+[47/250] external_s047_r01
+  Case seed              : 533533094
+  External subject       : BraTS20_Validation_047
+  External slice         : 8
+  Donor mask pixels      : 347
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s047_r01
+  Verdict                : PASS
+
+[48/250] external_s048_r01
+  Case seed              : 94386818
+  External subject       : BraTS20_Validation_048
+  External slice         : 67
+  Donor mask pixels      : 6326
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s048_r01
+  Verdict                : PASS
+
+[49/250] external_s049_r01
+  Case seed              : 2145583364
+  External subject       : BraTS20_Validation_049
+  External slice         : 8
+  Donor mask pixels      : 410
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s049_r01
+  Verdict                : PASS
+
+[50/250] external_s050_r01
+  Case seed              : 1935176342
+  External subject       : BraTS20_Validation_050
+  External slice         : 99
+  Donor mask pixels      : 2091
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s050_r01
+  Verdict                : PASS
+
+[51/250] external_s051_r01
+  Case seed              : 1099014428
+  External subject       : BraTS20_Validation_051
+  External slice         : 10
+  Donor mask pixels      : 664
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s051_r01
+  Verdict                : PASS
+
+[52/250] external_s052_r01
+  Case seed              : 291598109
+  External subject       : BraTS20_Validation_052
+  External slice         : 10
+  Donor mask pixels      : 365
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s052_r01
+  Verdict                : PASS
+
+[53/250] external_s053_r01
+  Case seed              : 1874407887
+  External subject       : BraTS20_Validation_053
+  External slice         : 14
+  Donor mask pixels      : 653
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s053_r01
+  Verdict                : PASS
+
+[54/250] external_s054_r01
+  Case seed              : 1153802069
+  External subject       : BraTS20_Validation_054
+  External slice         : 11
+  Donor mask pixels      : 661
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s054_r01
+  Verdict                : PASS
+
+[55/250] external_s055_r01
+  Case seed              : 164869479
+  External subject       : BraTS20_Validation_055
+  External slice         : 128
+  Donor mask pixels      : 819
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s055_r01
+  Verdict                : PASS
+
+[56/250] external_s056_r01
+  Case seed              : 832822418
+  External subject       : BraTS20_Validation_056
+  External slice         : 38
+  Donor mask pixels      : 2512
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s056_r01
+  Verdict                : PASS
+
+[57/250] external_s057_r01
+  Case seed              : 220052820
+  External subject       : BraTS20_Validation_057
+  External slice         : 26
+  Donor mask pixels      : 352
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s057_r01
+  Verdict                : PASS
+
+[58/250] external_s058_r01
+  Case seed              : 1367761831
+  External subject       : BraTS20_Validation_058
+  External slice         : 126
+  Donor mask pixels      : 1082
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s058_r01
+  Verdict                : PASS
+
+[59/250] external_s059_r01
+  Case seed              : 444771408
+  External subject       : BraTS20_Validation_059
+  External slice         : 123
+  Donor mask pixels      : 329
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s059_r01
+  Verdict                : PASS
+
+[60/250] external_s060_r01
+  Case seed              : 418855922
+  External subject       : BraTS20_Validation_060
+  External slice         : 131
+  Donor mask pixels      : 352
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s060_r01
+  Verdict                : PASS
+
+[61/250] external_s061_r01
+  Case seed              : 312643919
+  External subject       : BraTS20_Validation_061
+  External slice         : 124
+  Donor mask pixels      : 525
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s061_r01
+  Verdict                : PASS
+
+[62/250] external_s062_r01
+  Case seed              : 1494044637
+  External subject       : BraTS20_Validation_062
+  External slice         : 68
+  Donor mask pixels      : 2069
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s062_r01
+  Verdict                : PASS
+
+[63/250] external_s063_r01
+  Case seed              : 1988139189
+  External subject       : BraTS20_Validation_063
+  External slice         : 123
+  Donor mask pixels      : 1006
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s063_r01
+  Verdict                : PASS
+
+[64/250] external_s064_r01
+  Case seed              : 1539177387
+  External subject       : BraTS20_Validation_064
+  External slice         : 40
+  Donor mask pixels      : 1855
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s064_r01
+  Verdict                : PASS
+
+[65/250] external_s065_r01
+  Case seed              : 905042784
+  External subject       : BraTS20_Validation_065
+  External slice         : 100
+  Donor mask pixels      : 517
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s065_r01
+  Verdict                : PASS
+
+[66/250] external_s066_r01
+  Case seed              : 425250349
+  External subject       : BraTS20_Validation_066
+  External slice         : 7
+  Donor mask pixels      : 505
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s066_r01
+  Verdict                : PASS
+
+[67/250] external_s067_r01
+  Case seed              : 1409832139
+  External subject       : BraTS20_Validation_067
+  External slice         : 116
+  Donor mask pixels      : 2320
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s067_r01
+  Verdict                : PASS
+
+[68/250] external_s068_r01
+  Case seed              : 577310348
+  External subject       : BraTS20_Validation_068
+  External slice         : 62
+  Donor mask pixels      : 3276
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s068_r01
+  Verdict                : PASS
+
+[69/250] external_s069_r01
+  Case seed              : 459546253
+  External subject       : BraTS20_Validation_069
+  External slice         : 25
+  Donor mask pixels      : 471
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s069_r01
+  Verdict                : PASS
+
+[70/250] external_s070_r01
+  Case seed              : 1824050780
+  External subject       : BraTS20_Validation_070
+  External slice         : 32
+  Donor mask pixels      : 664
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s070_r01
+  Verdict                : PASS
+
+[71/250] external_s071_r01
+  Case seed              : 1397552799
+  External subject       : BraTS20_Validation_071
+  External slice         : 23
+  Donor mask pixels      : 1205
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s071_r01
+  Verdict                : PASS
+
+[72/250] external_s072_r01
+  Case seed              : 2099445886
+  External subject       : BraTS20_Validation_072
+  External slice         : 93
+  Donor mask pixels      : 873
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s072_r01
+  Verdict                : PASS
+
+[73/250] external_s073_r01
+  Case seed              : 534659081
+  External subject       : BraTS20_Validation_073
+  External slice         : 54
+  Donor mask pixels      : 1411
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s073_r01
+  Verdict                : PASS
+
+[74/250] external_s074_r01
+  Case seed              : 1203452686
+  External subject       : BraTS20_Validation_074
+  External slice         : 11
+  Donor mask pixels      : 673
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s074_r01
+  Verdict                : PASS
+
+[75/250] external_s075_r01
+  Case seed              : 1142214899
+  External subject       : BraTS20_Validation_075
+  External slice         : 132
+  Donor mask pixels      : 309
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s075_r01
+  Verdict                : PASS
+
+[76/250] external_s076_r01
+  Case seed              : 874928507
+  External subject       : BraTS20_Validation_076
+  External slice         : 137
+  Donor mask pixels      : 640
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s076_r01
+  Verdict                : PASS
+
+[77/250] external_s077_r01
+  Case seed              : 2144503970
+  External subject       : BraTS20_Validation_077
+  External slice         : 17
+  Donor mask pixels      : 336
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s077_r01
+  Verdict                : PASS
+
+[78/250] external_s078_r01
+  Case seed              : 1314508530
+  External subject       : BraTS20_Validation_078
+  External slice         : 51
+  Donor mask pixels      : 409
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s078_r01
+  Verdict                : PASS
+
+[79/250] external_s079_r01
+  Case seed              : 1782117125
+  External subject       : BraTS20_Validation_079
+  External slice         : 10
+  Donor mask pixels      : 391
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s079_r01
+  Verdict                : PASS
+
+[80/250] external_s080_r01
+  Case seed              : 196323198
+  External subject       : BraTS20_Validation_080
+  External slice         : 86
+  Donor mask pixels      : 1013
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s080_r01
+  Verdict                : PASS
+
+[81/250] external_s081_r01
+  Case seed              : 1964687110
+  External subject       : BraTS20_Validation_081
+  External slice         : 127
+  Donor mask pixels      : 888
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s081_r01
+  Verdict                : PASS
+
+[82/250] external_s082_r01
+  Case seed              : 582058922
+  External subject       : BraTS20_Validation_082
+  External slice         : 116
+  Donor mask pixels      : 2429
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s082_r01
+  Verdict                : PASS
+
+[83/250] external_s083_r01
+  Case seed              : 1581429543
+  External subject       : BraTS20_Validation_083
+  External slice         : 59
+  Donor mask pixels      : 916
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s083_r01
+  Verdict                : PASS
+
+[84/250] external_s084_r01
+  Case seed              : 1691215964
+  External subject       : BraTS20_Validation_084
+  External slice         : 10
+  Donor mask pixels      : 613
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s084_r01
+  Verdict                : PASS
+
+[85/250] external_s085_r01
+  Case seed              : 116569561
+  External subject       : BraTS20_Validation_085
+  External slice         : 29
+  Donor mask pixels      : 938
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s085_r01
+  Verdict                : PASS
+
+[86/250] external_s086_r01
+  Case seed              : 476076544
+  External subject       : BraTS20_Validation_086
+  External slice         : 86
+  Donor mask pixels      : 441
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s086_r01
+  Verdict                : PASS
+
+[87/250] external_s087_r01
+  Case seed              : 881249241
+  External subject       : BraTS20_Validation_087
+  External slice         : 35
+  Donor mask pixels      : 896
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s087_r01
+  Verdict                : PASS
+
+[88/250] external_s088_r01
+  Case seed              : 1898610252
+  External subject       : BraTS20_Validation_088
+  External slice         : 43
+  Donor mask pixels      : 2517
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s088_r01
+  Verdict                : PASS
+
+[89/250] external_s089_r01
+  Case seed              : 1730454625
+  External subject       : BraTS20_Validation_089
+  External slice         : 135
+  Donor mask pixels      : 338
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s089_r01
+  Verdict                : PASS
+
+[90/250] external_s090_r01
+  Case seed              : 1865789157
+  External subject       : BraTS20_Validation_090
+  External slice         : 48
+  Donor mask pixels      : 494
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s090_r01
+  Verdict                : PASS
+
+[91/250] external_s091_r01
+  Case seed              : 1829113772
+  External subject       : BraTS20_Validation_091
+  External slice         : 69
+  Donor mask pixels      : 2226
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s091_r01
+  Verdict                : PASS
+
+[92/250] external_s092_r01
+  Case seed              : 2012586933
+  External subject       : BraTS20_Validation_092
+  External slice         : 139
+  Donor mask pixels      : 612
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s092_r01
+  Verdict                : PASS
+
+[93/250] external_s093_r01
+  Case seed              : 1007004865
+  External subject       : BraTS20_Validation_093
+  External slice         : 31
+  Donor mask pixels      : 1242
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s093_r01
+  Verdict                : PASS
+
+[94/250] external_s094_r01
+  Case seed              : 549196129
+  External subject       : BraTS20_Validation_094
+  External slice         : 1
+  Donor mask pixels      : 320
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s094_r01
+  Verdict                : PASS
+
+[95/250] external_s095_r01
+  Case seed              : 2045145071
+  External subject       : BraTS20_Validation_095
+  External slice         : 3
+  Donor mask pixels      : 380
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s095_r01
+  Verdict                : PASS
+
+[96/250] external_s096_r01
+  Case seed              : 324242195
+  External subject       : BraTS20_Validation_096
+  External slice         : 5
+  Donor mask pixels      : 429
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s096_r01
+  Verdict                : PASS
+
+[97/250] external_s097_r01
+  Case seed              : 881344521
+  External subject       : BraTS20_Validation_097
+  External slice         : 55
+  Donor mask pixels      : 733
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s097_r01
+  Verdict                : PASS
+
+[98/250] external_s098_r01
+  Case seed              : 1016353942
+  External subject       : BraTS20_Validation_098
+  External slice         : 35
+  Donor mask pixels      : 642
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s098_r01
+  Verdict                : PASS
+
+[99/250] external_s099_r01
+  Case seed              : 127978309
+  External subject       : BraTS20_Validation_099
+  External slice         : 10
+  Donor mask pixels      : 528
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s099_r01
+  Verdict                : PASS
+
+[100/250] external_s100_r01
+  Case seed              : 93173178
+  External subject       : BraTS20_Validation_100
+  External slice         : 36
+  Donor mask pixels      : 648
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s100_r01
+  Verdict                : PASS
+
+[101/250] external_s101_r01
+  Case seed              : 620273010
+  External subject       : BraTS20_Validation_101
+  External slice         : 23
+  Donor mask pixels      : 1329
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s101_r01
+  Verdict                : PASS
+
+[102/250] external_s102_r01
+  Case seed              : 875178627
+  External subject       : BraTS20_Validation_102
+  External slice         : 5
+  Donor mask pixels      : 336
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s102_r01
+  Verdict                : PASS
+
+[103/250] external_s103_r01
+  Case seed              : 926078938
+  External subject       : BraTS20_Validation_103
+  External slice         : 56
+  Donor mask pixels      : 1017
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s103_r01
+  Verdict                : PASS
+
+[104/250] external_s104_r01
+  Case seed              : 408523606
+  External subject       : BraTS20_Validation_104
+  External slice         : 14
+  Donor mask pixels      : 638
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s104_r01
+  Verdict                : PASS
+
+[105/250] external_s105_r01
+  Case seed              : 1938573281
+  External subject       : BraTS20_Validation_105
+  External slice         : 128
+  Donor mask pixels      : 1745
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s105_r01
+  Verdict                : PASS
+
+[106/250] external_s106_r01
+  Case seed              : 540042571
+  External subject       : BraTS20_Validation_106
+  External slice         : 11
+  Donor mask pixels      : 462
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s106_r01
+  Verdict                : PASS
+
+[107/250] external_s107_r01
+  Case seed              : 1435968421
+  External subject       : BraTS20_Validation_107
+  External slice         : 110
+  Donor mask pixels      : 1207
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s107_r01
+  Verdict                : PASS
+
+[108/250] external_s108_r01
+  Case seed              : 904328515
+  External subject       : BraTS20_Validation_108
+  External slice         : 133
+  Donor mask pixels      : 2120
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s108_r01
+  Verdict                : PASS
+
+[109/250] external_s109_r01
+  Case seed              : 986414647
+  External subject       : BraTS20_Validation_109
+  External slice         : 26
+  Donor mask pixels      : 1125
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s109_r01
+  Verdict                : PASS
+
+[110/250] external_s110_r01
+  Case seed              : 849372005
+  External subject       : BraTS20_Validation_110
+  External slice         : 61
+  Donor mask pixels      : 874
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s110_r01
+  Verdict                : PASS
+
+[111/250] external_s111_r01
+  Case seed              : 1300655227
+  External subject       : BraTS20_Validation_111
+  External slice         : 21
+  Donor mask pixels      : 605
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s111_r01
+  Verdict                : PASS
+
+[112/250] external_s112_r01
+  Case seed              : 934352010
+  External subject       : BraTS20_Validation_112
+  External slice         : 123
+  Donor mask pixels      : 1697
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s112_r01
+  Verdict                : PASS
+
+[113/250] external_s113_r01
+  Case seed              : 1386627444
+  External subject       : BraTS20_Validation_113
+  External slice         : 20
+  Donor mask pixels      : 738
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s113_r01
+  Verdict                : PASS
+
+[114/250] external_s114_r01
+  Case seed              : 311446516
+  External subject       : BraTS20_Validation_114
+  External slice         : 14
+  Donor mask pixels      : 338
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s114_r01
+  Verdict                : PASS
+
+[115/250] external_s115_r01
+  Case seed              : 720963970
+  External subject       : BraTS20_Validation_115
+  External slice         : 17
+  Donor mask pixels      : 633
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s115_r01
+  Verdict                : PASS
+
+[116/250] external_s116_r01
+  Case seed              : 764463200
+  External subject       : BraTS20_Validation_116
+  External slice         : 1
+  Donor mask pixels      : 343
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s116_r01
+  Verdict                : PASS
+
+[117/250] external_s117_r01
+  Case seed              : 1900750520
+  External subject       : BraTS20_Validation_117
+  External slice         : 40
+  Donor mask pixels      : 1391
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s117_r01
+  Verdict                : PASS
+
+[118/250] external_s118_r01
+  Case seed              : 2072493102
+  External subject       : BraTS20_Validation_118
+  External slice         : 134
+  Donor mask pixels      : 314
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s118_r01
+  Verdict                : PASS
+
+[119/250] external_s119_r01
+  Case seed              : 1026352186
+  External subject       : BraTS20_Validation_119
+  External slice         : 122
+  Donor mask pixels      : 2871
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s119_r01
+  Verdict                : PASS
+
+[120/250] external_s120_r01
+  Case seed              : 627842833
+  External subject       : BraTS20_Validation_120
+  External slice         : 12
+  Donor mask pixels      : 387
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s120_r01
+  Verdict                : PASS
+
+[121/250] external_s121_r01
+  Case seed              : 1442424752
+  External subject       : BraTS20_Validation_121
+  External slice         : 130
+  Donor mask pixels      : 457
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s121_r01
+  Verdict                : PASS
+
+[122/250] external_s122_r01
+  Case seed              : 548208047
+  External subject       : BraTS20_Validation_122
+  External slice         : 132
+  Donor mask pixels      : 791
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s122_r01
+  Verdict                : PASS
+
+[123/250] external_s123_r01
+  Case seed              : 88469631
+  External subject       : BraTS20_Validation_123
+  External slice         : 141
+  Donor mask pixels      : 1465
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s123_r01
+  Verdict                : PASS
+
+[124/250] external_s124_r01
+  Case seed              : 939090951
+  External subject       : BraTS20_Validation_124
+  External slice         : 117
+  Donor mask pixels      : 2382
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s124_r01
+  Verdict                : PASS
+
+[125/250] external_s125_r01
+  Case seed              : 112002138
+  External subject       : BraTS20_Validation_125
+  External slice         : 117
+  Donor mask pixels      : 661
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s125_r01
+  Verdict                : PASS
+
+[126/250] external_s001_r02
+  Case seed              : 1009373760
+  External subject       : BraTS20_Validation_001
+  External slice         : 17
+  Donor mask pixels      : 1742
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s001_r02
+  Verdict                : PASS
+
+[127/250] external_s002_r02
+  Case seed              : 292121087
+  External subject       : BraTS20_Validation_002
+  External slice         : 8
+  Donor mask pixels      : 1547
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s002_r02
+  Verdict                : PASS
+
+[128/250] external_s003_r02
+  Case seed              : 1513506041
+  External subject       : BraTS20_Validation_003
+  External slice         : 68
+  Donor mask pixels      : 1168
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s003_r02
+  Verdict                : PASS
+
+[129/250] external_s004_r02
+  Case seed              : 495672458
+  External subject       : BraTS20_Validation_004
+  External slice         : 21
+  Donor mask pixels      : 1026
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s004_r02
+  Verdict                : PASS
+
+[130/250] external_s005_r02
+  Case seed              : 2136075413
+  External subject       : BraTS20_Validation_005
+  External slice         : 121
+  Donor mask pixels      : 1009
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s005_r02
+  Verdict                : PASS
+
+[131/250] external_s006_r02
+  Case seed              : 2122170108
+  External subject       : BraTS20_Validation_006
+  External slice         : 55
+  Donor mask pixels      : 1613
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s006_r02
+  Verdict                : PASS
+
+[132/250] external_s007_r02
+  Case seed              : 214894833
+  External subject       : BraTS20_Validation_007
+  External slice         : 37
+  Donor mask pixels      : 410
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s007_r02
+  Verdict                : PASS
+
+[133/250] external_s008_r02
+  Case seed              : 2108341457
+  External subject       : BraTS20_Validation_008
+  External slice         : 136
+  Donor mask pixels      : 318
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s008_r02
+  Verdict                : PASS
+
+[134/250] external_s009_r02
+  Case seed              : 881427121
+  External subject       : BraTS20_Validation_009
+  External slice         : 27
+  Donor mask pixels      : 675
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s009_r02
+  Verdict                : PASS
+
+[135/250] external_s010_r02
+  Case seed              : 12729184
+  External subject       : BraTS20_Validation_010
+  External slice         : 38
+  Donor mask pixels      : 342
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s010_r02
+  Verdict                : PASS
+
+[136/250] external_s011_r02
+  Case seed              : 946314312
+  External subject       : BraTS20_Validation_011
+  External slice         : 127
+  Donor mask pixels      : 374
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s011_r02
+  Verdict                : PASS
+
+[137/250] external_s012_r02
+  Case seed              : 1202612274
+  External subject       : BraTS20_Validation_012
+  External slice         : 119
+  Donor mask pixels      : 1355
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s012_r02
+  Verdict                : PASS
+
+[138/250] external_s013_r02
+  Case seed              : 799066659
+  External subject       : BraTS20_Validation_013
+  External slice         : 105
+  Donor mask pixels      : 1212
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s013_r02
+  Verdict                : PASS
+
+[139/250] external_s014_r02
+  Case seed              : 1105294714
+  External subject       : BraTS20_Validation_014
+  External slice         : 58
+  Donor mask pixels      : 2019
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s014_r02
+  Verdict                : PASS
+
+[140/250] external_s015_r02
+  Case seed              : 1568709605
+  External subject       : BraTS20_Validation_015
+  External slice         : 139
+  Donor mask pixels      : 371
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s015_r02
+  Verdict                : PASS
+
+[141/250] external_s016_r02
+  Case seed              : 1669525189
+  External subject       : BraTS20_Validation_016
+  External slice         : 2
+  Donor mask pixels      : 2183
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s016_r02
+  Verdict                : PASS
+
+[142/250] external_s017_r02
+  Case seed              : 592917336
+  External subject       : BraTS20_Validation_017
+  External slice         : 123
+  Donor mask pixels      : 521
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s017_r02
+  Verdict                : PASS
+
+[143/250] external_s018_r02
+  Case seed              : 1826347113
+  External subject       : BraTS20_Validation_018
+  External slice         : 36
+  Donor mask pixels      : 487
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s018_r02
+  Verdict                : PASS
+
+[144/250] external_s019_r02
+  Case seed              : 1590037440
+  External subject       : BraTS20_Validation_019
+  External slice         : 41
+  Donor mask pixels      : 319
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s019_r02
+  Verdict                : PASS
+
+[145/250] external_s020_r02
+  Case seed              : 609697390
+  External subject       : BraTS20_Validation_020
+  External slice         : 57
+  Donor mask pixels      : 727
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s020_r02
+  Verdict                : PASS
+
+[146/250] external_s021_r02
+  Case seed              : 798724348
+  External subject       : BraTS20_Validation_021
+  External slice         : 62
+  Donor mask pixels      : 1160
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s021_r02
+  Verdict                : PASS
+
+[147/250] external_s022_r02
+  Case seed              : 1881780130
+  External subject       : BraTS20_Validation_022
+  External slice         : 38
+  Donor mask pixels      : 1857
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s022_r02
+  Verdict                : PASS
+
+[148/250] external_s023_r02
+  Case seed              : 1765393546
+  External subject       : BraTS20_Validation_023
+  External slice         : 30
+  Donor mask pixels      : 355
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s023_r02
+  Verdict                : PASS
+
+[149/250] external_s024_r02
+  Case seed              : 1170846868
+  External subject       : BraTS20_Validation_024
+  External slice         : 130
+  Donor mask pixels      : 1107
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s024_r02
+  Verdict                : PASS
+
+[150/250] external_s025_r02
+  Case seed              : 1698541234
+  External subject       : BraTS20_Validation_025
+  External slice         : 13
+  Donor mask pixels      : 566
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s025_r02
+  Verdict                : PASS
+
+[151/250] external_s026_r02
+  Case seed              : 2037554216
+  External subject       : BraTS20_Validation_026
+  External slice         : 70
+  Donor mask pixels      : 1106
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s026_r02
+  Verdict                : PASS
+
+[152/250] external_s027_r02
+  Case seed              : 1830893625
+  External subject       : BraTS20_Validation_027
+  External slice         : 31
+  Donor mask pixels      : 1130
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s027_r02
+  Verdict                : PASS
+
+[153/250] external_s028_r02
+  Case seed              : 658171266
+  External subject       : BraTS20_Validation_028
+  External slice         : 21
+  Donor mask pixels      : 688
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s028_r02
+  Verdict                : PASS
+
+[154/250] external_s029_r02
+  Case seed              : 926480694
+  External subject       : BraTS20_Validation_029
+  External slice         : 105
+  Donor mask pixels      : 2803
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s029_r02
+  Verdict                : PASS
+
+[155/250] external_s030_r02
+  Case seed              : 834898034
+  External subject       : BraTS20_Validation_030
+  External slice         : 40
+  Donor mask pixels      : 2062
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s030_r02
+  Verdict                : PASS
+
+[156/250] external_s031_r02
+  Case seed              : 909679464
+  External subject       : BraTS20_Validation_031
+  External slice         : 33
+  Donor mask pixels      : 850
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s031_r02
+  Verdict                : PASS
+
+[157/250] external_s032_r02
+  Case seed              : 1541454071
+  External subject       : BraTS20_Validation_032
+  External slice         : 25
+  Donor mask pixels      : 907
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s032_r02
+  Verdict                : PASS
+
+[158/250] external_s033_r02
+  Case seed              : 797808809
+  External subject       : BraTS20_Validation_033
+  External slice         : 35
+  Donor mask pixels      : 368
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s033_r02
+  Verdict                : PASS
+
+[159/250] external_s034_r02
+  Case seed              : 281664570
+  External subject       : BraTS20_Validation_034
+  External slice         : 36
+  Donor mask pixels      : 317
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s034_r02
+  Verdict                : PASS
+
+[160/250] external_s035_r02
+  Case seed              : 539359564
+  External subject       : BraTS20_Validation_035
+  External slice         : 17
+  Donor mask pixels      : 997
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s035_r02
+  Verdict                : PASS
+
+[161/250] external_s036_r02
+  Case seed              : 81958573
+  External subject       : BraTS20_Validation_036
+  External slice         : 36
+  Donor mask pixels      : 3809
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s036_r02
+  Verdict                : PASS
+
+[162/250] external_s037_r02
+  Case seed              : 1059734334
+  External subject       : BraTS20_Validation_037
+  External slice         : 127
+  Donor mask pixels      : 414
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s037_r02
+  Verdict                : PASS
+
+[163/250] external_s038_r02
+  Case seed              : 564648689
+  External subject       : BraTS20_Validation_038
+  External slice         : 115
+  Donor mask pixels      : 525
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s038_r02
+  Verdict                : PASS
+
+[164/250] external_s039_r02
+  Case seed              : 466891233
+  External subject       : BraTS20_Validation_039
+  External slice         : 104
+  Donor mask pixels      : 2511
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s039_r02
+  Verdict                : PASS
+
+[165/250] external_s040_r02
+  Case seed              : 1150784939
+  External subject       : BraTS20_Validation_040
+  External slice         : 25
+  Donor mask pixels      : 412
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s040_r02
+  Verdict                : PASS
+
+[166/250] external_s041_r02
+  Case seed              : 133546168
+  External subject       : BraTS20_Validation_041
+  External slice         : 11
+  Donor mask pixels      : 303
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s041_r02
+  Verdict                : PASS
+
+[167/250] external_s042_r02
+  Case seed              : 276709922
+  External subject       : BraTS20_Validation_042
+  External slice         : 18
+  Donor mask pixels      : 480
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s042_r02
+  Verdict                : PASS
+
+[168/250] external_s043_r02
+  Case seed              : 241819237
+  External subject       : BraTS20_Validation_043
+  External slice         : 53
+  Donor mask pixels      : 352
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s043_r02
+  Verdict                : PASS
+
+[169/250] external_s044_r02
+  Case seed              : 298295073
+  External subject       : BraTS20_Validation_044
+  External slice         : 13
+  Donor mask pixels      : 1199
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s044_r02
+  Verdict                : PASS
+
+[170/250] external_s045_r02
+  Case seed              : 821820651
+  External subject       : BraTS20_Validation_045
+  External slice         : 12
+  Donor mask pixels      : 820
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s045_r02
+  Verdict                : PASS
+
+[171/250] external_s046_r02
+  Case seed              : 1942188801
+  External subject       : BraTS20_Validation_046
+  External slice         : 8
+  Donor mask pixels      : 968
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s046_r02
+  Verdict                : PASS
+
+[172/250] external_s047_r02
+  Case seed              : 334027209
+  External subject       : BraTS20_Validation_047
+  External slice         : 114
+  Donor mask pixels      : 377
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s047_r02
+  Verdict                : PASS
+
+[173/250] external_s048_r02
+  Case seed              : 1486377157
+  External subject       : BraTS20_Validation_048
+  External slice         : 35
+  Donor mask pixels      : 800
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s048_r02
+  Verdict                : PASS
+
+[174/250] external_s049_r02
+  Case seed              : 2097352377
+  External subject       : BraTS20_Validation_049
+  External slice         : 30
+  Donor mask pixels      : 1214
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s049_r02
+  Verdict                : PASS
+
+[175/250] external_s050_r02
+  Case seed              : 1162342152
+  External subject       : BraTS20_Validation_050
+  External slice         : 24
+  Donor mask pixels      : 328
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s050_r02
+  Verdict                : PASS
+
+[176/250] external_s051_r02
+  Case seed              : 772190105
+  External subject       : BraTS20_Validation_051
+  External slice         : 46
+  Donor mask pixels      : 430
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s051_r02
+  Verdict                : PASS
+
+[177/250] external_s052_r02
+  Case seed              : 1739689675
+  External subject       : BraTS20_Validation_052
+  External slice         : 115
+  Donor mask pixels      : 2385
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s052_r02
+  Verdict                : PASS
+
+[178/250] external_s053_r02
+  Case seed              : 1062856983
+  External subject       : BraTS20_Validation_053
+  External slice         : 135
+  Donor mask pixels      : 651
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s053_r02
+  Verdict                : PASS
+
+[179/250] external_s054_r02
+  Case seed              : 1706308893
+  External subject       : BraTS20_Validation_054
+  External slice         : 5
+  Donor mask pixels      : 408
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s054_r02
+  Verdict                : PASS
+
+[180/250] external_s055_r02
+  Case seed              : 2129148136
+  External subject       : BraTS20_Validation_055
+  External slice         : 31
+  Donor mask pixels      : 1341
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s055_r02
+  Verdict                : PASS
+
+[181/250] external_s056_r02
+  Case seed              : 730340899
+  External subject       : BraTS20_Validation_056
+  External slice         : 11
+  Donor mask pixels      : 455
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s056_r02
+  Verdict                : PASS
+
+[182/250] external_s057_r02
+  Case seed              : 1701046178
+  External subject       : BraTS20_Validation_057
+  External slice         : 139
+  Donor mask pixels      : 477
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s057_r02
+  Verdict                : PASS
+
+[183/250] external_s058_r02
+  Case seed              : 206557186
+  External subject       : BraTS20_Validation_058
+  External slice         : 118
+  Donor mask pixels      : 359
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s058_r02
+  Verdict                : PASS
+
+[184/250] external_s059_r02
+  Case seed              : 785875261
+  External subject       : BraTS20_Validation_059
+  External slice         : 116
+  Donor mask pixels      : 414
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s059_r02
+  Verdict                : PASS
+
+[185/250] external_s060_r02
+  Case seed              : 1089320758
+  External subject       : BraTS20_Validation_060
+  External slice         : 105
+  Donor mask pixels      : 534
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s060_r02
+  Verdict                : PASS
+
+[186/250] external_s061_r02
+  Case seed              : 407564835
+  External subject       : BraTS20_Validation_061
+  External slice         : 14
+  Donor mask pixels      : 725
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s061_r02
+  Verdict                : PASS
+
+[187/250] external_s062_r02
+  Case seed              : 2134849002
+  External subject       : BraTS20_Validation_062
+  External slice         : 80
+  Donor mask pixels      : 2401
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s062_r02
+  Verdict                : PASS
+
+[188/250] external_s063_r02
+  Case seed              : 599530867
+  External subject       : BraTS20_Validation_063
+  External slice         : 103
+  Donor mask pixels      : 4201
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s063_r02
+  Verdict                : PASS
+
+[189/250] external_s064_r02
+  Case seed              : 794850026
+  External subject       : BraTS20_Validation_064
+  External slice         : 48
+  Donor mask pixels      : 1871
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s064_r02
+  Verdict                : PASS
+
+[190/250] external_s065_r02
+  Case seed              : 845589002
+  External subject       : BraTS20_Validation_065
+  External slice         : 128
+  Donor mask pixels      : 329
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s065_r02
+  Verdict                : PASS
+
+[191/250] external_s066_r02
+  Case seed              : 1660883794
+  External subject       : BraTS20_Validation_066
+  External slice         : 51
+  Donor mask pixels      : 1248
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s066_r02
+  Verdict                : PASS
+
+[192/250] external_s067_r02
+  Case seed              : 564331350
+  External subject       : BraTS20_Validation_067
+  External slice         : 132
+  Donor mask pixels      : 564
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s067_r02
+  Verdict                : PASS
+
+[193/250] external_s068_r02
+  Case seed              : 1740001529
+  External subject       : BraTS20_Validation_068
+  External slice         : 15
+  Donor mask pixels      : 1227
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s068_r02
+  Verdict                : PASS
+
+[194/250] external_s069_r02
+  Case seed              : 62657621
+  External subject       : BraTS20_Validation_069
+  External slice         : 110
+  Donor mask pixels      : 542
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s069_r02
+  Verdict                : PASS
+
+[195/250] external_s070_r02
+  Case seed              : 1068896755
+  External subject       : BraTS20_Validation_070
+  External slice         : 36
+  Donor mask pixels      : 437
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s070_r02
+  Verdict                : PASS
+
+[196/250] external_s071_r02
+  Case seed              : 457124793
+  External subject       : BraTS20_Validation_071
+  External slice         : 18
+  Donor mask pixels      : 375
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s071_r02
+  Verdict                : PASS
+
+[197/250] external_s072_r02
+  Case seed              : 658449146
+  External subject       : BraTS20_Validation_072
+  External slice         : 92
+  Donor mask pixels      : 608
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s072_r02
+  Verdict                : PASS
+
+[198/250] external_s073_r02
+  Case seed              : 1840395466
+  External subject       : BraTS20_Validation_073
+  External slice         : 40
+  Donor mask pixels      : 455
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s073_r02
+  Verdict                : PASS
+
+[199/250] external_s074_r02
+  Case seed              : 1904903128
+  External subject       : BraTS20_Validation_074
+  External slice         : 17
+  Donor mask pixels      : 2184
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s074_r02
+  Verdict                : PASS
+
+[200/250] external_s075_r02
+  Case seed              : 1115366796
+  External subject       : BraTS20_Validation_075
+  External slice         : 124
+  Donor mask pixels      : 516
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s075_r02
+  Verdict                : PASS
+
+[201/250] external_s076_r02
+  Case seed              : 1322917378
+  External subject       : BraTS20_Validation_076
+  External slice         : 36
+  Donor mask pixels      : 1492
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s076_r02
+  Verdict                : PASS
+
+[202/250] external_s077_r02
+  Case seed              : 532014520
+  External subject       : BraTS20_Validation_077
+  External slice         : 126
+  Donor mask pixels      : 2183
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s077_r02
+  Verdict                : PASS
+
+[203/250] external_s078_r02
+  Case seed              : 295407384
+  External subject       : BraTS20_Validation_078
+  External slice         : 21
+  Donor mask pixels      : 1409
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s078_r02
+  Verdict                : PASS
+
+[204/250] external_s079_r02
+  Case seed              : 189041288
+  External subject       : BraTS20_Validation_079
+  External slice         : 1
+  Donor mask pixels      : 1064
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s079_r02
+  Verdict                : PASS
+
+[205/250] external_s080_r02
+  Case seed              : 933546848
+  External subject       : BraTS20_Validation_080
+  External slice         : 98
+  Donor mask pixels      : 2157
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s080_r02
+  Verdict                : PASS
+
+[206/250] external_s081_r02
+  Case seed              : 448528756
+  External subject       : BraTS20_Validation_081
+  External slice         : 11
+  Donor mask pixels      : 1660
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s081_r02
+  Verdict                : PASS
+
+[207/250] external_s082_r02
+  Case seed              : 910321676
+  External subject       : BraTS20_Validation_082
+  External slice         : 103
+  Donor mask pixels      : 567
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s082_r02
+  Verdict                : PASS
+
+[208/250] external_s083_r02
+  Case seed              : 556014402
+  External subject       : BraTS20_Validation_083
+  External slice         : 67
+  Donor mask pixels      : 1075
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s083_r02
+  Verdict                : PASS
+
+[209/250] external_s084_r02
+  Case seed              : 1645433096
+  External subject       : BraTS20_Validation_084
+  External slice         : 137
+  Donor mask pixels      : 420
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s084_r02
+  Verdict                : PASS
+
+[210/250] external_s085_r02
+  Case seed              : 1614417602
+  External subject       : BraTS20_Validation_085
+  External slice         : 51
+  Donor mask pixels      : 2215
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s085_r02
+  Verdict                : PASS
+
+[211/250] external_s086_r02
+  Case seed              : 1013592176
+  External subject       : BraTS20_Validation_086
+  External slice         : 97
+  Donor mask pixels      : 742
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s086_r02
+  Verdict                : PASS
+
+[212/250] external_s087_r02
+  Case seed              : 1032547527
+  External subject       : BraTS20_Validation_087
+  External slice         : 68
+  Donor mask pixels      : 1717
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s087_r02
+  Verdict                : PASS
+
+[213/250] external_s088_r02
+  Case seed              : 736873322
+  External subject       : BraTS20_Validation_088
+  External slice         : 60
+  Donor mask pixels      : 873
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s088_r02
+  Verdict                : PASS
+
+[214/250] external_s089_r02
+  Case seed              : 1473297114
+  External subject       : BraTS20_Validation_089
+  External slice         : 69
+  Donor mask pixels      : 793
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s089_r02
+  Verdict                : PASS
+
+[215/250] external_s090_r02
+  Case seed              : 1207415746
+  External subject       : BraTS20_Validation_090
+  External slice         : 52
+  Donor mask pixels      : 701
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s090_r02
+  Verdict                : PASS
+
+[216/250] external_s091_r02
+  Case seed              : 372007705
+  External subject       : BraTS20_Validation_091
+  External slice         : 116
+  Donor mask pixels      : 637
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s091_r02
+  Verdict                : PASS
+
+[217/250] external_s092_r02
+  Case seed              : 709413524
+  External subject       : BraTS20_Validation_092
+  External slice         : 7
+  Donor mask pixels      : 1011
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s092_r02
+  Verdict                : PASS
+
+[218/250] external_s093_r02
+  Case seed              : 701003181
+  External subject       : BraTS20_Validation_093
+  External slice         : 2
+  Donor mask pixels      : 996
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s093_r02
+  Verdict                : PASS
+
+[219/250] external_s094_r02
+  Case seed              : 1905059375
+  External subject       : BraTS20_Validation_094
+  External slice         : 51
+  Donor mask pixels      : 652
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s094_r02
+  Verdict                : PASS
+
+[220/250] external_s095_r02
+  Case seed              : 214429473
+  External subject       : BraTS20_Validation_095
+  External slice         : 42
+  Donor mask pixels      : 487
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s095_r02
+  Verdict                : PASS
+
+[221/250] external_s096_r02
+  Case seed              : 826899615
+  External subject       : BraTS20_Validation_096
+  External slice         : 18
+  Donor mask pixels      : 1500
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s096_r02
+  Verdict                : PASS
+
+[222/250] external_s097_r02
+  Case seed              : 1590608032
+  External subject       : BraTS20_Validation_097
+  External slice         : 63
+  Donor mask pixels      : 3335
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s097_r02
+  Verdict                : PASS
+
+[223/250] external_s098_r02
+  Case seed              : 384664370
+  External subject       : BraTS20_Validation_098
+  External slice         : 43
+  Donor mask pixels      : 1573
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s098_r02
+  Verdict                : PASS
+
+[224/250] external_s099_r02
+  Case seed              : 1995222695
+  External subject       : BraTS20_Validation_099
+  External slice         : 48
+  Donor mask pixels      : 2309
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s099_r02
+  Verdict                : PASS
+
+[225/250] external_s100_r02
+  Case seed              : 1792103130
+  External subject       : BraTS20_Validation_100
+  External slice         : 29
+  Donor mask pixels      : 768
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s100_r02
+  Verdict                : PASS
+
+[226/250] external_s101_r02
+  Case seed              : 1731078957
+  External subject       : BraTS20_Validation_101
+  External slice         : 11
+  Donor mask pixels      : 403
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s101_r02
+  Verdict                : PASS
+
+[227/250] external_s102_r02
+  Case seed              : 113490386
+  External subject       : BraTS20_Validation_102
+  External slice         : 139
+  Donor mask pixels      : 582
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s102_r02
+  Verdict                : PASS
+
+[228/250] external_s103_r02
+  Case seed              : 534951462
+  External subject       : BraTS20_Validation_103
+  External slice         : 60
+  Donor mask pixels      : 800
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s103_r02
+  Verdict                : PASS
+
+[229/250] external_s104_r02
+  Case seed              : 643417138
+  External subject       : BraTS20_Validation_104
+  External slice         : 27
+  Donor mask pixels      : 1422
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s104_r02
+  Verdict                : PASS
+
+[230/250] external_s105_r02
+  Case seed              : 1014411000
+  External subject       : BraTS20_Validation_105
+  External slice         : 16
+  Donor mask pixels      : 972
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s105_r02
+  Verdict                : PASS
+
+[231/250] external_s106_r02
+  Case seed              : 458605053
+  External subject       : BraTS20_Validation_106
+  External slice         : 24
+  Donor mask pixels      : 498
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s106_r02
+  Verdict                : PASS
+
+[232/250] external_s107_r02
+  Case seed              : 1739123671
+  External subject       : BraTS20_Validation_107
+  External slice         : 134
+  Donor mask pixels      : 313
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s107_r02
+  Verdict                : PASS
+
+[233/250] external_s108_r02
+  Case seed              : 570655219
+  External subject       : BraTS20_Validation_108
+  External slice         : 26
+  Donor mask pixels      : 561
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s108_r02
+  Verdict                : PASS
+
+[234/250] external_s109_r02
+  Case seed              : 2061409067
+  External subject       : BraTS20_Validation_109
+  External slice         : 7
+  Donor mask pixels      : 310
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s109_r02
+  Verdict                : PASS
+
+[235/250] external_s110_r02
+  Case seed              : 1342254387
+  External subject       : BraTS20_Validation_110
+  External slice         : 62
+  Donor mask pixels      : 2260
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s110_r02
+  Verdict                : PASS
+
+[236/250] external_s111_r02
+  Case seed              : 833267094
+  External subject       : BraTS20_Validation_111
+  External slice         : 34
+  Donor mask pixels      : 726
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s111_r02
+  Verdict                : PASS
+
+[237/250] external_s112_r02
+  Case seed              : 1550556352
+  External subject       : BraTS20_Validation_112
+  External slice         : 116
+  Donor mask pixels      : 1006
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s112_r02
+  Verdict                : PASS
+
+[238/250] external_s113_r02
+  Case seed              : 1189659674
+  External subject       : BraTS20_Validation_113
+  External slice         : 56
+  Donor mask pixels      : 1178
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s113_r02
+  Verdict                : PASS
+
+[239/250] external_s114_r02
+  Case seed              : 1550611038
+  External subject       : BraTS20_Validation_114
+  External slice         : 97
+  Donor mask pixels      : 2191
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s114_r02
+  Verdict                : PASS
+
+[240/250] external_s115_r02
+  Case seed              : 1617804841
+  External subject       : BraTS20_Validation_115
+  External slice         : 21
+  Donor mask pixels      : 738
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s115_r02
+  Verdict                : PASS
+
+[241/250] external_s116_r02
+  Case seed              : 1337291262
+  External subject       : BraTS20_Validation_116
+  External slice         : 31
+  Donor mask pixels      : 1830
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s116_r02
+  Verdict                : PASS
+
+[242/250] external_s117_r02
+  Case seed              : 1593232517
+  External subject       : BraTS20_Validation_117
+  External slice         : 36
+  Donor mask pixels      : 1131
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s117_r02
+  Verdict                : PASS
+
+[243/250] external_s118_r02
+  Case seed              : 1002508854
+  External subject       : BraTS20_Validation_118
+  External slice         : 105
+  Donor mask pixels      : 1233
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s118_r02
+  Verdict                : PASS
+
+[244/250] external_s119_r02
+  Case seed              : 738218268
+  External subject       : BraTS20_Validation_119
+  External slice         : 136
+  Donor mask pixels      : 552
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s119_r02
+  Verdict                : PASS
+
+[245/250] external_s120_r02
+  Case seed              : 1401657671
+  External subject       : BraTS20_Validation_120
+  External slice         : 36
+  Donor mask pixels      : 742
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s120_r02
+  Verdict                : PASS
+
+[246/250] external_s121_r02
+  Case seed              : 709599529
+  External subject       : BraTS20_Validation_121
+  External slice         : 136
+  Donor mask pixels      : 1239
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s121_r02
+  Verdict                : PASS
+
+[247/250] external_s122_r02
+  Case seed              : 1036376787
+  External subject       : BraTS20_Validation_122
+  External slice         : 28
+  Donor mask pixels      : 381
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s122_r02
+  Verdict                : PASS
+
+[248/250] external_s123_r02
+  Case seed              : 1124884011
+  External subject       : BraTS20_Validation_123
+  External slice         : 100
+  Donor mask pixels      : 2337
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s123_r02
+  Verdict                : PASS
+
+[249/250] external_s124_r02
+  Case seed              : 392255757
+  External subject       : BraTS20_Validation_124
+  External slice         : 5
+  Donor mask pixels      : 319
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s124_r02
+  Verdict                : PASS
+
+[250/250] external_s125_r02
+  Case seed              : 1310349226
+  External subject       : BraTS20_Validation_125
+  External slice         : 97
+  Donor mask pixels      : 2259
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/external_s125_r02
+  Verdict                : PASS
+
+==============================================================================
+BR-LoRA EXTERNAL EVALUATION: PASS
+Completed cases          : 250
+Posterior realizations   : 100 per case
+Evaluation summary       : /Users/bhanugarg/archive/br_lora_external_evaluation/internal_90_10_100draw/evaluation_summary.json
+==============================================================================
