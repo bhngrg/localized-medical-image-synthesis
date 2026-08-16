@@ -3963,3 +3963,1785 @@ synthetic_001874/metadata.json
            1798 100%   36.51MB/s   00:00:00 (xfer#741, to-check=865/1752)
 synthetic_001874/posterior_mean.pt
          232026 100%    8.18MB/s   00:00:00 (xfer#742, to-check=866/1752)
+synthetic_001874/posterior_samples.pt
+        5734400  23%   10.57MB/s   00:00:01       10846208  44%    9.74MB/s   00:00:01       17006592  69%   11.71MB/s   00:00:00       23298048  94%   11.84MB/s   00:00:00       24657317 100%   10.90MB/s   00:00:02 (xfer#743, to-check=867/1752)
+synthetic_001874/posterior_std.pt
+         232019 100%  155.48MB/s   00:00:00 (xfer#744, to-check=868/1752)
+synthetic_001874/posterior_variance.pt
+         232054 100%  197.96MB/s   00:00:00 (xfer#745, to-check=869/1752)
+synthetic_001875/
+synthetic_001875/composite_mean.pt
+         232026 100%   17.89MB/s   00:00:00 (xfer#746, to-check=871/1752)
+synthetic_001875/metadata.json
+           1797 100%   28.08MB/s   00:00:00 (xfer#747, to-check=872/1752)
+synthetic_001875/posterior_mean.pt
+         232026 100%   12.72MB/s   00:00:00 (xfer#748, to-check=873/1752)
+synthetic_001875/posterior_samples.pt
+        6160384  25%   11.56MB/s   00:00:01       11927552  48%   10.97MB/s   00:00:01       17694720  72%   10.95MB/s   00:00:00       23724032  96%   11.19MB/s   00:00:00       24657317 100%   11.09MB/s   00:00:02 (xfer#749, to-check=874/1752)
+synthetic_001875/posterior_std.pt
+         232019 100%   13.96MB/s   00:00:00 (xfer#750, to-check=875/1752)
+synthetic_001875/posterior_variance.pt
+         232054 100%  103.27MB/s   00:00:00 (xfer#751, to-check=876/1752)
+synthetic_001876/
+synthetic_001876/composite_mean.pt
+         232026 100%   10.33MB/s   00:00:00 (xfer#752, to-check=878/1752)
+synthetic_001876/metadata.json
+           1797 100%   21.98MB/s   00:00:00 (xfer#753, to-check=879/1752)
+synthetic_001876/posterior_mean.pt
+         232026 100%    8.07MB/s   00:00:00 (xfer#754, to-check=880/1752)
+synthetic_001876/posterior_samples.pt
+        6520832  26%   12.27MB/s   00:00:01       12025856  49%   10.02MB/s   00:00:01       18448384  75%   12.08MB/s   00:00:00       23953408  97%   10.26MB/s   00:00:00       24657317 100%   11.09MB/s   00:00:02 (xfer#755, to-check=881/1752)
+synthetic_001876/posterior_std.pt
+         232019 100%  171.68MB/s   00:00:00 (xfer#756, to-check=882/1752)
+synthetic_001876/posterior_variance.pt
+         232054 100%   16.29MB/s   00:00:00 (xfer#757, to-check=883/1752)
+synthetic_001877/
+synthetic_001877/composite_mean.pt
+         232026 100%   14.27MB/s   00:00:00 (xfer#758, to-check=885/1752)
+synthetic_001877/metadata.json
+           1796 100%   24.44MB/s   00:00:00 (xfer#759, to-check=886/1752)
+synthetic_001877/posterior_mean.pt
+         232026 100%   79.45MB/s   00:00:00 (xfer#760, to-check=887/1752)
+synthetic_001877/posterior_samples.pt
+        4325376  18%    7.99MB/s   00:00:02        9175040  37%    9.20MB/s   00:00:01       14024704  57%    9.17MB/s   00:00:01       18382848  75%    7.83MB/s   00:00:00       21921792  89%    6.68MB/s   00:00:00       24657317 100%    8.13MB/s   00:00:02 (xfer#761, to-check=888/1752)
+synthetic_001877/posterior_std.pt
+         232019 100%   29.57MB/s   00:00:00 (xfer#762, to-check=889/1752)
+synthetic_001877/posterior_variance.pt
+         232054 100%   38.39MB/s   00:00:00 (xfer#763, to-check=890/1752)
+synthetic_001878/
+synthetic_001878/composite_mean.pt
+         232026 100%    5.82MB/s   00:00:00 (xfer#764, to-check=892/1752)
+synthetic_001878/metadata.json
+           1797 100%   29.10MB/s   00:00:00 (xfer#765, to-check=893/1752)
+synthetic_001878/posterior_mean.pt
+         232026 100%    6.84MB/s   00:00:00 (xfer#766, to-check=894/1752)
+synthetic_001878/posterior_samples.pt
+        4816896  20%    9.19MB/s   00:00:02        8290304  34%    6.49MB/s   00:00:02       10616832  43%    4.41MB/s   00:00:03       13238272  54%    4.87MB/s   00:00:02       15990784  65%    5.22MB/s   00:00:01       18874368  77%    5.28MB/s   00:00:01       22020096  89%    5.71MB/s   00:00:00       24657317 100%    5.81MB/s   00:00:04 (xfer#767, to-check=895/1752)
+synthetic_001878/posterior_std.pt
+         232019 100%   10.88MB/s   00:00:00 (xfer#768, to-check=896/1752)
+synthetic_001878/posterior_variance.pt
+         232054 100%    5.96MB/s   00:00:00 (xfer#769, to-check=897/1752)
+synthetic_001879/
+synthetic_001879/composite_mean.pt
+         232026 100%   26.18MB/s   00:00:00 (xfer#770, to-check=899/1752)
+synthetic_001879/metadata.json
+           1796 100%   27.21MB/s   00:00:00 (xfer#771, to-check=900/1752)
+synthetic_001879/posterior_mean.pt
+         232026 100%    5.75MB/s   00:00:00 (xfer#772, to-check=901/1752)
+synthetic_001879/posterior_samples.pt
+        3145728  13%    5.59MB/s   00:00:03        6422528  26%    6.16MB/s   00:00:02        9961472  40%    6.40MB/s   00:00:02       13762560  56%    7.15MB/s   00:00:01       17694720  72%    7.44MB/s   00:00:00       21889024  89%    7.56MB/s   00:00:00       24657317 100%    6.72MB/s   00:00:03 (xfer#773, to-check=902/1752)
+synthetic_001879/posterior_std.pt
+         232019 100%   35.70MB/s   00:00:00 (xfer#774, to-check=903/1752)
+synthetic_001879/posterior_variance.pt
+         232054 100%    5.69MB/s   00:00:00 (xfer#775, to-check=904/1752)
+synthetic_001880/
+synthetic_001880/composite_mean.pt
+         232026 100%   65.01MB/s   00:00:00 (xfer#776, to-check=906/1752)
+synthetic_001880/metadata.json
+           1796 100%   20.88MB/s   00:00:00 (xfer#777, to-check=907/1752)
+synthetic_001880/posterior_mean.pt
+         232026 100%    5.70MB/s   00:00:00 (xfer#778, to-check=908/1752)
+synthetic_001880/posterior_samples.pt
+        4390912  18%    8.34MB/s   00:00:02        8847360  36%    8.44MB/s   00:00:01       13697024  56%    9.15MB/s   00:00:01       18546688  75%    9.01MB/s   00:00:00       23789568  96%    9.32MB/s   00:00:00       24657317 100%    8.74MB/s   00:00:02 (xfer#779, to-check=909/1752)
+synthetic_001880/posterior_std.pt
+         232019 100%  171.52MB/s   00:00:00 (xfer#780, to-check=910/1752)
+synthetic_001880/posterior_variance.pt
+         232054 100%   52.63MB/s   00:00:00 (xfer#781, to-check=911/1752)
+synthetic_001881/
+synthetic_001881/composite_mean.pt
+         232026 100%    6.11MB/s   00:00:00 (xfer#782, to-check=913/1752)
+synthetic_001881/metadata.json
+           1797 100%   12.25MB/s   00:00:00 (xfer#783, to-check=914/1752)
+synthetic_001881/posterior_mean.pt
+         232026 100%   33.43MB/s   00:00:00 (xfer#784, to-check=915/1752)
+synthetic_001881/posterior_samples.pt
+        5210112  21%    9.56MB/s   00:00:01       10190848  41%    9.45MB/s   00:00:01       15958016  65%   10.60MB/s   00:00:00       21725184  88%   10.96MB/s   00:00:00       24657317 100%    9.99MB/s   00:00:02 (xfer#785, to-check=916/1752)
+synthetic_001881/posterior_std.pt
+         232019 100%  115.25MB/s   00:00:00 (xfer#786, to-check=917/1752)
+synthetic_001881/posterior_variance.pt
+         232054 100%   65.81MB/s   00:00:00 (xfer#787, to-check=918/1752)
+synthetic_001882/
+synthetic_001882/composite_mean.pt
+         232026 100%    4.81MB/s   00:00:00 (xfer#788, to-check=920/1752)
+synthetic_001882/metadata.json
+           1799 100%   11.37MB/s   00:00:00 (xfer#789, to-check=921/1752)
+synthetic_001882/posterior_mean.pt
+         232026 100%   63.24MB/s   00:00:00 (xfer#790, to-check=922/1752)
+synthetic_001882/posterior_samples.pt
+        5505024  22%   10.23MB/s   00:00:01       12058624  49%   12.34MB/s   00:00:00       18350080  74%   11.88MB/s   00:00:00       24657317 100%   11.60MB/s   00:00:02 (xfer#791, to-check=923/1752)
+synthetic_001882/posterior_std.pt
+         232019 100%  159.77MB/s   00:00:00 (xfer#792, to-check=924/1752)
+synthetic_001882/posterior_variance.pt
+         232054 100%  234.93MB/s   00:00:00 (xfer#793, to-check=925/1752)
+synthetic_001883/
+synthetic_001883/composite_mean.pt
+         232026 100%  180.32MB/s   00:00:00 (xfer#794, to-check=927/1752)
+synthetic_001883/metadata.json
+           1797 100%   25.58MB/s   00:00:00 (xfer#795, to-check=928/1752)
+synthetic_001883/posterior_mean.pt
+         232026 100%   23.69MB/s   00:00:00 (xfer#796, to-check=929/1752)
+synthetic_001883/posterior_samples.pt
+        6914048  28%   12.86MB/s   00:00:01       10813440  44%    7.30MB/s   00:00:01       15400960  62%    8.66MB/s   00:00:01       20119552  82%    8.77MB/s   00:00:00       24657317 100%    9.19MB/s   00:00:02 (xfer#797, to-check=930/1752)
+synthetic_001883/posterior_std.pt
+         232019 100%  127.90MB/s   00:00:00 (xfer#798, to-check=931/1752)
+synthetic_001883/posterior_variance.pt
+         232054 100%   17.21MB/s   00:00:00 (xfer#799, to-check=932/1752)
+synthetic_001884/
+synthetic_001884/composite_mean.pt
+         232026 100%    9.77MB/s   00:00:00 (xfer#800, to-check=934/1752)
+synthetic_001884/metadata.json
+           1797 100%   17.84MB/s   00:00:00 (xfer#801, to-check=935/1752)
+synthetic_001884/posterior_mean.pt
+         232026 100%    6.77MB/s   00:00:00 (xfer#802, to-check=936/1752)
+synthetic_001884/posterior_samples.pt
+        5111808  21%    9.73MB/s   00:00:01       10354688  42%    9.20MB/s   00:00:01       15466496  63%    9.69MB/s   00:00:00       20840448  85%   10.06MB/s   00:00:00       24657317 100%    9.49MB/s   00:00:02 (xfer#803, to-check=937/1752)
+synthetic_001884/posterior_std.pt
+         232019 100%   13.75MB/s   00:00:00 (xfer#804, to-check=938/1752)
+synthetic_001884/posterior_variance.pt
+         232054 100%   15.85MB/s   00:00:00 (xfer#805, to-check=939/1752)
+synthetic_001885/
+synthetic_001885/composite_mean.pt
+         232026 100%   13.58MB/s   00:00:00 (xfer#806, to-check=941/1752)
+synthetic_001885/metadata.json
+           1796 100%   17.15MB/s   00:00:00 (xfer#807, to-check=942/1752)
+synthetic_001885/posterior_mean.pt
+         232026 100%   15.65MB/s   00:00:00 (xfer#808, to-check=943/1752)
+synthetic_001885/posterior_samples.pt
+        4849664  20%    9.10MB/s   00:00:02       10485760  43%   10.51MB/s   00:00:01       16252928  66%   11.00MB/s   00:00:00       22151168  90%   11.11MB/s   00:00:00       24657317 100%   10.50MB/s   00:00:02 (xfer#809, to-check=944/1752)
+synthetic_001885/posterior_std.pt
+         232019 100%   37.25MB/s   00:00:00 (xfer#810, to-check=945/1752)
+synthetic_001885/posterior_variance.pt
+         232054 100%   11.93MB/s   00:00:00 (xfer#811, to-check=946/1752)
+synthetic_001886/
+synthetic_001886/composite_mean.pt
+         232026 100%   83.72MB/s   00:00:00 (xfer#812, to-check=948/1752)
+synthetic_001886/metadata.json
+           1796 100%   29.56MB/s   00:00:00 (xfer#813, to-check=949/1752)
+synthetic_001886/posterior_mean.pt
+         232026 100%    6.05MB/s   00:00:00 (xfer#814, to-check=950/1752)
+synthetic_001886/posterior_samples.pt
+        5046272  20%    9.49MB/s   00:00:01        9666560  39%    8.77MB/s   00:00:01       14483456  59%    9.19MB/s   00:00:01       19496960  79%    9.30MB/s   00:00:00       24657317 100%    9.26MB/s   00:00:02 (xfer#815, to-check=951/1752)
+synthetic_001886/posterior_std.pt
+         232019 100%  142.85MB/s   00:00:00 (xfer#816, to-check=952/1752)
+synthetic_001886/posterior_variance.pt
+         232054 100%   10.90MB/s   00:00:00 (xfer#817, to-check=953/1752)
+synthetic_001887/
+synthetic_001887/composite_mean.pt
+         232026 100%   15.13MB/s   00:00:00 (xfer#818, to-check=955/1752)
+synthetic_001887/metadata.json
+           1797 100%   27.65MB/s   00:00:00 (xfer#819, to-check=956/1752)
+synthetic_001887/posterior_mean.pt
+         232026 100%   28.25MB/s   00:00:00 (xfer#820, to-check=957/1752)
+synthetic_001887/posterior_samples.pt
+        5636096  23%   10.27MB/s   00:00:01       11272192  46%   10.38MB/s   00:00:01       16908288  69%   10.56MB/s   00:00:00       23068672  94%   11.74MB/s   00:00:00       24657317 100%   10.63MB/s   00:00:02 (xfer#821, to-check=958/1752)
+synthetic_001887/posterior_std.pt
+         232019 100%   87.29MB/s   00:00:00 (xfer#822, to-check=959/1752)
+synthetic_001887/posterior_variance.pt
+         232054 100%  185.20MB/s   00:00:00 (xfer#823, to-check=960/1752)
+synthetic_001888/
+synthetic_001888/composite_mean.pt
+         232026 100%   10.68MB/s   00:00:00 (xfer#824, to-check=962/1752)
+synthetic_001888/metadata.json
+           1795 100%   13.91MB/s   00:00:00 (xfer#825, to-check=963/1752)
+synthetic_001888/posterior_mean.pt
+         232026 100%   19.26MB/s   00:00:00 (xfer#826, to-check=964/1752)
+synthetic_001888/posterior_samples.pt
+        6193152  25%   11.74MB/s   00:00:01       12222464  50%   11.31MB/s   00:00:01       17858560  72%   10.67MB/s   00:00:00       24018944  97%   11.48MB/s   00:00:00       24657317 100%   11.02MB/s   00:00:02 (xfer#827, to-check=965/1752)
+synthetic_001888/posterior_std.pt
+         232019 100%  132.83MB/s   00:00:00 (xfer#828, to-check=966/1752)
+synthetic_001888/posterior_variance.pt
+         232054 100%   47.59MB/s   00:00:00 (xfer#829, to-check=967/1752)
+synthetic_001889/
+synthetic_001889/composite_mean.pt
+         232026 100%   23.30MB/s   00:00:00 (xfer#830, to-check=969/1752)
+synthetic_001889/metadata.json
+           1795 100%   28.16MB/s   00:00:00 (xfer#831, to-check=970/1752)
+synthetic_001889/posterior_mean.pt
+         232026 100%    7.96MB/s   00:00:00 (xfer#832, to-check=971/1752)
+synthetic_001889/posterior_samples.pt
+        6193152  25%   11.76MB/s   00:00:01       11829248  48%   10.56MB/s   00:00:01       17072128  69%    9.60MB/s   00:00:00       21299200  86%    7.86MB/s   00:00:00       24657317 100%    9.72MB/s   00:00:02 (xfer#833, to-check=972/1752)
+synthetic_001889/posterior_std.pt
+         232019 100%   99.31MB/s   00:00:00 (xfer#834, to-check=973/1752)
+synthetic_001889/posterior_variance.pt
+         232054 100%   50.01MB/s   00:00:00 (xfer#835, to-check=974/1752)
+synthetic_001890/
+synthetic_001890/composite_mean.pt
+         232026 100%    9.01MB/s   00:00:00 (xfer#836, to-check=976/1752)
+synthetic_001890/metadata.json
+           1797 100%   26.72MB/s   00:00:00 (xfer#837, to-check=977/1752)
+synthetic_001890/posterior_mean.pt
+         232026 100%    9.06MB/s   00:00:00 (xfer#838, to-check=978/1752)
+synthetic_001890/posterior_samples.pt
+        4849664  20%    9.13MB/s   00:00:02       10485760  43%   10.63MB/s   00:00:01       15466496  63%    9.48MB/s   00:00:00       21364736  87%   11.24MB/s   00:00:00       24657317 100%   10.22MB/s   00:00:02 (xfer#839, to-check=979/1752)
+synthetic_001890/posterior_std.pt
+         232019 100%  145.28MB/s   00:00:00 (xfer#840, to-check=980/1752)
+synthetic_001890/posterior_variance.pt
+         232054 100%   34.38MB/s   00:00:00 (xfer#841, to-check=981/1752)
+synthetic_001891/
+synthetic_001891/composite_mean.pt
+         232026 100%    8.06MB/s   00:00:00 (xfer#842, to-check=983/1752)
+synthetic_001891/metadata.json
+           1796 100%   34.37MB/s   00:00:00 (xfer#843, to-check=984/1752)
+synthetic_001891/posterior_mean.pt
+         232026 100%   17.64MB/s   00:00:00 (xfer#844, to-check=985/1752)
+synthetic_001891/posterior_samples.pt
+        5275648  21%    9.94MB/s   00:00:01       11173888  45%   10.88MB/s   00:00:01       17072128  69%   10.91MB/s   00:00:00       23527424  95%   12.31MB/s   00:00:00       24657317 100%   10.83MB/s   00:00:02 (xfer#845, to-check=986/1752)
+synthetic_001891/posterior_std.pt
+         232019 100%  114.41MB/s   00:00:00 (xfer#846, to-check=987/1752)
+synthetic_001891/posterior_variance.pt
+         232054 100%  178.78MB/s   00:00:00 (xfer#847, to-check=988/1752)
+synthetic_001892/
+synthetic_001892/composite_mean.pt
+         232026 100%   72.18MB/s   00:00:00 (xfer#848, to-check=990/1752)
+synthetic_001892/metadata.json
+           1795 100%   30.04MB/s   00:00:00 (xfer#849, to-check=991/1752)
+synthetic_001892/posterior_mean.pt
+         232026 100%    8.75MB/s   00:00:00 (xfer#850, to-check=992/1752)
+synthetic_001892/posterior_samples.pt
+        6258688  25%   11.66MB/s   00:00:01       12681216  51%   12.12MB/s   00:00:00       18055168  73%    9.98MB/s   00:00:00       23429120  95%    9.48MB/s   00:00:00       24657317 100%   10.69MB/s   00:00:02 (xfer#851, to-check=993/1752)
+synthetic_001892/posterior_std.pt
+         232019 100%  125.65MB/s   00:00:00 (xfer#852, to-check=994/1752)
+synthetic_001892/posterior_variance.pt
+         232054 100%   34.97MB/s   00:00:00 (xfer#853, to-check=995/1752)
+synthetic_001893/
+synthetic_001893/composite_mean.pt
+         232026 100%  165.00MB/s   00:00:00 (xfer#854, to-check=997/1752)
+synthetic_001893/metadata.json
+           1796 100%   32.36MB/s   00:00:00 (xfer#855, to-check=998/1752)
+synthetic_001893/posterior_mean.pt
+         232026 100%    7.80MB/s   00:00:00 (xfer#856, to-check=999/1752)
+synthetic_001893/posterior_samples.pt
+        6029312  24%   11.38MB/s   00:00:01       12189696  49%   11.69MB/s   00:00:01       18612224  75%   11.96MB/s   00:00:00       24657317 100%   11.70MB/s   00:00:02 (xfer#857, to-check=1000/1752)
+synthetic_001893/posterior_std.pt
+         232019 100%  167.61MB/s   00:00:00 (xfer#858, to-check=1001/1752)
+synthetic_001893/posterior_variance.pt
+         232054 100%  246.15MB/s   00:00:00 (xfer#859, to-check=1002/1752)
+synthetic_001894/
+synthetic_001894/composite_mean.pt
+         232026 100%  151.03MB/s   00:00:00 (xfer#860, to-check=1004/1752)
+synthetic_001894/metadata.json
+           1796 100%   34.37MB/s   00:00:00 (xfer#861, to-check=1005/1752)
+synthetic_001894/posterior_mean.pt
+         232026 100%   11.19MB/s   00:00:00 (xfer#862, to-check=1006/1752)
+synthetic_001894/posterior_samples.pt
+        6029312  24%   11.22MB/s   00:00:01       12582912  51%   12.42MB/s   00:00:00       19005440  77%   11.83MB/s   00:00:00       24657317 100%   12.01MB/s   00:00:01 (xfer#863, to-check=1007/1752)
+synthetic_001894/posterior_std.pt
+         232019 100%  151.13MB/s   00:00:00 (xfer#864, to-check=1008/1752)
+synthetic_001894/posterior_variance.pt
+         232054 100%  132.28MB/s   00:00:00 (xfer#865, to-check=1009/1752)
+synthetic_001895/
+synthetic_001895/composite_mean.pt
+         232026 100%   21.46MB/s   00:00:00 (xfer#866, to-check=1011/1752)
+synthetic_001895/metadata.json
+           1797 100%   18.24MB/s   00:00:00 (xfer#867, to-check=1012/1752)
+synthetic_001895/posterior_mean.pt
+         232026 100%   11.37MB/s   00:00:00 (xfer#868, to-check=1013/1752)
+synthetic_001895/posterior_samples.pt
+        6815744  28%   12.86MB/s   00:00:01       13369344  54%   12.49MB/s   00:00:00       20054016  81%   12.68MB/s   00:00:00       24657317 100%   12.40MB/s   00:00:01 (xfer#869, to-check=1014/1752)
+synthetic_001895/posterior_std.pt
+         232019 100%   81.68MB/s   00:00:00 (xfer#870, to-check=1015/1752)
+synthetic_001895/posterior_variance.pt
+         232054 100%  184.28MB/s   00:00:00 (xfer#871, to-check=1016/1752)
+synthetic_001896/
+synthetic_001896/composite_mean.pt
+         232026 100%   37.72MB/s   00:00:00 (xfer#872, to-check=1018/1752)
+synthetic_001896/metadata.json
+           1795 100%   32.34MB/s   00:00:00 (xfer#873, to-check=1019/1752)
+synthetic_001896/posterior_mean.pt
+         232026 100%   10.77MB/s   00:00:00 (xfer#874, to-check=1020/1752)
+synthetic_001896/posterior_samples.pt
+        6586368  27%   12.50MB/s   00:00:01       12877824  52%   11.37MB/s   00:00:00       19922944  81%   13.41MB/s   00:00:00       24657317 100%   12.29MB/s   00:00:01 (xfer#875, to-check=1021/1752)
+synthetic_001896/posterior_std.pt
+         232019 100%  120.06MB/s   00:00:00 (xfer#876, to-check=1022/1752)
+synthetic_001896/posterior_variance.pt
+         232054 100%  179.64MB/s   00:00:00 (xfer#877, to-check=1023/1752)
+synthetic_001897/
+synthetic_001897/composite_mean.pt
+         232026 100%   26.95MB/s   00:00:00 (xfer#878, to-check=1025/1752)
+synthetic_001897/metadata.json
+           1795 100%   31.22MB/s   00:00:00 (xfer#879, to-check=1026/1752)
+synthetic_001897/posterior_mean.pt
+         232026 100%   10.36MB/s   00:00:00 (xfer#880, to-check=1027/1752)
+synthetic_001897/posterior_samples.pt
+        6717440  27%   12.60MB/s   00:00:01       13402112  54%   12.59MB/s   00:00:00       19726336  80%   11.09MB/s   00:00:00       24657317 100%   12.15MB/s   00:00:01 (xfer#881, to-check=1028/1752)
+synthetic_001897/posterior_std.pt
+         232019 100%  118.32MB/s   00:00:00 (xfer#882, to-check=1029/1752)
+synthetic_001897/posterior_variance.pt
+         232054 100%  137.80MB/s   00:00:00 (xfer#883, to-check=1030/1752)
+synthetic_001898/
+synthetic_001898/composite_mean.pt
+         232026 100%   94.89MB/s   00:00:00 (xfer#884, to-check=1032/1752)
+synthetic_001898/metadata.json
+           1796 100%   26.32MB/s   00:00:00 (xfer#885, to-check=1033/1752)
+synthetic_001898/posterior_mean.pt
+         232026 100%   11.50MB/s   00:00:00 (xfer#886, to-check=1034/1752)
+synthetic_001898/posterior_samples.pt
+        6127616  25%   11.67MB/s   00:00:01       13205504  54%   13.34MB/s   00:00:00       19890176  81%   12.65MB/s   00:00:00       24657317 100%   12.31MB/s   00:00:01 (xfer#887, to-check=1035/1752)
+synthetic_001898/posterior_std.pt
+         232019 100%   80.05MB/s   00:00:00 (xfer#888, to-check=1036/1752)
+synthetic_001898/posterior_variance.pt
+         232054 100%  213.24MB/s   00:00:00 (xfer#889, to-check=1037/1752)
+synthetic_001899/
+synthetic_001899/composite_mean.pt
+         232026 100%   14.56MB/s   00:00:00 (xfer#890, to-check=1039/1752)
+synthetic_001899/metadata.json
+           1796 100%   28.51MB/s   00:00:00 (xfer#891, to-check=1040/1752)
+synthetic_001899/posterior_mean.pt
+         232026 100%   23.18MB/s   00:00:00 (xfer#892, to-check=1041/1752)
+synthetic_001899/posterior_samples.pt
+        4751360  19%    9.05MB/s   00:00:02       12025856  49%   13.65MB/s   00:00:00       18841600  76%   12.86MB/s   00:00:00       24657317 100%   11.67MB/s   00:00:02 (xfer#893, to-check=1042/1752)
+synthetic_001899/posterior_std.pt
+         232019 100%  130.40MB/s   00:00:00 (xfer#894, to-check=1043/1752)
+synthetic_001899/posterior_variance.pt
+         232054 100%  157.30MB/s   00:00:00 (xfer#895, to-check=1044/1752)
+synthetic_001900/
+synthetic_001900/composite_mean.pt
+         232026 100%   21.96MB/s   00:00:00 (xfer#896, to-check=1046/1752)
+synthetic_001900/metadata.json
+           1797 100%   20.66MB/s   00:00:00 (xfer#897, to-check=1047/1752)
+synthetic_001900/posterior_mean.pt
+         232026 100%   86.71MB/s   00:00:00 (xfer#898, to-check=1048/1752)
+synthetic_001900/posterior_samples.pt
+        6684672  27%   12.56MB/s   00:00:01       13369344  54%   12.62MB/s   00:00:00       19922944  81%   12.35MB/s   00:00:00       24657317 100%   12.31MB/s   00:00:01 (xfer#899, to-check=1049/1752)
+synthetic_001900/posterior_std.pt
+         232019 100%  117.45MB/s   00:00:00 (xfer#900, to-check=1050/1752)
+synthetic_001900/posterior_variance.pt
+         232054 100%  188.36MB/s   00:00:00 (xfer#901, to-check=1051/1752)
+synthetic_001901/
+synthetic_001901/composite_mean.pt
+         232026 100%   30.87MB/s   00:00:00 (xfer#902, to-check=1053/1752)
+synthetic_001901/metadata.json
+           1798 100%   21.93MB/s   00:00:00 (xfer#903, to-check=1054/1752)
+synthetic_001901/posterior_mean.pt
+         232026 100%   11.34MB/s   00:00:00 (xfer#904, to-check=1055/1752)
+synthetic_001901/posterior_samples.pt
+        6586368  27%   12.54MB/s   00:00:01       13139968  53%   12.40MB/s   00:00:00       19824640  80%   12.56MB/s   00:00:00       24657317 100%   12.27MB/s   00:00:01 (xfer#905, to-check=1056/1752)
+synthetic_001901/posterior_std.pt
+         232019 100%  110.08MB/s   00:00:00 (xfer#906, to-check=1057/1752)
+synthetic_001901/posterior_variance.pt
+         232054 100%  129.95MB/s   00:00:00 (xfer#907, to-check=1058/1752)
+synthetic_001902/
+synthetic_001902/composite_mean.pt
+         232026 100%   17.82MB/s   00:00:00 (xfer#908, to-check=1060/1752)
+synthetic_001902/metadata.json
+           1798 100%   28.54MB/s   00:00:00 (xfer#909, to-check=1061/1752)
+synthetic_001902/posterior_mean.pt
+         232026 100%   13.09MB/s   00:00:00 (xfer#910, to-check=1062/1752)
+synthetic_001902/posterior_samples.pt
+        6619136  27%   12.51MB/s   00:00:01       13303808  54%   12.66MB/s   00:00:00       19988480  81%   12.57MB/s   00:00:00       24657317 100%   12.33MB/s   00:00:01 (xfer#911, to-check=1063/1752)
+synthetic_001902/posterior_std.pt
+         232019 100%   81.14MB/s   00:00:00 (xfer#912, to-check=1064/1752)
+synthetic_001902/posterior_variance.pt
+         232054 100%  226.95MB/s   00:00:00 (xfer#913, to-check=1065/1752)
+synthetic_001903/
+synthetic_001903/composite_mean.pt
+         232026 100%   14.61MB/s   00:00:00 (xfer#914, to-check=1067/1752)
+synthetic_001903/metadata.json
+           1797 100%   27.23MB/s   00:00:00 (xfer#915, to-check=1068/1752)
+synthetic_001903/posterior_mean.pt
+         232026 100%    8.38MB/s   00:00:00 (xfer#916, to-check=1069/1752)
+synthetic_001903/posterior_samples.pt
+        6750208  27%   12.87MB/s   00:00:01       13434880  54%   12.41MB/s   00:00:00       20119552  82%   12.66MB/s   00:00:00       24657317 100%   12.41MB/s   00:00:01 (xfer#917, to-check=1070/1752)
+synthetic_001903/posterior_std.pt
+         232019 100%  115.60MB/s   00:00:00 (xfer#918, to-check=1071/1752)
+synthetic_001903/posterior_variance.pt
+         232054 100%  101.06MB/s   00:00:00 (xfer#919, to-check=1072/1752)
+synthetic_001904/
+synthetic_001904/composite_mean.pt
+         232026 100%   13.55MB/s   00:00:00 (xfer#920, to-check=1074/1752)
+synthetic_001904/metadata.json
+           1796 100%   26.32MB/s   00:00:00 (xfer#921, to-check=1075/1752)
+synthetic_001904/posterior_mean.pt
+         232026 100%    7.37MB/s   00:00:00 (xfer#922, to-check=1076/1752)
+synthetic_001904/posterior_samples.pt
+        6815744  28%   12.88MB/s   00:00:01       13500416  55%   12.58MB/s   00:00:00       19759104  80%   11.13MB/s   00:00:00       24657317 100%   12.07MB/s   00:00:01 (xfer#923, to-check=1077/1752)
+synthetic_001904/posterior_std.pt
+         232019 100%  120.65MB/s   00:00:00 (xfer#924, to-check=1078/1752)
+synthetic_001904/posterior_variance.pt
+         232054 100%  263.47MB/s   00:00:00 (xfer#925, to-check=1079/1752)
+synthetic_001905/
+synthetic_001905/composite_mean.pt
+         232026 100%  120.00MB/s   00:00:00 (xfer#926, to-check=1081/1752)
+synthetic_001905/metadata.json
+           1797 100%  238.24KB/s   00:00:00 (xfer#927, to-check=1082/1752)
+synthetic_001905/posterior_mean.pt
+         232026 100%   22.81MB/s   00:00:00 (xfer#928, to-check=1083/1752)
+synthetic_001905/posterior_samples.pt
+        6979584  28%   13.11MB/s   00:00:01       13664256  55%   12.62MB/s   00:00:00       20348928  83%   12.55MB/s   00:00:00       24657317 100%   12.44MB/s   00:00:01 (xfer#929, to-check=1084/1752)
+synthetic_001905/posterior_std.pt
+         232019 100%   72.29MB/s   00:00:00 (xfer#930, to-check=1085/1752)
+synthetic_001905/posterior_variance.pt
+         232054 100%  233.16MB/s   00:00:00 (xfer#931, to-check=1086/1752)
+synthetic_001906/
+synthetic_001906/composite_mean.pt
+         232026 100%   25.43MB/s   00:00:00 (xfer#932, to-check=1088/1752)
+synthetic_001906/metadata.json
+           1799 100%   25.98MB/s   00:00:00 (xfer#933, to-check=1089/1752)
+synthetic_001906/posterior_mean.pt
+         232026 100%   12.38MB/s   00:00:00 (xfer#934, to-check=1090/1752)
+synthetic_001906/posterior_samples.pt
+        6619136  27%   12.58MB/s   00:00:01       13303808  54%   12.61MB/s   00:00:00       19988480  81%   12.53MB/s   00:00:00       24657317 100%   11.62MB/s   00:00:02 (xfer#935, to-check=1091/1752)
+synthetic_001906/posterior_std.pt
+         232019 100%  126.30MB/s   00:00:00 (xfer#936, to-check=1092/1752)
+synthetic_001906/posterior_variance.pt
+         232054 100%  210.96MB/s   00:00:00 (xfer#937, to-check=1093/1752)
+synthetic_001907/
+synthetic_001907/composite_mean.pt
+         232026 100%   26.31MB/s   00:00:00 (xfer#938, to-check=1095/1752)
+synthetic_001907/metadata.json
+           1797 100%   25.22MB/s   00:00:00 (xfer#939, to-check=1096/1752)
+synthetic_001907/posterior_mean.pt
+         232026 100%   26.94MB/s   00:00:00 (xfer#940, to-check=1097/1752)
+synthetic_001907/posterior_samples.pt
+        6946816  28%   13.25MB/s   00:00:01       13533184  55%   12.49MB/s   00:00:00       19922944  81%   12.19MB/s   00:00:00       24657317 100%   12.36MB/s   00:00:01 (xfer#941, to-check=1098/1752)
+synthetic_001907/posterior_std.pt
+         232019 100%  125.65MB/s   00:00:00 (xfer#942, to-check=1099/1752)
+synthetic_001907/posterior_variance.pt
+         232054 100%  150.86MB/s   00:00:00 (xfer#943, to-check=1100/1752)
+synthetic_001908/
+synthetic_001908/composite_mean.pt
+         232026 100%   28.29MB/s   00:00:00 (xfer#944, to-check=1102/1752)
+synthetic_001908/metadata.json
+           1798 100%   20.91MB/s   00:00:00 (xfer#945, to-check=1103/1752)
+synthetic_001908/posterior_mean.pt
+         232026 100%   15.54MB/s   00:00:00 (xfer#946, to-check=1104/1752)
+synthetic_001908/posterior_samples.pt
+        6750208  27%   12.76MB/s   00:00:01       13434880  54%   11.53MB/s   00:00:00       18710528  76%    9.78MB/s   00:00:00       24657317 100%   11.26MB/s   00:00:02 (xfer#947, to-check=1105/1752)
+synthetic_001908/posterior_std.pt
+         232019 100%   71.86MB/s   00:00:00 (xfer#948, to-check=1106/1752)
+synthetic_001908/posterior_variance.pt
+         232054 100%  149.95MB/s   00:00:00 (xfer#949, to-check=1107/1752)
+synthetic_001909/
+synthetic_001909/composite_mean.pt
+         232026 100%   14.92MB/s   00:00:00 (xfer#950, to-check=1109/1752)
+synthetic_001909/metadata.json
+           1797 100%   21.39MB/s   00:00:00 (xfer#951, to-check=1110/1752)
+synthetic_001909/posterior_mean.pt
+         232026 100%   17.36MB/s   00:00:00 (xfer#952, to-check=1111/1752)
+synthetic_001909/posterior_samples.pt
+        6356992  26%   12.04MB/s   00:00:01       12779520  52%   12.04MB/s   00:00:00       19070976  77%   11.84MB/s   00:00:00       24657317 100%   11.92MB/s   00:00:01 (xfer#953, to-check=1112/1752)
+synthetic_001909/posterior_std.pt
+         232019 100%  121.84MB/s   00:00:00 (xfer#954, to-check=1113/1752)
+synthetic_001909/posterior_variance.pt
+         232054 100%  215.91MB/s   00:00:00 (xfer#955, to-check=1114/1752)
+synthetic_001910/
+synthetic_001910/composite_mean.pt
+         232026 100%  154.86MB/s   00:00:00 (xfer#956, to-check=1116/1752)
+synthetic_001910/metadata.json
+           1797 100%   20.19MB/s   00:00:00 (xfer#957, to-check=1117/1752)
+synthetic_001910/posterior_mean.pt
+         232026 100%   21.15MB/s   00:00:00 (xfer#958, to-check=1118/1752)
+synthetic_001910/posterior_samples.pt
+        4227072  17%    7.80MB/s   00:00:02        7208960  29%    5.52MB/s   00:00:03        9961472  40%    5.08MB/s   00:00:02       12976128  53%    5.46MB/s   00:00:02       15859712  64%    5.42MB/s   00:00:01       18874368  77%    5.56MB/s   00:00:00       21889024  89%    5.64MB/s   00:00:00       24657317 100%    5.77MB/s   00:00:04 (xfer#959, to-check=1119/1752)
+synthetic_001910/posterior_std.pt
+         232019 100%   15.28MB/s   00:00:00 (xfer#960, to-check=1120/1752)
+synthetic_001910/posterior_variance.pt
+         232054 100%    5.47MB/s   00:00:00 (xfer#961, to-check=1121/1752)
+synthetic_001911/
+synthetic_001911/composite_mean.pt
+         232026 100%   27.95MB/s   00:00:00 (xfer#962, to-check=1123/1752)
+synthetic_001911/metadata.json
+           1797 100%   19.48MB/s   00:00:00 (xfer#963, to-check=1124/1752)
+synthetic_001911/posterior_mean.pt
+         232026 100%    5.72MB/s   00:00:00 (xfer#964, to-check=1125/1752)
+synthetic_001911/posterior_samples.pt
+        3342336  14%    6.04MB/s   00:00:03        6750208  27%    6.46MB/s   00:00:02        9961472  40%    6.06MB/s   00:00:02       12255232  50%    4.05MB/s   00:00:02       14483456  59%    4.14MB/s   00:00:02       16842752  68%    4.27MB/s   00:00:01       19202048  78%    4.47MB/s   00:00:01       21561344  87%    4.47MB/s   00:00:00       24182784  98%    4.88MB/s   00:00:00       24657317 100%    4.92MB/s   00:00:04 (xfer#965, to-check=1126/1752)
+synthetic_001911/posterior_std.pt
+         232019 100%   97.95MB/s   00:00:00 (xfer#966, to-check=1127/1752)
+synthetic_001911/posterior_variance.pt
+         232054 100%    9.52MB/s   00:00:00 (xfer#967, to-check=1128/1752)
+synthetic_001912/
+synthetic_001912/composite_mean.pt
+         232026 100%    4.13MB/s   00:00:00 (xfer#968, to-check=1130/1752)
+synthetic_001912/metadata.json
+           1798 100%   19.92MB/s   00:00:00 (xfer#969, to-check=1131/1752)
+synthetic_001912/posterior_mean.pt
+         232026 100%    4.97MB/s   00:00:00 (xfer#970, to-check=1132/1752)
+synthetic_001912/posterior_samples.pt
+        3047424  12%    5.51MB/s   00:00:03        6193152  25%    5.77MB/s   00:00:03        9338880  38%    5.86MB/s   00:00:02       12746752  52%    6.42MB/s   00:00:01       16154624  66%    6.20MB/s   00:00:01       19824640  80%    6.87MB/s   00:00:00       22773760  92%    5.62MB/s   00:00:00       24657317 100%    5.92MB/s   00:00:03 (xfer#971, to-check=1133/1752)
+synthetic_001912/posterior_std.pt
+         232019 100%  110.52MB/s   00:00:00 (xfer#972, to-check=1134/1752)
+synthetic_001912/posterior_variance.pt
+         232054 100%   42.42MB/s   00:00:00 (xfer#973, to-check=1135/1752)
+synthetic_001913/
+synthetic_001913/composite_mean.pt
+         232026 100%    4.25MB/s   00:00:00 (xfer#974, to-check=1137/1752)
+synthetic_001913/metadata.json
+           1797 100%   24.87MB/s   00:00:00 (xfer#975, to-check=1138/1752)
+synthetic_001913/posterior_mean.pt
+         232026 100%    6.14MB/s   00:00:00 (xfer#976, to-check=1139/1752)
+synthetic_001913/posterior_samples.pt
+        3178496  13%    5.86MB/s   00:00:03        6717440  27%    6.60MB/s   00:00:02       10387456  42%    6.93MB/s   00:00:01       14188544  58%    7.23MB/s   00:00:01       17039360  69%    5.42MB/s   00:00:01       19791872  80%    5.19MB/s   00:00:00       22806528  92%    5.70MB/s   00:00:00       24657317 100%    6.06MB/s   00:00:03 (xfer#977, to-check=1140/1752)
+synthetic_001913/posterior_std.pt
+         232019 100%   40.16MB/s   00:00:00 (xfer#978, to-check=1141/1752)
+synthetic_001913/posterior_variance.pt
+         232054 100%    5.53MB/s   00:00:00 (xfer#979, to-check=1142/1752)
+synthetic_001914/
+synthetic_001914/composite_mean.pt
+         232026 100%   29.54MB/s   00:00:00 (xfer#980, to-check=1144/1752)
+synthetic_001914/metadata.json
+           1797 100%   24.53MB/s   00:00:00 (xfer#981, to-check=1145/1752)
+synthetic_001914/posterior_mean.pt
+         232026 100%    5.50MB/s   00:00:00 (xfer#982, to-check=1146/1752)
+synthetic_001914/posterior_samples.pt
+        2523136  10%    4.68MB/s   00:00:04        5013504  20%    4.42MB/s   00:00:04        7503872  30%    4.62MB/s   00:00:03        9863168  40%    4.23MB/s   00:00:03       12615680  51%    5.18MB/s   00:00:02       15368192  62%    5.17MB/s   00:00:01       18382848  75%    5.64MB/s   00:00:01       21528576  87%    5.93MB/s   00:00:00       24657317 100%    5.08MB/s   00:00:04 (xfer#983, to-check=1147/1752)
+synthetic_001914/posterior_std.pt
+         232019 100%  121.17MB/s   00:00:00 (xfer#984, to-check=1148/1752)
+synthetic_001914/posterior_variance.pt
+         232054 100%   29.49MB/s   00:00:00 (xfer#985, to-check=1149/1752)
+synthetic_001915/
+synthetic_001915/composite_mean.pt
+         232026 100%    5.75MB/s   00:00:00 (xfer#986, to-check=1151/1752)
+synthetic_001915/metadata.json
+           1796 100%   22.24MB/s   00:00:00 (xfer#987, to-check=1152/1752)
+synthetic_001915/posterior_mean.pt
+         232026 100%    5.74MB/s   00:00:00 (xfer#988, to-check=1153/1752)
+synthetic_001915/posterior_samples.pt
+        3473408  14%    6.57MB/s   00:00:03        7405568  30%    7.33MB/s   00:00:02       10813440  44%    6.47MB/s   00:00:02       14745600  60%    7.25MB/s   00:00:01       18808832  76%    7.66MB/s   00:00:00       23265280  94%    8.38MB/s   00:00:00       24657317 100%    7.26MB/s   00:00:03 (xfer#989, to-check=1154/1752)
+synthetic_001915/posterior_std.pt
+         232019 100%  115.60MB/s   00:00:00 (xfer#990, to-check=1155/1752)
+synthetic_001915/posterior_variance.pt
+         232054 100%  194.15MB/s   00:00:00 (xfer#991, to-check=1156/1752)
+synthetic_001916/
+synthetic_001916/composite_mean.pt
+         232026 100%    8.50MB/s   00:00:00 (xfer#992, to-check=1158/1752)
+synthetic_001916/metadata.json
+           1797 100%   23.11MB/s   00:00:00 (xfer#993, to-check=1159/1752)
+synthetic_001916/posterior_mean.pt
+         232026 100%    5.93MB/s   00:00:00 (xfer#994, to-check=1160/1752)
+synthetic_001916/posterior_samples.pt
+        4521984  18%    8.36MB/s   00:00:02        9240576  37%    8.83MB/s   00:00:01       14090240  57%    9.12MB/s   00:00:01       19333120  78%    9.90MB/s   00:00:00       24657317 100%    9.15MB/s   00:00:02 (xfer#995, to-check=1161/1752)
+synthetic_001916/posterior_std.pt
+         232019 100%  193.43MB/s   00:00:00 (xfer#996, to-check=1162/1752)
+synthetic_001916/posterior_variance.pt
+         232054 100%   12.16MB/s   00:00:00 (xfer#997, to-check=1163/1752)
+synthetic_001917/
+synthetic_001917/composite_mean.pt
+         232026 100%    5.56MB/s   00:00:00 (xfer#998, to-check=1165/1752)
+synthetic_001917/metadata.json
+           1798 100%   24.22MB/s   00:00:00 (xfer#999, to-check=1166/1752)
+synthetic_001917/posterior_mean.pt
+         232026 100%   29.24MB/s   00:00:00 (xfer#1000, to-check=1167/1752)
+synthetic_001917/posterior_samples.pt
+        4915200  20%    9.24MB/s   00:00:02       10289152  42%   10.06MB/s   00:00:01       16187392  66%   11.07MB/s   00:00:00       21954560  89%   10.98MB/s   00:00:00       24657317 100%   10.35MB/s   00:00:02 (xfer#1001, to-check=1168/1752)
+synthetic_001917/posterior_std.pt
+         232019 100%   61.60MB/s   00:00:00 (xfer#1002, to-check=1169/1752)
+synthetic_001917/posterior_variance.pt
+         232054 100%   56.08MB/s   00:00:00 (xfer#1003, to-check=1170/1752)
+synthetic_001918/
+synthetic_001918/composite_mean.pt
+         232026 100%    6.37MB/s   00:00:00 (xfer#1004, to-check=1172/1752)
+synthetic_001918/metadata.json
+           1797 100%   22.60MB/s   00:00:00 (xfer#1005, to-check=1173/1752)
+synthetic_001918/posterior_mean.pt
+         232026 100%    9.57MB/s   00:00:00 (xfer#1006, to-check=1174/1752)
+synthetic_001918/posterior_samples.pt
+        5734400  23%   10.77MB/s   00:00:01       12681216  51%   12.94MB/s   00:00:00       19628032  80%   13.19MB/s   00:00:00       24657317 100%   12.08MB/s   00:00:01 (xfer#1007, to-check=1175/1752)
+synthetic_001918/posterior_std.pt
+         232019 100%  105.42MB/s   00:00:00 (xfer#1008, to-check=1176/1752)
+synthetic_001918/posterior_variance.pt
+         232054 100%  218.92MB/s   00:00:00 (xfer#1009, to-check=1177/1752)
+synthetic_001919/
+synthetic_001919/composite_mean.pt
+         232026 100%   11.73MB/s   00:00:00 (xfer#1010, to-check=1179/1752)
+synthetic_001919/metadata.json
+           1796 100%   23.48MB/s   00:00:00 (xfer#1011, to-check=1180/1752)
+synthetic_001919/posterior_mean.pt
+         232026 100%   85.56MB/s   00:00:00 (xfer#1012, to-check=1181/1752)
+synthetic_001919/posterior_samples.pt
+        6553600  27%   12.37MB/s   00:00:01       13107200  53%   12.48MB/s   00:00:00       17399808  71%    8.15MB/s   00:00:00       24346624  99%   12.98MB/s   00:00:00       24657317 100%   11.34MB/s   00:00:02 (xfer#1013, to-check=1182/1752)
+synthetic_001919/posterior_std.pt
+         232019 100%   87.18MB/s   00:00:00 (xfer#1014, to-check=1183/1752)
+synthetic_001919/posterior_variance.pt
+         232054 100%  175.23MB/s   00:00:00 (xfer#1015, to-check=1184/1752)
+synthetic_001920/
+synthetic_001920/composite_mean.pt
+         232026 100%   13.55MB/s   00:00:00 (xfer#1016, to-check=1186/1752)
+synthetic_001920/metadata.json
+           1798 100%   29.00MB/s   00:00:00 (xfer#1017, to-check=1187/1752)
+synthetic_001920/posterior_mean.pt
+         232026 100%   23.43MB/s   00:00:00 (xfer#1018, to-check=1188/1752)
+synthetic_001920/posterior_samples.pt
+        6488064  26%   12.27MB/s   00:00:01       13172736  53%   12.21MB/s   00:00:00       18481152  75%   10.02MB/s   00:00:00       24657317 100%   11.67MB/s   00:00:02 (xfer#1019, to-check=1189/1752)
+synthetic_001920/posterior_std.pt
+         232019 100%   72.74MB/s   00:00:00 (xfer#1020, to-check=1190/1752)
+synthetic_001920/posterior_variance.pt
+         232054 100%  201.35MB/s   00:00:00 (xfer#1021, to-check=1191/1752)
+synthetic_001921/
+synthetic_001921/composite_mean.pt
+         232026 100%   16.05MB/s   00:00:00 (xfer#1022, to-check=1193/1752)
+synthetic_001921/metadata.json
+           1797 100%   20.66MB/s   00:00:00 (xfer#1023, to-check=1194/1752)
+synthetic_001921/posterior_mean.pt
+         232026 100%   15.60MB/s   00:00:00 (xfer#1024, to-check=1195/1752)
+synthetic_001921/posterior_samples.pt
+        7077888  29%   13.50MB/s   00:00:01       13402112  54%   11.81MB/s   00:00:00       20086784  81%   12.74MB/s   00:00:00       24657317 100%   12.29MB/s   00:00:01 (xfer#1025, to-check=1196/1752)
+synthetic_001921/posterior_std.pt
+         232019 100%  116.77MB/s   00:00:00 (xfer#1026, to-check=1197/1752)
+synthetic_001921/posterior_variance.pt
+         232054 100%  179.92MB/s   00:00:00 (xfer#1027, to-check=1198/1752)
+synthetic_001922/
+synthetic_001922/composite_mean.pt
+         232026 100%   70.79MB/s   00:00:00 (xfer#1028, to-check=1200/1752)
+synthetic_001922/metadata.json
+           1798 100%   25.96MB/s   00:00:00 (xfer#1029, to-check=1201/1752)
+synthetic_001922/posterior_mean.pt
+         232026 100%    9.74MB/s   00:00:00 (xfer#1030, to-check=1202/1752)
+synthetic_001922/posterior_samples.pt
+        6782976  28%   12.78MB/s   00:00:01       13467648  55%   12.59MB/s   00:00:00       20152320  82%   12.58MB/s   00:00:00       24657317 100%   12.42MB/s   00:00:01 (xfer#1031, to-check=1203/1752)
+synthetic_001922/posterior_std.pt
+         232019 100%   97.69MB/s   00:00:00 (xfer#1032, to-check=1204/1752)
+synthetic_001922/posterior_variance.pt
+         232054 100%   24.07MB/s   00:00:00 (xfer#1033, to-check=1205/1752)
+synthetic_001923/
+synthetic_001923/composite_mean.pt
+         232026 100%    8.33MB/s   00:00:00 (xfer#1034, to-check=1207/1752)
+synthetic_001923/metadata.json
+           1796 100%   15.55MB/s   00:00:00 (xfer#1035, to-check=1208/1752)
+synthetic_001923/posterior_mean.pt
+         232026 100%   84.11MB/s   00:00:00 (xfer#1036, to-check=1209/1752)
+synthetic_001923/posterior_samples.pt
+        6651904  27%   12.65MB/s   00:00:01       13303808  54%   12.69MB/s   00:00:00       19890176  81%   12.28MB/s   00:00:00       24657317 100%   12.34MB/s   00:00:01 (xfer#1037, to-check=1210/1752)
+synthetic_001923/posterior_std.pt
+         232019 100%   83.34MB/s   00:00:00 (xfer#1038, to-check=1211/1752)
+synthetic_001923/posterior_variance.pt
+         232054 100%   15.33MB/s   00:00:00 (xfer#1039, to-check=1212/1752)
+synthetic_001924/
+synthetic_001924/composite_mean.pt
+         232026 100%   18.95MB/s   00:00:00 (xfer#1040, to-check=1214/1752)
+synthetic_001924/metadata.json
+           1798 100%   26.44MB/s   00:00:00 (xfer#1041, to-check=1215/1752)
+synthetic_001924/posterior_mean.pt
+         232026 100%   28.60MB/s   00:00:00 (xfer#1042, to-check=1216/1752)
+synthetic_001924/posterior_samples.pt
+        6619136  27%   12.62MB/s   00:00:01       13172736  53%   12.50MB/s   00:00:00       19857408  81%   12.60MB/s   00:00:00       24657317 100%   12.30MB/s   00:00:01 (xfer#1043, to-check=1217/1752)
+synthetic_001924/posterior_std.pt
+         232019 100%   87.15MB/s   00:00:00 (xfer#1044, to-check=1218/1752)
+synthetic_001924/posterior_variance.pt
+         232054 100%  169.57MB/s   00:00:00 (xfer#1045, to-check=1219/1752)
+synthetic_001925/
+synthetic_001925/composite_mean.pt
+         232026 100%   22.15MB/s   00:00:00 (xfer#1046, to-check=1221/1752)
+synthetic_001925/metadata.json
+           1796 100%   30.06MB/s   00:00:00 (xfer#1047, to-check=1222/1752)
+synthetic_001925/posterior_mean.pt
+         232026 100%    9.84MB/s   00:00:00 (xfer#1048, to-check=1223/1752)
+synthetic_001925/posterior_samples.pt
+        6815744  28%   12.66MB/s   00:00:01       13500416  55%   12.68MB/s   00:00:00       20054016  81%   12.31MB/s   00:00:00       24657317 100%   12.38MB/s   00:00:01 (xfer#1049, to-check=1224/1752)
+synthetic_001925/posterior_std.pt
+         232019 100%  108.89MB/s   00:00:00 (xfer#1050, to-check=1225/1752)
+synthetic_001925/posterior_variance.pt
+         232054 100%    9.19MB/s   00:00:00 (xfer#1051, to-check=1226/1752)
+synthetic_001926/
+synthetic_001926/composite_mean.pt
+         232026 100%   23.68MB/s   00:00:00 (xfer#1052, to-check=1228/1752)
+synthetic_001926/metadata.json
+           1797 100%   17.88MB/s   00:00:00 (xfer#1053, to-check=1229/1752)
+synthetic_001926/posterior_mean.pt
+         232026 100%   26.28MB/s   00:00:00 (xfer#1054, to-check=1230/1752)
+synthetic_001926/posterior_samples.pt
+        6717440  27%   12.63MB/s   00:00:01       13402112  54%   12.49MB/s   00:00:00       20086784  81%   12.67MB/s   00:00:00       24657317 100%   12.34MB/s   00:00:01 (xfer#1055, to-check=1231/1752)
+synthetic_001926/posterior_std.pt
+         232019 100%  121.64MB/s   00:00:00 (xfer#1056, to-check=1232/1752)
+synthetic_001926/posterior_variance.pt
+         232054 100%  264.75MB/s   00:00:00 (xfer#1057, to-check=1233/1752)
+synthetic_001927/
+synthetic_001927/composite_mean.pt
+         232026 100%   17.21MB/s   00:00:00 (xfer#1058, to-check=1235/1752)
+synthetic_001927/metadata.json
+           1797 100%   17.49MB/s   00:00:00 (xfer#1059, to-check=1236/1752)
+synthetic_001927/posterior_mean.pt
+         232026 100%   12.04MB/s   00:00:00 (xfer#1060, to-check=1237/1752)
+synthetic_001927/posterior_samples.pt
+        6651904  27%   12.37MB/s   00:00:01       13467648  55%   12.74MB/s   00:00:00       20152320  82%   12.59MB/s   00:00:00       24657317 100%   12.41MB/s   00:00:01 (xfer#1061, to-check=1238/1752)
+synthetic_001927/posterior_std.pt
+         232019 100%  180.35MB/s   00:00:00 (xfer#1062, to-check=1239/1752)
+synthetic_001927/posterior_variance.pt
+         232054 100%   22.68MB/s   00:00:00 (xfer#1063, to-check=1240/1752)
+synthetic_001928/
+synthetic_001928/composite_mean.pt
+         232026 100%   11.77MB/s   00:00:00 (xfer#1064, to-check=1242/1752)
+synthetic_001928/metadata.json
+           1797 100%   22.25MB/s   00:00:00 (xfer#1065, to-check=1243/1752)
+synthetic_001928/posterior_mean.pt
+         232026 100%   16.93MB/s   00:00:00 (xfer#1066, to-check=1244/1752)
+synthetic_001928/posterior_samples.pt
+        5373952  22%   10.11MB/s   00:00:01       12845056  52%   13.96MB/s   00:00:00       19529728  79%   12.63MB/s   00:00:00       24657317 100%   12.07MB/s   00:00:01 (xfer#1067, to-check=1245/1752)
+synthetic_001928/posterior_std.pt
+         232019 100%  130.31MB/s   00:00:00 (xfer#1068, to-check=1246/1752)
+synthetic_001928/posterior_variance.pt
+         232054 100%   74.62MB/s   00:00:00 (xfer#1069, to-check=1247/1752)
+synthetic_001929/
+synthetic_001929/composite_mean.pt
+         232026 100%   12.09MB/s   00:00:00 (xfer#1070, to-check=1249/1752)
+synthetic_001929/metadata.json
+           1797 100%   25.95MB/s   00:00:00 (xfer#1071, to-check=1250/1752)
+synthetic_001929/posterior_mean.pt
+         232026 100%   22.75MB/s   00:00:00 (xfer#1072, to-check=1251/1752)
+synthetic_001929/posterior_samples.pt
+        6160384  25%   11.63MB/s   00:00:01       12845056  52%   12.45MB/s   00:00:00       19529728  79%   11.17MB/s   00:00:00       24657317 100%   11.45MB/s   00:00:02 (xfer#1073, to-check=1252/1752)
+synthetic_001929/posterior_std.pt
+         232019 100%   89.80MB/s   00:00:00 (xfer#1074, to-check=1253/1752)
+synthetic_001929/posterior_variance.pt
+         232054 100%  154.11MB/s   00:00:00 (xfer#1075, to-check=1254/1752)
+synthetic_001930/
+synthetic_001930/composite_mean.pt
+         232026 100%   55.32MB/s   00:00:00 (xfer#1076, to-check=1256/1752)
+synthetic_001930/metadata.json
+           1798 100%   27.66MB/s   00:00:00 (xfer#1077, to-check=1257/1752)
+synthetic_001930/posterior_mean.pt
+         232026 100%   11.56MB/s   00:00:00 (xfer#1078, to-check=1258/1752)
+synthetic_001930/posterior_samples.pt
+        6684672  27%   12.61MB/s   00:00:01       13238272  54%   12.48MB/s   00:00:00       19922944  81%   12.63MB/s   00:00:00       24657317 100%   12.32MB/s   00:00:01 (xfer#1079, to-check=1259/1752)
+synthetic_001930/posterior_std.pt
+         232019 100%   81.23MB/s   00:00:00 (xfer#1080, to-check=1260/1752)
+synthetic_001930/posterior_variance.pt
+         232054 100%  206.27MB/s   00:00:00 (xfer#1081, to-check=1261/1752)
+synthetic_001931/
+synthetic_001931/composite_mean.pt
+         232026 100%   28.44MB/s   00:00:00 (xfer#1082, to-check=1263/1752)
+synthetic_001931/metadata.json
+           1797 100%   27.65MB/s   00:00:00 (xfer#1083, to-check=1264/1752)
+synthetic_001931/posterior_mean.pt
+         232026 100%   10.72MB/s   00:00:00 (xfer#1084, to-check=1265/1752)
+synthetic_001931/posterior_samples.pt
+        6684672  27%   12.53MB/s   00:00:01       13238272  54%   12.49MB/s   00:00:00       19759104  80%   11.69MB/s   00:00:00       24657317 100%   11.75MB/s   00:00:02 (xfer#1085, to-check=1266/1752)
+synthetic_001931/posterior_std.pt
+         232019 100%  144.83MB/s   00:00:00 (xfer#1086, to-check=1267/1752)
+synthetic_001931/posterior_variance.pt
+         232054 100%   26.62MB/s   00:00:00 (xfer#1087, to-check=1268/1752)
+synthetic_001932/
+synthetic_001932/composite_mean.pt
+         232026 100%   13.69MB/s   00:00:00 (xfer#1088, to-check=1270/1752)
+synthetic_001932/metadata.json
+           1797 100%   26.33MB/s   00:00:00 (xfer#1089, to-check=1271/1752)
+synthetic_001932/posterior_mean.pt
+         232026 100%   60.54MB/s   00:00:00 (xfer#1090, to-check=1272/1752)
+synthetic_001932/posterior_samples.pt
+        5636096  23%   10.61MB/s   00:00:01       12582912  51%   13.14MB/s   00:00:00       19398656  79%   12.99MB/s   00:00:00       24657317 100%   12.13MB/s   00:00:01 (xfer#1091, to-check=1273/1752)
+synthetic_001932/posterior_std.pt
+         232019 100%  127.76MB/s   00:00:00 (xfer#1092, to-check=1274/1752)
+synthetic_001932/posterior_variance.pt
+         232054 100%   17.69MB/s   00:00:00 (xfer#1093, to-check=1275/1752)
+synthetic_001933/
+synthetic_001933/composite_mean.pt
+         232026 100%  151.06MB/s   00:00:00 (xfer#1094, to-check=1277/1752)
+synthetic_001933/metadata.json
+           1797 100%   21.46MB/s   00:00:00 (xfer#1095, to-check=1278/1752)
+synthetic_001933/posterior_mean.pt
+         232026 100%    9.73MB/s   00:00:00 (xfer#1096, to-check=1279/1752)
+synthetic_001933/posterior_samples.pt
+        6586368  27%   12.52MB/s   00:00:01       13271040  54%   12.55MB/s   00:00:00       19824640  80%   12.50MB/s   00:00:00       24657317 100%   12.28MB/s   00:00:01 (xfer#1097, to-check=1280/1752)
+synthetic_001933/posterior_std.pt
+         232019 100%  128.51MB/s   00:00:00 (xfer#1098, to-check=1281/1752)
+synthetic_001933/posterior_variance.pt
+         232054 100%  244.27MB/s   00:00:00 (xfer#1099, to-check=1282/1752)
+synthetic_001934/
+synthetic_001934/composite_mean.pt
+         232026 100%   23.48MB/s   00:00:00 (xfer#1100, to-check=1284/1752)
+synthetic_001934/metadata.json
+           1797 100%   24.20MB/s   00:00:00 (xfer#1101, to-check=1285/1752)
+synthetic_001934/posterior_mean.pt
+         232026 100%    7.26MB/s   00:00:00 (xfer#1102, to-check=1286/1752)
+synthetic_001934/posterior_samples.pt
+        6815744  28%   12.88MB/s   00:00:01       13500416  55%   12.28MB/s   00:00:00       20185088  82%   12.75MB/s   00:00:00       24657317 100%   12.34MB/s   00:00:01 (xfer#1103, to-check=1287/1752)
+synthetic_001934/posterior_std.pt
+         232019 100%  150.52MB/s   00:00:00 (xfer#1104, to-check=1288/1752)
+synthetic_001934/posterior_variance.pt
+         232054 100%  146.66MB/s   00:00:00 (xfer#1105, to-check=1289/1752)
+synthetic_001935/
+synthetic_001935/composite_mean.pt
+         232026 100%  163.05MB/s   00:00:00 (xfer#1106, to-check=1291/1752)
+synthetic_001935/metadata.json
+           1796 100%   22.52MB/s   00:00:00 (xfer#1107, to-check=1292/1752)
+synthetic_001935/posterior_mean.pt
+         232026 100%   11.49MB/s   00:00:00 (xfer#1108, to-check=1293/1752)
+synthetic_001935/posterior_samples.pt
+        6619136  27%   12.50MB/s   00:00:01       13303808  54%   12.57MB/s   00:00:00       19988480  81%   12.08MB/s   00:00:00       24657317 100%   12.31MB/s   00:00:01 (xfer#1109, to-check=1294/1752)
+synthetic_001935/posterior_std.pt
+         232019 100%  180.45MB/s   00:00:00 (xfer#1110, to-check=1295/1752)
+synthetic_001935/posterior_variance.pt
+         232054 100%   11.78MB/s   00:00:00 (xfer#1111, to-check=1296/1752)
+synthetic_001936/
+synthetic_001936/composite_mean.pt
+         232026 100%   60.59MB/s   00:00:00 (xfer#1112, to-check=1298/1752)
+synthetic_001936/metadata.json
+           1797 100%   36.49MB/s   00:00:00 (xfer#1113, to-check=1299/1752)
+synthetic_001936/posterior_mean.pt
+         232026 100%    7.06MB/s   00:00:00 (xfer#1114, to-check=1300/1752)
+synthetic_001936/posterior_samples.pt
+        6881280  28%   13.02MB/s   00:00:01       13434880  54%   12.21MB/s   00:00:00       20250624  82%   12.90MB/s   00:00:00       24657317 100%   12.45MB/s   00:00:01 (xfer#1115, to-check=1301/1752)
+synthetic_001936/posterior_std.pt
+         232019 100%  140.57MB/s   00:00:00 (xfer#1116, to-check=1302/1752)
+synthetic_001936/posterior_variance.pt
+         232054 100%   89.60MB/s   00:00:00 (xfer#1117, to-check=1303/1752)
+synthetic_001937/
+synthetic_001937/composite_mean.pt
+         232026 100%   11.65MB/s   00:00:00 (xfer#1118, to-check=1305/1752)
+synthetic_001937/metadata.json
+           1797 100%   16.64MB/s   00:00:00 (xfer#1119, to-check=1306/1752)
+synthetic_001937/posterior_mean.pt
+         232026 100%   11.47MB/s   00:00:00 (xfer#1120, to-check=1307/1752)
+synthetic_001937/posterior_samples.pt
+        6619136  27%   12.56MB/s   00:00:01       13172736  53%   12.50MB/s   00:00:00       19857408  81%   12.55MB/s   00:00:00       24657317 100%   12.35MB/s   00:00:01 (xfer#1121, to-check=1308/1752)
+synthetic_001937/posterior_std.pt
+         232019 100%  113.76MB/s   00:00:00 (xfer#1122, to-check=1309/1752)
+synthetic_001937/posterior_variance.pt
+         232054 100%   27.29MB/s   00:00:00 (xfer#1123, to-check=1310/1752)
+synthetic_001938/
+synthetic_001938/composite_mean.pt
+         232026 100%   11.32MB/s   00:00:00 (xfer#1124, to-check=1312/1752)
+synthetic_001938/metadata.json
+           1796 100%   15.86MB/s   00:00:00 (xfer#1125, to-check=1313/1752)
+synthetic_001938/posterior_mean.pt
+         232026 100%   11.89MB/s   00:00:00 (xfer#1126, to-check=1314/1752)
+synthetic_001938/posterior_samples.pt
+        5996544  24%   11.37MB/s   00:00:01       11272192  46%    9.83MB/s   00:00:01       15564800  63%    8.09MB/s   00:00:01       21069824  85%   10.35MB/s   00:00:00       24657317 100%    9.66MB/s   00:00:02 (xfer#1127, to-check=1315/1752)
+synthetic_001938/posterior_std.pt
+         232019 100%   85.96MB/s   00:00:00 (xfer#1128, to-check=1316/1752)
+synthetic_001938/posterior_variance.pt
+         232054 100%  204.36MB/s   00:00:00 (xfer#1129, to-check=1317/1752)
+synthetic_001939/
+synthetic_001939/composite_mean.pt
+         232026 100%    9.84MB/s   00:00:00 (xfer#1130, to-check=1319/1752)
+synthetic_001939/metadata.json
+           1797 100%   32.97MB/s   00:00:00 (xfer#1131, to-check=1320/1752)
+synthetic_001939/posterior_mean.pt
+         232026 100%   26.94MB/s   00:00:00 (xfer#1132, to-check=1321/1752)
+synthetic_001939/posterior_samples.pt
+        5701632  23%   10.81MB/s   00:00:01       11337728  46%   10.73MB/s   00:00:01       14876672  60%    6.27MB/s   00:00:01       18251776  74%    6.35MB/s   00:00:00       22708224  92%    8.16MB/s   00:00:00       24657317 100%    8.37MB/s   00:00:02 (xfer#1133, to-check=1322/1752)
+synthetic_001939/posterior_std.pt
+         232019 100%  171.39MB/s   00:00:00 (xfer#1134, to-check=1323/1752)
+synthetic_001939/posterior_variance.pt
+         232054 100%   11.79MB/s   00:00:00 (xfer#1135, to-check=1324/1752)
+synthetic_001940/
+synthetic_001940/composite_mean.pt
+         232026 100%    9.00MB/s   00:00:00 (xfer#1136, to-check=1326/1752)
+synthetic_001940/metadata.json
+           1799 100%   25.61MB/s   00:00:00 (xfer#1137, to-check=1327/1752)
+synthetic_001940/posterior_mean.pt
+         232026 100%   11.05MB/s   00:00:00 (xfer#1138, to-check=1328/1752)
+synthetic_001940/posterior_samples.pt
+        4653056  19%    8.56MB/s   00:00:02        9502720  39%    8.83MB/s   00:00:01       14221312  58%    8.89MB/s   00:00:01       19333120  78%    9.71MB/s   00:00:00       24182784  98%    8.89MB/s   00:00:00       24657317 100%    8.92MB/s   00:00:02 (xfer#1139, to-check=1329/1752)
+synthetic_001940/posterior_std.pt
+         232019 100%  149.18MB/s   00:00:00 (xfer#1140, to-check=1330/1752)
+synthetic_001940/posterior_variance.pt
+         232054 100%   13.67MB/s   00:00:00 (xfer#1141, to-check=1331/1752)
+synthetic_001941/
+synthetic_001941/composite_mean.pt
+         232026 100%   23.25MB/s   00:00:00 (xfer#1142, to-check=1333/1752)
+synthetic_001941/metadata.json
+           1798 100%   19.28MB/s   00:00:00 (xfer#1143, to-check=1334/1752)
+synthetic_001941/posterior_mean.pt
+         232026 100%    4.05MB/s   00:00:00 (xfer#1144, to-check=1335/1752)
+synthetic_001941/posterior_samples.pt
+        4915200  20%    9.27MB/s   00:00:02       10027008  41%    9.65MB/s   00:00:01       15532032  63%   10.36MB/s   00:00:00       21037056  85%   10.14MB/s   00:00:00       24657317 100%    9.88MB/s   00:00:02 (xfer#1145, to-check=1336/1752)
+synthetic_001941/posterior_std.pt
+         232019 100%  110.75MB/s   00:00:00 (xfer#1146, to-check=1337/1752)
+synthetic_001941/posterior_variance.pt
+         232054 100%    6.77MB/s   00:00:00 (xfer#1147, to-check=1338/1752)
+synthetic_001942/
+synthetic_001942/composite_mean.pt
+         232026 100%   32.00MB/s   00:00:00 (xfer#1148, to-check=1340/1752)
+synthetic_001942/metadata.json
+           1798 100%   30.60MB/s   00:00:00 (xfer#1149, to-check=1341/1752)
+synthetic_001942/posterior_mean.pt
+         232026 100%    6.62MB/s   00:00:00 (xfer#1150, to-check=1342/1752)
+synthetic_001942/posterior_samples.pt
+        6029312  24%   11.40MB/s   00:00:01       11796480  48%   10.98MB/s   00:00:01       18087936  73%   11.87MB/s   00:00:00       23986176  97%   11.12MB/s   00:00:00       24657317 100%   11.17MB/s   00:00:02 (xfer#1151, to-check=1343/1752)
+synthetic_001942/posterior_std.pt
+         232019 100%  141.67MB/s   00:00:00 (xfer#1152, to-check=1344/1752)
+synthetic_001942/posterior_variance.pt
+         232054 100%   46.50MB/s   00:00:00 (xfer#1153, to-check=1345/1752)
+synthetic_001943/
+synthetic_001943/composite_mean.pt
+         232026 100%   24.77MB/s   00:00:00 (xfer#1154, to-check=1347/1752)
+synthetic_001943/metadata.json
+           1799 100%   17.86MB/s   00:00:00 (xfer#1155, to-check=1348/1752)
+synthetic_001943/posterior_mean.pt
+         232026 100%   13.86MB/s   00:00:00 (xfer#1156, to-check=1349/1752)
+synthetic_001943/posterior_samples.pt
+        6553600  27%   12.32MB/s   00:00:01       10747904  44%    7.78MB/s   00:00:01       14352384  58%    6.87MB/s   00:00:01       18153472  74%    6.92MB/s   00:00:00       22347776  91%    7.91MB/s   00:00:00       24657317 100%    8.26MB/s   00:00:02 (xfer#1157, to-check=1350/1752)
+synthetic_001943/posterior_std.pt
+         232019 100%   12.38MB/s   00:00:00 (xfer#1158, to-check=1351/1752)
+synthetic_001943/posterior_variance.pt
+         232054 100%   11.22MB/s   00:00:00 (xfer#1159, to-check=1352/1752)
+synthetic_001944/
+synthetic_001944/composite_mean.pt
+         232026 100%    6.60MB/s   00:00:00 (xfer#1160, to-check=1354/1752)
+synthetic_001944/metadata.json
+           1799 100%   19.09MB/s   00:00:00 (xfer#1161, to-check=1355/1752)
+synthetic_001944/posterior_mean.pt
+         232026 100%    6.50MB/s   00:00:00 (xfer#1162, to-check=1356/1752)
+synthetic_001944/posterior_samples.pt
+        4096000  17%    7.73MB/s   00:00:02        8159232  33%    7.30MB/s   00:00:02       12484608  51%    8.22MB/s   00:00:01       17072128  69%    8.26MB/s   00:00:00       21135360  86%    7.57MB/s   00:00:00       24657317 100%    7.78MB/s   00:00:03 (xfer#1163, to-check=1357/1752)
+synthetic_001944/posterior_std.pt
+         232019 100%  158.16MB/s   00:00:00 (xfer#1164, to-check=1358/1752)
+synthetic_001944/posterior_variance.pt
+         232054 100%  243.75MB/s   00:00:00 (xfer#1165, to-check=1359/1752)
+synthetic_001945/
+synthetic_001945/composite_mean.pt
+         232026 100%   10.60MB/s   00:00:00 (xfer#1166, to-check=1361/1752)
+synthetic_001945/metadata.json
+           1797 100%   23.80MB/s   00:00:00 (xfer#1167, to-check=1362/1752)
+synthetic_001945/posterior_mean.pt
+         232026 100%    9.50MB/s   00:00:00 (xfer#1168, to-check=1363/1752)
+synthetic_001945/posterior_samples.pt
+        4718592  19%    8.52MB/s   00:00:02        9568256  39%    9.08MB/s   00:00:01       14811136  60%    9.51MB/s   00:00:00       17039360  69%    4.18MB/s   00:00:01       21102592  86%    7.57MB/s   00:00:00       24657317 100%    7.76MB/s   00:00:03 (xfer#1169, to-check=1364/1752)
+synthetic_001945/posterior_std.pt
+         232019 100%  168.77MB/s   00:00:00 (xfer#1170, to-check=1365/1752)
+synthetic_001945/posterior_variance.pt
+         232054 100%   10.95MB/s   00:00:00 (xfer#1171, to-check=1366/1752)
+synthetic_001946/
+synthetic_001946/composite_mean.pt
+         232026 100%    6.26MB/s   00:00:00 (xfer#1172, to-check=1368/1752)
+synthetic_001946/metadata.json
+           1798 100%   19.49MB/s   00:00:00 (xfer#1173, to-check=1369/1752)
+synthetic_001946/posterior_mean.pt
+         232026 100%   10.09MB/s   00:00:00 (xfer#1174, to-check=1370/1752)
+synthetic_001946/posterior_samples.pt
+        4325376  18%    8.23MB/s   00:00:02        8912896  36%    8.65MB/s   00:00:01       13369344  54%    8.40MB/s   00:00:01       18087936  73%    8.71MB/s   00:00:00       23330816  95%    9.76MB/s   00:00:00       24657317 100%    8.76MB/s   00:00:02 (xfer#1175, to-check=1371/1752)
+synthetic_001946/posterior_std.pt
+         232019 100%  207.39MB/s   00:00:00 (xfer#1176, to-check=1372/1752)
+synthetic_001946/posterior_variance.pt
+         232054 100%   15.39MB/s   00:00:00 (xfer#1177, to-check=1373/1752)
+synthetic_001947/
+synthetic_001947/composite_mean.pt
+         232026 100%   19.66MB/s   00:00:00 (xfer#1178, to-check=1375/1752)
+synthetic_001947/metadata.json
+           1797 100%   23.11MB/s   00:00:00 (xfer#1179, to-check=1376/1752)
+synthetic_001947/posterior_mean.pt
+         232026 100%    7.01MB/s   00:00:00 (xfer#1180, to-check=1377/1752)
+synthetic_001947/posterior_samples.pt
+        5013504  20%    9.29MB/s   00:00:02       10387456  42%    9.86MB/s   00:00:01       15237120  62%    9.10MB/s   00:00:00       20217856  82%    9.10MB/s   00:00:00       24657317 100%    9.31MB/s   00:00:02 (xfer#1181, to-check=1378/1752)
+synthetic_001947/posterior_std.pt
+         232019 100%   74.35MB/s   00:00:00 (xfer#1182, to-check=1379/1752)
+synthetic_001947/posterior_variance.pt
+         232054 100%  106.24MB/s   00:00:00 (xfer#1183, to-check=1380/1752)
+synthetic_001948/
+synthetic_001948/composite_mean.pt
+         232026 100%    5.87MB/s   00:00:00 (xfer#1184, to-check=1382/1752)
+synthetic_001948/metadata.json
+           1799 100%   24.48MB/s   00:00:00 (xfer#1185, to-check=1383/1752)
+synthetic_001948/posterior_mean.pt
+         232026 100%   22.82MB/s   00:00:00 (xfer#1186, to-check=1384/1752)
+synthetic_001948/posterior_samples.pt
+        5111808  21%    9.62MB/s   00:00:01       10387456  42%    9.59MB/s   00:00:01       14319616  58%    7.35MB/s   00:00:01       18907136  77%    8.50MB/s   00:00:00       23363584  95%    8.41MB/s   00:00:00       24657317 100%    8.62MB/s   00:00:02 (xfer#1187, to-check=1385/1752)
+synthetic_001948/posterior_std.pt
+         232019 100%   86.00MB/s   00:00:00 (xfer#1188, to-check=1386/1752)
+synthetic_001948/posterior_variance.pt
+         232054 100%  236.49MB/s   00:00:00 (xfer#1189, to-check=1387/1752)
+synthetic_001949/
+synthetic_001949/composite_mean.pt
+         232026 100%    8.15MB/s   00:00:00 (xfer#1190, to-check=1389/1752)
+synthetic_001949/metadata.json
+           1798 100%   23.81MB/s   00:00:00 (xfer#1191, to-check=1390/1752)
+synthetic_001949/posterior_mean.pt
+         232026 100%   15.63MB/s   00:00:00 (xfer#1192, to-check=1391/1752)
+synthetic_001949/posterior_samples.pt
+        4849664  20%    9.24MB/s   00:00:02        9961472  40%    9.35MB/s   00:00:01       15466496  63%   10.31MB/s   00:00:00       21102592  86%   10.46MB/s   00:00:00       24657317 100%    9.61MB/s   00:00:02 (xfer#1193, to-check=1392/1752)
+synthetic_001949/posterior_std.pt
+         232019 100%   94.52MB/s   00:00:00 (xfer#1194, to-check=1393/1752)
+synthetic_001949/posterior_variance.pt
+         232054 100%  191.78MB/s   00:00:00 (xfer#1195, to-check=1394/1752)
+synthetic_001950/
+synthetic_001950/composite_mean.pt
+         232026 100%  206.80MB/s   00:00:00 (xfer#1196, to-check=1396/1752)
+synthetic_001950/metadata.json
+           1798 100%   31.27MB/s   00:00:00 (xfer#1197, to-check=1397/1752)
+synthetic_001950/posterior_mean.pt
+         232026 100%    7.24MB/s   00:00:00 (xfer#1198, to-check=1398/1752)
+synthetic_001950/posterior_samples.pt
+        5341184  22%   10.16MB/s   00:00:01       10846208  44%   10.41MB/s   00:00:01       15695872  64%    9.14MB/s   00:00:00       21069824  85%    9.93MB/s   00:00:00       24657317 100%    9.35MB/s   00:00:02 (xfer#1199, to-check=1399/1752)
+synthetic_001950/posterior_std.pt
+         232019 100%  114.65MB/s   00:00:00 (xfer#1200, to-check=1400/1752)
+synthetic_001950/posterior_variance.pt
+         232054 100%   17.18MB/s   00:00:00 (xfer#1201, to-check=1401/1752)
+synthetic_001951/
+synthetic_001951/composite_mean.pt
+         232026 100%    6.06MB/s   00:00:00 (xfer#1202, to-check=1403/1752)
+synthetic_001951/metadata.json
+           1798 100%   22.55MB/s   00:00:00 (xfer#1203, to-check=1404/1752)
+synthetic_001951/posterior_mean.pt
+         232026 100%    6.41MB/s   00:00:00 (xfer#1204, to-check=1405/1752)
+synthetic_001951/posterior_samples.pt
+        4161536  17%    7.91MB/s   00:00:02        8355840  34%    7.78MB/s   00:00:01       12222464  50%    7.17MB/s   00:00:01       14417920  58%    4.10MB/s   00:00:02       16908288  69%    4.48MB/s   00:00:01       19398656  79%    4.56MB/s   00:00:01       21889024  89%    4.60MB/s   00:00:00       24641536 100%    5.06MB/s   00:00:00       24657317 100%    5.65MB/s   00:00:04 (xfer#1205, to-check=1406/1752)
+synthetic_001951/posterior_std.pt
+         232019 100%   22.21MB/s   00:00:00 (xfer#1206, to-check=1407/1752)
+synthetic_001951/posterior_variance.pt
+         232054 100%    6.14MB/s   00:00:00 (xfer#1207, to-check=1408/1752)
+synthetic_001952/
+synthetic_001952/composite_mean.pt
+         232026 100%    4.87MB/s   00:00:00 (xfer#1208, to-check=1410/1752)
+synthetic_001952/metadata.json
+           1799 100%   13.40MB/s   00:00:00 (xfer#1209, to-check=1411/1752)
+synthetic_001952/posterior_mean.pt
+         232026 100%    4.46MB/s   00:00:00 (xfer#1210, to-check=1412/1752)
+synthetic_001952/posterior_samples.pt
+        2883584  12%    5.46MB/s   00:00:03        6127616  25%    5.88MB/s   00:00:03        9142272  37%    5.64MB/s   00:00:02       12550144  51%    6.46MB/s   00:00:01       16351232  66%    7.16MB/s   00:00:01       20283392  82%    7.26MB/s   00:00:00       24084480  98%    6.96MB/s   00:00:00       24657317 100%    6.40MB/s   00:00:03 (xfer#1211, to-check=1413/1752)
+synthetic_001952/posterior_std.pt
+         232019 100%   92.94MB/s   00:00:00 (xfer#1212, to-check=1414/1752)
+synthetic_001952/posterior_variance.pt
+         232054 100%    7.45MB/s   00:00:00 (xfer#1213, to-check=1415/1752)
+synthetic_001953/
+synthetic_001953/composite_mean.pt
+         232026 100%   84.14MB/s   00:00:00 (xfer#1214, to-check=1417/1752)
+synthetic_001953/metadata.json
+           1798 100%   22.55MB/s   00:00:00 (xfer#1215, to-check=1418/1752)
+synthetic_001953/posterior_mean.pt
+         232026 100%    5.50MB/s   00:00:00 (xfer#1216, to-check=1419/1752)
+synthetic_001953/posterior_samples.pt
+        4423680  18%    8.00MB/s   00:00:02        9142272  37%    8.54MB/s   00:00:01       13565952  55%    8.26MB/s   00:00:01       18284544  74%    8.78MB/s   00:00:00       23134208  94%    9.11MB/s   00:00:00       24657317 100%    8.43MB/s   00:00:02 (xfer#1217, to-check=1420/1752)
+synthetic_001953/posterior_std.pt
+         232019 100%   70.94MB/s   00:00:00 (xfer#1218, to-check=1421/1752)
+synthetic_001953/posterior_variance.pt
+         232054 100%   17.51MB/s   00:00:00 (xfer#1219, to-check=1422/1752)
+synthetic_001954/
+synthetic_001954/composite_mean.pt
+         232026 100%    5.86MB/s   00:00:00 (xfer#1220, to-check=1424/1752)
+synthetic_001954/metadata.json
+           1798 100%   24.13MB/s   00:00:00 (xfer#1221, to-check=1425/1752)
+synthetic_001954/posterior_mean.pt
+         232026 100%   52.05MB/s   00:00:00 (xfer#1222, to-check=1426/1752)
+synthetic_001954/posterior_samples.pt
+        5111808  21%    9.71MB/s   00:00:01       10223616  41%    9.70MB/s   00:00:01       14942208  61%    8.99MB/s   00:00:01       20709376  84%   10.69MB/s   00:00:00       24657317 100%    9.86MB/s   00:00:02 (xfer#1223, to-check=1427/1752)
+synthetic_001954/posterior_std.pt
+         232019 100%  165.52MB/s   00:00:00 (xfer#1224, to-check=1428/1752)
+synthetic_001954/posterior_variance.pt
+         232054 100%   20.94MB/s   00:00:00 (xfer#1225, to-check=1429/1752)
+synthetic_001955/
+synthetic_001955/composite_mean.pt
+         232026 100%   26.16MB/s   00:00:00 (xfer#1226, to-check=1431/1752)
+synthetic_001955/metadata.json
+           1798 100%   36.51MB/s   00:00:00 (xfer#1227, to-check=1432/1752)
+synthetic_001955/posterior_mean.pt
+         232026 100%   11.53MB/s   00:00:00 (xfer#1228, to-check=1433/1752)
+synthetic_001955/posterior_samples.pt
+        5537792  22%   10.40MB/s   00:00:01       11829248  48%   11.89MB/s   00:00:01       18251776  74%   12.16MB/s   00:00:00       24657317 100%   11.76MB/s   00:00:01 (xfer#1229, to-check=1434/1752)
+synthetic_001955/posterior_std.pt
+         232019 100%  113.47MB/s   00:00:00 (xfer#1230, to-check=1435/1752)
+synthetic_001955/posterior_variance.pt
+         232054 100%  195.50MB/s   00:00:00 (xfer#1231, to-check=1436/1752)
+synthetic_001956/
+synthetic_001956/composite_mean.pt
+         232026 100%   17.15MB/s   00:00:00 (xfer#1232, to-check=1438/1752)
+synthetic_001956/metadata.json
+           1799 100%   28.11MB/s   00:00:00 (xfer#1233, to-check=1439/1752)
+synthetic_001956/posterior_mean.pt
+         232026 100%   12.46MB/s   00:00:00 (xfer#1234, to-check=1440/1752)
+synthetic_001956/posterior_samples.pt
+        6586368  27%   12.56MB/s   00:00:01       13205504  54%   12.62MB/s   00:00:00       19824640  80%   12.57MB/s   00:00:00       24657317 100%   12.32MB/s   00:00:01 (xfer#1235, to-check=1441/1752)
+synthetic_001956/posterior_std.pt
+         232019 100%   70.53MB/s   00:00:00 (xfer#1236, to-check=1442/1752)
+synthetic_001956/posterior_variance.pt
+         232054 100%  264.07MB/s   00:00:00 (xfer#1237, to-check=1443/1752)
+synthetic_001957/
+synthetic_001957/composite_mean.pt
+         232026 100%   23.33MB/s   00:00:00 (xfer#1238, to-check=1445/1752)
+synthetic_001957/metadata.json
+           1800 100%   31.17MB/s   00:00:00 (xfer#1239, to-check=1446/1752)
+synthetic_001957/posterior_mean.pt
+         232026 100%   11.87MB/s   00:00:00 (xfer#1240, to-check=1447/1752)
+synthetic_001957/posterior_samples.pt
+        6488064  26%   12.19MB/s   00:00:01       13172736  53%   12.66MB/s   00:00:00       19726336  80%   12.32MB/s   00:00:00       24657317 100%   12.23MB/s   00:00:01 (xfer#1241, to-check=1448/1752)
+synthetic_001957/posterior_std.pt
+         232019 100%  142.93MB/s   00:00:00 (xfer#1242, to-check=1449/1752)
+synthetic_001957/posterior_variance.pt
+         232054 100%  148.32MB/s   00:00:00 (xfer#1243, to-check=1450/1752)
+synthetic_001958/
+synthetic_001958/composite_mean.pt
+         232026 100%    3.88MB/s   00:00:00 (xfer#1244, to-check=1452/1752)
+synthetic_001958/metadata.json
+           1798 100%   23.20MB/s   00:00:00 (xfer#1245, to-check=1453/1752)
+synthetic_001958/posterior_mean.pt
+         232026 100%  145.77MB/s   00:00:00 (xfer#1246, to-check=1454/1752)
+synthetic_001958/posterior_samples.pt
+        5636096  23%   10.58MB/s   00:00:01       12713984  52%   13.35MB/s   00:00:00       19398656  79%   12.57MB/s   00:00:00       24657317 100%   12.01MB/s   00:00:01 (xfer#1247, to-check=1455/1752)
+synthetic_001958/posterior_std.pt
+         232019 100%  121.84MB/s   00:00:00 (xfer#1248, to-check=1456/1752)
+synthetic_001958/posterior_variance.pt
+         232054 100%  212.99MB/s   00:00:00 (xfer#1249, to-check=1457/1752)
+synthetic_001959/
+synthetic_001959/composite_mean.pt
+         232026 100%   19.78MB/s   00:00:00 (xfer#1250, to-check=1459/1752)
+synthetic_001959/metadata.json
+           1797 100%   28.64MB/s   00:00:00 (xfer#1251, to-check=1460/1752)
+synthetic_001959/posterior_mean.pt
+         232026 100%   13.39MB/s   00:00:00 (xfer#1252, to-check=1461/1752)
+synthetic_001959/posterior_samples.pt
+        6520832  26%   12.42MB/s   00:00:01       13205504  54%   12.64MB/s   00:00:00       19890176  81%   12.50MB/s   00:00:00       24657317 100%   12.32MB/s   00:00:01 (xfer#1253, to-check=1462/1752)
+synthetic_001959/posterior_std.pt
+         232019 100%  137.53MB/s   00:00:00 (xfer#1254, to-check=1463/1752)
+synthetic_001959/posterior_variance.pt
+         232054 100%  247.00MB/s   00:00:00 (xfer#1255, to-check=1464/1752)
+synthetic_001960/
+synthetic_001960/composite_mean.pt
+         232026 100%   12.53MB/s   00:00:00 (xfer#1256, to-check=1466/1752)
+synthetic_001960/metadata.json
+           1798 100%   27.24MB/s   00:00:00 (xfer#1257, to-check=1467/1752)
+synthetic_001960/posterior_mean.pt
+         232026 100%   21.74MB/s   00:00:00 (xfer#1258, to-check=1468/1752)
+synthetic_001960/posterior_samples.pt
+        6553600  27%   12.40MB/s   00:00:01       11567104  47%    9.00MB/s   00:00:01       15892480  64%    8.20MB/s   00:00:01       20873216  85%    9.42MB/s   00:00:00       24657317 100%    9.46MB/s   00:00:02 (xfer#1259, to-check=1469/1752)
+synthetic_001960/posterior_std.pt
+         232019 100%   79.97MB/s   00:00:00 (xfer#1260, to-check=1470/1752)
+synthetic_001960/posterior_variance.pt
+         232054 100%   71.64MB/s   00:00:00 (xfer#1261, to-check=1471/1752)
+synthetic_001961/
+synthetic_001961/composite_mean.pt
+         232026 100%   16.48MB/s   00:00:00 (xfer#1262, to-check=1473/1752)
+synthetic_001961/metadata.json
+           1799 100%   29.02MB/s   00:00:00 (xfer#1263, to-check=1474/1752)
+synthetic_001961/posterior_mean.pt
+         232026 100%    6.63MB/s   00:00:00 (xfer#1264, to-check=1475/1752)
+synthetic_001961/posterior_samples.pt
+        5373952  22%   10.02MB/s   00:00:01        9076736  37%    6.68MB/s   00:00:02       13139968  53%    7.58MB/s   00:00:01       17465344  71%    8.22MB/s   00:00:00       21921792  89%    8.17MB/s   00:00:00       24657317 100%    7.98MB/s   00:00:02 (xfer#1265, to-check=1476/1752)
+synthetic_001961/posterior_std.pt
+         232019 100%   85.96MB/s   00:00:00 (xfer#1266, to-check=1477/1752)
+synthetic_001961/posterior_variance.pt
+         232054 100%   85.05MB/s   00:00:00 (xfer#1267, to-check=1478/1752)
+synthetic_001962/
+synthetic_001962/composite_mean.pt
+         232026 100%   10.41MB/s   00:00:00 (xfer#1268, to-check=1480/1752)
+synthetic_001962/metadata.json
+           1798 100%   13.94MB/s   00:00:00 (xfer#1269, to-check=1481/1752)
+synthetic_001962/posterior_mean.pt
+         232026 100%    5.98MB/s   00:00:00 (xfer#1270, to-check=1482/1752)
+synthetic_001962/posterior_samples.pt
+        4521984  18%    8.02MB/s   00:00:02        9240576  37%    8.71MB/s   00:00:01       13959168  57%    8.66MB/s   00:00:01       18808832  76%    9.19MB/s   00:00:00       23134208  94%    8.13MB/s   00:00:00       24657317 100%    8.39MB/s   00:00:02 (xfer#1271, to-check=1483/1752)
+synthetic_001962/posterior_std.pt
+         232019 100%  175.21MB/s   00:00:00 (xfer#1272, to-check=1484/1752)
+synthetic_001962/posterior_variance.pt
+         232054 100%   10.06MB/s   00:00:00 (xfer#1273, to-check=1485/1752)
+synthetic_001963/
+synthetic_001963/composite_mean.pt
+         232026 100%    8.57MB/s   00:00:00 (xfer#1274, to-check=1487/1752)
+synthetic_001963/metadata.json
+           1797 100%   18.67MB/s   00:00:00 (xfer#1275, to-check=1488/1752)
+synthetic_001963/posterior_mean.pt
+         232026 100%    7.52MB/s   00:00:00 (xfer#1276, to-check=1489/1752)
+synthetic_001963/posterior_samples.pt
+        3801088  15%    7.11MB/s   00:00:02        7733248  31%    7.42MB/s   00:00:02       12058624  49%    8.08MB/s   00:00:01       15597568  63%    6.42MB/s   00:00:01       20185088  82%    8.46MB/s   00:00:00       24657317 100%    7.72MB/s   00:00:03 (xfer#1277, to-check=1490/1752)
+synthetic_001963/posterior_std.pt
+         232019 100%   13.83MB/s   00:00:00 (xfer#1278, to-check=1491/1752)
+synthetic_001963/posterior_variance.pt
+         232054 100%   20.73MB/s   00:00:00 (xfer#1279, to-check=1492/1752)
+synthetic_001964/
+synthetic_001964/composite_mean.pt
+         232026 100%    8.50MB/s   00:00:00 (xfer#1280, to-check=1494/1752)
+synthetic_001964/metadata.json
+           1797 100%   17.32MB/s   00:00:00 (xfer#1281, to-check=1495/1752)
+synthetic_001964/posterior_mean.pt
+         232026 100%   21.66MB/s   00:00:00 (xfer#1282, to-check=1496/1752)
+synthetic_001964/posterior_samples.pt
+        4849664  20%    8.96MB/s   00:00:02        9961472  40%    9.50MB/s   00:00:01       15073280  61%    9.59MB/s   00:00:00       20054016  81%    9.42MB/s   00:00:00       24657317 100%    9.22MB/s   00:00:02 (xfer#1283, to-check=1497/1752)
+synthetic_001964/posterior_std.pt
+         232019 100%  111.15MB/s   00:00:00 (xfer#1284, to-check=1498/1752)
+synthetic_001964/posterior_variance.pt
+         232054 100%    9.32MB/s   00:00:00 (xfer#1285, to-check=1499/1752)
+synthetic_001965/
+synthetic_001965/composite_mean.pt
+         232026 100%   20.54MB/s   00:00:00 (xfer#1286, to-check=1501/1752)
+synthetic_001965/metadata.json
+           1798 100%   21.40MB/s   00:00:00 (xfer#1287, to-check=1502/1752)
+synthetic_001965/posterior_mean.pt
+         232026 100%   14.16MB/s   00:00:00 (xfer#1288, to-check=1503/1752)
+synthetic_001965/posterior_samples.pt
+        4325376  18%    7.60MB/s   00:00:02        7602176  31%    6.05MB/s   00:00:02       11665408  47%    7.62MB/s   00:00:01       15990784  65%    8.20MB/s   00:00:01       20578304  83%    8.51MB/s   00:00:00       24346624  99%    6.88MB/s   00:00:00       24657317 100%    7.38MB/s   00:00:03 (xfer#1289, to-check=1504/1752)
+synthetic_001965/posterior_std.pt
+         232019 100%  109.91MB/s   00:00:00 (xfer#1290, to-check=1505/1752)
+synthetic_001965/posterior_variance.pt
+         232054 100%    6.68MB/s   00:00:00 (xfer#1291, to-check=1506/1752)
+synthetic_001966/
+synthetic_001966/composite_mean.pt
+         232026 100%    5.23MB/s   00:00:00 (xfer#1292, to-check=1508/1752)
+synthetic_001966/metadata.json
+           1800 100%   15.06MB/s   00:00:00 (xfer#1293, to-check=1509/1752)
+synthetic_001966/posterior_mean.pt
+         232026 100%   18.35MB/s   00:00:00 (xfer#1294, to-check=1510/1752)
+synthetic_001966/posterior_samples.pt
+        3670016  15%    6.37MB/s   00:00:03        7208960  29%    6.50MB/s   00:00:02       11141120  45%    7.35MB/s   00:00:01       15204352  62%    7.47MB/s   00:00:01       19136512  78%    7.43MB/s   00:00:00       23068672  94%    7.10MB/s   00:00:00       24657317 100%    7.03MB/s   00:00:03 (xfer#1295, to-check=1511/1752)
+synthetic_001966/posterior_std.pt
+         232019 100%  111.92MB/s   00:00:00 (xfer#1296, to-check=1512/1752)
+synthetic_001966/posterior_variance.pt
+         232054 100%    7.39MB/s   00:00:00 (xfer#1297, to-check=1513/1752)
+synthetic_001967/
+synthetic_001967/composite_mean.pt
+         232026 100%   29.03MB/s   00:00:00 (xfer#1298, to-check=1515/1752)
+synthetic_001967/metadata.json
+           1797 100%   27.12MB/s   00:00:00 (xfer#1299, to-check=1516/1752)
+synthetic_001967/posterior_mean.pt
+         232026 100%    3.04MB/s   00:00:00 (xfer#1300, to-check=1517/1752)
+synthetic_001967/posterior_samples.pt
+        4325376  18%    8.14MB/s   00:00:02        6979584  28%    4.74MB/s   00:00:03        9076736  37%    3.82MB/s   00:00:03       11304960  46%    4.18MB/s   00:00:03       13926400  56%    4.88MB/s   00:00:02       16547840  67%    4.71MB/s   00:00:01       19169280  78%    4.79MB/s   00:00:01       20086784  81%    1.49MB/s   00:00:02       21626880  88%    2.80MB/s   00:00:01       23986176  97%    4.26MB/s   00:00:00       24657317 100%    4.33MB/s   00:00:05 (xfer#1301, to-check=1518/1752)
+synthetic_001967/posterior_std.pt
+         232019 100%    4.39MB/s   00:00:00 (xfer#1302, to-check=1519/1752)
+synthetic_001967/posterior_variance.pt
+         232054 100%    5.33MB/s   00:00:00 (xfer#1303, to-check=1520/1752)
+synthetic_001968/
+synthetic_001968/composite_mean.pt
+         232026 100%    6.84MB/s   00:00:00 (xfer#1304, to-check=1522/1752)
+synthetic_001968/metadata.json
+           1796 100%   14.17MB/s   00:00:00 (xfer#1305, to-check=1523/1752)
+synthetic_001968/posterior_mean.pt
+         232026 100%    5.54MB/s   00:00:00 (xfer#1306, to-check=1524/1752)
+synthetic_001968/posterior_samples.pt
+        2654208  11%    4.95MB/s   00:00:04        5406720  22%    5.24MB/s   00:00:03        8159232  33%    5.06MB/s   00:00:03       11042816  45%    5.23MB/s   00:00:02       13795328  56%    5.14MB/s   00:00:02       16678912  68%    5.37MB/s   00:00:01       19824640  80%    5.82MB/s   00:00:00       22839296  93%    5.75MB/s   00:00:00       24657317 100%    5.34MB/s   00:00:04 (xfer#1307, to-check=1525/1752)
+synthetic_001968/posterior_std.pt
+         232019 100%   59.32MB/s   00:00:00 (xfer#1308, to-check=1526/1752)
+synthetic_001968/posterior_variance.pt
+         232054 100%   18.82MB/s   00:00:00 (xfer#1309, to-check=1527/1752)
+synthetic_001969/
+synthetic_001969/composite_mean.pt
+         232026 100%    6.91MB/s   00:00:00 (xfer#1310, to-check=1529/1752)
+synthetic_001969/metadata.json
+           1797 100%   18.24MB/s   00:00:00 (xfer#1311, to-check=1530/1752)
+synthetic_001969/posterior_mean.pt
+         232026 100%    5.46MB/s   00:00:00 (xfer#1312, to-check=1531/1752)
+synthetic_001969/posterior_samples.pt
+        2981888  12%    5.67MB/s   00:00:03        6914048  28%    7.07MB/s   00:00:02       10584064  43%    6.77MB/s   00:00:01       14778368  60%    7.99MB/s   00:00:01       18972672  77%    7.72MB/s   00:00:00       23166976  94%    7.98MB/s   00:00:00       24657317 100%    7.20MB/s   00:00:03 (xfer#1313, to-check=1532/1752)
+synthetic_001969/posterior_std.pt
+         232019 100%  140.21MB/s   00:00:00 (xfer#1314, to-check=1533/1752)
+synthetic_001969/posterior_variance.pt
+         232054 100%    9.68MB/s   00:00:00 (xfer#1315, to-check=1534/1752)
+synthetic_001970/
+synthetic_001970/composite_mean.pt
+         232026 100%    6.09MB/s   00:00:00 (xfer#1316, to-check=1536/1752)
+synthetic_001970/metadata.json
+           1797 100%   11.67MB/s   00:00:00 (xfer#1317, to-check=1537/1752)
+synthetic_001970/posterior_mean.pt
+         232026 100%   37.56MB/s   00:00:00 (xfer#1318, to-check=1538/1752)
+synthetic_001970/posterior_samples.pt
+        4325376  18%    7.99MB/s   00:00:02        9306112  38%    9.13MB/s   00:00:01       14155776  57%    9.16MB/s   00:00:01       19398656  79%    9.86MB/s   00:00:00       24657317 100%    9.11MB/s   00:00:02 (xfer#1319, to-check=1539/1752)
+synthetic_001970/posterior_std.pt
+         232019 100%  119.66MB/s   00:00:00 (xfer#1320, to-check=1540/1752)
+synthetic_001970/posterior_variance.pt
+         232054 100%   74.09MB/s   00:00:00 (xfer#1321, to-check=1541/1752)
+synthetic_001971/
+synthetic_001971/composite_mean.pt
+         232026 100%   18.71MB/s   00:00:00 (xfer#1322, to-check=1543/1752)
+synthetic_001971/metadata.json
+           1798 100%   28.09MB/s   00:00:00 (xfer#1323, to-check=1544/1752)
+synthetic_001971/posterior_mean.pt
+         232026 100%    9.46MB/s   00:00:00 (xfer#1324, to-check=1545/1752)
+synthetic_001971/posterior_samples.pt
+        5636096  23%   10.69MB/s   00:00:01       11141120  45%   10.48MB/s   00:00:01       16908288  69%   10.92MB/s   00:00:00       23068672  94%   11.73MB/s   00:00:00       24657317 100%   10.88MB/s   00:00:02 (xfer#1325, to-check=1546/1752)
+synthetic_001971/posterior_std.pt
+         232019 100%  156.03MB/s   00:00:00 (xfer#1326, to-check=1547/1752)
+synthetic_001971/posterior_variance.pt
+         232054 100%  185.35MB/s   00:00:00 (xfer#1327, to-check=1548/1752)
+synthetic_001972/
+synthetic_001972/composite_mean.pt
+         232026 100%   18.43MB/s   00:00:00 (xfer#1328, to-check=1550/1752)
+synthetic_001972/metadata.json
+           1798 100%   31.68MB/s   00:00:00 (xfer#1329, to-check=1551/1752)
+synthetic_001972/posterior_mean.pt
+         232026 100%   12.59MB/s   00:00:00 (xfer#1330, to-check=1552/1752)
+synthetic_001972/posterior_samples.pt
+        6651904  27%   12.41MB/s   00:00:01       13893632  56%   13.81MB/s   00:00:00       20545536  83%   12.41MB/s   00:00:00       24657317 100%   12.61MB/s   00:00:01 (xfer#1331, to-check=1553/1752)
+synthetic_001972/posterior_std.pt
+         232019 100%  135.25MB/s   00:00:00 (xfer#1332, to-check=1554/1752)
+synthetic_001972/posterior_variance.pt
+         232054 100%  157.51MB/s   00:00:00 (xfer#1333, to-check=1555/1752)
+synthetic_001973/
+synthetic_001973/composite_mean.pt
+         232026 100%   12.57MB/s   00:00:00 (xfer#1334, to-check=1557/1752)
+synthetic_001973/metadata.json
+           1796 100%   21.13MB/s   00:00:00 (xfer#1335, to-check=1558/1752)
+synthetic_001973/posterior_mean.pt
+         232026 100%   19.89MB/s   00:00:00 (xfer#1336, to-check=1559/1752)
+synthetic_001973/posterior_samples.pt
+        6520832  26%   12.42MB/s   00:00:01       13074432  53%   12.47MB/s   00:00:00       18153472  74%    9.57MB/s   00:00:00       24657317 100%   11.89MB/s   00:00:01 (xfer#1337, to-check=1560/1752)
+synthetic_001973/posterior_std.pt
+         232019 100%  113.12MB/s   00:00:00 (xfer#1338, to-check=1561/1752)
+synthetic_001973/posterior_variance.pt
+         232054 100%  183.81MB/s   00:00:00 (xfer#1339, to-check=1562/1752)
+synthetic_001974/
+synthetic_001974/composite_mean.pt
+         232026 100%   10.44MB/s   00:00:00 (xfer#1340, to-check=1564/1752)
+synthetic_001974/metadata.json
+           1798 100%   16.05MB/s   00:00:00 (xfer#1341, to-check=1565/1752)
+synthetic_001974/posterior_mean.pt
+         232026 100%   13.02MB/s   00:00:00 (xfer#1342, to-check=1566/1752)
+synthetic_001974/posterior_samples.pt
+        4915200  20%    9.16MB/s   00:00:02       11993088  49%   13.35MB/s   00:00:00       18939904  77%   13.13MB/s   00:00:00       24657317 100%   11.83MB/s   00:00:01 (xfer#1343, to-check=1567/1752)
+synthetic_001974/posterior_std.pt
+         232019 100%  162.00MB/s   00:00:00 (xfer#1344, to-check=1568/1752)
+synthetic_001974/posterior_variance.pt
+         232054 100%  175.63MB/s   00:00:00 (xfer#1345, to-check=1569/1752)
+synthetic_001975/
+synthetic_001975/composite_mean.pt
+         232026 100%   11.84MB/s   00:00:00 (xfer#1346, to-check=1571/1752)
+synthetic_001975/metadata.json
+           1798 100%   10.33MB/s   00:00:00 (xfer#1347, to-check=1572/1752)
+synthetic_001975/posterior_mean.pt
+         232026 100%   13.30MB/s   00:00:00 (xfer#1348, to-check=1573/1752)
+synthetic_001975/posterior_samples.pt
+        6651904  27%   12.54MB/s   00:00:01       12288000  50%   10.70MB/s   00:00:01       17793024  72%   10.43MB/s   00:00:00       23822336  97%   11.31MB/s   00:00:00       24657317 100%   11.14MB/s   00:00:02 (xfer#1349, to-check=1574/1752)
+synthetic_001975/posterior_std.pt
+         232019 100%  138.56MB/s   00:00:00 (xfer#1350, to-check=1575/1752)
+synthetic_001975/posterior_variance.pt
+         232054 100%   55.75MB/s   00:00:00 (xfer#1351, to-check=1576/1752)
+synthetic_001976/
+synthetic_001976/composite_mean.pt
+         232026 100%    9.98MB/s   00:00:00 (xfer#1352, to-check=1578/1752)
+synthetic_001976/metadata.json
+           1798 100%  536.66KB/s   00:00:00 (xfer#1353, to-check=1579/1752)
+synthetic_001976/posterior_mean.pt
+         232026 100%   34.28MB/s   00:00:00 (xfer#1354, to-check=1580/1752)
+synthetic_001976/posterior_samples.pt
+        5341184  22%   10.18MB/s   00:00:01       11501568  47%   11.60MB/s   00:00:01       14778368  60%    4.30MB/s   00:00:02       20283392  82%   10.36MB/s   00:00:00       24657317 100%    9.07MB/s   00:00:02 (xfer#1355, to-check=1581/1752)
+synthetic_001976/posterior_std.pt
+         232019 100%   79.25MB/s   00:00:00 (xfer#1356, to-check=1582/1752)
+synthetic_001976/posterior_variance.pt
+         232054 100%   19.79MB/s   00:00:00 (xfer#1357, to-check=1583/1752)
+synthetic_001977/
+synthetic_001977/composite_mean.pt
+         232026 100%   11.06MB/s   00:00:00 (xfer#1358, to-check=1585/1752)
+synthetic_001977/metadata.json
+           1797 100%  466.00KB/s   00:00:00 (xfer#1359, to-check=1586/1752)
+synthetic_001977/posterior_mean.pt
+         232026 100%   26.28MB/s   00:00:00 (xfer#1360, to-check=1587/1752)
+synthetic_001977/posterior_samples.pt
+        6553600  27%   11.94MB/s   00:00:01       13107200  53%   12.48MB/s   00:00:00       18710528  76%   10.26MB/s   00:00:00       22478848  91%    7.18MB/s   00:00:00       24657317 100%    9.98MB/s   00:00:02 (xfer#1361, to-check=1588/1752)
+synthetic_001977/posterior_std.pt
+         232019 100%   91.97MB/s   00:00:00 (xfer#1362, to-check=1589/1752)
+synthetic_001977/posterior_variance.pt
+         232054 100%    6.42MB/s   00:00:00 (xfer#1363, to-check=1590/1752)
+synthetic_001978/
+synthetic_001978/composite_mean.pt
+         232026 100%   17.12MB/s   00:00:00 (xfer#1364, to-check=1592/1752)
+synthetic_001978/metadata.json
+           1797 100%   28.64MB/s   00:00:00 (xfer#1365, to-check=1593/1752)
+synthetic_001978/posterior_mean.pt
+         232026 100%    6.30MB/s   00:00:00 (xfer#1366, to-check=1594/1752)
+synthetic_001978/posterior_samples.pt
+        3178496  13%    6.06MB/s   00:00:03        6160384  25%    5.47MB/s   00:00:03        9306112  38%    5.93MB/s   00:00:02       12713984  52%    6.27MB/s   00:00:01       15990784  65%    5.89MB/s   00:00:01       19136512  78%    5.96MB/s   00:00:00       22413312  91%    5.98MB/s   00:00:00       24657317 100%    5.96MB/s   00:00:03 (xfer#1367, to-check=1595/1752)
+synthetic_001978/posterior_std.pt
+         232019 100%   60.89MB/s   00:00:00 (xfer#1368, to-check=1596/1752)
+synthetic_001978/posterior_variance.pt
+         232054 100%   10.93MB/s   00:00:00 (xfer#1369, to-check=1597/1752)
+synthetic_001979/
+synthetic_001979/composite_mean.pt
+         232026 100%    4.58MB/s   00:00:00 (xfer#1370, to-check=1599/1752)
+synthetic_001979/metadata.json
+           1798 100%   13.17MB/s   00:00:00 (xfer#1371, to-check=1600/1752)
+synthetic_001979/posterior_mean.pt
+         232026 100%    7.12MB/s   00:00:00 (xfer#1372, to-check=1601/1752)
+synthetic_001979/posterior_samples.pt
+        3866624  16%    7.12MB/s   00:00:02        7798784  32%    7.43MB/s   00:00:02       11862016  48%    7.66MB/s   00:00:01       16187392  66%    7.88MB/s   00:00:01       20905984  85%    8.86MB/s   00:00:00       24657317 100%    7.75MB/s   00:00:03 (xfer#1373, to-check=1602/1752)
+synthetic_001979/posterior_std.pt
+         232019 100%   85.23MB/s   00:00:00 (xfer#1374, to-check=1603/1752)
+synthetic_001979/posterior_variance.pt
+         232054 100%  129.35MB/s   00:00:00 (xfer#1375, to-check=1604/1752)
+synthetic_001980/
+synthetic_001980/composite_mean.pt
+         232026 100%    4.87MB/s   00:00:00 (xfer#1376, to-check=1606/1752)
+synthetic_001980/metadata.json
+           1797 100%   13.93MB/s   00:00:00 (xfer#1377, to-check=1607/1752)
+synthetic_001980/posterior_mean.pt
+         232026 100%   70.61MB/s   00:00:00 (xfer#1378, to-check=1608/1752)
+synthetic_001980/posterior_samples.pt
+        4194304  17%    7.96MB/s   00:00:02        9142272  37%    9.43MB/s   00:00:01       13762560  56%    8.57MB/s   00:00:01       19398656  79%   10.35MB/s   00:00:00       24657317 100%    9.31MB/s   00:00:02 (xfer#1379, to-check=1609/1752)
+synthetic_001980/posterior_std.pt
+         232019 100%  105.07MB/s   00:00:00 (xfer#1380, to-check=1610/1752)
+synthetic_001980/posterior_variance.pt
+         232054 100%   20.94MB/s   00:00:00 (xfer#1381, to-check=1611/1752)
+synthetic_001981/
+synthetic_001981/composite_mean.pt
+         232026 100%   10.85MB/s   00:00:00 (xfer#1382, to-check=1613/1752)
+synthetic_001981/metadata.json
+           1797 100%   21.14MB/s   00:00:00 (xfer#1383, to-check=1614/1752)
+synthetic_001981/posterior_mean.pt
+         232026 100%   13.33MB/s   00:00:00 (xfer#1384, to-check=1615/1752)
+synthetic_001981/posterior_samples.pt
+        5701632  23%   10.84MB/s   00:00:01       11075584  45%   10.10MB/s   00:00:01       16416768  67%   10.07MB/s   00:00:00       20217856  82%    7.10MB/s   00:00:00       24018944  97%    6.89MB/s   00:00:00       24657317 100%    8.92MB/s   00:00:02 (xfer#1385, to-check=1616/1752)
+synthetic_001981/posterior_std.pt
+         232019 100%  124.59MB/s   00:00:00 (xfer#1386, to-check=1617/1752)
+synthetic_001981/posterior_variance.pt
+         232054 100%   89.27MB/s   00:00:00 (xfer#1387, to-check=1618/1752)
+synthetic_001982/
+synthetic_001982/composite_mean.pt
+         232026 100%   11.26MB/s   00:00:00 (xfer#1388, to-check=1620/1752)
+synthetic_001982/metadata.json
+           1796 100%   19.26MB/s   00:00:00 (xfer#1389, to-check=1621/1752)
+synthetic_001982/posterior_mean.pt
+         232026 100%    2.48MB/s   00:00:00 (xfer#1390, to-check=1622/1752)
+synthetic_001982/posterior_samples.pt
+        4423680  18%    8.35MB/s   00:00:02        7438336  30%    5.70MB/s   00:00:02        9011200  37%    2.99MB/s   00:00:04       12419072  50%    6.45MB/s   00:00:01       14909440  60%    4.71MB/s   00:00:01       18841600  76%    7.08MB/s   00:00:00       21626880  88%    5.31MB/s   00:00:00       24657317 100%    6.15MB/s   00:00:03 (xfer#1391, to-check=1623/1752)
+synthetic_001982/posterior_std.pt
+         232019 100%   83.63MB/s   00:00:00 (xfer#1392, to-check=1624/1752)
+synthetic_001982/posterior_variance.pt
+         232054 100%   15.35MB/s   00:00:00 (xfer#1393, to-check=1625/1752)
+synthetic_001983/
+synthetic_001983/composite_mean.pt
+         232026 100%  990.29KB/s   00:00:00 (xfer#1394, to-check=1627/1752)
+synthetic_001983/metadata.json
+           1798 100%    4.09MB/s   00:00:00 (xfer#1395, to-check=1628/1752)
+synthetic_001983/posterior_mean.pt
+         232026 100%  125.66MB/s   00:00:00 (xfer#1396, to-check=1629/1752)
+synthetic_001983/posterior_samples.pt
+        2523136  10%    4.62MB/s   00:00:04        6586368  27%    7.54MB/s   00:00:02        9699328  39%    5.94MB/s   00:00:02       13172736  53%    6.29MB/s   00:00:01       15400960  62%    4.07MB/s   00:00:02       18055168  73%    4.74MB/s   00:00:01       20807680  84%    5.08MB/s   00:00:00       23560192  96%    4.93MB/s   00:00:00       24657317 100%    5.36MB/s   00:00:04 (xfer#1397, to-check=1630/1752)
+synthetic_001983/posterior_std.pt
+         232019 100%   90.65MB/s   00:00:00 (xfer#1398, to-check=1631/1752)
+synthetic_001983/posterior_variance.pt
+         232054 100%    6.61MB/s   00:00:00 (xfer#1399, to-check=1632/1752)
+synthetic_001984/
+synthetic_001984/composite_mean.pt
+         232026 100%   12.45MB/s   00:00:00 (xfer#1400, to-check=1634/1752)
+synthetic_001984/metadata.json
+           1798 100%   13.20MB/s   00:00:00 (xfer#1401, to-check=1635/1752)
+synthetic_001984/posterior_mean.pt
+         232026 100%    8.65MB/s   00:00:00 (xfer#1402, to-check=1636/1752)
+synthetic_001984/posterior_samples.pt
+        2785280  11%    5.13MB/s   00:00:04        5537792  22%    4.93MB/s   00:00:03        7962624  32%    4.44MB/s   00:00:03       10452992  42%    4.51MB/s   00:00:03       12943360  52%    4.51MB/s   00:00:02       15433728  63%    4.54MB/s   00:00:01       18055168  73%    4.82MB/s   00:00:01       20545536  83%    4.51MB/s   00:00:00       23166976  94%    4.92MB/s   00:00:00       24657317 100%    4.70MB/s   00:00:05 (xfer#1403, to-check=1637/1752)
+synthetic_001984/posterior_std.pt
+         232019 100%    2.70MB/s   00:00:00 (xfer#1404, to-check=1638/1752)
+synthetic_001984/posterior_variance.pt
+         232054 100%    4.69MB/s   00:00:00 (xfer#1405, to-check=1639/1752)
+synthetic_001985/
+synthetic_001985/composite_mean.pt
+         232026 100%    5.31MB/s   00:00:00 (xfer#1406, to-check=1641/1752)
+synthetic_001985/metadata.json
+           1797 100%    7.20MB/s   00:00:00 (xfer#1407, to-check=1642/1752)
+synthetic_001985/posterior_mean.pt
+         232026 100%   30.55MB/s   00:00:00 (xfer#1408, to-check=1643/1752)
+synthetic_001985/posterior_samples.pt
+        3145728  13%    5.78MB/s   00:00:03        5767168  23%    4.86MB/s   00:00:03        7733248  31%    3.61MB/s   00:00:04       10092544  41%    4.16MB/s   00:00:03       12582912  51%    4.50MB/s   00:00:02       15466496  63%    5.32MB/s   00:00:01       18874368  77%    6.36MB/s   00:00:00       21430272  87%    4.12MB/s   00:00:00       24051712  98%    4.77MB/s   00:00:00       24657317 100%    4.82MB/s   00:00:04 (xfer#1409, to-check=1644/1752)
+synthetic_001985/posterior_std.pt
+         232019 100%    2.70MB/s   00:00:00 (xfer#1410, to-check=1645/1752)
+synthetic_001985/posterior_variance.pt
+         232054 100%    6.33MB/s   00:00:00 (xfer#1411, to-check=1646/1752)
+synthetic_001986/
+synthetic_001986/composite_mean.pt
+         232026 100%    6.27MB/s   00:00:00 (xfer#1412, to-check=1648/1752)
+synthetic_001986/metadata.json
+           1798 100%    7.66MB/s   00:00:00 (xfer#1413, to-check=1649/1752)
+synthetic_001986/posterior_mean.pt
+         232026 100%    5.90MB/s   00:00:00 (xfer#1414, to-check=1650/1752)
+synthetic_001986/posterior_samples.pt
+        3080192  12%    5.67MB/s   00:00:03        6356992  26%    6.12MB/s   00:00:02        9895936  40%    6.57MB/s   00:00:02       13434880  54%    6.49MB/s   00:00:01       17235968  70%    7.24MB/s   00:00:00       20774912  84%    6.63MB/s   00:00:00       24444928  99%    6.69MB/s   00:00:00       24657317 100%    6.48MB/s   00:00:03 (xfer#1415, to-check=1651/1752)
+synthetic_001986/posterior_std.pt
+         232019 100%   37.66MB/s   00:00:00 (xfer#1416, to-check=1652/1752)
+synthetic_001986/posterior_variance.pt
+         232054 100%    7.79MB/s   00:00:00 (xfer#1417, to-check=1653/1752)
+synthetic_001987/
+synthetic_001987/composite_mean.pt
+         232026 100%    5.86MB/s   00:00:00 (xfer#1418, to-check=1655/1752)
+synthetic_001987/metadata.json
+           1797 100%   13.61MB/s   00:00:00 (xfer#1419, to-check=1656/1752)
+synthetic_001987/posterior_mean.pt
+         232026 100%    6.23MB/s   00:00:00 (xfer#1420, to-check=1657/1752)
+synthetic_001987/posterior_samples.pt
+        3932160  16%    7.50MB/s   00:00:02        7405568  30%    6.22MB/s   00:00:02       11337728  46%    7.48MB/s   00:00:01       14483456  59%    5.88MB/s   00:00:01       17629184  71%    5.65MB/s   00:00:01       20250624  82%    4.83MB/s   00:00:00       23396352  95%    5.73MB/s   00:00:00       24657317 100%    6.19MB/s   00:00:03 (xfer#1421, to-check=1658/1752)
+synthetic_001987/posterior_std.pt
+         232019 100%  166.89MB/s   00:00:00 (xfer#1422, to-check=1659/1752)
+synthetic_001987/posterior_variance.pt
+         232054 100%    1.04MB/s   00:00:00 (xfer#1423, to-check=1660/1752)
+synthetic_001988/
+synthetic_001988/composite_mean.pt
+         232026 100%    5.69MB/s   00:00:00 (xfer#1424, to-check=1662/1752)
+synthetic_001988/metadata.json
+           1798 100%    6.01MB/s   00:00:00 (xfer#1425, to-check=1663/1752)
+synthetic_001988/posterior_mean.pt
+         232026 100%    6.91MB/s   00:00:00 (xfer#1426, to-check=1664/1752)
+synthetic_001988/posterior_samples.pt
+        3112960  13%    5.81MB/s   00:00:03        6914048  28%    7.14MB/s   00:00:02       11501568  47%    8.37MB/s   00:00:01       15106048  61%    6.50MB/s   00:00:01       18644992  76%    6.35MB/s   00:00:00       22052864  89%    6.35MB/s   00:00:00       24657317 100%    6.85MB/s   00:00:03 (xfer#1427, to-check=1665/1752)
+synthetic_001988/posterior_std.pt
+         232019 100%  147.03MB/s   00:00:00 (xfer#1428, to-check=1666/1752)
+synthetic_001988/posterior_variance.pt
+         232054 100%   41.08MB/s   00:00:00 (xfer#1429, to-check=1667/1752)
+synthetic_001989/
+synthetic_001989/composite_mean.pt
+         232026 100%   33.77MB/s   00:00:00 (xfer#1430, to-check=1669/1752)
+synthetic_001989/metadata.json
+           1797 100%    7.58MB/s   00:00:00 (xfer#1431, to-check=1670/1752)
+synthetic_001989/posterior_mean.pt
+         232026 100%    6.22MB/s   00:00:00 (xfer#1432, to-check=1671/1752)
+synthetic_001989/posterior_samples.pt
+        3833856  16%    7.18MB/s   00:00:02        6324224  26%    4.75MB/s   00:00:03       11436032  46%    9.52MB/s   00:00:01       16678912  68%    9.65MB/s   00:00:00       22052864  89%    9.98MB/s   00:00:00       24657317 100%    8.23MB/s   00:00:02 (xfer#1433, to-check=1672/1752)
+synthetic_001989/posterior_std.pt
+         232019 100%  105.67MB/s   00:00:00 (xfer#1434, to-check=1673/1752)
+synthetic_001989/posterior_variance.pt
+         232054 100%   13.13MB/s   00:00:00 (xfer#1435, to-check=1674/1752)
+synthetic_001990/
+synthetic_001990/composite_mean.pt
+         232026 100%   15.90MB/s   00:00:00 (xfer#1436, to-check=1676/1752)
+synthetic_001990/metadata.json
+           1797 100%   16.01MB/s   00:00:00 (xfer#1437, to-check=1677/1752)
+synthetic_001990/posterior_mean.pt
+         232026 100%    7.90MB/s   00:00:00 (xfer#1438, to-check=1678/1752)
+synthetic_001990/posterior_samples.pt
+        5013504  20%    9.27MB/s   00:00:02        9994240  41%    9.41MB/s   00:00:01       14319616  58%    8.09MB/s   00:00:01       19300352  78%    9.50MB/s   00:00:00       24641536 100%   10.19MB/s   00:00:00       24657317 100%    9.22MB/s   00:00:02 (xfer#1439, to-check=1679/1752)
+synthetic_001990/posterior_std.pt
+         232019 100%    8.70MB/s   00:00:00 (xfer#1440, to-check=1680/1752)
+synthetic_001990/posterior_variance.pt
+         232054 100%  216.12MB/s   00:00:00 (xfer#1441, to-check=1681/1752)
+synthetic_001991/
+synthetic_001991/composite_mean.pt
+         232026 100%    4.44MB/s   00:00:00 (xfer#1442, to-check=1683/1752)
+synthetic_001991/metadata.json
+           1795 100%   19.41MB/s   00:00:00 (xfer#1443, to-check=1684/1752)
+synthetic_001991/posterior_mean.pt
+         232026 100%   84.46MB/s   00:00:00 (xfer#1444, to-check=1685/1752)
+synthetic_001991/posterior_samples.pt
+        5046272  20%    9.62MB/s   00:00:01       10289152  42%    9.91MB/s   00:00:01       15925248  65%   10.70MB/s   00:00:00       22085632  90%   11.75MB/s   00:00:00       24657317 100%   10.38MB/s   00:00:02 (xfer#1445, to-check=1686/1752)
+synthetic_001991/posterior_std.pt
+         232019 100%  190.88MB/s   00:00:00 (xfer#1446, to-check=1687/1752)
+synthetic_001991/posterior_variance.pt
+         232054 100%   10.08MB/s   00:00:00 (xfer#1447, to-check=1688/1752)
+synthetic_001992/
+synthetic_001992/composite_mean.pt
+         232026 100%   35.60MB/s   00:00:00 (xfer#1448, to-check=1690/1752)
+synthetic_001992/metadata.json
+           1799 100%   35.10MB/s   00:00:00 (xfer#1449, to-check=1691/1752)
+synthetic_001992/posterior_mean.pt
+         232026 100%    7.49MB/s   00:00:00 (xfer#1450, to-check=1692/1752)
+synthetic_001992/posterior_samples.pt
+        5963776  24%   11.16MB/s   00:00:01       12517376  51%   11.73MB/s   00:00:00       18808832  76%   11.53MB/s   00:00:00       24657317 100%   11.43MB/s   00:00:02 (xfer#1451, to-check=1693/1752)
+synthetic_001992/posterior_std.pt
+         232019 100%   82.97MB/s   00:00:00 (xfer#1452, to-check=1694/1752)
+synthetic_001992/posterior_variance.pt
+         232054 100%  210.58MB/s   00:00:00 (xfer#1453, to-check=1695/1752)
+synthetic_001993/
+synthetic_001993/composite_mean.pt
+         232026 100%  145.02MB/s   00:00:00 (xfer#1454, to-check=1697/1752)
+synthetic_001993/metadata.json
+           1796 100%   21.97MB/s   00:00:00 (xfer#1455, to-check=1698/1752)
+synthetic_001993/posterior_mean.pt
+         232026 100%   62.31MB/s   00:00:00 (xfer#1456, to-check=1699/1752)
+synthetic_001993/posterior_samples.pt
+        6619136  27%   12.13MB/s   00:00:01       13697024  56%   13.47MB/s   00:00:00       20512768  83%   12.85MB/s   00:00:00       24657317 100%   12.49MB/s   00:00:01 (xfer#1457, to-check=1700/1752)
+synthetic_001993/posterior_std.pt
+         232019 100%  147.71MB/s   00:00:00 (xfer#1458, to-check=1701/1752)
+synthetic_001993/posterior_variance.pt
+         232054 100%  188.36MB/s   00:00:00 (xfer#1459, to-check=1702/1752)
+synthetic_001994/
+synthetic_001994/composite_mean.pt
+         232026 100%   26.97MB/s   00:00:00 (xfer#1460, to-check=1704/1752)
+synthetic_001994/metadata.json
+           1798 100%   31.68MB/s   00:00:00 (xfer#1461, to-check=1705/1752)
+synthetic_001994/posterior_mean.pt
+         232026 100%   10.80MB/s   00:00:00 (xfer#1462, to-check=1706/1752)
+synthetic_001994/posterior_samples.pt
+        6651904  27%   12.64MB/s   00:00:01       13238272  54%   12.56MB/s   00:00:00       19890176  81%   12.56MB/s   00:00:00       24657317 100%   12.40MB/s   00:00:01 (xfer#1463, to-check=1707/1752)
+synthetic_001994/posterior_std.pt
+         232019 100%  132.19MB/s   00:00:00 (xfer#1464, to-check=1708/1752)
+synthetic_001994/posterior_variance.pt
+         232054 100%   27.75MB/s   00:00:00 (xfer#1465, to-check=1709/1752)
+synthetic_001995/
+synthetic_001995/composite_mean.pt
+         232026 100%   10.29MB/s   00:00:00 (xfer#1466, to-check=1711/1752)
+synthetic_001995/metadata.json
+           1797 100%   17.49MB/s   00:00:00 (xfer#1467, to-check=1712/1752)
+synthetic_001995/posterior_mean.pt
+         232026 100%   16.31MB/s   00:00:00 (xfer#1468, to-check=1713/1752)
+synthetic_001995/posterior_samples.pt
+        6619136  27%   12.60MB/s   00:00:01       13303808  54%   12.56MB/s   00:00:00       18808832  76%   10.50MB/s   00:00:00       24657317 100%   11.85MB/s   00:00:01 (xfer#1469, to-check=1714/1752)
+synthetic_001995/posterior_std.pt
+         232019 100%  109.21MB/s   00:00:00 (xfer#1470, to-check=1715/1752)
+synthetic_001995/posterior_variance.pt
+         232054 100%  188.66MB/s   00:00:00 (xfer#1471, to-check=1716/1752)
+synthetic_001996/
+synthetic_001996/composite_mean.pt
+         232026 100%   11.35MB/s   00:00:00 (xfer#1472, to-check=1718/1752)
+synthetic_001996/metadata.json
+           1797 100%   18.82MB/s   00:00:00 (xfer#1473, to-check=1719/1752)
+synthetic_001996/posterior_mean.pt
+         232026 100%   12.26MB/s   00:00:00 (xfer#1474, to-check=1720/1752)
+synthetic_001996/posterior_samples.pt
+        6717440  27%   12.61MB/s   00:00:01       13402112  54%   12.56MB/s   00:00:00       19103744  77%   10.79MB/s   00:00:00       24657317 100%   12.05MB/s   00:00:01 (xfer#1475, to-check=1721/1752)
+synthetic_001996/posterior_std.pt
+         232019 100%   88.30MB/s   00:00:00 (xfer#1476, to-check=1722/1752)
+synthetic_001996/posterior_variance.pt
+         232054 100%  189.78MB/s   00:00:00 (xfer#1477, to-check=1723/1752)
+synthetic_001997/
+synthetic_001997/composite_mean.pt
+         232026 100%   13.79MB/s   00:00:00 (xfer#1478, to-check=1725/1752)
+synthetic_001997/metadata.json
+           1796 100%   20.41MB/s   00:00:00 (xfer#1479, to-check=1726/1752)
+synthetic_001997/posterior_mean.pt
+         232026 100%   28.27MB/s   00:00:00 (xfer#1480, to-check=1727/1752)
+synthetic_001997/posterior_samples.pt
+        6422528  26%   12.25MB/s   00:00:01       13107200  53%   12.57MB/s   00:00:00       19791872  80%   12.63MB/s   00:00:00       24657317 100%   12.25MB/s   00:00:01 (xfer#1481, to-check=1728/1752)
+synthetic_001997/posterior_std.pt
+         232019 100%  133.84MB/s   00:00:00 (xfer#1482, to-check=1729/1752)
+synthetic_001997/posterior_variance.pt
+         232054 100%   99.06MB/s   00:00:00 (xfer#1483, to-check=1730/1752)
+synthetic_001998/
+synthetic_001998/composite_mean.pt
+         232026 100%   15.63MB/s   00:00:00 (xfer#1484, to-check=1732/1752)
+synthetic_001998/metadata.json
+           1798 100%   26.74MB/s   00:00:00 (xfer#1485, to-check=1733/1752)
+synthetic_001998/posterior_mean.pt
+         232026 100%   18.93MB/s   00:00:00 (xfer#1486, to-check=1734/1752)
+synthetic_001998/posterior_samples.pt
+        6651904  27%   12.45MB/s   00:00:01       13205504  54%   12.45MB/s   00:00:00       19890176  81%   12.62MB/s   00:00:00       24657317 100%   12.32MB/s   00:00:01 (xfer#1487, to-check=1735/1752)
+synthetic_001998/posterior_std.pt
+         232019 100%  165.49MB/s   00:00:00 (xfer#1488, to-check=1736/1752)
+synthetic_001998/posterior_variance.pt
+         232054 100%   40.12MB/s   00:00:00 (xfer#1489, to-check=1737/1752)
+synthetic_001999/
+synthetic_001999/composite_mean.pt
+         232026 100%    8.02MB/s   00:00:00 (xfer#1490, to-check=1739/1752)
+synthetic_001999/metadata.json
+           1798 100%   23.81MB/s   00:00:00 (xfer#1491, to-check=1740/1752)
+synthetic_001999/posterior_mean.pt
+         232026 100%   52.61MB/s   00:00:00 (xfer#1492, to-check=1741/1752)
+synthetic_001999/posterior_samples.pt
+        6651904  27%   12.44MB/s   00:00:01       13303808  54%   12.68MB/s   00:00:00       19890176  81%   12.32MB/s   00:00:00       24657317 100%   12.19MB/s   00:00:01 (xfer#1493, to-check=1742/1752)
+synthetic_001999/posterior_std.pt
+         232019 100%   96.46MB/s   00:00:00 (xfer#1494, to-check=1743/1752)
+synthetic_001999/posterior_variance.pt
+         232054 100%  165.90MB/s   00:00:00 (xfer#1495, to-check=1744/1752)
+synthetic_002000/
+synthetic_002000/composite_mean.pt
+         232026 100%   29.51MB/s   00:00:00 (xfer#1496, to-check=1746/1752)
+synthetic_002000/metadata.json
+           1796 100%   21.38MB/s   00:00:00 (xfer#1497, to-check=1747/1752)
+synthetic_002000/posterior_mean.pt
+         232026 100%   20.77MB/s   00:00:00 (xfer#1498, to-check=1748/1752)
+synthetic_002000/posterior_samples.pt
+        6520832  26%   12.38MB/s   00:00:01       13205504  54%   12.44MB/s   00:00:00       19890176  81%   12.61MB/s   00:00:00       24657317 100%   12.25MB/s   00:00:01 (xfer#1499, to-check=1749/1752)
+synthetic_002000/posterior_std.pt
+         232019 100%   83.15MB/s   00:00:00 (xfer#1500, to-check=1750/1752)
+synthetic_002000/posterior_variance.pt
+         232054 100%   38.61MB/s   00:00:00 (xfer#1501, to-check=1751/1752)
+
+sent 6398M bytes  received 34548 bytes  9716k bytes/sec
+total size is 6397M  speedup is 1.00
+Transfer starting: 2 files
+batch_0008_external_evaluation_manifest.csv
+batch_0008_manifest.csv
+
+sent 91917 bytes  received 64 bytes  492k bytes/sec
+total size is 91648  speedup is 1.00
+Transfer starting: 2 files
+br_lora_batch_0008_mac_sha256.txt
+br_lora_batch_0008_production_audit.json
+
+sent 156k bytes  received 64 bytes  588k bytes/sec
+total size is 156k  speedup is 1.00
+
+===== FALCON TRANSFER VERIFICATION =====
+Case directories : 250
+Files checksummed: 1501
+Mac/Falcon SHA256: IDENTICAL
+
+==============================================================================
+BR-LoRA FALCON BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0008
+Batch directory          : /scratch/bhanug/br_lora_library/batches/batch_0008
+Current master           : /scratch/bhanug/br_lora_library/manifests/br_lora_library_manifest.csv
+
+===== TRANSFER CHECK =====
+Files                    : 1501
+Mac/Falcon SHA-256       : IDENTICAL
+
+===== MAC PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 1750
+Library IDs              : synthetic_000001 to synthetic_001750
+Current master SHA-256   : 4f53f66fb6c0c803c8d35f363051e5e4163db521a5e0ae730b94fcedd8e42466
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0008
+Accepted cases           : 250
+Master rows before       : 1750
+Master rows after        : 2000
+Library IDs              : synthetic_000001 to synthetic_002000
+Unique pair keys         : 2000
+Unique donor slices      : 2000
+Unique external bases    : 1710
+Master SHA-256           : 98d3c55e0b3eebf0a30874018cef96a0a5b3363afce4d82be68aad6eb62a9a1c
+Acceptance audit         : /scratch/bhanug/br_lora_library/audits/br_lora_batch_0008_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_library/manifests/br_lora_library_manifest_01750_pre_batch_0008.csv
+
+SAFE TO DELETE LOCAL MAC BATCH AFTER THIS PASS.
+
+==============================================================================
+BR-LoRA FROZEN LIBRARY PIPELINE
+==============================================================================
+
+Batch                    : batch_0008
+Frozen design            : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/downstream_evaluation/manifests/br_lora_library_design_10000/batches/batch_0008_manifest.csv
+Local staging            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0008
+Falcon library           : /scratch/bhanug/br_lora_library
+Falcon acceptance        : True
+Cleanup                  : True
+
+==============================================================================
+STAGE 1 — LOCAL GENERATION + PRODUCTION AUDIT
+==============================================================================
+
+/opt/anaconda3/envs/brats-nnunet/bin/python /Users/bhanugarg/Desktop/localized-medical-image-synthesis/scripts/run_br_lora_library_batch.py --batch batch_0008
+
+
+==============================================================================
+STAGE 2 — TRANSFER BATCH TO FALCON
+==============================================================================
+
+rsync -avh --partial --progress /Users/bhanugarg/archive/br_lora_library_staging/batch_0008/ falcon:/scratch/bhanug/br_lora_library/batches/batch_0008/
+
+
+==============================================================================
+STAGE 3 — TRANSFER MANIFESTS
+==============================================================================
+
+rsync -avh --partial /Users/bhanugarg/Desktop/localized-medical-image-synthesis/downstream_evaluation/manifests/br_lora_library_design_10000/batches/batch_0008_manifest.csv /Users/bhanugarg/Desktop/localized-medical-image-synthesis/downstream_evaluation/manifests/br_lora_library_design_10000/batches/batch_0008_external_evaluation_manifest.csv falcon:/scratch/bhanug/br_lora_library/manifests/
+
+
+==============================================================================
+STAGE 3 — TRANSFER AUDIT RECORDS
+==============================================================================
+
+rsync -avh --partial /Users/bhanugarg/archive/br_lora_library_staging/br_lora_batch_0008_production_audit.json /Users/bhanugarg/archive/br_lora_library_staging/br_lora_batch_0008_mac_sha256.txt falcon:/scratch/bhanug/br_lora_library/audits/
+
+
+==============================================================================
+STAGE 4 — FALCON SHA-256 VERIFICATION
+==============================================================================
+
+ssh falcon bash -s
+
+
+==============================================================================
+STAGE 5 — FALCON ACCEPTANCE
+==============================================================================
+
+ssh falcon bash -s
+
+
+==============================================================================
+LOCAL CLEANUP COMPLETE
+==============================================================================
+
+Deleted: /Users/bhanugarg/archive/br_lora_library_staging/batch_0008
+
+==============================================================================
+PIPELINE STAGE COMPLETE
+==============================================================================
+
+Batch                    : batch_0008
+Local production         : PASS
+Transfer                 : PASS
+Mac/Falcon SHA-256       : IDENTICAL
+Falcon acceptance        : PASS
+Local cleanup            : COMPLETE
+Next batch               : batch_0009
+
+============================================================
+COMPLETED: batch_0008
+Finished: Sat Aug 15 16:19:47 EDT 2026
+============================================================

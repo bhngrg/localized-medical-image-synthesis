@@ -183,6 +183,7 @@ def rsync(
     *,
     label: str,
     progress: bool = False,
+    extra_args: list[str] | None = None,
 ) -> None:
     command = [
         "rsync",
@@ -191,9 +192,18 @@ def rsync(
     ]
 
     if progress:
-        command.append("--progress")
+        command.append(
+            "--progress"
+        )
 
-    command.extend(sources)
+    if extra_args:
+        command.extend(
+            extra_args
+        )
+
+    command.extend(
+        sources
+    )
 
     command.append(
         f"{REMOTE_HOST}:{destination}"
@@ -366,7 +376,42 @@ def main() -> None:
 
     # ------------------------------------------------------------
     # 2. Transfer batch.
+    #
+    # The locally audited batch is the source of truth. Before every
+    # transfer attempt, remove any incomplete Falcon copy and recreate
+    # the destination immediately before rsync.
+    #
+    # --inplace writes directly to destination files rather than using
+    # per-file temporary files. Transfer integrity is independently
+    # enforced in Stage 4 by exact Mac/Falcon SHA-256 comparison.
     # ------------------------------------------------------------
+
+    remote_batch = (
+        f"{REMOTE_LIBRARY_ROOT}/"
+        f"batches/{batch_id}"
+    )
+
+    remote_prepare = f"""
+set -euo pipefail
+
+BATCH={shlex.quote(remote_batch)}
+
+rm -rf "$BATCH"
+mkdir -p "$BATCH"
+
+test -d "$BATCH"
+
+echo "Remote batch destination reset:"
+echo "  $BATCH"
+"""
+
+    ssh(
+        remote_prepare,
+        label=(
+            "STAGE 2 — PREPARE FALCON "
+            "BATCH DESTINATION"
+        ),
+    )
 
     rsync(
         [
@@ -378,6 +423,9 @@ def main() -> None:
         ),
         label="STAGE 2 — TRANSFER BATCH TO FALCON",
         progress=True,
+        extra_args=[
+            "--inplace",
+        ],
     )
 
     # ------------------------------------------------------------

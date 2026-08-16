@@ -1,0 +1,2407 @@
+============================================================
+BR-LoRA PIPELINE: batch_0021
+Started: Sat Aug 15 19:21:18 EDT 2026
+============================================================
+
+
+==============================================================================
+BR-LoRA EXTERNAL EVALUATION CONSTRUCTION
+==============================================================================
+
+Evaluation
+------------------------------------------------------------------------------
+Evaluation name          : br_lora_external_evaluation
+Checkpoint               : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/checkpoints/br_lora_full_train/final.pt
+Device                   : mps
+Seed                     : 42
+Posterior realizations   : 100
+Fixed diffusion noise    : True
+Timestep fraction        : 0.75
+Resume mode              : False
+
+External dataset
+------------------------------------------------------------------------------
+Specification            : /Users/bhanugarg/archive/BraTS2020_ValidationData/MICCAI_BraTS2020_ValidationData/validation_dataset.yaml
+Dataset root             : /Users/bhanugarg/archive/BraTS2020_ValidationData/MICCAI_BraTS2020_ValidationData
+Registered subjects      : 125
+
+Evaluation manifest
+------------------------------------------------------------------------------
+Manifest                 : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/downstream_evaluation/manifests/br_lora_library_design_10000/batches/batch_0021_external_evaluation_manifest.csv
+Cases                    : 250
+
+BR-LoRA
+------------------------------------------------------------------------------
+Variational modules      : 7
+Variational parameters   : 36,104
+Donor image channel      : 0
+
+Provenance
+------------------------------------------------------------------------------
+Git commit               : 35f169f8d879ca3e8fff921419a96451e704ba28
+Future output directory  : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021
+
+==============================================================================
+CONSTRUCTION VERDICT: PASS
+The fitted BR-LoRA checkpoint, registered external dataset, fixed evaluation manifest, and diffusion schedule were constructed successfully.
+==============================================================================
+
+==============================================================================
+RUNNING EXTERNAL POSTERIOR INFERENCE
+==============================================================================
+
+[1/250] synthetic_005001
+  Case seed              : 2053209444
+  External subject       : BraTS20_Validation_061
+  External slice         : 127
+  Donor mask pixels      : 561
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005001
+  Verdict                : PASS
+
+[2/250] synthetic_005002
+  Case seed              : 265198817
+  External subject       : BraTS20_Validation_061
+  External slice         : 128
+  Donor mask pixels      : 636
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005002
+  Verdict                : PASS
+
+[3/250] synthetic_005003
+  Case seed              : 1776386004
+  External subject       : BraTS20_Validation_061
+  External slice         : 129
+  Donor mask pixels      : 1517
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005003
+  Verdict                : PASS
+
+[4/250] synthetic_005004
+  Case seed              : 1454369276
+  External subject       : BraTS20_Validation_061
+  External slice         : 130
+  Donor mask pixels      : 734
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005004
+  Verdict                : PASS
+
+[5/250] synthetic_005005
+  Case seed              : 1735496378
+  External subject       : BraTS20_Validation_061
+  External slice         : 131
+  Donor mask pixels      : 1111
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005005
+  Verdict                : PASS
+
+[6/250] synthetic_005006
+  Case seed              : 2061002210
+  External subject       : BraTS20_Validation_061
+  External slice         : 132
+  Donor mask pixels      : 1511
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005006
+  Verdict                : PASS
+
+[7/250] synthetic_005007
+  Case seed              : 801162119
+  External subject       : BraTS20_Validation_061
+  External slice         : 133
+  Donor mask pixels      : 581
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005007
+  Verdict                : PASS
+
+[8/250] synthetic_005008
+  Case seed              : 1285630781
+  External subject       : BraTS20_Validation_061
+  External slice         : 134
+  Donor mask pixels      : 710
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005008
+  Verdict                : PASS
+
+[9/250] synthetic_005009
+  Case seed              : 844195393
+  External subject       : BraTS20_Validation_062
+  External slice         : 21
+  Donor mask pixels      : 890
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005009
+  Verdict                : PASS
+
+[10/250] synthetic_005010
+  Case seed              : 160614646
+  External subject       : BraTS20_Validation_062
+  External slice         : 22
+  Donor mask pixels      : 1518
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005010
+  Verdict                : PASS
+
+[11/250] synthetic_005011
+  Case seed              : 1163650190
+  External subject       : BraTS20_Validation_062
+  External slice         : 23
+  Donor mask pixels      : 1069
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005011
+  Verdict                : PASS
+
+[12/250] synthetic_005012
+  Case seed              : 1737070160
+  External subject       : BraTS20_Validation_062
+  External slice         : 24
+  Donor mask pixels      : 1431
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005012
+  Verdict                : PASS
+
+[13/250] synthetic_005013
+  Case seed              : 1090060611
+  External subject       : BraTS20_Validation_062
+  External slice         : 25
+  Donor mask pixels      : 1997
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005013
+  Verdict                : PASS
+
+[14/250] synthetic_005014
+  Case seed              : 43158909
+  External subject       : BraTS20_Validation_062
+  External slice         : 26
+  Donor mask pixels      : 1193
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005014
+  Verdict                : PASS
+
+[15/250] synthetic_005015
+  Case seed              : 26288958
+  External subject       : BraTS20_Validation_062
+  External slice         : 27
+  Donor mask pixels      : 2885
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005015
+  Verdict                : PASS
+
+[16/250] synthetic_005016
+  Case seed              : 1693853814
+  External subject       : BraTS20_Validation_062
+  External slice         : 28
+  Donor mask pixels      : 380
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005016
+  Verdict                : PASS
+
+[17/250] synthetic_005017
+  Case seed              : 1223697981
+  External subject       : BraTS20_Validation_062
+  External slice         : 29
+  Donor mask pixels      : 668
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005017
+  Verdict                : PASS
+
+[18/250] synthetic_005018
+  Case seed              : 1655446202
+  External subject       : BraTS20_Validation_062
+  External slice         : 30
+  Donor mask pixels      : 1925
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005018
+  Verdict                : PASS
+
+[19/250] synthetic_005019
+  Case seed              : 1798756890
+  External subject       : BraTS20_Validation_062
+  External slice         : 31
+  Donor mask pixels      : 2113
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005019
+  Verdict                : PASS
+
+[20/250] synthetic_005020
+  Case seed              : 1092516681
+  External subject       : BraTS20_Validation_062
+  External slice         : 32
+  Donor mask pixels      : 621
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005020
+  Verdict                : PASS
+
+[21/250] synthetic_005021
+  Case seed              : 419723083
+  External subject       : BraTS20_Validation_062
+  External slice         : 33
+  Donor mask pixels      : 711
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005021
+  Verdict                : PASS
+
+[22/250] synthetic_005022
+  Case seed              : 1110122651
+  External subject       : BraTS20_Validation_062
+  External slice         : 34
+  Donor mask pixels      : 702
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005022
+  Verdict                : PASS
+
+[23/250] synthetic_005023
+  Case seed              : 373309158
+  External subject       : BraTS20_Validation_062
+  External slice         : 35
+  Donor mask pixels      : 2468
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005023
+  Verdict                : PASS
+
+[24/250] synthetic_005024
+  Case seed              : 502861808
+  External subject       : BraTS20_Validation_062
+  External slice         : 36
+  Donor mask pixels      : 1608
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005024
+  Verdict                : PASS
+
+[25/250] synthetic_005025
+  Case seed              : 1304132475
+  External subject       : BraTS20_Validation_062
+  External slice         : 37
+  Donor mask pixels      : 1122
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005025
+  Verdict                : PASS
+
+[26/250] synthetic_005026
+  Case seed              : 991148191
+  External subject       : BraTS20_Validation_062
+  External slice         : 38
+  Donor mask pixels      : 995
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005026
+  Verdict                : PASS
+
+[27/250] synthetic_005027
+  Case seed              : 1815402588
+  External subject       : BraTS20_Validation_062
+  External slice         : 39
+  Donor mask pixels      : 5153
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005027
+  Verdict                : PASS
+
+[28/250] synthetic_005028
+  Case seed              : 2008463598
+  External subject       : BraTS20_Validation_062
+  External slice         : 40
+  Donor mask pixels      : 2557
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005028
+  Verdict                : PASS
+
+[29/250] synthetic_005029
+  Case seed              : 160715393
+  External subject       : BraTS20_Validation_062
+  External slice         : 41
+  Donor mask pixels      : 4345
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005029
+  Verdict                : PASS
+
+[30/250] synthetic_005030
+  Case seed              : 1754622118
+  External subject       : BraTS20_Validation_062
+  External slice         : 42
+  Donor mask pixels      : 1632
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005030
+  Verdict                : PASS
+
+[31/250] synthetic_005031
+  Case seed              : 172820596
+  External subject       : BraTS20_Validation_062
+  External slice         : 43
+  Donor mask pixels      : 3682
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005031
+  Verdict                : PASS
+
+[32/250] synthetic_005032
+  Case seed              : 1847222647
+  External subject       : BraTS20_Validation_062
+  External slice         : 44
+  Donor mask pixels      : 447
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005032
+  Verdict                : PASS
+
+[33/250] synthetic_005033
+  Case seed              : 119110467
+  External subject       : BraTS20_Validation_062
+  External slice         : 45
+  Donor mask pixels      : 802
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005033
+  Verdict                : PASS
+
+[34/250] synthetic_005034
+  Case seed              : 1013811393
+  External subject       : BraTS20_Validation_062
+  External slice         : 46
+  Donor mask pixels      : 5313
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005034
+  Verdict                : PASS
+
+[35/250] synthetic_005035
+  Case seed              : 454034373
+  External subject       : BraTS20_Validation_062
+  External slice         : 47
+  Donor mask pixels      : 1016
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005035
+  Verdict                : PASS
+
+[36/250] synthetic_005036
+  Case seed              : 1550377938
+  External subject       : BraTS20_Validation_062
+  External slice         : 48
+  Donor mask pixels      : 542
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005036
+  Verdict                : PASS
+
+[37/250] synthetic_005037
+  Case seed              : 1390612364
+  External subject       : BraTS20_Validation_062
+  External slice         : 49
+  Donor mask pixels      : 3992
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005037
+  Verdict                : PASS
+
+[38/250] synthetic_005038
+  Case seed              : 1487663034
+  External subject       : BraTS20_Validation_062
+  External slice         : 50
+  Donor mask pixels      : 1788
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005038
+  Verdict                : PASS
+
+[39/250] synthetic_005039
+  Case seed              : 166663435
+  External subject       : BraTS20_Validation_062
+  External slice         : 51
+  Donor mask pixels      : 1587
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005039
+  Verdict                : PASS
+
+[40/250] synthetic_005040
+  Case seed              : 1357351359
+  External subject       : BraTS20_Validation_062
+  External slice         : 52
+  Donor mask pixels      : 777
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005040
+  Verdict                : PASS
+
+[41/250] synthetic_005041
+  Case seed              : 1929587935
+  External subject       : BraTS20_Validation_062
+  External slice         : 53
+  Donor mask pixels      : 1627
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005041
+  Verdict                : PASS
+
+[42/250] synthetic_005042
+  Case seed              : 338790509
+  External subject       : BraTS20_Validation_062
+  External slice         : 54
+  Donor mask pixels      : 5177
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005042
+  Verdict                : PASS
+
+[43/250] synthetic_005043
+  Case seed              : 131642826
+  External subject       : BraTS20_Validation_062
+  External slice         : 55
+  Donor mask pixels      : 2768
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005043
+  Verdict                : PASS
+
+[44/250] synthetic_005044
+  Case seed              : 1543700245
+  External subject       : BraTS20_Validation_062
+  External slice         : 56
+  Donor mask pixels      : 2525
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005044
+  Verdict                : PASS
+
+[45/250] synthetic_005045
+  Case seed              : 585178144
+  External subject       : BraTS20_Validation_062
+  External slice         : 57
+  Donor mask pixels      : 1677
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005045
+  Verdict                : PASS
+
+[46/250] synthetic_005046
+  Case seed              : 1465021208
+  External subject       : BraTS20_Validation_062
+  External slice         : 58
+  Donor mask pixels      : 2890
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005046
+  Verdict                : PASS
+
+[47/250] synthetic_005047
+  Case seed              : 358367247
+  External subject       : BraTS20_Validation_062
+  External slice         : 59
+  Donor mask pixels      : 4439
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005047
+  Verdict                : PASS
+
+[48/250] synthetic_005048
+  Case seed              : 1679122455
+  External subject       : BraTS20_Validation_062
+  External slice         : 60
+  Donor mask pixels      : 3505
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005048
+  Verdict                : PASS
+
+[49/250] synthetic_005049
+  Case seed              : 524873777
+  External subject       : BraTS20_Validation_062
+  External slice         : 61
+  Donor mask pixels      : 631
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005049
+  Verdict                : PASS
+
+[50/250] synthetic_005050
+  Case seed              : 889735327
+  External subject       : BraTS20_Validation_062
+  External slice         : 62
+  Donor mask pixels      : 1546
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005050
+  Verdict                : PASS
+
+[51/250] synthetic_005051
+  Case seed              : 1422851054
+  External subject       : BraTS20_Validation_062
+  External slice         : 63
+  Donor mask pixels      : 1267
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005051
+  Verdict                : PASS
+
+[52/250] synthetic_005052
+  Case seed              : 1311895216
+  External subject       : BraTS20_Validation_062
+  External slice         : 64
+  Donor mask pixels      : 617
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005052
+  Verdict                : PASS
+
+[53/250] synthetic_005053
+  Case seed              : 1231927653
+  External subject       : BraTS20_Validation_062
+  External slice         : 65
+  Donor mask pixels      : 2058
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005053
+  Verdict                : PASS
+
+[54/250] synthetic_005054
+  Case seed              : 1506723213
+  External subject       : BraTS20_Validation_062
+  External slice         : 66
+  Donor mask pixels      : 971
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005054
+  Verdict                : PASS
+
+[55/250] synthetic_005055
+  Case seed              : 393801095
+  External subject       : BraTS20_Validation_062
+  External slice         : 67
+  Donor mask pixels      : 3409
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005055
+  Verdict                : PASS
+
+[56/250] synthetic_005056
+  Case seed              : 1089868163
+  External subject       : BraTS20_Validation_062
+  External slice         : 69
+  Donor mask pixels      : 3111
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005056
+  Verdict                : PASS
+
+[57/250] synthetic_005057
+  Case seed              : 795706900
+  External subject       : BraTS20_Validation_062
+  External slice         : 70
+  Donor mask pixels      : 2592
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005057
+  Verdict                : PASS
+
+[58/250] synthetic_005058
+  Case seed              : 1721735675
+  External subject       : BraTS20_Validation_062
+  External slice         : 71
+  Donor mask pixels      : 2171
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005058
+  Verdict                : PASS
+
+[59/250] synthetic_005059
+  Case seed              : 394968230
+  External subject       : BraTS20_Validation_062
+  External slice         : 72
+  Donor mask pixels      : 1187
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005059
+  Verdict                : PASS
+
+[60/250] synthetic_005060
+  Case seed              : 174694623
+  External subject       : BraTS20_Validation_062
+  External slice         : 73
+  Donor mask pixels      : 3342
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005060
+  Verdict                : PASS
+
+[61/250] synthetic_005061
+  Case seed              : 1074366719
+  External subject       : BraTS20_Validation_062
+  External slice         : 74
+  Donor mask pixels      : 835
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005061
+  Verdict                : PASS
+
+[62/250] synthetic_005062
+  Case seed              : 973381629
+  External subject       : BraTS20_Validation_062
+  External slice         : 75
+  Donor mask pixels      : 630
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005062
+  Verdict                : PASS
+
+[63/250] synthetic_005063
+  Case seed              : 1047184815
+  External subject       : BraTS20_Validation_062
+  External slice         : 76
+  Donor mask pixels      : 1997
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005063
+  Verdict                : PASS
+
+[64/250] synthetic_005064
+  Case seed              : 57807534
+  External subject       : BraTS20_Validation_062
+  External slice         : 77
+  Donor mask pixels      : 1442
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005064
+  Verdict                : PASS
+
+[65/250] synthetic_005065
+  Case seed              : 1001485178
+  External subject       : BraTS20_Validation_062
+  External slice         : 78
+  Donor mask pixels      : 3254
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005065
+  Verdict                : PASS
+
+[66/250] synthetic_005066
+  Case seed              : 1678435471
+  External subject       : BraTS20_Validation_062
+  External slice         : 79
+  Donor mask pixels      : 899
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005066
+  Verdict                : PASS
+
+[67/250] synthetic_005067
+  Case seed              : 826256876
+  External subject       : BraTS20_Validation_062
+  External slice         : 81
+  Donor mask pixels      : 1335
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005067
+  Verdict                : PASS
+
+[68/250] synthetic_005068
+  Case seed              : 221200694
+  External subject       : BraTS20_Validation_062
+  External slice         : 82
+  Donor mask pixels      : 904
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005068
+  Verdict                : PASS
+
+[69/250] synthetic_005069
+  Case seed              : 284366730
+  External subject       : BraTS20_Validation_062
+  External slice         : 83
+  Donor mask pixels      : 1663
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005069
+  Verdict                : PASS
+
+[70/250] synthetic_005070
+  Case seed              : 723130876
+  External subject       : BraTS20_Validation_062
+  External slice         : 84
+  Donor mask pixels      : 1582
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005070
+  Verdict                : PASS
+
+[71/250] synthetic_005071
+  Case seed              : 536027376
+  External subject       : BraTS20_Validation_062
+  External slice         : 85
+  Donor mask pixels      : 2315
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005071
+  Verdict                : PASS
+
+[72/250] synthetic_005072
+  Case seed              : 555808287
+  External subject       : BraTS20_Validation_062
+  External slice         : 86
+  Donor mask pixels      : 676
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005072
+  Verdict                : PASS
+
+[73/250] synthetic_005073
+  Case seed              : 59311368
+  External subject       : BraTS20_Validation_062
+  External slice         : 87
+  Donor mask pixels      : 392
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005073
+  Verdict                : PASS
+
+[74/250] synthetic_005074
+  Case seed              : 1928023659
+  External subject       : BraTS20_Validation_062
+  External slice         : 88
+  Donor mask pixels      : 1057
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005074
+  Verdict                : PASS
+
+[75/250] synthetic_005075
+  Case seed              : 683676391
+  External subject       : BraTS20_Validation_062
+  External slice         : 89
+  Donor mask pixels      : 705
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005075
+  Verdict                : PASS
+
+[76/250] synthetic_005076
+  Case seed              : 1386237943
+  External subject       : BraTS20_Validation_062
+  External slice         : 90
+  Donor mask pixels      : 1230
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005076
+  Verdict                : PASS
+
+[77/250] synthetic_005077
+  Case seed              : 819335685
+  External subject       : BraTS20_Validation_062
+  External slice         : 91
+  Donor mask pixels      : 948
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005077
+  Verdict                : PASS
+
+[78/250] synthetic_005078
+  Case seed              : 797793015
+  External subject       : BraTS20_Validation_062
+  External slice         : 92
+  Donor mask pixels      : 915
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005078
+  Verdict                : PASS
+
+[79/250] synthetic_005079
+  Case seed              : 442986982
+  External subject       : BraTS20_Validation_062
+  External slice         : 93
+  Donor mask pixels      : 384
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005079
+  Verdict                : PASS
+
+[80/250] synthetic_005080
+  Case seed              : 1148179252
+  External subject       : BraTS20_Validation_062
+  External slice         : 94
+  Donor mask pixels      : 780
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005080
+  Verdict                : PASS
+
+[81/250] synthetic_005081
+  Case seed              : 1420877431
+  External subject       : BraTS20_Validation_062
+  External slice         : 95
+  Donor mask pixels      : 2453
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005081
+  Verdict                : PASS
+
+[82/250] synthetic_005082
+  Case seed              : 722682338
+  External subject       : BraTS20_Validation_062
+  External slice         : 96
+  Donor mask pixels      : 1018
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005082
+  Verdict                : PASS
+
+[83/250] synthetic_005083
+  Case seed              : 871452088
+  External subject       : BraTS20_Validation_062
+  External slice         : 97
+  Donor mask pixels      : 791
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005083
+  Verdict                : PASS
+
+[84/250] synthetic_005084
+  Case seed              : 879625471
+  External subject       : BraTS20_Validation_062
+  External slice         : 98
+  Donor mask pixels      : 5179
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005084
+  Verdict                : PASS
+
+[85/250] synthetic_005085
+  Case seed              : 1402454184
+  External subject       : BraTS20_Validation_062
+  External slice         : 99
+  Donor mask pixels      : 523
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005085
+  Verdict                : PASS
+
+[86/250] synthetic_005086
+  Case seed              : 1706763367
+  External subject       : BraTS20_Validation_062
+  External slice         : 100
+  Donor mask pixels      : 1039
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005086
+  Verdict                : PASS
+
+[87/250] synthetic_005087
+  Case seed              : 1320202171
+  External subject       : BraTS20_Validation_063
+  External slice         : 7
+  Donor mask pixels      : 498
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005087
+  Verdict                : PASS
+
+[88/250] synthetic_005088
+  Case seed              : 93279971
+  External subject       : BraTS20_Validation_063
+  External slice         : 8
+  Donor mask pixels      : 754
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005088
+  Verdict                : PASS
+
+[89/250] synthetic_005089
+  Case seed              : 1205195522
+  External subject       : BraTS20_Validation_063
+  External slice         : 9
+  Donor mask pixels      : 794
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005089
+  Verdict                : PASS
+
+[90/250] synthetic_005090
+  Case seed              : 636084351
+  External subject       : BraTS20_Validation_063
+  External slice         : 10
+  Donor mask pixels      : 1358
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005090
+  Verdict                : PASS
+
+[91/250] synthetic_005091
+  Case seed              : 1031885622
+  External subject       : BraTS20_Validation_063
+  External slice         : 11
+  Donor mask pixels      : 633
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005091
+  Verdict                : PASS
+
+[92/250] synthetic_005092
+  Case seed              : 1338586548
+  External subject       : BraTS20_Validation_063
+  External slice         : 12
+  Donor mask pixels      : 780
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005092
+  Verdict                : PASS
+
+[93/250] synthetic_005093
+  Case seed              : 2012361635
+  External subject       : BraTS20_Validation_063
+  External slice         : 13
+  Donor mask pixels      : 704
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005093
+  Verdict                : PASS
+
+[94/250] synthetic_005094
+  Case seed              : 696741296
+  External subject       : BraTS20_Validation_063
+  External slice         : 14
+  Donor mask pixels      : 678
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005094
+  Verdict                : PASS
+
+[95/250] synthetic_005095
+  Case seed              : 349362683
+  External subject       : BraTS20_Validation_063
+  External slice         : 15
+  Donor mask pixels      : 2089
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005095
+  Verdict                : PASS
+
+[96/250] synthetic_005096
+  Case seed              : 294669616
+  External subject       : BraTS20_Validation_063
+  External slice         : 16
+  Donor mask pixels      : 1001
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005096
+  Verdict                : PASS
+
+[97/250] synthetic_005097
+  Case seed              : 1378425236
+  External subject       : BraTS20_Validation_063
+  External slice         : 17
+  Donor mask pixels      : 1194
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005097
+  Verdict                : PASS
+
+[98/250] synthetic_005098
+  Case seed              : 1951558752
+  External subject       : BraTS20_Validation_063
+  External slice         : 18
+  Donor mask pixels      : 1433
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005098
+  Verdict                : PASS
+
+[99/250] synthetic_005099
+  Case seed              : 799207980
+  External subject       : BraTS20_Validation_063
+  External slice         : 19
+  Donor mask pixels      : 1168
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005099
+  Verdict                : PASS
+
+[100/250] synthetic_005100
+  Case seed              : 766123643
+  External subject       : BraTS20_Validation_063
+  External slice         : 20
+  Donor mask pixels      : 885
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005100
+  Verdict                : PASS
+
+[101/250] synthetic_005101
+  Case seed              : 870507619
+  External subject       : BraTS20_Validation_063
+  External slice         : 21
+  Donor mask pixels      : 1462
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005101
+  Verdict                : PASS
+
+[102/250] synthetic_005102
+  Case seed              : 1139345981
+  External subject       : BraTS20_Validation_063
+  External slice         : 22
+  Donor mask pixels      : 993
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005102
+  Verdict                : PASS
+
+[103/250] synthetic_005103
+  Case seed              : 80724091
+  External subject       : BraTS20_Validation_063
+  External slice         : 23
+  Donor mask pixels      : 743
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005103
+  Verdict                : PASS
+
+[104/250] synthetic_005104
+  Case seed              : 1923329422
+  External subject       : BraTS20_Validation_063
+  External slice         : 24
+  Donor mask pixels      : 1433
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005104
+  Verdict                : PASS
+
+[105/250] synthetic_005105
+  Case seed              : 1692062492
+  External subject       : BraTS20_Validation_063
+  External slice         : 25
+  Donor mask pixels      : 1255
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005105
+  Verdict                : PASS
+
+[106/250] synthetic_005106
+  Case seed              : 1361545216
+  External subject       : BraTS20_Validation_063
+  External slice         : 26
+  Donor mask pixels      : 871
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005106
+  Verdict                : PASS
+
+[107/250] synthetic_005107
+  Case seed              : 869242380
+  External subject       : BraTS20_Validation_063
+  External slice         : 27
+  Donor mask pixels      : 1644
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005107
+  Verdict                : PASS
+
+[108/250] synthetic_005108
+  Case seed              : 1196582765
+  External subject       : BraTS20_Validation_063
+  External slice         : 28
+  Donor mask pixels      : 606
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005108
+  Verdict                : PASS
+
+[109/250] synthetic_005109
+  Case seed              : 1266510231
+  External subject       : BraTS20_Validation_063
+  External slice         : 29
+  Donor mask pixels      : 2344
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005109
+  Verdict                : PASS
+
+[110/250] synthetic_005110
+  Case seed              : 1613860945
+  External subject       : BraTS20_Validation_063
+  External slice         : 30
+  Donor mask pixels      : 1721
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005110
+  Verdict                : PASS
+
+[111/250] synthetic_005111
+  Case seed              : 620172307
+  External subject       : BraTS20_Validation_063
+  External slice         : 31
+  Donor mask pixels      : 938
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005111
+  Verdict                : PASS
+
+[112/250] synthetic_005112
+  Case seed              : 597089218
+  External subject       : BraTS20_Validation_063
+  External slice         : 32
+  Donor mask pixels      : 3356
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005112
+  Verdict                : PASS
+
+[113/250] synthetic_005113
+  Case seed              : 252981246
+  External subject       : BraTS20_Validation_063
+  External slice         : 33
+  Donor mask pixels      : 449
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005113
+  Verdict                : PASS
+
+[114/250] synthetic_005114
+  Case seed              : 1740020623
+  External subject       : BraTS20_Validation_063
+  External slice         : 34
+  Donor mask pixels      : 484
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005114
+  Verdict                : PASS
+
+[115/250] synthetic_005115
+  Case seed              : 1221187065
+  External subject       : BraTS20_Validation_063
+  External slice         : 35
+  Donor mask pixels      : 2104
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005115
+  Verdict                : PASS
+
+[116/250] synthetic_005116
+  Case seed              : 1884761605
+  External subject       : BraTS20_Validation_063
+  External slice         : 36
+  Donor mask pixels      : 882
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005116
+  Verdict                : PASS
+
+[117/250] synthetic_005117
+  Case seed              : 250192231
+  External subject       : BraTS20_Validation_063
+  External slice         : 99
+  Donor mask pixels      : 1090
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005117
+  Verdict                : PASS
+
+[118/250] synthetic_005118
+  Case seed              : 606813765
+  External subject       : BraTS20_Validation_063
+  External slice         : 99
+  Donor mask pixels      : 3560
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005118
+  Verdict                : PASS
+
+[119/250] synthetic_005119
+  Case seed              : 330669494
+  External subject       : BraTS20_Validation_063
+  External slice         : 100
+  Donor mask pixels      : 3236
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005119
+  Verdict                : PASS
+
+[120/250] synthetic_005120
+  Case seed              : 918261322
+  External subject       : BraTS20_Validation_063
+  External slice         : 100
+  Donor mask pixels      : 2436
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005120
+  Verdict                : PASS
+
+[121/250] synthetic_005121
+  Case seed              : 1650799156
+  External subject       : BraTS20_Validation_063
+  External slice         : 101
+  Donor mask pixels      : 1649
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005121
+  Verdict                : PASS
+
+[122/250] synthetic_005122
+  Case seed              : 50599008
+  External subject       : BraTS20_Validation_063
+  External slice         : 101
+  Donor mask pixels      : 612
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005122
+  Verdict                : PASS
+
+[123/250] synthetic_005123
+  Case seed              : 44310865
+  External subject       : BraTS20_Validation_063
+  External slice         : 102
+  Donor mask pixels      : 2334
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005123
+  Verdict                : PASS
+
+[124/250] synthetic_005124
+  Case seed              : 856949112
+  External subject       : BraTS20_Validation_063
+  External slice         : 102
+  Donor mask pixels      : 702
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005124
+  Verdict                : PASS
+
+[125/250] synthetic_005125
+  Case seed              : 2001781059
+  External subject       : BraTS20_Validation_063
+  External slice         : 103
+  Donor mask pixels      : 2139
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005125
+  Verdict                : PASS
+
+[126/250] synthetic_005126
+  Case seed              : 1729538943
+  External subject       : BraTS20_Validation_063
+  External slice         : 104
+  Donor mask pixels      : 5100
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005126
+  Verdict                : PASS
+
+[127/250] synthetic_005127
+  Case seed              : 844646475
+  External subject       : BraTS20_Validation_063
+  External slice         : 104
+  Donor mask pixels      : 1634
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005127
+  Verdict                : PASS
+
+[128/250] synthetic_005128
+  Case seed              : 1891590433
+  External subject       : BraTS20_Validation_063
+  External slice         : 105
+  Donor mask pixels      : 3924
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005128
+  Verdict                : PASS
+
+[129/250] synthetic_005129
+  Case seed              : 221203089
+  External subject       : BraTS20_Validation_063
+  External slice         : 105
+  Donor mask pixels      : 1761
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005129
+  Verdict                : PASS
+
+[130/250] synthetic_005130
+  Case seed              : 377337550
+  External subject       : BraTS20_Validation_063
+  External slice         : 106
+  Donor mask pixels      : 1851
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005130
+  Verdict                : PASS
+
+[131/250] synthetic_005131
+  Case seed              : 658421783
+  External subject       : BraTS20_Validation_063
+  External slice         : 106
+  Donor mask pixels      : 1055
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005131
+  Verdict                : PASS
+
+[132/250] synthetic_005132
+  Case seed              : 592449648
+  External subject       : BraTS20_Validation_063
+  External slice         : 107
+  Donor mask pixels      : 3151
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005132
+  Verdict                : PASS
+
+[133/250] synthetic_005133
+  Case seed              : 565698161
+  External subject       : BraTS20_Validation_063
+  External slice         : 107
+  Donor mask pixels      : 2248
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005133
+  Verdict                : PASS
+
+[134/250] synthetic_005134
+  Case seed              : 723050489
+  External subject       : BraTS20_Validation_063
+  External slice         : 108
+  Donor mask pixels      : 1661
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005134
+  Verdict                : PASS
+
+[135/250] synthetic_005135
+  Case seed              : 526912048
+  External subject       : BraTS20_Validation_063
+  External slice         : 108
+  Donor mask pixels      : 1693
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005135
+  Verdict                : PASS
+
+[136/250] synthetic_005136
+  Case seed              : 1671979860
+  External subject       : BraTS20_Validation_063
+  External slice         : 109
+  Donor mask pixels      : 451
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005136
+  Verdict                : PASS
+
+[137/250] synthetic_005137
+  Case seed              : 55144048
+  External subject       : BraTS20_Validation_063
+  External slice         : 109
+  Donor mask pixels      : 1094
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005137
+  Verdict                : PASS
+
+[138/250] synthetic_005138
+  Case seed              : 961027384
+  External subject       : BraTS20_Validation_063
+  External slice         : 110
+  Donor mask pixels      : 1264
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005138
+  Verdict                : PASS
+
+[139/250] synthetic_005139
+  Case seed              : 1596482913
+  External subject       : BraTS20_Validation_063
+  External slice         : 110
+  Donor mask pixels      : 432
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005139
+  Verdict                : PASS
+
+[140/250] synthetic_005140
+  Case seed              : 639400353
+  External subject       : BraTS20_Validation_063
+  External slice         : 111
+  Donor mask pixels      : 4738
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005140
+  Verdict                : PASS
+
+[141/250] synthetic_005141
+  Case seed              : 866963699
+  External subject       : BraTS20_Validation_063
+  External slice         : 111
+  Donor mask pixels      : 1300
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005141
+  Verdict                : PASS
+
+[142/250] synthetic_005142
+  Case seed              : 653313939
+  External subject       : BraTS20_Validation_063
+  External slice         : 112
+  Donor mask pixels      : 2461
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005142
+  Verdict                : PASS
+
+[143/250] synthetic_005143
+  Case seed              : 1702752792
+  External subject       : BraTS20_Validation_063
+  External slice         : 113
+  Donor mask pixels      : 1102
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005143
+  Verdict                : PASS
+
+[144/250] synthetic_005144
+  Case seed              : 2017467940
+  External subject       : BraTS20_Validation_063
+  External slice         : 114
+  Donor mask pixels      : 3575
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005144
+  Verdict                : PASS
+
+[145/250] synthetic_005145
+  Case seed              : 1912976803
+  External subject       : BraTS20_Validation_063
+  External slice         : 115
+  Donor mask pixels      : 2467
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005145
+  Verdict                : PASS
+
+[146/250] synthetic_005146
+  Case seed              : 1691050977
+  External subject       : BraTS20_Validation_063
+  External slice         : 116
+  Donor mask pixels      : 1966
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005146
+  Verdict                : PASS
+
+[147/250] synthetic_005147
+  Case seed              : 1830787873
+  External subject       : BraTS20_Validation_063
+  External slice         : 117
+  Donor mask pixels      : 2967
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005147
+  Verdict                : PASS
+
+[148/250] synthetic_005148
+  Case seed              : 1273151506
+  External subject       : BraTS20_Validation_063
+  External slice         : 118
+  Donor mask pixels      : 430
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005148
+  Verdict                : PASS
+
+[149/250] synthetic_005149
+  Case seed              : 414639254
+  External subject       : BraTS20_Validation_063
+  External slice         : 119
+  Donor mask pixels      : 667
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005149
+  Verdict                : PASS
+
+[150/250] synthetic_005150
+  Case seed              : 1757032687
+  External subject       : BraTS20_Validation_063
+  External slice         : 120
+  Donor mask pixels      : 1351
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005150
+  Verdict                : PASS
+
+[151/250] synthetic_005151
+  Case seed              : 1478572511
+  External subject       : BraTS20_Validation_063
+  External slice         : 121
+  Donor mask pixels      : 675
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005151
+  Verdict                : PASS
+
+[152/250] synthetic_005152
+  Case seed              : 81281107
+  External subject       : BraTS20_Validation_063
+  External slice         : 122
+  Donor mask pixels      : 1902
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005152
+  Verdict                : PASS
+
+[153/250] synthetic_005153
+  Case seed              : 1856506280
+  External subject       : BraTS20_Validation_063
+  External slice         : 124
+  Donor mask pixels      : 1156
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005153
+  Verdict                : PASS
+
+[154/250] synthetic_005154
+  Case seed              : 1312958129
+  External subject       : BraTS20_Validation_063
+  External slice         : 125
+  Donor mask pixels      : 1315
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005154
+  Verdict                : PASS
+
+[155/250] synthetic_005155
+  Case seed              : 1502838585
+  External subject       : BraTS20_Validation_063
+  External slice         : 126
+  Donor mask pixels      : 881
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005155
+  Verdict                : PASS
+
+[156/250] synthetic_005156
+  Case seed              : 1188223508
+  External subject       : BraTS20_Validation_063
+  External slice         : 127
+  Donor mask pixels      : 2580
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005156
+  Verdict                : PASS
+
+[157/250] synthetic_005157
+  Case seed              : 6635450
+  External subject       : BraTS20_Validation_063
+  External slice         : 128
+  Donor mask pixels      : 1895
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005157
+  Verdict                : PASS
+
+[158/250] synthetic_005158
+  Case seed              : 1608749505
+  External subject       : BraTS20_Validation_063
+  External slice         : 129
+  Donor mask pixels      : 2160
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005158
+  Verdict                : PASS
+
+[159/250] synthetic_005159
+  Case seed              : 397508086
+  External subject       : BraTS20_Validation_063
+  External slice         : 130
+  Donor mask pixels      : 1169
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005159
+  Verdict                : PASS
+
+[160/250] synthetic_005160
+  Case seed              : 1008302954
+  External subject       : BraTS20_Validation_063
+  External slice         : 131
+  Donor mask pixels      : 353
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005160
+  Verdict                : PASS
+
+[161/250] synthetic_005161
+  Case seed              : 1994951449
+  External subject       : BraTS20_Validation_063
+  External slice         : 132
+  Donor mask pixels      : 393
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005161
+  Verdict                : PASS
+
+[162/250] synthetic_005162
+  Case seed              : 69545420
+  External subject       : BraTS20_Validation_063
+  External slice         : 133
+  Donor mask pixels      : 715
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005162
+  Verdict                : PASS
+
+[163/250] synthetic_005163
+  Case seed              : 1925307835
+  External subject       : BraTS20_Validation_063
+  External slice         : 134
+  Donor mask pixels      : 351
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005163
+  Verdict                : PASS
+
+[164/250] synthetic_005164
+  Case seed              : 441559715
+  External subject       : BraTS20_Validation_063
+  External slice         : 135
+  Donor mask pixels      : 481
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005164
+  Verdict                : PASS
+
+[165/250] synthetic_005165
+  Case seed              : 936526805
+  External subject       : BraTS20_Validation_064
+  External slice         : 13
+  Donor mask pixels      : 457
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005165
+  Verdict                : PASS
+
+[166/250] synthetic_005166
+  Case seed              : 1702495168
+  External subject       : BraTS20_Validation_064
+  External slice         : 14
+  Donor mask pixels      : 876
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005166
+  Verdict                : PASS
+
+[167/250] synthetic_005167
+  Case seed              : 1649181710
+  External subject       : BraTS20_Validation_064
+  External slice         : 15
+  Donor mask pixels      : 813
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005167
+  Verdict                : PASS
+
+[168/250] synthetic_005168
+  Case seed              : 89542282
+  External subject       : BraTS20_Validation_064
+  External slice         : 16
+  Donor mask pixels      : 944
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005168
+  Verdict                : PASS
+
+[169/250] synthetic_005169
+  Case seed              : 1886950556
+  External subject       : BraTS20_Validation_064
+  External slice         : 17
+  Donor mask pixels      : 1594
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005169
+  Verdict                : PASS
+
+[170/250] synthetic_005170
+  Case seed              : 510527697
+  External subject       : BraTS20_Validation_064
+  External slice         : 18
+  Donor mask pixels      : 1412
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005170
+  Verdict                : PASS
+
+[171/250] synthetic_005171
+  Case seed              : 1291240167
+  External subject       : BraTS20_Validation_064
+  External slice         : 19
+  Donor mask pixels      : 993
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005171
+  Verdict                : PASS
+
+[172/250] synthetic_005172
+  Case seed              : 1303668290
+  External subject       : BraTS20_Validation_064
+  External slice         : 20
+  Donor mask pixels      : 1082
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005172
+  Verdict                : PASS
+
+[173/250] synthetic_005173
+  Case seed              : 1510549463
+  External subject       : BraTS20_Validation_064
+  External slice         : 21
+  Donor mask pixels      : 688
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005173
+  Verdict                : PASS
+
+[174/250] synthetic_005174
+  Case seed              : 195272363
+  External subject       : BraTS20_Validation_064
+  External slice         : 22
+  Donor mask pixels      : 1765
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005174
+  Verdict                : PASS
+
+[175/250] synthetic_005175
+  Case seed              : 1099989952
+  External subject       : BraTS20_Validation_064
+  External slice         : 23
+  Donor mask pixels      : 1429
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005175
+  Verdict                : PASS
+
+[176/250] synthetic_005176
+  Case seed              : 451715737
+  External subject       : BraTS20_Validation_064
+  External slice         : 24
+  Donor mask pixels      : 1390
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005176
+  Verdict                : PASS
+
+[177/250] synthetic_005177
+  Case seed              : 2004935248
+  External subject       : BraTS20_Validation_064
+  External slice         : 25
+  Donor mask pixels      : 474
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005177
+  Verdict                : PASS
+
+[178/250] synthetic_005178
+  Case seed              : 1791004136
+  External subject       : BraTS20_Validation_064
+  External slice         : 26
+  Donor mask pixels      : 1609
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005178
+  Verdict                : PASS
+
+[179/250] synthetic_005179
+  Case seed              : 1007606057
+  External subject       : BraTS20_Validation_064
+  External slice         : 27
+  Donor mask pixels      : 527
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005179
+  Verdict                : PASS
+
+[180/250] synthetic_005180
+  Case seed              : 1725661653
+  External subject       : BraTS20_Validation_064
+  External slice         : 28
+  Donor mask pixels      : 678
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005180
+  Verdict                : PASS
+
+[181/250] synthetic_005181
+  Case seed              : 2123304231
+  External subject       : BraTS20_Validation_064
+  External slice         : 29
+  Donor mask pixels      : 475
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005181
+  Verdict                : PASS
+
+[182/250] synthetic_005182
+  Case seed              : 696896457
+  External subject       : BraTS20_Validation_064
+  External slice         : 30
+  Donor mask pixels      : 1621
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005182
+  Verdict                : PASS
+
+[183/250] synthetic_005183
+  Case seed              : 2093258311
+  External subject       : BraTS20_Validation_064
+  External slice         : 31
+  Donor mask pixels      : 340
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005183
+  Verdict                : PASS
+
+[184/250] synthetic_005184
+  Case seed              : 642115365
+  External subject       : BraTS20_Validation_064
+  External slice         : 32
+  Donor mask pixels      : 327
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005184
+  Verdict                : PASS
+
+[185/250] synthetic_005185
+  Case seed              : 584077099
+  External subject       : BraTS20_Validation_064
+  External slice         : 33
+  Donor mask pixels      : 329
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005185
+  Verdict                : PASS
+
+[186/250] synthetic_005186
+  Case seed              : 765049224
+  External subject       : BraTS20_Validation_064
+  External slice         : 34
+  Donor mask pixels      : 952
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005186
+  Verdict                : PASS
+
+[187/250] synthetic_005187
+  Case seed              : 567199469
+  External subject       : BraTS20_Validation_064
+  External slice         : 35
+  Donor mask pixels      : 463
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005187
+  Verdict                : PASS
+
+[188/250] synthetic_005188
+  Case seed              : 2030868855
+  External subject       : BraTS20_Validation_064
+  External slice         : 36
+  Donor mask pixels      : 440
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005188
+  Verdict                : PASS
+
+[189/250] synthetic_005189
+  Case seed              : 852454053
+  External subject       : BraTS20_Validation_064
+  External slice         : 37
+  Donor mask pixels      : 1336
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005189
+  Verdict                : PASS
+
+[190/250] synthetic_005190
+  Case seed              : 528795563
+  External subject       : BraTS20_Validation_064
+  External slice         : 38
+  Donor mask pixels      : 3079
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005190
+  Verdict                : PASS
+
+[191/250] synthetic_005191
+  Case seed              : 926728316
+  External subject       : BraTS20_Validation_064
+  External slice         : 39
+  Donor mask pixels      : 2357
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005191
+  Verdict                : PASS
+
+[192/250] synthetic_005192
+  Case seed              : 1252273342
+  External subject       : BraTS20_Validation_064
+  External slice         : 41
+  Donor mask pixels      : 2213
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005192
+  Verdict                : PASS
+
+[193/250] synthetic_005193
+  Case seed              : 1838095087
+  External subject       : BraTS20_Validation_064
+  External slice         : 42
+  Donor mask pixels      : 495
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005193
+  Verdict                : PASS
+
+[194/250] synthetic_005194
+  Case seed              : 1479604205
+  External subject       : BraTS20_Validation_064
+  External slice         : 43
+  Donor mask pixels      : 991
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005194
+  Verdict                : PASS
+
+[195/250] synthetic_005195
+  Case seed              : 781688992
+  External subject       : BraTS20_Validation_064
+  External slice         : 44
+  Donor mask pixels      : 2738
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005195
+  Verdict                : PASS
+
+[196/250] synthetic_005196
+  Case seed              : 1622301466
+  External subject       : BraTS20_Validation_064
+  External slice         : 45
+  Donor mask pixels      : 956
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005196
+  Verdict                : PASS
+
+[197/250] synthetic_005197
+  Case seed              : 2058874996
+  External subject       : BraTS20_Validation_064
+  External slice         : 46
+  Donor mask pixels      : 339
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005197
+  Verdict                : PASS
+
+[198/250] synthetic_005198
+  Case seed              : 132453754
+  External subject       : BraTS20_Validation_064
+  External slice         : 47
+  Donor mask pixels      : 2858
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005198
+  Verdict                : PASS
+
+[199/250] synthetic_005199
+  Case seed              : 1290481380
+  External subject       : BraTS20_Validation_064
+  External slice         : 49
+  Donor mask pixels      : 5037
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005199
+  Verdict                : PASS
+
+[200/250] synthetic_005200
+  Case seed              : 2114878176
+  External subject       : BraTS20_Validation_064
+  External slice         : 50
+  Donor mask pixels      : 300
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005200
+  Verdict                : PASS
+
+[201/250] synthetic_005201
+  Case seed              : 1145783824
+  External subject       : BraTS20_Validation_064
+  External slice         : 51
+  Donor mask pixels      : 3528
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005201
+  Verdict                : PASS
+
+[202/250] synthetic_005202
+  Case seed              : 780947152
+  External subject       : BraTS20_Validation_064
+  External slice         : 52
+  Donor mask pixels      : 2640
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005202
+  Verdict                : PASS
+
+[203/250] synthetic_005203
+  Case seed              : 544826642
+  External subject       : BraTS20_Validation_064
+  External slice         : 53
+  Donor mask pixels      : 2852
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005203
+  Verdict                : PASS
+
+[204/250] synthetic_005204
+  Case seed              : 1519538617
+  External subject       : BraTS20_Validation_064
+  External slice         : 54
+  Donor mask pixels      : 444
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005204
+  Verdict                : PASS
+
+[205/250] synthetic_005205
+  Case seed              : 291800542
+  External subject       : BraTS20_Validation_064
+  External slice         : 55
+  Donor mask pixels      : 1065
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005205
+  Verdict                : PASS
+
+[206/250] synthetic_005206
+  Case seed              : 841247455
+  External subject       : BraTS20_Validation_064
+  External slice         : 56
+  Donor mask pixels      : 969
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005206
+  Verdict                : PASS
+
+[207/250] synthetic_005207
+  Case seed              : 1684049428
+  External subject       : BraTS20_Validation_064
+  External slice         : 57
+  Donor mask pixels      : 2178
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005207
+  Verdict                : PASS
+
+[208/250] synthetic_005208
+  Case seed              : 1367015722
+  External subject       : BraTS20_Validation_064
+  External slice         : 58
+  Donor mask pixels      : 1979
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005208
+  Verdict                : PASS
+
+[209/250] synthetic_005209
+  Case seed              : 1543783938
+  External subject       : BraTS20_Validation_064
+  External slice         : 59
+  Donor mask pixels      : 351
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005209
+  Verdict                : PASS
+
+[210/250] synthetic_005210
+  Case seed              : 990692756
+  External subject       : BraTS20_Validation_064
+  External slice         : 59
+  Donor mask pixels      : 1353
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005210
+  Verdict                : PASS
+
+[211/250] synthetic_005211
+  Case seed              : 660623866
+  External subject       : BraTS20_Validation_064
+  External slice         : 60
+  Donor mask pixels      : 3599
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005211
+  Verdict                : PASS
+
+[212/250] synthetic_005212
+  Case seed              : 126666119
+  External subject       : BraTS20_Validation_064
+  External slice         : 60
+  Donor mask pixels      : 1958
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005212
+  Verdict                : PASS
+
+[213/250] synthetic_005213
+  Case seed              : 542671027
+  External subject       : BraTS20_Validation_064
+  External slice         : 61
+  Donor mask pixels      : 2034
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005213
+  Verdict                : PASS
+
+[214/250] synthetic_005214
+  Case seed              : 1526580041
+  External subject       : BraTS20_Validation_064
+  External slice         : 61
+  Donor mask pixels      : 2739
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005214
+  Verdict                : PASS
+
+[215/250] synthetic_005215
+  Case seed              : 751161268
+  External subject       : BraTS20_Validation_064
+  External slice         : 62
+  Donor mask pixels      : 4785
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005215
+  Verdict                : PASS
+
+[216/250] synthetic_005216
+  Case seed              : 1761021589
+  External subject       : BraTS20_Validation_064
+  External slice         : 62
+  Donor mask pixels      : 2575
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005216
+  Verdict                : PASS
+
+[217/250] synthetic_005217
+  Case seed              : 1467020975
+  External subject       : BraTS20_Validation_064
+  External slice         : 63
+  Donor mask pixels      : 540
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005217
+  Verdict                : PASS
+
+[218/250] synthetic_005218
+  Case seed              : 113879799
+  External subject       : BraTS20_Validation_064
+  External slice         : 63
+  Donor mask pixels      : 438
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005218
+  Verdict                : PASS
+
+[219/250] synthetic_005219
+  Case seed              : 1226366293
+  External subject       : BraTS20_Validation_064
+  External slice         : 64
+  Donor mask pixels      : 3285
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005219
+  Verdict                : PASS
+
+[220/250] synthetic_005220
+  Case seed              : 684009809
+  External subject       : BraTS20_Validation_064
+  External slice         : 64
+  Donor mask pixels      : 935
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005220
+  Verdict                : PASS
+
+[221/250] synthetic_005221
+  Case seed              : 91785301
+  External subject       : BraTS20_Validation_064
+  External slice         : 65
+  Donor mask pixels      : 1520
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005221
+  Verdict                : PASS
+
+[222/250] synthetic_005222
+  Case seed              : 1297055643
+  External subject       : BraTS20_Validation_064
+  External slice         : 65
+  Donor mask pixels      : 763
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005222
+  Verdict                : PASS
+
+[223/250] synthetic_005223
+  Case seed              : 793011556
+  External subject       : BraTS20_Validation_064
+  External slice         : 66
+  Donor mask pixels      : 1168
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005223
+  Verdict                : PASS
+
+[224/250] synthetic_005224
+  Case seed              : 1619918560
+  External subject       : BraTS20_Validation_064
+  External slice         : 66
+  Donor mask pixels      : 1817
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005224
+  Verdict                : PASS
+
+[225/250] synthetic_005225
+  Case seed              : 1650617617
+  External subject       : BraTS20_Validation_064
+  External slice         : 67
+  Donor mask pixels      : 2544
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005225
+  Verdict                : PASS
+
+[226/250] synthetic_005226
+  Case seed              : 1122855906
+  External subject       : BraTS20_Validation_064
+  External slice         : 67
+  Donor mask pixels      : 2525
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005226
+  Verdict                : PASS
+
+[227/250] synthetic_005227
+  Case seed              : 1158235277
+  External subject       : BraTS20_Validation_064
+  External slice         : 68
+  Donor mask pixels      : 843
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005227
+  Verdict                : PASS
+
+[228/250] synthetic_005228
+  Case seed              : 2144813240
+  External subject       : BraTS20_Validation_064
+  External slice         : 68
+  Donor mask pixels      : 589
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005228
+  Verdict                : PASS
+
+[229/250] synthetic_005229
+  Case seed              : 577562187
+  External subject       : BraTS20_Validation_064
+  External slice         : 69
+  Donor mask pixels      : 1561
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005229
+  Verdict                : PASS
+
+[230/250] synthetic_005230
+  Case seed              : 1957263180
+  External subject       : BraTS20_Validation_064
+  External slice         : 69
+  Donor mask pixels      : 902
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005230
+  Verdict                : PASS
+
+[231/250] synthetic_005231
+  Case seed              : 2054988583
+  External subject       : BraTS20_Validation_064
+  External slice         : 70
+  Donor mask pixels      : 1114
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005231
+  Verdict                : PASS
+
+[232/250] synthetic_005232
+  Case seed              : 1709403050
+  External subject       : BraTS20_Validation_064
+  External slice         : 70
+  Donor mask pixels      : 3694
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005232
+  Verdict                : PASS
+
+[233/250] synthetic_005233
+  Case seed              : 1134045761
+  External subject       : BraTS20_Validation_064
+  External slice         : 71
+  Donor mask pixels      : 525
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005233
+  Verdict                : PASS
+
+[234/250] synthetic_005234
+  Case seed              : 420676195
+  External subject       : BraTS20_Validation_064
+  External slice         : 71
+  Donor mask pixels      : 2541
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005234
+  Verdict                : PASS
+
+[235/250] synthetic_005235
+  Case seed              : 475180404
+  External subject       : BraTS20_Validation_064
+  External slice         : 72
+  Donor mask pixels      : 2739
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005235
+  Verdict                : PASS
+
+[236/250] synthetic_005236
+  Case seed              : 720711156
+  External subject       : BraTS20_Validation_064
+  External slice         : 72
+  Donor mask pixels      : 744
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005236
+  Verdict                : PASS
+
+[237/250] synthetic_005237
+  Case seed              : 175232241
+  External subject       : BraTS20_Validation_064
+  External slice         : 73
+  Donor mask pixels      : 871
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005237
+  Verdict                : PASS
+
+[238/250] synthetic_005238
+  Case seed              : 725914757
+  External subject       : BraTS20_Validation_064
+  External slice         : 73
+  Donor mask pixels      : 1686
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005238
+  Verdict                : PASS
+
+[239/250] synthetic_005239
+  Case seed              : 110645259
+  External subject       : BraTS20_Validation_064
+  External slice         : 133
+  Donor mask pixels      : 1151
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005239
+  Verdict                : PASS
+
+[240/250] synthetic_005240
+  Case seed              : 1485728898
+  External subject       : BraTS20_Validation_064
+  External slice         : 134
+  Donor mask pixels      : 1597
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005240
+  Verdict                : PASS
+
+[241/250] synthetic_005241
+  Case seed              : 112781592
+  External subject       : BraTS20_Validation_064
+  External slice         : 135
+  Donor mask pixels      : 1462
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005241
+  Verdict                : PASS
+
+[242/250] synthetic_005242
+  Case seed              : 1249031936
+  External subject       : BraTS20_Validation_064
+  External slice         : 136
+  Donor mask pixels      : 447
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005242
+  Verdict                : PASS
+
+[243/250] synthetic_005243
+  Case seed              : 1162141714
+  External subject       : BraTS20_Validation_065
+  External slice         : 2
+  Donor mask pixels      : 525
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005243
+  Verdict                : PASS
+
+[244/250] synthetic_005244
+  Case seed              : 692533644
+  External subject       : BraTS20_Validation_065
+  External slice         : 3
+  Donor mask pixels      : 534
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005244
+  Verdict                : PASS
+
+[245/250] synthetic_005245
+  Case seed              : 2059257483
+  External subject       : BraTS20_Validation_065
+  External slice         : 4
+  Donor mask pixels      : 698
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005245
+  Verdict                : PASS
+
+[246/250] synthetic_005246
+  Case seed              : 1903093522
+  External subject       : BraTS20_Validation_065
+  External slice         : 5
+  Donor mask pixels      : 808
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005246
+  Verdict                : PASS
+
+[247/250] synthetic_005247
+  Case seed              : 1713370014
+  External subject       : BraTS20_Validation_065
+  External slice         : 6
+  Donor mask pixels      : 580
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005247
+  Verdict                : PASS
+
+[248/250] synthetic_005248
+  Case seed              : 624912465
+  External subject       : BraTS20_Validation_065
+  External slice         : 7
+  Donor mask pixels      : 657
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005248
+  Verdict                : PASS
+
+[249/250] synthetic_005249
+  Case seed              : 1047574521
+  External subject       : BraTS20_Validation_065
+  External slice         : 8
+  Donor mask pixels      : 310
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005249
+  Verdict                : PASS
+
+[250/250] synthetic_005250
+  Case seed              : 1515380269
+  External subject       : BraTS20_Validation_065
+  External slice         : 9
+  Donor mask pixels      : 1811
+  Posterior stack        : (100, 1, 1, 240, 240)
+  Case output            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/synthetic_005250
+  Verdict                : PASS
+
+==============================================================================
+BR-LoRA EXTERNAL EVALUATION: PASS
+Completed cases          : 250
+Posterior realizations   : 100 per case
+Evaluation summary       : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/evaluation_summary.json
+==============================================================================
+
+==============================================================================
+BR-LoRA LIBRARY BATCH PRODUCTION
+==============================================================================
+
+Batch                    : batch_0021
+Frozen design manifest   : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/downstream_evaluation/manifests/br_lora_library_design_10000/batches/batch_0021_manifest.csv
+Execution manifest       : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/downstream_evaluation/manifests/br_lora_library_design_10000/batches/batch_0021_external_evaluation_manifest.csv
+Checkpoint               : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/checkpoints/br_lora_full_train/final.pt
+Posterior samples        : 100
+Evaluation seed          : 42
+Device                   : mps
+Output                   : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021
+Prepare only             : False
+Resume                   : False
+
+===== EXECUTION MANIFEST: PASS =====
+Cases                    : 250
+Case IDs                 : synthetic_005001 to synthetic_005250
+External subjects        : 5
+Unique base slices       : 223
+Unique donor slices      : 250
+Manifest SHA-256         : ab0229bf6401a3622c6b38f35cf57110efcfd86b6252f1e387364eb997b7c7a8
+
+==============================================================================
+LAUNCHING VALIDATED BR-LoRA INFERENCE ENGINE
+==============================================================================
+
+/opt/anaconda3/envs/brats-nnunet/bin/python /Users/bhanugarg/Desktop/localized-medical-image-synthesis/scripts/evaluate_br_lora_external.py --checkpoint /Users/bhanugarg/Desktop/localized-medical-image-synthesis/checkpoints/br_lora_full_train/final.pt --validation-dataset /Users/bhanugarg/archive/BraTS2020_ValidationData/MICCAI_BraTS2020_ValidationData/validation_dataset.yaml --evaluation-manifest /Users/bhanugarg/Desktop/localized-medical-image-synthesis/downstream_evaluation/manifests/br_lora_library_design_10000/batches/batch_0021_external_evaluation_manifest.csv --posterior-samples 100 --seed 42 --output-dir /Users/bhanugarg/archive/br_lora_library_staging/batch_0021 --device mps
+
+
+==============================================================================
+LOCAL PRODUCTION AUDIT: PASS
+==============================================================================
+Cases audited            : 250
+Problems                 : 0
+Files checksummed        : 1501
+Production audit         : /Users/bhanugarg/archive/br_lora_library_staging/br_lora_batch_0021_production_audit.json
+Mac checksum inventory   : /Users/bhanugarg/archive/br_lora_library_staging/br_lora_batch_0021_mac_sha256.txt
+
+==============================================================================
+READY FOR FALCON TRANSFER
+==============================================================================
+
+No Falcon state was modified.
+No local production data was deleted.
+ssh: connect to host falcon1.arc.vt.edu port 22: Undefined error: 0
+rsync(33645): error: unexpected end of file
+rsync(33645): error: io_read_nonblocking
+rsync(33645): error: io_read_buf
+rsync(33645): error: io_read_int
+rsync(33645): warning: child 33646 exited with status 255
+==============================================================================
+BR-LoRA FROZEN LIBRARY PIPELINE: FAILED
+==============================================================================
+Command '['rsync', '-avh', '--partial', '--progress', '/Users/bhanugarg/archive/br_lora_library_staging/batch_0021/', 'falcon:/scratch/bhanug/br_lora_library/batches/batch_0021/']' returned non-zero exit status 255.
+No cleanup was performed after failure.
+
+==============================================================================
+BR-LoRA FROZEN LIBRARY PIPELINE
+==============================================================================
+
+Batch                    : batch_0021
+Frozen design            : /Users/bhanugarg/Desktop/localized-medical-image-synthesis/downstream_evaluation/manifests/br_lora_library_design_10000/batches/batch_0021_manifest.csv
+Local staging            : /Users/bhanugarg/archive/br_lora_library_staging/batch_0021
+Falcon library           : /scratch/bhanug/br_lora_library
+Falcon acceptance        : True
+Cleanup                  : True
+
+==============================================================================
+STAGE 1 — LOCAL GENERATION + PRODUCTION AUDIT
+==============================================================================
+
+/opt/anaconda3/envs/brats-nnunet/bin/python /Users/bhanugarg/Desktop/localized-medical-image-synthesis/scripts/run_br_lora_library_batch.py --batch batch_0021
+
+
+==============================================================================
+STAGE 2 — TRANSFER BATCH TO FALCON
+==============================================================================
+
+rsync -avh --partial --progress /Users/bhanugarg/archive/br_lora_library_staging/batch_0021/ falcon:/scratch/bhanug/br_lora_library/batches/batch_0021/
+
+==============================================================================
+POST-RUN NOTE
+==============================================================================
+
+2026-08-15
+
+Pipeline completed local generation and production audit successfully.
+
+A temporary local Wi-Fi outage interrupted the initial rsync transfer to
+Falcon (SSH/rsync exit status 255). No production data were lost or modified.
+The local staging directory, production audit, and SHA-256 inventory were
+retained exactly as designed.
+
+Batch 0021 was subsequently resumed from the transfer stage and promoted only
+after successful Falcon checksum verification and acceptance.
+
+
