@@ -57,7 +57,7 @@ from tkinter import filedialog
 import h5py
 import numpy as np
 import yaml
-
+import argparse
 
 SUPPORTED_SCHEMA_VERSION = 1
 SUPPORTED_DATASET_ID = "brats2020_training"
@@ -730,12 +730,12 @@ def write_manifest(
     dict
         Summary counts for reporting.
     """
-    if output_path.exists():
-        raise ValueError(
-            "The selected manifest file already exists.\n\n"
-            f"{output_path}\n\n"
-            "No existing manifest will be overwritten implicitly."
-        )
+    # if output_path.exists():
+    #     raise ValueError(
+    #         "The selected manifest file already exists.\n\n"
+    #         f"{output_path}\n\n"
+    #         "No existing manifest will be overwritten implicitly."
+    #     )
 
     spatial_pixel_count = int(
         np.prod(
@@ -837,8 +837,16 @@ def write_manifest(
         "total_label2_pixels": total_label_counts[2],
     }
 
+def get_folders(args):
+    yaml_path = select_dataset_yaml() if args.yaml_path is None else Path(args.yaml_path)
+    h5_root = select_h5_directory() if args.h5_root is None else Path(args.h5_root)
+    output_path = select_manifest_output_path if args.output_path is None else Path(args.output_path)
+    if output_path.exists() and not args.overwrite:
+        print(f"File {output_path} exists already. nothing to do. Exiting")
+        exit(1)
+    return yaml_path, h5_root, output_path
 
-def main() -> None:
+def main(args) -> None:
     """Run interactive H5 manifest creation."""
     print("=" * 72)
     print(
@@ -846,8 +854,10 @@ def main() -> None:
     )
     print("=" * 72)
 
+
+
     try:
-        yaml_path = select_dataset_yaml()
+        yaml_path, h5_root, output_path = get_folders(args)
 
         print(
             "\nSelected dataset specification:"
@@ -878,7 +888,6 @@ def main() -> None:
             f"{registered['expected_h5_count']:,}"
         )
 
-        h5_root = select_h5_directory()
 
         print(
             "\nSelected H5 dataset directory:"
@@ -899,8 +908,6 @@ def main() -> None:
         print(
             "\nChoose where to save manifest.csv."
         )
-
-        output_path = select_manifest_output_path()
 
         summary = write_manifest(
             output_path=output_path,
@@ -981,4 +988,10 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--yaml_path", type=str, default=None)
+    parser.add_argument("--h5_root", type=str, default=None)
+    parser.add_argument("--output_path", default=None)
+    parser.add_argument("--overwrite", action='store_true')
+    args = parser.parse_args()
+    main(args)

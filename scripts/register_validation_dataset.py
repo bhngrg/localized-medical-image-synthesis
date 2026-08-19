@@ -33,6 +33,7 @@ from tkinter import filedialog
 import nibabel as nib
 import numpy as np
 import yaml
+import argparse
 
 
 DATASET_ID = "brats2020_validation"
@@ -658,7 +659,29 @@ def write_dataset_yaml(
         ) from exc
 
 
-def main() -> None:
+def get_folders(args):
+    if args.data_root is None:
+        print(
+            "\nSelected raw dataset directory:"
+        )
+        data_root = select_dataset_directory()
+    else:
+        data_root = Path(args.data_root)       
+    print(f"Data folder: {data_root}")
+    if args.output_path is None:
+        print(
+            "\nChoose where to save dataset.yaml."
+        )
+        output_path = select_yaml_output_path()
+    else:
+        output_path = Path(args.output_path)
+    if output_path.exists() and not args.overwrite:
+        print(f"File {output_path} exists already. nothing to do. Exiting")
+        exit(1)
+    return data_root, output_path
+
+
+def main(args) -> None:
     """Run interactive BraTS validation-dataset registration."""
     print("=" * 72)
     print(
@@ -667,10 +690,7 @@ def main() -> None:
     print("=" * 72)
 
     try:
-        data_root = (
-            select_dataset_directory()
-        )
-
+        data_root, output_path = get_folders(args)
         print(
             "\nSelected raw validation dataset directory:"
         )
@@ -720,13 +740,6 @@ def main() -> None:
             "Segmentation      : unavailable in this release"
         )
 
-        print(
-            "\nChoose where to save validation_dataset.yaml."
-        )
-
-        output_path = (
-            select_yaml_output_path()
-        )
 
         specification = (
             build_dataset_specification(
@@ -784,4 +797,9 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--data_root", type = str, default = None)
+    parser.add_argument("-o", "--output_path", type = str, default = None)
+    parser.add_argument("--overwrite", action='store_true')
+    args = parser.parse_args()
+    main(args)

@@ -62,7 +62,7 @@ import h5py
 import nibabel as nib
 import numpy as np
 import yaml
-
+import argparse
 
 SUPPORTED_SCHEMA_VERSION = 1
 SUPPORTED_DATASET_ID = "brats2020_training"
@@ -510,14 +510,14 @@ def validate_output_directory(
         output_dir.glob("*.h5")
     )
 
-    if existing_h5_files:
-        raise ValueError(
-            "The selected output directory already contains H5 files.\n\n"
-            f"Directory:\n{output_dir}\n\n"
-            f"Existing H5 files found: {len(existing_h5_files):,}\n\n"
-            "No existing H5 files will be overwritten or merged "
-            "implicitly. Select an empty output directory."
-        )
+    # if existing_h5_files:
+    #     raise ValueError(
+    #         "The selected output directory already contains H5 files.\n\n"
+    #         f"Directory:\n{output_dir}\n\n"
+    #         f"Existing H5 files found: {len(existing_h5_files):,}\n\n"
+    #         "No existing H5 files will be overwritten or merged "
+    #         "implicitly. Select an empty output directory."
+    #     )
 
 
 def subject_name_from_spec(
@@ -779,11 +779,11 @@ def write_h5_slice(
 
     Existing files are never overwritten.
     """
-    if output_path.exists():
-        raise ValueError(
-            "Refusing to overwrite an existing H5 file.\n\n"
-            f"{output_path}"
-        )
+    # if output_path.exists():
+    #     raise ValueError(
+    #         "Refusing to overwrite an existing H5 file.\n\n"
+    #         f"{output_path}"
+        # )
 
     try:
         with h5py.File(
@@ -1012,8 +1012,16 @@ def build_h5_dataset(
 
     return total_written
 
+def get_folders(args):
+    yaml_path = select_dataset_yaml() if args.yaml_path is None else Path(args.yaml_path)
+    output_path = select_output_directory() if args.output_path is None else Path(args.output_path)
+    if output_path.exists() and not args.overwrite:
+        print(f"File {output_path} exists already. nothing to do. Exiting")
+        exit(1)
+    return yaml_path, output_path
 
-def main() -> None:
+
+def main(args) -> None:
     """Run interactive historical H5 dataset construction."""
     print("=" * 72)
     print(
@@ -1022,7 +1030,8 @@ def main() -> None:
     print("=" * 72)
 
     try:
-        yaml_path = select_dataset_yaml()
+        # yaml_path = select_dataset_yaml()
+        yaml_path, output_dir = get_folders(args)
 
         print(
             "\nSelected dataset specification:"
@@ -1055,11 +1064,6 @@ def main() -> None:
             f"{registered['volume_shape']}"
         )
 
-        print(
-            "\nChoose an existing empty directory for the H5 files."
-        )
-
-        output_dir = select_output_directory()
 
         validate_output_directory(
             output_dir
@@ -1111,4 +1115,9 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--yaml_path", type=str, default=None)
+    parser.add_argument("-o", "--output_path", type = str, default = None)
+    parser.add_argument("--overwrite", action='store_true')
+    args = parser.parse_args()
+    main(args)
