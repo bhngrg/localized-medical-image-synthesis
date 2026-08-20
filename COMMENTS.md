@@ -6,21 +6,21 @@ In all cases one can also provide --overwrite flag to ovewrite the existing resu
 
 python scripts/register_dataset.py \
     --data_root /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData \
-    --output_path /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/dataset.yaml    
+    --yaml_dataset_path /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/dataset.yaml
 
 python scripts/register_validation_dataset.py \
-     --data_root /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/BraTS2020_ValidationData/MICCAI_BraTS2020_ValidationData/ \
-     --output_path /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/BraTS2020_ValidationData/MICCAI_BraTS2020_ValidationData/validation_dataset.yaml
-
+     --validation_data_root /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/BraTS2020_ValidationData/MICCAI_BraTS2020_ValidationData/ \
+     --yaml_validation_dataset_path  /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/BraTS2020_ValidationData/MICCAI_BraTS2020_ValidationData/validation_dataset.yaml
+     
 
  python scripts/build_h5_dataset.py \
-    --yaml_path /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/dataset.yaml \
-    --output_path /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/H5_files
+    --yaml_dataset_path /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/dataset.yaml \
+    --h5_files_path /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/H5_files
 
 python scripts/create_dataset_manifest.py \
-    --yaml_path /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/dataset.yaml \
-    --h5_root /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/H5_files/ \
-    --output_path /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/manifest.csv
+    --yaml_dataset_path /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/dataset.yaml \
+    --h5_files_path /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/H5_files/ \
+    --manifest_path /Volumes/Seagate_Backup_Disk/BIG_DATA/BraTS2020/manifest.csv
 
 
 2) What should I do after registering the dataset?

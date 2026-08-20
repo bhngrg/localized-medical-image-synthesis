@@ -63,6 +63,7 @@ import nibabel as nib
 import numpy as np
 import yaml
 import argparse
+from register_dataset import get_path, get_folders_config
 
 SUPPORTED_SCHEMA_VERSION = 1
 SUPPORTED_DATASET_ID = "brats2020_training"
@@ -1012,9 +1013,16 @@ def build_h5_dataset(
 
     return total_written
 
+
+
+
 def get_folders(args):
-    yaml_path = select_dataset_yaml() if args.yaml_path is None else Path(args.yaml_path)
-    output_path = select_output_directory() if args.output_path is None else Path(args.output_path)
+    conf = get_folders_config(args)
+    yaml_path, conf = get_path("yaml_dataset_path", args, conf, select_dataset_yaml)
+    output_path, conf = get_path("h5_files_path", args, conf, select_output_directory)
+    if args.folders_file is not None:
+        with open(args.folders_file, "w") as file:
+            yaml.safe_dump(conf, file)
     if output_path.exists() and not args.overwrite:
         print(f"File {output_path} exists already. nothing to do. Exiting")
         exit(1)
@@ -1116,8 +1124,9 @@ def main(args) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--yaml_path", type=str, default=None)
-    parser.add_argument("-o", "--output_path", type = str, default = None)
+    parser.add_argument("--yaml_dataset_path", type=str, default=None)
+    parser.add_argument("--h5_files_path", type = str, default = None)
+    parser.add_argument("--folders_file", type=str, default="./data/folders.yaml")
     parser.add_argument("--overwrite", action='store_true')
     args = parser.parse_args()
     main(args)

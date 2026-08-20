@@ -770,22 +770,41 @@ def write_dataset_yaml(
         ) from exc
 
 
+# returns path, updated args, updated conf
+#   
+def get_path(path_name, args, conf, selector_function):
+    out_val = None
+    args_val = vars(args).get(path_name, None)
+    conf_val = conf.get(path_name, None)
+    if args_val is not None:
+        out_val = Path(args_val)
+        conf[path_name] = args_val
+    elif conf_val is not None:
+        out_val = Path(conf_val)
+    else:
+        out_val = selector_function()
+        conf[path_name] = str(out_val)
+    return out_val, conf
+
+def get_folders_config(args):
+    if args.folders_file is not None:
+        if Path(args.folders_file).exists():
+            with open(args.folders_file, "r") as file:
+                conf = yaml.safe_load(file)
+        else:
+            conf = dict()
+    else:
+        conf = dict()
+    print(f"conf={conf}")
+    return conf    
+
 def get_folders(args):
-    if args.data_root is None:
-        print(
-            "\nSelected raw dataset directory:"
-        )
-        data_root = select_dataset_directory()
-    else:
-        data_root = Path(args.data_root)       
-    print(f"Data folder: {data_root}")
-    if args.output_path is None:
-        print(
-            "\nChoose where to save dataset.yaml."
-        )
-        output_path = select_yaml_output_path()
-    else:
-        output_path = Path(args.output_path)
+    conf = get_folders_config(args)
+    data_root, conf = get_path("data_root", args, conf, select_dataset_directory)
+    output_path, conf = get_path("yaml_dataset_path", args, conf, select_yaml_output_path)
+    if args.folders_file is not None:
+        with open(args.folders_file, "w") as file:
+            yaml.safe_dump(conf, file)
     if output_path.exists() and not args.overwrite:
         print(f"File {output_path} exists already. nothing to do. Exiting")
         exit(1)
@@ -904,8 +923,9 @@ def main(args) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--data_root", type = str, default = None)
-    parser.add_argument("-o", "--output_path", type = str, default = None)
+    parser.add_argument("--data_root", type = str, default = None)
+    parser.add_argument("--yaml_dataset_path", type = str, default = None)
+    parser.add_argument("--folders_file", type=str, default="./data/folders.yaml")
     parser.add_argument("--overwrite", action='store_true')
     args = parser.parse_args()
     main(args)

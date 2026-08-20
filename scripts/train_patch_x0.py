@@ -21,6 +21,7 @@ import argparse
 from pathlib import Path
 import random
 import sys
+from register_dataset import get_path, get_folders_config
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 

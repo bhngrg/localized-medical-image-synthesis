@@ -53,7 +53,7 @@ import re
 import sys
 import tkinter as tk
 from tkinter import filedialog
-
+from register_dataset import get_path, get_folders_config
 import h5py
 import numpy as np
 import yaml
@@ -838,9 +838,16 @@ def write_manifest(
     }
 
 def get_folders(args):
-    yaml_path = select_dataset_yaml() if args.yaml_path is None else Path(args.yaml_path)
-    h5_root = select_h5_directory() if args.h5_root is None else Path(args.h5_root)
-    output_path = select_manifest_output_path if args.output_path is None else Path(args.output_path)
+    conf = get_folders_config(args)
+    yaml_path, conf = get_path("yaml_dataset_path", args, conf, select_dataset_yaml)
+    # yaml_path = select_dataset_yaml() if args.yaml_path is None else Path(args.yaml_path)
+    # h5_root = select_h5_directory() if args.h5_root is None else Path(args.h5_root)
+    h5_root, conf = get_path("h5_files_path", args, conf, select_h5_directory)
+    # output_path, conf  = select_manifest_output_path if args.output_path is None else Path(args.output_path)
+    output_path, conf = get_path("manifest_path", args, conf, select_manifest_output_path)
+    if args.folders_file is not None:
+        with open(args.folders_file, "w") as file:
+            yaml.safe_dump(conf, file)
     if output_path.exists() and not args.overwrite:
         print(f"File {output_path} exists already. nothing to do. Exiting")
         exit(1)
@@ -989,9 +996,10 @@ def main(args) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--yaml_path", type=str, default=None)
-    parser.add_argument("--h5_root", type=str, default=None)
-    parser.add_argument("--output_path", default=None)
+    parser.add_argument("--yaml_dataset_path", type=str, default=None)
+    parser.add_argument("--h5_files_path", type=str, default=None)
+    parser.add_argument("--manifest_path", default=None)
+    parser.add_argument("--folders_file", type=str, default="./data/folders.yaml")
     parser.add_argument("--overwrite", action='store_true')
     args = parser.parse_args()
     main(args)
