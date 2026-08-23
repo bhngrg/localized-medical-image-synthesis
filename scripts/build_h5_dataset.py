@@ -1019,7 +1019,7 @@ def build_h5_dataset(
 def get_folders(args):
     conf = get_folders_config(args)
     yaml_path, conf = get_path("yaml_dataset_path", args, conf, select_dataset_yaml)
-    output_path, conf = get_path("h5_files_path", args, conf, select_output_directory)
+    output_path, conf = get_path("h5_root", args, conf, select_output_directory)
     if args.folders_file is not None:
         with open(args.folders_file, "w") as file:
             yaml.safe_dump(conf, file)
@@ -1125,7 +1125,7 @@ def main(args) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--yaml_dataset_path", type=str, default=None)
-    parser.add_argument("--h5_files_path", type = str, default = None)
+    parser.add_argument("--h5_root", type = str, default = None)
     parser.add_argument("--folders_file", type=str, default="./data/folders.yaml")
     parser.add_argument("--overwrite", action='store_true')
     args = parser.parse_args()

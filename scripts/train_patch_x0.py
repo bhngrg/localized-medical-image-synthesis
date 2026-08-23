@@ -65,17 +65,20 @@ def parse_args() -> argparse.Namespace:
             "configs/baseline_patch_x0.yaml"
         ),
     )
+    
+    parser.add_argument("--folders_file", type=str, default="./data/folders.yaml")
+
 
     parser.add_argument(
         "--h5-root",
         type=Path,
-        required=True,
+        default=None,
     )
 
     parser.add_argument(
-        "--manifest",
+        "--manifest_file",
         type=Path,
-        required=True,
+        required=False,
     )
 
     parser.add_argument(
@@ -158,9 +161,17 @@ def set_seed(seed: int) -> None:
     np.random.seed(seed)
     torch.manual_seed(seed)
 
+def not_found_error():
+    print("File or directory not found, exiting")
+    exit(2)
 
 def main() -> None:
-    args = parse_args()
+    args = parse_args()   
+    conf = get_folders_config(args)
+    args.h5_root, conf = get_path("h5_root", args, conf, not_found_error)
+    args.manifest_path, conf = get_path("manifest_path", args, conf, not_found_error)
+
+    
     config = load_config(args.config)
 
     seed = int(
@@ -198,7 +209,7 @@ def main() -> None:
 
     dataset = BraTSH5PatchX0Dataset(
         root=args.h5_root,
-        manifest_path=args.manifest,
+        manifest_path=args.manifest_path,
         image_channel=int(
             data_cfg.get(
                 "image_channel",
