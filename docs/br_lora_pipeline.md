@@ -97,9 +97,9 @@ The production workflow intentionally separates:
 
 - scientific design,
 - generation,
-- integrity checking,
-- transfer,
-- Falcon acceptance, and
-- cleanup.
+- production auditing,
+- checksum-based integrity verification,
+- library acceptance, and
+- permanent promotion.
 
-No local batch is deleted until its Falcon-side transfer and acceptance checks pass.
+Completed batches are first written to the configured staging root. Acceptance verifies the staged artifacts before copying them into the permanent library and updating the master manifest. The staging copy is preserved after acceptance unless the user removes it explicitly.

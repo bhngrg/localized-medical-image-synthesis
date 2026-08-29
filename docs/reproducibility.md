@@ -34,24 +34,24 @@ using SHA-256 rather than Python's process-dependent hash function. This ensures
 
 ## Checksums
 
-SHA-256 inventories are used for:
+SHA-256 hashes are used for:
 
 - frozen design artifacts;
-- local batch production files;
-- Falcon batch production files;
+- staged batch production files;
+- accepted library artifacts;
 - master-library manifests.
 
-A batch is accepted only after the Mac-side and Falcon-side inventories match exactly.
+Each completed batch has one canonical production checksum inventory. A batch is accepted only when the staged files match that inventory exactly, and the promoted library copy is verified against the same inventory.
 
 ## Production Audits
 
 The library workflow records:
 
-- local production audit;
-- Mac checksum inventory;
-- Falcon checksum inventory;
-- Falcon acceptance audit;
-- pre-promotion master-manifest snapshot.
+- production audit;
+- canonical production checksum inventory;
+- batch acceptance audit;
+- pre-promotion master-manifest snapshot;
+- accepted master-manifest checksum.
 
 These artifacts provide an audit trail from generation through acceptance.
 

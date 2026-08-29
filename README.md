@@ -369,42 +369,35 @@ Frozen batch manifest
 BR-LoRA posterior inference
         │
         ▼
-Local production audit
+Production audit
         │
         ▼
-Local SHA-256 inventory
+Canonical SHA-256 inventory
         │
         ▼
-Transfer to persistent compute storage
+Staging area
         │
         ▼
-Remote SHA-256 recomputation
+Batch integrity verification and acceptance
         │
         ▼
-Exact checksum comparison
-        │
-        ▼
-Batch acceptance
+Permanent synthetic library
         │
         ▼
 Master library manifest update
-        │
-        ▼
-Local staging cleanup
 ```
 
-Primary orchestration scripts are:
+Primary library-production scripts are:
 
 ```text
 scripts/run_br_lora_library_batch.py
-scripts/run_br_lora_library_pipeline.py
-scripts/run_br_lora_library_all_remaining.sh
+scripts/accept_br_lora_library_batch.py
 screening/brats_nnunet/scripts/design_br_lora_library_10000.py
 ```
 
-The orchestrator is fail-safe: later batches are not started if a preceding batch fails, and local production data are not deleted unless transfer verification and remote acceptance succeed.
+Batch production writes completed artifacts, a production audit, and a canonical SHA-256 inventory to the configured staging root. Acceptance independently verifies the staged batch, validates its design and metadata against the current library state, copies the accepted artifacts into the configured permanent library, and updates the master manifest.
 
-Machine-specific storage paths used for local production are implementation details of the current research environment and will be parameterized further as the repository is prepared for public release.
+Machine-specific storage locations are supplied through the shared folders configuration rather than encoded in the workflow.
 
 ---
 
@@ -458,11 +451,12 @@ scripts/analyze_br_lora_posterior_mcse.py
 Synthetic-library production
 ----------------------------
 scripts/run_br_lora_library_batch.py
-scripts/run_br_lora_library_pipeline.py
-scripts/run_br_lora_library_all_remaining.sh
+scripts/accept_br_lora_library_batch.py
 ```
 
 The historical preprocessing audit utility `scripts/verify_h5_conversion.py` is retained for equivalence and provenance checks.
+
+Infrastructure-specific scripts used for the original Mac-to-Falcon production run are retained under `scripts/historical/` as provenance records and are not part of the supported public workflow.
 
 ---
 

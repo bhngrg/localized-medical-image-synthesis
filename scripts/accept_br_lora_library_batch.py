@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 """
-Accept one transferred BR-LoRA production batch into the Falcon library.
-
-This is the Falcon-side counterpart to run_br_lora_library_batch.py.
+Accept one completed BR-LoRA production batch into the library.
 
 Acceptance requires:
 
 1. the canonical frozen batch manifest,
 2. the execution manifest,
-3. a successful Mac-side production audit,
-4. identical Mac and Falcon SHA-256 inventories,
-5. exactly 250 complete transferred case directories,
+3. a successful production audit,
+4. an exact match to the production SHA-256 inventory,
+5. exactly 250 complete case directories,
 6. consistency between generated metadata and the frozen design, and
 7. preservation of all existing master-library rows.
 
@@ -33,6 +31,12 @@ import pandas as pd
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+DEFAULT_DESIGN_BATCH_DIR = (
+    PROJECT_ROOT
+    / "downstream_evaluation/manifests/"
+      "br_lora_library_design_10000/batches"
+)
 
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(
@@ -63,14 +67,14 @@ EXPECTED_CASE_ARTIFACTS = (
 class BatchAcceptanceError(
     RuntimeError
 ):
-    """Raised when a transferred batch cannot be accepted."""
+    """Raised when a completed batch cannot be accepted."""
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Verify and promote one transferred BR-LoRA "
-            "batch into the Falcon master library."
+            "Verify and promote one completed BR-LoRA "
+            "batch into the master library."
         )
     )
 
@@ -81,11 +85,27 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument(
+        "--design-batch-dir",
+        type=Path,
+        default=DEFAULT_DESIGN_BATCH_DIR,
+    )
+
+    parser.add_argument(
+        "--staging-root",
+        type=Path,
+        default=None,
+        help=(
+            "BR-LoRA staging root. When supplied, the path "
+            "is saved in the folders configuration for reuse."
+        ),
+    )
+
+    parser.add_argument(
         "--library-root",
         type=Path,
         default=None,
         help=(
-            "Falcon BR-LoRA library root. When supplied, the path "
+            "BR-LoRA library root. When supplied, the path "
             "is saved in the folders configuration for reuse."
         ),
     )
@@ -100,11 +120,18 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def resolve_library_root(
+def resolve_acceptance_paths(
     args: argparse.Namespace,
-) -> Path:
+) -> tuple[Path, Path]:
     config = load_folders_config(
         args.folders_file
+    )
+
+    staging_root = resolve_path(
+        key="br_lora_staging_root",
+        cli_value=args.staging_root,
+        config=config,
+        selector=None,
     )
 
     library_root = resolve_path(
@@ -119,7 +146,10 @@ def resolve_library_root(
         config,
     )
 
-    return library_root
+    return (
+        staging_root,
+        library_root,
+    )
 
 
 def parse_batch_id(
@@ -252,6 +282,28 @@ def load_checksum_inventory(
             values[relative] = digest.lower()
 
     return values
+
+
+
+def compute_batch_checksums(
+    batch_root: Path,
+) -> dict[str, str]:
+    files = sorted(
+        path
+        for path in batch_root.rglob("*")
+        if path.is_file()
+    )
+
+    if not files:
+        raise BatchAcceptanceError(
+            "Cannot checksum an empty batch directory."
+        )
+
+    return {
+        f"./{path.relative_to(batch_root).as_posix()}":
+            sha256_file(path)
+        for path in files
+    }
 
 
 def verify_existing_master(
@@ -680,54 +732,62 @@ def atomic_write_csv(
 def main() -> None:
     args = parse_args()
 
-    library_root = resolve_library_root(
+    (
+        staging_root,
+        library_root,
+    ) = resolve_acceptance_paths(
         args
+    )
+
+    design_batch_dir = require_directory(
+        args.design_batch_dir,
+        name="Frozen design batch directory",
+    )
+
+    staging_root = (
+        staging_root
+        .expanduser()
+        .resolve()
+    )
+
+    library_root = (
+        library_root
+        .expanduser()
+        .resolve()
     )
 
     batch_id, batch_number = parse_batch_id(
         args.batch
     )
 
-    batch_root = require_directory(
-        library_root
-        / "batches"
+    source_batch_root = require_directory(
+        staging_root
         / batch_id,
-        name="Transferred batch directory",
+        name="Completed staging batch directory",
     )
 
     design_path = require_file(
-        library_root
-        / "manifests"
+        design_batch_dir
         / f"{batch_id}_manifest.csv",
         name="Frozen batch manifest",
     )
 
     execution_path = require_file(
-        library_root
-        / "manifests"
-        / f"{batch_id}_external_evaluation_manifest.csv",
+        staging_root
+        / f"br_lora_{batch_id}_external_evaluation_manifest.csv",
         name="Execution manifest",
     )
 
     production_audit_path = require_file(
-        library_root
-        / "audits"
+        staging_root
         / f"br_lora_{batch_id}_production_audit.json",
-        name="Mac production audit",
+        name="Production audit",
     )
 
-    mac_checksum_path = require_file(
-        library_root
-        / "audits"
-        / f"br_lora_{batch_id}_mac_sha256.txt",
-        name="Mac checksum inventory",
-    )
-
-    falcon_checksum_path = require_file(
-        library_root
-        / "audits"
-        / f"br_lora_{batch_id}_falcon_sha256.txt",
-        name="Falcon checksum inventory",
+    checksum_path = require_file(
+        staging_root
+        / f"br_lora_{batch_id}_sha256.txt",
+        name="Production checksum inventory",
     )
 
     master_path = require_file(
@@ -739,69 +799,44 @@ def main() -> None:
 
     print()
     print("=" * 78)
-    print("BR-LoRA FALCON BATCH ACCEPTANCE")
+    print("BR-LoRA BATCH ACCEPTANCE")
     print("=" * 78)
     print()
     print("Batch                    :", batch_id)
-    print("Batch directory          :", batch_root)
+    print("Staging batch            :", source_batch_root)
     print("Current master           :", master_path)
 
     # ------------------------------------------------------------
-    # Checksum acceptance.
+    # Batch-integrity acceptance.
     # ------------------------------------------------------------
 
-    mac_checksums = load_checksum_inventory(
-        mac_checksum_path
+    expected_checksums = load_checksum_inventory(
+        checksum_path
     )
 
-    falcon_checksums = load_checksum_inventory(
-        falcon_checksum_path
+    observed_checksums = compute_batch_checksums(
+        source_batch_root
     )
 
-    if mac_checksums != falcon_checksums:
-        mac_paths = set(mac_checksums)
-        falcon_paths = set(falcon_checksums)
-
-        only_mac = sorted(
-            mac_paths - falcon_paths
-        )
-
-        only_falcon = sorted(
-            falcon_paths - mac_paths
-        )
-
-        mismatched = sorted(
-            path
-            for path in (
-                mac_paths
-                & falcon_paths
-            )
-            if (
-                mac_checksums[path]
-                != falcon_checksums[path]
-            )
-        )
-
+    if expected_checksums != observed_checksums:
         raise BatchAcceptanceError(
-            "Mac and Falcon checksum inventories differ.\n"
-            f"Only Mac: {len(only_mac)}\n"
-            f"Only Falcon: {len(only_falcon)}\n"
-            f"Digest mismatches: {len(mismatched)}"
+            "Current batch does not match the production "
+            "checksum inventory."
         )
 
-    if len(mac_checksums) != 1501:
+    if len(expected_checksums) != 1501:
         raise BatchAcceptanceError(
-            "Expected exactly 1,501 transferred batch files; "
-            f"observed {len(mac_checksums)}."
+            "Expected exactly 1,501 batch files; "
+            f"observed {len(expected_checksums)}."
         )
 
     print()
-    print("===== TRANSFER CHECK =====")
-    print("Files                    :", len(mac_checksums))
-    print("Mac/Falcon SHA-256       : IDENTICAL")
+    print("===== BATCH INTEGRITY CHECK =====")
+    print("Files                    :", len(expected_checksums))
+    print("Production SHA-256       : MATCH")
 
     # ------------------------------------------------------------
-    # Mac production-audit acceptance.
+    # Production-audit acceptance.
     # ------------------------------------------------------------
 
     with production_audit_path.open(
@@ -814,28 +849,28 @@ def main() -> None:
         "status"
     ) != "pass":
         raise BatchAcceptanceError(
-            "Mac production audit does not report status=pass."
+            "Production audit does not report status=pass."
         )
 
     if production_audit.get(
         "case_count"
     ) != EXPECTED_BATCH_SIZE:
         raise BatchAcceptanceError(
-            "Mac production audit does not report 250 cases."
+            "Production audit does not report 250 cases."
         )
 
     if production_audit.get(
         "problems"
     ) != 0:
         raise BatchAcceptanceError(
-            "Mac production audit reports one or more problems."
+            "Production audit reports one or more problems."
         )
 
     if production_audit.get(
         "posterior_samples_per_case"
     ) != 100:
         raise BatchAcceptanceError(
-            "Mac production audit does not report "
+            "Production audit does not report "
             "100 posterior samples per case."
         )
 
@@ -843,7 +878,7 @@ def main() -> None:
         "evaluation_seed"
     ) != 42:
         raise BatchAcceptanceError(
-            "Mac production audit does not report seed 42."
+            "Production audit does not report seed 42."
         )
 
     observed_execution_sha = sha256_file(
@@ -861,12 +896,12 @@ def main() -> None:
         != expected_execution_sha
     ):
         raise BatchAcceptanceError(
-            "Transferred execution manifest hash does not "
-            "match the Mac production audit."
+            "Execution manifest hash does not match the "
+            "production audit."
         )
 
     print()
-    print("===== MAC PRODUCTION AUDIT =====")
+    print("===== PRODUCTION AUDIT =====")
     print("Status                   : PASS")
     print("Cases                    : 250")
     print("Posterior samples        : 100")
@@ -935,7 +970,7 @@ def main() -> None:
         batch_id=batch_id,
         batch_number=batch_number,
         design=design,
-        batch_root=batch_root,
+        batch_root=source_batch_root,
         master_columns=list(master.columns),
     )
 
@@ -1036,14 +1071,45 @@ def main() -> None:
             f"Observed: {observed_batch_counts}"
         )
 
-    verify_artifact_references(
-        updated,
-        library_root=library_root,
+    for directory in (
+        library_root / "batches",
+        library_root / "manifests",
+        library_root / "audits",
+    ):
+        directory.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+    batch_root = (
+        library_root
+        / "batches"
+        / batch_id
     )
 
-    # ------------------------------------------------------------
-    # Preserve the exact pre-promotion master.
-    # ------------------------------------------------------------
+    library_design_path = (
+        library_root
+        / "manifests"
+        / design_path.name
+    )
+
+    library_execution_path = (
+        library_root
+        / "manifests"
+        / execution_path.name
+    )
+
+    library_audit_path = (
+        library_root
+        / "audits"
+        / production_audit_path.name
+    )
+
+    library_checksum_path = (
+        library_root
+        / "audits"
+        / checksum_path.name
+    )
 
     snapshot_path = (
         library_root
@@ -1054,11 +1120,91 @@ def main() -> None:
         )
     )
 
-    if snapshot_path.exists():
-        raise BatchAcceptanceError(
-            "Pre-promotion master snapshot already exists:\n"
-            f"{snapshot_path}"
+    acceptance_path = (
+        library_root
+        / "audits"
+        / f"br_lora_{batch_id}_acceptance.json"
+    )
+
+    master_hash_path = (
+        library_root
+        / "audits"
+        / (
+            "br_lora_library_manifest_"
+            f"{expected_new_rows}_sha256.txt"
         )
+    )
+
+    destinations = (
+        batch_root,
+        library_design_path,
+        library_execution_path,
+        library_audit_path,
+        library_checksum_path,
+        snapshot_path,
+        acceptance_path,
+        master_hash_path,
+    )
+
+    existing = [
+        path
+        for path in destinations
+        if path.exists()
+    ]
+
+    if existing:
+        raise BatchAcceptanceError(
+            "One or more library destinations already exist:\n"
+            + "\n".join(
+                str(path)
+                for path in existing
+            )
+        )
+
+    shutil.copytree(
+        source_batch_root,
+        batch_root,
+    )
+
+    if (
+        compute_batch_checksums(
+            batch_root
+        )
+        != expected_checksums
+    ):
+        raise BatchAcceptanceError(
+            "Copied library batch does not match the "
+            "production checksum inventory."
+        )
+
+    for source, destination in (
+        (design_path, library_design_path),
+        (execution_path, library_execution_path),
+        (production_audit_path, library_audit_path),
+        (checksum_path, library_checksum_path),
+    ):
+        shutil.copy2(
+            source,
+            destination,
+        )
+
+        if (
+            sha256_file(source)
+            != sha256_file(destination)
+        ):
+            raise BatchAcceptanceError(
+                "Copied library artifact hash mismatch:\n"
+                f"{destination}"
+            )
+
+    verify_artifact_references(
+        updated,
+        library_root=library_root,
+    )
+
+    # ------------------------------------------------------------
+    # Preserve the exact pre-promotion master.
+    # ------------------------------------------------------------
 
     shutil.copy2(
         master_path,
@@ -1156,49 +1302,41 @@ def main() -> None:
             ),
 
         "frozen_batch_manifest":
-            str(design_path),
+            str(library_design_path),
 
         "frozen_batch_manifest_sha256":
             sha256_file(
-                design_path
+                library_design_path
             ),
 
         "execution_manifest":
-            str(execution_path),
+            str(library_execution_path),
 
         "execution_manifest_sha256":
             observed_execution_sha,
 
-        "mac_checksum_inventory":
-            str(mac_checksum_path),
+        "checksum_inventory":
+            str(library_checksum_path),
 
-        "mac_checksum_inventory_sha256":
+        "checksum_inventory_sha256":
             sha256_file(
-                mac_checksum_path
-            ),
-
-        "falcon_checksum_inventory":
-            str(falcon_checksum_path),
-
-        "falcon_checksum_inventory_sha256":
-            sha256_file(
-                falcon_checksum_path
+                library_checksum_path
             ),
 
         "checksum_inventory_file_count":
             int(
-                len(mac_checksums)
+                len(expected_checksums)
             ),
 
-        "mac_falcon_checksums_identical":
+        "batch_checksums_match":
             True,
 
         "production_audit":
-            str(production_audit_path),
+            str(library_audit_path),
 
         "production_audit_sha256":
             sha256_file(
-                production_audit_path
+                library_audit_path
             ),
 
         "unique_library_case_ids":
@@ -1249,12 +1387,6 @@ def main() -> None:
             },
     }
 
-    acceptance_path = (
-        library_root
-        / "audits"
-        / f"br_lora_{batch_id}_acceptance.json"
-    )
-
     with acceptance_path.open(
         "w",
         encoding="utf-8",
@@ -1267,15 +1399,6 @@ def main() -> None:
         )
 
         file.write("\n")
-
-    master_hash_path = (
-        library_root
-        / "audits"
-        / (
-            "br_lora_library_manifest_"
-            f"{len(written)}_sha256.txt"
-        )
-    )
 
     with master_hash_path.open(
         "w",
@@ -1333,7 +1456,7 @@ def main() -> None:
         snapshot_path,
     )
     print()
-    print("SAFE TO DELETE LOCAL MAC BATCH AFTER THIS PASS.")
+    print("Staging batch was preserved after acceptance.")
 
 
 if __name__ == "__main__":
@@ -1349,7 +1472,7 @@ if __name__ == "__main__":
         json.JSONDecodeError,
     ) as exc:
         print(
-            "\nBR-LoRA FALCON BATCH ACCEPTANCE FAILED",
+            "\nBR-LoRA BATCH ACCEPTANCE FAILED",
             file=sys.stderr,
         )
 

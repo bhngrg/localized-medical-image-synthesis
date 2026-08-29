@@ -66,5 +66,5 @@ training manifest            │
 - BR-LoRA does not discover external cases internally.
 - Library design is frozen before batch production.
 - Batch production does not modify the scientific design.
-- Falcon acceptance does not regenerate cases; it validates and promotes them.
+- Batch acceptance does not regenerate cases; it validates staged artifacts and promotes them into the permanent library.
 - Downstream experiments consume frozen library artifacts and manifests.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Run one frozen BR-LoRA synthetic-library production batch on the local Mac.
+Run one frozen BR-LoRA synthetic-library production batch.
 
 This script orchestrates, but does not reimplement, the validated external
 BR-LoRA inference workflow.
@@ -20,9 +20,9 @@ This script intentionally does NOT:
 
 - select or redesign conditioning pairs,
 - modify the frozen 10,000-case design,
-- transfer data to Falcon,
-- update the Falcon master library manifest,
-- delete local output.
+- promote completed batches into the library,
+- update the master library manifest,
+- delete staging output.
 
 Those operations remain separate acceptance/archive steps.
 """
@@ -140,7 +140,7 @@ class BatchProductionError(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Prepare, run, and locally audit one frozen "
+            "Prepare, run, and audit one frozen "
             "250-case BR-LoRA library batch."
         )
     )
@@ -1101,7 +1101,7 @@ def audit_completed_batch(
     if problems:
         print()
         print("=" * 78)
-        print("LOCAL PRODUCTION AUDIT: FAIL")
+        print("PRODUCTION AUDIT: FAIL")
         print("=" * 78)
         print(
             f"Problems: {len(problems)}"
@@ -1117,7 +1117,7 @@ def audit_completed_batch(
             )
 
         raise BatchProductionError(
-            f"Local production audit found "
+            f"Production audit found "
             f"{len(problems)} problem(s)."
         )
 
@@ -1278,15 +1278,15 @@ def main() -> None:
         name="Frozen batch manifest",
     )
 
-    execution_manifest_path = (
-        design_batch_dir
-        / f"{batch_id}_external_evaluation_manifest.csv"
-    ).resolve()
-
     staging_root = (
         staging_root
         .expanduser()
         .resolve()
+    )
+
+    execution_manifest_path = (
+        staging_root
+        / f"br_lora_{batch_id}_external_evaluation_manifest.csv"
     )
 
     staging_root.mkdir(
@@ -1306,7 +1306,7 @@ def main() -> None:
 
     checksum_path = (
         staging_root
-        / f"br_lora_{batch_id}_mac_sha256.txt"
+        / f"br_lora_{batch_id}_sha256.txt"
     )
 
     print()
@@ -1476,7 +1476,7 @@ def main() -> None:
 
     print()
     print("=" * 78)
-    print("LOCAL PRODUCTION AUDIT: PASS")
+    print("PRODUCTION AUDIT: PASS")
     print("=" * 78)
     print(
         "Cases audited            :",
@@ -1495,20 +1495,17 @@ def main() -> None:
         audit_path,
     )
     print(
-        "Mac checksum inventory   :",
+        "Checksum inventory       :",
         checksum_path,
     )
 
     print()
     print("=" * 78)
-    print("READY FOR FALCON TRANSFER")
+    print("BATCH PRODUCTION COMPLETE")
     print("=" * 78)
     print()
     print(
-        "No Falcon state was modified."
-    )
-    print(
-        "No local production data was deleted."
+        "Staging output was preserved."
     )
 
 

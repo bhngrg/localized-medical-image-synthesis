@@ -96,8 +96,7 @@ Primary scripts:
 
 ```text
 scripts/run_br_lora_library_batch.py
-scripts/run_br_lora_library_pipeline.py
-scripts/run_br_lora_library_all_remaining.sh
+scripts/accept_br_lora_library_batch.py
 screening/brats_nnunet/scripts/design_br_lora_library_10000.py
 ```
 
@@ -110,28 +109,25 @@ frozen batch manifest
 BR-LoRA posterior generation
         │
         ▼
-local production audit
+production audit
         │
         ▼
-Mac SHA-256 inventory
+canonical SHA-256 inventory
         │
         ▼
-rsync transfer to Falcon
+staging area
         │
         ▼
-Falcon SHA-256 inventory
+batch integrity verification
         │
         ▼
-exact checksum comparison
+batch acceptance
         │
         ▼
-Falcon acceptance
+permanent library
         │
         ▼
 master-library manifest update
-        │
-        ▼
-local staging cleanup
 ```
 
 ## Production Audits
@@ -145,14 +141,14 @@ A normal completed batch contains 250 case directories and 1,501 files:
 
 The production audit verifies the expected case count, posterior-sampling contract, metadata consistency, and artifact presence.
 
-The transfer audit independently recomputes SHA-256 hashes on Falcon and requires an exact match with the Mac-side inventory before acceptance.
+The production checksum inventory provides the canonical integrity record for the completed staged batch. Acceptance independently recomputes the staged file hashes and requires an exact match before promotion.
 
-## Falcon Acceptance
+## Batch Acceptance
 
-Falcon-side acceptance verifies:
+Batch acceptance verifies:
 
-- transferred file count;
-- Mac/Falcon checksum identity;
+- staged file count;
+- exact agreement with the production SHA-256 inventory;
 - production audit status;
 - execution-manifest checksum;
 - current master-library state;
@@ -160,15 +156,18 @@ Falcon-side acceptance verifies:
 - batch order;
 - artifact references.
 
+After these checks pass, the batch is copied into the permanent library and verified again against the production checksum inventory. The supporting design, execution-manifest, audit, and checksum files are copied separately and verified by exact source/destination SHA-256 comparison.
+
 On success, the master manifest is promoted and a pre-promotion snapshot is retained.
 
 ## Failure Recovery
 
-The orchestration scripts are fail-fast. If any stage fails:
+Production and acceptance are deliberately separate. If either stage fails:
 
-- later batches are not started;
-- local staging is not deleted;
-- the failed batch can be inspected and rerun;
-- the master manifest is not promoted unless acceptance succeeds.
+- the staged batch remains available for inspection;
+- the failed batch can be corrected or rerun;
+- the permanent master manifest is not promoted unless acceptance succeeds.
 
-This behavior is intentional and should be preserved during future refactoring.
+Acceptance preserves the staging copy after successful promotion; staging cleanup is an explicit user-controlled operation.
+
+Infrastructure-specific Mac-to-Falcon orchestration used for the original library build is retained under `scripts/historical/` for provenance only and is not part of the supported public workflow.
