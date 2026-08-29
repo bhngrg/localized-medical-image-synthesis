@@ -1,0 +1,65 @@
+{
+  "artifact": "downstream_validation_manifest.csv",
+  "purpose": "Frozen BraTS downstream validation cohort used for model selection in downstream segmentation experiments.",
+  "separation_level": "subject-level",
+  "source_artifacts": {
+    "downstream_evaluation/manifests/brats_real_catalog.csv": {
+      "sha256": "9b31a044b53073bd94c6fcbf0ea564caff31cbb600ce5b640a908307daf54d6d"
+    },
+    "downstream_evaluation/manifests/brats_downstream_subject_split.csv": {
+      "sha256": "684d6e657164b8aff3b50014c3cbe8f8e3f5e0c95e831130ed8058a5b4ca8ffa"
+    }
+  },
+  "counts": {
+    "full_catalog_rows": 57195,
+    "full_subjects": 369,
+    "train_subjects": 332,
+    "validation_subjects": 37,
+    "validation_rows": 5735,
+    "unique_validation_subjects": 37,
+    "unique_validation_keys": 5735,
+    "tumor_containing": 2447,
+    "tumor_free": 3288,
+    "train_validation_subject_overlap": 0
+  },
+  "validation_volume_ids": [
+    8,
+    21,
+    48,
+    49,
+    52,
+    91,
+    93,
+    95,
+    107,
+    109,
+    110,
+    121,
+    124,
+    133,
+    142,
+    144,
+    153,
+    181,
+    193,
+    205,
+    223,
+    226,
+    228,
+    250,
+    261,
+    267,
+    269,
+    278,
+    300,
+    306,
+    330,
+    335,
+    339,
+    342,
+    349,
+    362,
+    366
+  ],
+  "manifest_sha256": "627c908926ad990e66a183240b4756af45ab4f631b4608054700c54ac73bfcbf"
+}
