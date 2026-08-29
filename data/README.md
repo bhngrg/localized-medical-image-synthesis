@@ -102,6 +102,61 @@ datasets.
 
 ---
 
+# Machine-Specific Paths
+
+Dataset paths can be supplied explicitly on the command line or stored in a
+machine-specific YAML file. An example is provided at
+
+```text
+data/folders.example.yaml
+```
+
+Copy it to
+
+```text
+data/folders.yaml
+```
+
+and populate the paths needed on the current machine. The real
+`data/folders.yaml` is excluded from version control so local filesystem paths
+are not committed to the repository.
+
+Path resolution follows this precedence:
+
+```text
+explicit CLI argument
+        │
+        ▼
+saved data/folders.yaml value
+        │
+        ▼
+interactive selector
+```
+
+The interactive fallback applies to the dataset-preparation scripts. Model
+training is noninteractive: required training-data paths must be supplied by
+CLI or available in the folders configuration.
+
+Paths selected explicitly by CLI or through an interactive selector are saved
+to the folders configuration for reuse.
+
+The configuration supports the following keys:
+
+```yaml
+data_root: null
+yaml_dataset_path: null
+
+validation_data_root: null
+yaml_validation_dataset_path: null
+
+h5_root: null
+manifest_path: null
+```
+
+Explicit CLI arguments always override saved values.
+
+---
+
 # Historical H5 Reconstruction
 
 The historical H5 dataset is reconstructed from the registered training dataset

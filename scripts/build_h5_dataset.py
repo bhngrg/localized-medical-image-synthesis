@@ -5,9 +5,9 @@ Build the historical BraTS 2020 H5 slice dataset from a registered raw dataset.
 
 Responsibilities
 ----------------
-1. Ask the user to select a dataset.yaml created by register_dataset.py.
+1. Resolve a dataset.yaml created by register_dataset.py.
 2. Validate the dataset specification itself (not the raw dataset).
-3. Ask the user to select an existing output directory for the H5 files.
+3. Resolve an existing output directory for the H5 files.
 4. Reproduce the historical NIfTI -> H5 conversion exactly.
 5. Write one H5 file per axial slice.
 
@@ -53,6 +53,7 @@ registered files are no longer accessible.
 
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
 import sys
 import tkinter as tk
@@ -62,8 +63,21 @@ import h5py
 import nibabel as nib
 import numpy as np
 import yaml
-import argparse
-from register_dataset import get_path, get_folders_config
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(
+        0,
+        str(PROJECT_ROOT),
+    )
+
+from src.config import (
+    load_folders_config,
+    resolve_path,
+    save_folders_config,
+)
+
 
 SUPPORTED_SCHEMA_VERSION = 1
 SUPPORTED_DATASET_ID = "brats2020_training"
@@ -511,14 +525,14 @@ def validate_output_directory(
         output_dir.glob("*.h5")
     )
 
-    # if existing_h5_files:
-    #     raise ValueError(
-    #         "The selected output directory already contains H5 files.\n\n"
-    #         f"Directory:\n{output_dir}\n\n"
-    #         f"Existing H5 files found: {len(existing_h5_files):,}\n\n"
-    #         "No existing H5 files will be overwritten or merged "
-    #         "implicitly. Select an empty output directory."
-    #     )
+    if existing_h5_files:
+        raise ValueError(
+            "The selected output directory already contains H5 files.\n\n"
+            f"Directory:\n{output_dir}\n\n"
+            f"Existing H5 files found: {len(existing_h5_files):,}\n\n"
+            "No existing H5 files will be overwritten or merged "
+            "implicitly. Select an empty output directory."
+        )
 
 
 def subject_name_from_spec(
@@ -780,11 +794,11 @@ def write_h5_slice(
 
     Existing files are never overwritten.
     """
-    # if output_path.exists():
-    #     raise ValueError(
-    #         "Refusing to overwrite an existing H5 file.\n\n"
-    #         f"{output_path}"
-        # )
+    if output_path.exists():
+        raise ValueError(
+            "Refusing to overwrite an existing H5 file.\n\n"
+            f"{output_path}"
+        )
 
     try:
         with h5py.File(
@@ -1014,23 +1028,36 @@ def build_h5_dataset(
     return total_written
 
 
+def resolve_folders(args):
+    """Resolve and persist H5 dataset-builder paths."""
+    config = load_folders_config(
+        args.folders_file
+    )
 
+    yaml_path = resolve_path(
+        key="yaml_dataset_path",
+        cli_value=args.yaml_dataset_path,
+        config=config,
+        selector=select_dataset_yaml,
+    )
 
-def get_folders(args):
-    conf = get_folders_config(args)
-    yaml_path, conf = get_path("yaml_dataset_path", args, conf, select_dataset_yaml)
-    output_path, conf = get_path("h5_root", args, conf, select_output_directory)
-    if args.folders_file is not None:
-        with open(args.folders_file, "w") as file:
-            yaml.safe_dump(conf, file)
-    if output_path.exists() and not args.overwrite:
-        print(f"File {output_path} exists already. nothing to do. Exiting")
-        exit(1)
-    return yaml_path, output_path
+    output_dir = resolve_path(
+        key="h5_root",
+        cli_value=args.h5_root,
+        config=config,
+        selector=select_output_directory,
+    )
+
+    save_folders_config(
+        args.folders_file,
+        config,
+    )
+
+    return yaml_path, output_dir
 
 
 def main(args) -> None:
-    """Run interactive historical H5 dataset construction."""
+    """Run historical H5 dataset construction."""
     print("=" * 72)
     print(
         "BraTS 2020 H5 Dataset Builder"
@@ -1038,8 +1065,9 @@ def main(args) -> None:
     print("=" * 72)
 
     try:
-        # yaml_path = select_dataset_yaml()
-        yaml_path, output_dir = get_folders(args)
+        yaml_path, output_dir = resolve_folders(
+            args
+        )
 
         print(
             "\nSelected dataset specification:"
@@ -1072,6 +1100,12 @@ def main(args) -> None:
             f"{registered['volume_shape']}"
         )
 
+        print(
+            "\nSelected H5 output directory:"
+        )
+        print(
+            output_dir
+        )
 
         validate_output_directory(
             output_dir
@@ -1123,10 +1157,34 @@ def main(args) -> None:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--yaml_dataset_path", type=str, default=None)
-    parser.add_argument("--h5_root", type = str, default = None)
-    parser.add_argument("--folders_file", type=str, default="./data/folders.yaml")
-    parser.add_argument("--overwrite", action='store_true')
+    parser = argparse.ArgumentParser(
+        description=(
+            "Build the historical BraTS 2020 H5 slice dataset."
+        )
+    )
+    parser.add_argument(
+        "--yaml-dataset-path",
+        type=Path,
+        default=None,
+        help=(
+            "Registered training dataset YAML. Overrides the value "
+            "stored in --folders-file."
+        ),
+    )
+    parser.add_argument(
+        "--h5-root",
+        type=Path,
+        default=None,
+        help=(
+            "Existing H5 output directory. Overrides the value "
+            "stored in --folders-file."
+        ),
+    )
+    parser.add_argument(
+        "--folders-file",
+        type=Path,
+        default=Path("data/folders.yaml"),
+        help="Machine-specific path configuration YAML.",
+    )
     args = parser.parse_args()
     main(args)

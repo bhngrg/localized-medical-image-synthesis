@@ -21,7 +21,6 @@ import argparse
 from pathlib import Path
 import random
 import sys
-from register_dataset import get_path, get_folders_config
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
@@ -35,6 +34,11 @@ import numpy as np
 import torch
 import yaml
 
+from src.config import (
+    load_folders_config,
+    resolve_path,
+    save_folders_config,
+)
 from src.data import (
     BraTSH5PatchX0Dataset,
     create_train_val_loaders,
@@ -66,19 +70,32 @@ def parse_args() -> argparse.Namespace:
         ),
     )
     
-    parser.add_argument("--folders_file", type=str, default="./data/folders.yaml")
+    parser.add_argument(
+        "--folders-file",
+        type=Path,
+        default=Path("data/folders.yaml"),
+        help="Machine-specific path configuration YAML.",
+    )
 
 
     parser.add_argument(
         "--h5-root",
         type=Path,
         default=None,
+        help=(
+            "H5 dataset directory. Overrides the value stored in "
+            "--folders-file."
+        ),
     )
 
     parser.add_argument(
-        "--manifest_file",
+        "--manifest",
         type=Path,
-        required=False,
+        default=None,
+        help=(
+            "Dataset manifest CSV. Overrides manifest_path stored in "
+            "--folders-file."
+        ),
     )
 
     parser.add_argument(
@@ -161,17 +178,46 @@ def set_seed(seed: int) -> None:
     np.random.seed(seed)
     torch.manual_seed(seed)
 
-def not_found_error():
-    print("File or directory not found, exiting")
-    exit(2)
+def resolve_training_paths(
+    args: argparse.Namespace,
+) -> tuple[Path, Path]:
+    """Resolve and persist required training-data paths."""
+    config = load_folders_config(
+        args.folders_file
+    )
+
+    h5_root = resolve_path(
+        key="h5_root",
+        cli_value=args.h5_root,
+        config=config,
+        selector=None,
+    )
+
+    manifest_path = resolve_path(
+        key="manifest_path",
+        cli_value=args.manifest,
+        config=config,
+        selector=None,
+    )
+
+    save_folders_config(
+        args.folders_file,
+        config,
+    )
+
+    return h5_root, manifest_path
+
 
 def main() -> None:
-    args = parse_args()   
-    conf = get_folders_config(args)
-    args.h5_root, conf = get_path("h5_root", args, conf, not_found_error)
-    args.manifest_path, conf = get_path("manifest_path", args, conf, not_found_error)
+    args = parse_args()
 
-    
+    (
+        args.h5_root,
+        args.manifest,
+    ) = resolve_training_paths(
+        args
+    )
+
     config = load_config(args.config)
 
     seed = int(
@@ -209,7 +255,7 @@ def main() -> None:
 
     dataset = BraTSH5PatchX0Dataset(
         root=args.h5_root,
-        manifest_path=args.manifest_path,
+        manifest_path=args.manifest,
         image_channel=int(
             data_cfg.get(
                 "image_channel",

@@ -5,10 +5,10 @@ Register the raw BraTS 2020 validation dataset.
 
 Responsibilities
 ----------------
-1. Ask the user to select the directory that directly contains the
+1. Resolve the directory that directly contains the
    BraTS20_Validation_XXX subject directories.
 2. Strictly validate the raw NIfTI validation dataset.
-3. Ask the user where to save the dataset specification.
+3. Resolve where to save the dataset specification.
 4. Write validation_dataset.yaml.
 
 This script performs the full raw-dataset validation once. Downstream
@@ -24,6 +24,7 @@ segmentation as part of the dataset contract rather than as an error.
 
 from __future__ import annotations
 
+import argparse
 from datetime import datetime, timezone
 from pathlib import Path
 import sys
@@ -33,8 +34,20 @@ from tkinter import filedialog
 import nibabel as nib
 import numpy as np
 import yaml
-import argparse
-from register_dataset import get_path, get_folders_config
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(
+        0,
+        str(PROJECT_ROOT),
+    )
+
+from src.config import (
+    load_folders_config,
+    resolve_path,
+    save_folders_config,
+)
 
 DATASET_ID = "brats2020_validation"
 DATASET_NAME = "BraTS 2020 Validation Data"
@@ -661,21 +674,44 @@ def write_dataset_yaml(
 
 
 
-def get_folders(args):
-    conf = get_folders_config(args)
-    data_root, conf = get_path("validation_data_root", args, conf, select_dataset_directory)
-    output_path, conf = get_path("yaml_validation_dataset_path", args, conf, select_yaml_output_path)
-    if args.folders_file is not None:
-        with open(args.folders_file, "w") as file:
-            yaml.safe_dump(conf, file)
+def resolve_folders(args):
+    """Resolve and persist validation-dataset paths."""
+    config = load_folders_config(
+        args.folders_file
+    )
+
+    data_root = resolve_path(
+        key="validation_data_root",
+        cli_value=args.validation_data_root,
+        config=config,
+        selector=select_dataset_directory,
+    )
+
+    output_path = resolve_path(
+        key="yaml_validation_dataset_path",
+        cli_value=args.yaml_validation_dataset_path,
+        config=config,
+        selector=select_yaml_output_path,
+    )
+
+    save_folders_config(
+        args.folders_file,
+        config,
+    )
+
     if output_path.exists() and not args.overwrite:
-        print(f"File {output_path} exists already. nothing to do. Exiting")
-        exit(1)
+        raise ValueError(
+            "The selected validation dataset specification already "
+            "exists.\n\n"
+            f"{output_path}\n\n"
+            "Use --overwrite to replace it explicitly."
+        )
+
     return data_root, output_path
 
 
 def main(args) -> None:
-    """Run interactive BraTS validation-dataset registration."""
+    """Run BraTS validation-dataset registration."""
     print("=" * 72)
     print(
         "BraTS 2020 Validation Dataset Registration"
@@ -683,7 +719,7 @@ def main(args) -> None:
     print("=" * 72)
 
     try:
-        data_root, output_path = get_folders(args)
+        data_root, output_path = resolve_folders(args)
         print(
             "\nSelected raw validation dataset directory:"
         )
@@ -790,10 +826,39 @@ def main(args) -> None:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--validation_data_root", type = str, default = None)
-    parser.add_argument("--yaml_validation_dataset_path", type = str, default = None)
-    parser.add_argument("--folders_file", type=str, default="./data/folders.yaml")
-    parser.add_argument("--overwrite", action='store_true')
+    parser = argparse.ArgumentParser(
+        description="Register the BraTS 2020 validation dataset."
+    )
+    parser.add_argument(
+        "--validation-data-root",
+        type=Path,
+        default=None,
+        help=(
+            "BraTS 2020 validation-data root. Overrides the value "
+            "stored in --folders-file."
+        ),
+    )
+    parser.add_argument(
+        "--yaml-validation-dataset-path",
+        type=Path,
+        default=None,
+        help=(
+            "Output validation dataset YAML path. Overrides the value "
+            "stored in --folders-file."
+        ),
+    )
+    parser.add_argument(
+        "--folders-file",
+        type=Path,
+        default=Path("data/folders.yaml"),
+        help="Machine-specific path configuration YAML.",
+    )
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help=(
+            "Explicitly replace an existing validation dataset YAML."
+        ),
+    )
     args = parser.parse_args()
     main(args)

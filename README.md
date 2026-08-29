@@ -137,7 +137,7 @@ The official validation release does not contain tumor segmentation masks, so it
 
 A registered validation-slice loader reproduces the effective training image representation from raw validation NIfTI data. This preprocessing path has been numerically validated against the reconstructed H5 training representation.
 
-See [`data/README.md`](data/README.md) for dataset setup and registration details.
+See [`data/README.md`](data/README.md) for dataset setup and registration details. Dataset paths may be supplied explicitly through CLI arguments or stored in a machine-specific `data/folders.yaml`; [`data/folders.example.yaml`](data/folders.example.yaml) documents the supported path keys.
 
 ---
 

@@ -5,11 +5,11 @@ Create a sample-level manifest for the BraTS 2020 H5 dataset.
 
 Responsibilities
 ----------------
-1. Ask the user to select dataset.yaml created by register_dataset.py.
-2. Ask the user to select the directory containing the generated H5 files.
+1. Resolve dataset.yaml created by register_dataset.py.
+2. Resolve the directory containing the generated H5 files.
 3. Validate the expected H5 filename grid against the registered dataset.
 4. Read each H5 mask once and compute sample-level metadata.
-5. Ask the user where to save manifest.csv.
+5. Resolve where to save manifest.csv.
 6. Write the manifest without modifying the H5 dataset.
 
 Manifest columns
@@ -47,17 +47,32 @@ recomputing these mask summaries.
 
 from __future__ import annotations
 
+import argparse
 import csv
 from pathlib import Path
 import re
 import sys
 import tkinter as tk
 from tkinter import filedialog
-from register_dataset import get_path, get_folders_config
+
 import h5py
 import numpy as np
 import yaml
-import argparse
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(
+        0,
+        str(PROJECT_ROOT),
+    )
+
+from src.config import (
+    load_folders_config,
+    resolve_path,
+    save_folders_config,
+)
+
 
 SUPPORTED_SCHEMA_VERSION = 1
 SUPPORTED_DATASET_ID = "brats2020_training"
@@ -721,6 +736,7 @@ def write_manifest(
     output_path: Path,
     h5_paths: list[Path],
     registered: dict,
+    overwrite: bool = False,
 ) -> dict:
     """
     Inspect all H5 files and write manifest.csv.
@@ -730,12 +746,12 @@ def write_manifest(
     dict
         Summary counts for reporting.
     """
-    # if output_path.exists():
-    #     raise ValueError(
-    #         "The selected manifest file already exists.\n\n"
-    #         f"{output_path}\n\n"
-    #         "No existing manifest will be overwritten implicitly."
-    #     )
+    if output_path.exists() and not overwrite:
+        raise ValueError(
+            "The selected manifest file already exists.\n\n"
+            f"{output_path}\n\n"
+            "Use --overwrite to replace it explicitly."
+        )
 
     spatial_pixel_count = int(
         np.prod(
@@ -837,34 +853,54 @@ def write_manifest(
         "total_label2_pixels": total_label_counts[2],
     }
 
-def get_folders(args):
-    conf = get_folders_config(args)
-    yaml_path, conf = get_path("yaml_dataset_path", args, conf, select_dataset_yaml)
-    # yaml_path = select_dataset_yaml() if args.yaml_path is None else Path(args.yaml_path)
-    # h5_root = select_h5_directory() if args.h5_root is None else Path(args.h5_root)
-    h5_root, conf = get_path("h5_root", args, conf, select_h5_directory)
-    # output_path, conf  = select_manifest_output_path if args.output_path is None else Path(args.output_path)
-    output_path, conf = get_path("manifest_path", args, conf, select_manifest_output_path)
-    if args.folders_file is not None:
-        with open(args.folders_file, "w") as file:
-            yaml.safe_dump(conf, file)
-    if output_path.exists() and not args.overwrite:
-        print(f"File {output_path} exists already. nothing to do. Exiting")
-        exit(1)
+
+def resolve_folders(args):
+    """Resolve and persist dataset-manifest paths."""
+    config = load_folders_config(
+        args.folders_file
+    )
+
+    yaml_path = resolve_path(
+        key="yaml_dataset_path",
+        cli_value=args.yaml_dataset_path,
+        config=config,
+        selector=select_dataset_yaml,
+    )
+
+    h5_root = resolve_path(
+        key="h5_root",
+        cli_value=args.h5_root,
+        config=config,
+        selector=select_h5_directory,
+    )
+
+    output_path = resolve_path(
+        key="manifest_path",
+        cli_value=args.manifest,
+        config=config,
+        selector=select_manifest_output_path,
+    )
+
+    save_folders_config(
+        args.folders_file,
+        config,
+    )
+
     return yaml_path, h5_root, output_path
 
+
 def main(args) -> None:
-    """Run interactive H5 manifest creation."""
+    """Run H5 manifest creation."""
     print("=" * 72)
     print(
         "BraTS 2020 H5 Dataset Manifest Builder"
     )
     print("=" * 72)
 
-
-
     try:
-        yaml_path, h5_root, output_path = get_folders(args)
+        yaml_path, h5_root, output_path = resolve_folders(
+            args
+        )
 
         print(
             "\nSelected dataset specification:"
@@ -895,7 +931,6 @@ def main(args) -> None:
             f"{registered['expected_h5_count']:,}"
         )
 
-
         print(
             "\nSelected H5 dataset directory:"
         )
@@ -913,13 +948,17 @@ def main(args) -> None:
         )
 
         print(
-            "\nChoose where to save manifest.csv."
+            "\nSelected manifest output path:"
+        )
+        print(
+            output_path
         )
 
         summary = write_manifest(
             output_path=output_path,
             h5_paths=h5_paths,
             registered=registered,
+            overwrite=args.overwrite,
         )
 
     except (
@@ -995,11 +1034,48 @@ def main(args) -> None:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--yaml_dataset_path", type=str, default=None)
-    parser.add_argument("--h5_root", type=str, default=None)
-    parser.add_argument("--manifest_path", default=None)
-    parser.add_argument("--folders_file", type=str, default="./data/folders.yaml")
-    parser.add_argument("--overwrite", action='store_true')
+    parser = argparse.ArgumentParser(
+        description=(
+            "Create a sample-level manifest for the BraTS 2020 H5 dataset."
+        )
+    )
+    parser.add_argument(
+        "--yaml-dataset-path",
+        type=Path,
+        default=None,
+        help=(
+            "Registered training dataset YAML. Overrides the value "
+            "stored in --folders-file."
+        ),
+    )
+    parser.add_argument(
+        "--h5-root",
+        type=Path,
+        default=None,
+        help=(
+            "H5 dataset directory. Overrides the value stored in "
+            "--folders-file."
+        ),
+    )
+    parser.add_argument(
+        "--manifest",
+        type=Path,
+        default=None,
+        help=(
+            "Output manifest CSV. Overrides manifest_path stored in "
+            "--folders-file."
+        ),
+    )
+    parser.add_argument(
+        "--folders-file",
+        type=Path,
+        default=Path("data/folders.yaml"),
+        help="Machine-specific path configuration YAML.",
+    )
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Explicitly replace an existing manifest CSV.",
+    )
     args = parser.parse_args()
     main(args)

@@ -1,0 +1,15 @@
+# Optional machine-specific path configuration.
+#
+# Copy this file to data/folders.yaml and populate paths for your machine.
+# data/folders.yaml is intentionally excluded from version control.
+#
+# Explicit CLI arguments take precedence over values stored in folders.yaml.
+
+data_root: null
+yaml_dataset_path: null
+
+validation_data_root: null
+yaml_validation_dataset_path: null
+
+h5_root: null
+manifest_path: null
