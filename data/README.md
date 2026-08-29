@@ -104,8 +104,8 @@ datasets.
 
 # Machine-Specific Paths
 
-Dataset paths can be supplied explicitly on the command line or stored in a
-machine-specific YAML file. An example is provided at
+Machine-specific paths can be supplied explicitly on the command line or
+stored in a machine-specific YAML file. An example is provided at
 
 ```text
 data/folders.example.yaml
@@ -133,9 +133,10 @@ saved data/folders.yaml value
 interactive selector
 ```
 
-The interactive fallback applies to the dataset-preparation scripts. Model
-training is noninteractive: required training-data paths must be supplied by
-CLI or available in the folders configuration.
+The interactive fallback applies only to scripts that provide an interactive
+selector. Model training and Falcon BR-LoRA batch acceptance are
+noninteractive: required paths must be supplied by CLI or available in the
+folders configuration.
 
 Paths selected explicitly by CLI or through an interactive selector are saved
 to the folders configuration for reuse.
@@ -151,6 +152,8 @@ yaml_validation_dataset_path: null
 
 h5_root: null
 manifest_path: null
+
+br_lora_library_root: null
 ```
 
 Explicit CLI arguments always override saved values.

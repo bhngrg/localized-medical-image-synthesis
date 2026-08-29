@@ -13,3 +13,6 @@ yaml_validation_dataset_path: null
 
 h5_root: null
 manifest_path: null
+
+# BR-LoRA production library.
+br_lora_library_root: null
