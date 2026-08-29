@@ -38,15 +38,21 @@ screening/brats_nnunet/training/train_fold.sh 0
 
 Valid folds are `0`, `1`, `2`, `3`, and `4`.
 
-The Falcon production launcher is:
+The Slurm production launcher is:
 
 ```text
 screening/brats_nnunet/training/train_all_folds.slurm
 ```
 
-It launches folds 0-4 as a Slurm array on `l40s_normal_q` using the `fdtbiotech` account.
+Submit it from the repository root:
 
-The wrapper requires the standard nnU-Net environment variables:
+```bash
+sbatch screening/brats_nnunet/training/train_all_folds.slurm
+```
+
+The completed production run launched folds 0-4 as a Slurm array on `l40s_normal_q` using the `fdtbiotech` account.
+
+When `train_fold.sh` is run directly, it requires the standard nnU-Net environment variables:
 
 ```text
 nnUNet_raw
@@ -54,7 +60,9 @@ nnUNet_preprocessed
 nnUNet_results
 ```
 
-Environment-variable overrides remain available for development:
+The Slurm launcher derives these paths from `nnunet_archive_root` and `nnunet_run_root` in `data/folders.yaml`. The roots may instead be supplied through `NNUNET_ARCHIVE_ROOT` and `NNUNET_RUN_ROOT`.
+
+Environment-variable overrides for the nnU-Net training configuration remain available:
 
 ```text
 NNUNET_DATASET_ID
@@ -105,12 +113,14 @@ library design and downstream evaluation pipeline.
 
 ## Output Location
 
-Production results are stored outside Git under:
+Production results are stored outside Git beneath the configured `nnunet_run_root`:
 
 ```text
-/scratch/bhanug/nnUNet_brats_screening/
+<nnunet_run_root>/
 nnUNet_results_l40s_normal_q/
 ```
+
+Set `nnunet_run_root` in `data/folders.yaml`, or provide `NNUNET_RUN_ROOT` in the job environment.
 
 The repository does not store checkpoints, fold validation predictions, training logs, or other large generated artifacts.
 

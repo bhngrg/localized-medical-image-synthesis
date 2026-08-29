@@ -1,17 +1,19 @@
 # nnU-Net Validation Inference
 
-This directory contains the Falcon launcher used to apply the completed five-fold nnU-Net screening model to the official BraTS 2020 validation cohort.
+This directory contains the Slurm launcher used to apply the completed five-fold nnU-Net screening model to the official BraTS 2020 validation cohort.
 
 ## Input Contract
 
-The prepared validation cohort is stored in Dataset500 `imagesTs`:
+The prepared validation cohort is stored in Dataset500 `imagesTs` beneath the configured `nnunet_archive_root`:
 
 ```text
-/scratch/bhanug/archive/nnUNet_brats_screening/
+<nnunet_archive_root>/
 nnUNet_raw/
 Dataset500_BraTS2020Screening/
 imagesTs/
 ```
+
+Set `nnunet_archive_root` in `data/folders.yaml`, or provide `NNUNET_ARCHIVE_ROOT` in the job environment.
 
 Expected counts:
 
@@ -46,15 +48,15 @@ device        = cuda
 
 All five fold checkpoints must exist before prediction begins.
 
-## Falcon Launcher
+## Slurm Launcher
 
-Submit with:
+Submit from the repository root:
 
 ```bash
-sbatch   screening/brats_nnunet/inference/predict_validation.slurm
+sbatch screening/brats_nnunet/inference/predict_validation.slurm
 ```
 
-The production launcher uses:
+The completed production run used:
 
 ```text
 account   = fdtbiotech
@@ -65,16 +67,20 @@ memory    = 64 GB
 walltime  = 8 hours
 ```
 
+These values remain the launcher defaults and can be adjusted for another Slurm environment if required.
+
 The script validates the input image count, subject count, plans file, model directory, and all five final checkpoints before calling `nnUNetv2_predict`.
 
 ## Output
 
-Predictions are written outside Git to:
+Predictions are written outside Git beneath the configured `nnunet_run_root`:
 
 ```text
-/scratch/bhanug/nnUNet_brats_screening/
+<nnunet_run_root>/
 validation_predictions_l40s_normal_q/
 ```
+
+Set `nnunet_run_root` in `data/folders.yaml`, or provide `NNUNET_RUN_ROOT` in the job environment.
 
 Expected prediction contract:
 

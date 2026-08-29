@@ -152,7 +152,7 @@ screening/brats_nnunet/
 ## Reproducibility Requirements
 
 Record the nnU-Net version, dataset identifier, trainer/plans, fold
-checkpoints, Git commit, Falcon partition, prediction provenance,
+checkpoints, Git commit, Slurm partition, prediction provenance,
 screening thresholds, compatibility-space audit, donor-selection audit,
 definitive manifest checksum, and all generated provenance metadata for
 production runs.

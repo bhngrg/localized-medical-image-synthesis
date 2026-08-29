@@ -17,3 +17,9 @@ manifest_path: null
 # BR-LoRA production paths.
 br_lora_staging_root: null
 br_lora_library_root: null
+
+# nnU-Net screening paths.
+# nnunet_archive_root contains nnUNet_raw/ and nnUNet_preprocessed/.
+# nnunet_run_root contains trained models and prediction outputs.
+nnunet_archive_root: null
+nnunet_run_root: null

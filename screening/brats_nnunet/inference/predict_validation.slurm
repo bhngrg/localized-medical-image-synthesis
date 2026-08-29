@@ -6,10 +6,8 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --time=08:00:00
-#SBATCH --output=/home/bhanug/localized-medical-image-synthesis/screening/brats_nnunet/logs/nnunet_predict_l40s_normal_q_%j.out
-#SBATCH --error=/home/bhanug/localized-medical-image-synthesis/screening/brats_nnunet/logs/nnunet_predict_l40s_normal_q_%j.err
-#SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --mail-user=bhanug@vt.edu
+#SBATCH --output=screening/brats_nnunet/logs/nnunet_predict_l40s_normal_q_%j.out
+#SBATCH --error=screening/brats_nnunet/logs/nnunet_predict_l40s_normal_q_%j.err
 
 set -euo pipefail
 
@@ -20,13 +18,82 @@ echo "SLURM_JOB_ID=${SLURM_JOB_ID}"
 echo "SLURM_JOB_PARTITION=${SLURM_JOB_PARTITION:-unset}"
 echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"
 
-REPO_ROOT="/home/bhanug/localized-medical-image-synthesis"
+SCRIPT_DIR="$(
+    cd "$(dirname "${BASH_SOURCE[0]}")"
+    pwd
+)"
 
-NNUNET_ARCHIVE_ROOT="/scratch/bhanug/archive/nnUNet_brats_screening"
+REPO_ROOT="$(
+    cd "${SCRIPT_DIR}/../../.."
+    pwd
+)"
+
+FOLDERS_FILE="${REPO_ROOT}/data/folders.yaml"
+
+NNUNET_CONDA_ENV="${NNUNET_CONDA_ENV:-brats-nnunet}"
+
+activate_nnunet_environment() {
+    if [[ "${CONDA_DEFAULT_ENV:-}" == "${NNUNET_CONDA_ENV}" ]]; then
+        return
+    fi
+
+    if command -v conda >/dev/null 2>&1; then
+        eval "$(conda shell.bash hook)"
+    elif [[ -n "${CONDA_EXE:-}" && -x "${CONDA_EXE}" ]]; then
+        eval "$("${CONDA_EXE}" shell.bash hook)"
+    else
+        echo "Conda is not available in the job environment." >&2
+        echo "Activate ${NNUNET_CONDA_ENV} before submission or expose conda on PATH." >&2
+        exit 1
+    fi
+
+    conda activate "${NNUNET_CONDA_ENV}"
+}
+
+activate_nnunet_environment
+
+read_folder_path() {
+    local key="$1"
+
+    python - "${FOLDERS_FILE}" "${key}" <<'PY_CONFIG'
+from pathlib import Path
+import sys
+import yaml
+
+config_path = Path(sys.argv[1])
+key = sys.argv[2]
+
+if not config_path.is_file():
+    raise SystemExit(
+        "Missing machine-specific folders configuration:\n"
+        f"{config_path}\n"
+        "Copy data/folders.example.yaml to data/folders.yaml "
+        "and configure the required paths."
+    )
+
+payload = yaml.safe_load(config_path.read_text()) or {}
+value = payload.get(key)
+
+if not value:
+    raise SystemExit(
+        f"Required folders.yaml key is not configured: {key}"
+    )
+
+print(Path(value).expanduser().resolve())
+PY_CONFIG
+}
+
+if [[ -z "${NNUNET_ARCHIVE_ROOT:-}" ]]; then
+    NNUNET_ARCHIVE_ROOT="$(read_folder_path nnunet_archive_root)"
+fi
+
+if [[ -z "${NNUNET_RUN_ROOT:-}" ]]; then
+    NNUNET_RUN_ROOT="$(read_folder_path nnunet_run_root)"
+fi
+
 NNUNET_RAW="${NNUNET_ARCHIVE_ROOT}/nnUNet_raw"
 NNUNET_PREPROCESSED="${NNUNET_ARCHIVE_ROOT}/nnUNet_preprocessed"
 
-NNUNET_RUN_ROOT="/scratch/bhanug/nnUNet_brats_screening"
 NNUNET_RESULTS="${NNUNET_RUN_ROOT}/nnUNet_results_l40s_normal_q"
 
 INPUT_DIR="${NNUNET_RAW}/Dataset500_BraTS2020Screening/imagesTs"
@@ -45,7 +112,7 @@ CHECKPOINT="checkpoint_final.pth"
 
 cd "${REPO_ROOT}"
 
-# Home-directory logs must exist before runtime output is written.
+# Repository log directory is retained for runtime provenance.
 mkdir -p "${LOG_DIR}"
 
 # Scratch output directories are created immediately before use.
@@ -131,11 +198,6 @@ if [[ "${SUBJECT_COUNT}" -ne "${EXPECTED_SUBJECT_COUNT}" ]]; then
     echo "Observed: ${SUBJECT_COUNT}"
     exit 1
 fi
-
-source \
-  /apps/common/software/Miniforge3/25.11.0-1/etc/profile.d/conda.sh
-
-conda activate brats-nnunet
 
 export nnUNet_raw="${NNUNET_RAW}"
 export nnUNet_preprocessed="${NNUNET_PREPROCESSED}"
