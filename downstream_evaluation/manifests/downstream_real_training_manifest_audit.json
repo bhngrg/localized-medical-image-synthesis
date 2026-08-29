@@ -1,0 +1,72 @@
+{
+  "artifact": "downstream_real_training_manifest.csv",
+  "purpose": "Common real BraTS downstream-training pool for Experiments 1 and 2 after excluding every exact donor slice used in the frozen 10,000-case BR-LoRA synthetic library.",
+  "separation_level": "slice-level",
+  "source_artifacts": {
+    "downstream_evaluation/manifests/brats_real_catalog.csv": {
+      "sha256": "9b31a044b53073bd94c6fcbf0ea564caff31cbb600ce5b640a908307daf54d6d"
+    },
+    "downstream_evaluation/manifests/brats_downstream_subject_split.csv": {
+      "sha256": "684d6e657164b8aff3b50014c3cbe8f8e3f5e0c95e831130ed8058a5b4ca8ffa"
+    },
+    "downstream_evaluation/manifests/brats_downstream_training_donor_pool.csv": {
+      "sha256": "dd2ea546296b4614419d8a474947258bda99fe74dfe36d5c9341abeba7b08022"
+    },
+    "downstream_evaluation/manifests/br_lora_library_design_10000/br_lora_library_design_10000.csv": {
+      "sha256": "0a9b8dc923c337314673032504c1ff288ea18e28a75a0e4042d3f970c45ebd2b"
+    }
+  },
+  "counts": {
+    "full_catalog_rows": 57195,
+    "full_subjects": 369,
+    "train_subjects": 332,
+    "validation_subjects": 37,
+    "pre_exclusion_rows": 51460,
+    "frozen_donor_slices": 10000,
+    "common_real_rows": 41460,
+    "common_real_subjects": 332,
+    "tumor_containing": 11975,
+    "tumor_free": 29485,
+    "residual_donor_overlap": 0
+  },
+  "downstream_validation_volume_ids": [
+    8,
+    21,
+    48,
+    49,
+    52,
+    91,
+    93,
+    95,
+    107,
+    109,
+    110,
+    121,
+    124,
+    133,
+    142,
+    144,
+    153,
+    181,
+    193,
+    205,
+    223,
+    226,
+    228,
+    250,
+    261,
+    267,
+    269,
+    278,
+    300,
+    306,
+    330,
+    335,
+    339,
+    342,
+    349,
+    362,
+    366
+  ],
+  "manifest_sha256": "0a1f24f152e48529dc14a531681bce38136835bbb0cdac4248e030a9faff4d71"
+}
