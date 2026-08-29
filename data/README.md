@@ -134,7 +134,7 @@ interactive selector
 ```
 
 The interactive fallback applies only to scripts that provide an interactive
-selector. Model training and Falcon BR-LoRA batch acceptance are
+selector. Model training, BR-LoRA batch production, and BR-LoRA batch acceptance are
 noninteractive: required paths must be supplied by CLI or available in the
 folders configuration.
 
@@ -153,6 +153,7 @@ yaml_validation_dataset_path: null
 h5_root: null
 manifest_path: null
 
+br_lora_staging_root: null
 br_lora_library_root: null
 ```
 

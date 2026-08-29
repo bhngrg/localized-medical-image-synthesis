@@ -44,30 +44,28 @@ import torch
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(
+        0,
+        str(PROJECT_ROOT),
+    )
+
+from src.config import (
+    load_folders_config,
+    resolve_path,
+    save_folders_config,
+)
+
+
 DEFAULT_DESIGN_BATCH_DIR = (
     PROJECT_ROOT
     / "downstream_evaluation/manifests/"
       "br_lora_library_design_10000/batches"
 )
 
-DEFAULT_H5_ROOT = Path(
-    "/Users/bhanugarg/archive/BraTS2020_H5_Rebuilt"
-)
-
-DEFAULT_VALIDATION_DATASET = Path(
-    "/Users/bhanugarg/archive/"
-    "BraTS2020_ValidationData/"
-    "MICCAI_BraTS2020_ValidationData/"
-    "validation_dataset.yaml"
-)
-
 DEFAULT_CHECKPOINT = (
     PROJECT_ROOT
     / "checkpoints/br_lora_full_train/final.pt"
-)
-
-DEFAULT_STAGING_ROOT = Path(
-    "/Users/bhanugarg/archive/br_lora_library_staging"
 )
 
 DEFAULT_POSTERIOR_SAMPLES = 100
@@ -164,13 +162,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--h5-root",
         type=Path,
-        default=DEFAULT_H5_ROOT,
+        default=None,
     )
 
     parser.add_argument(
         "--validation-dataset",
         type=Path,
-        default=DEFAULT_VALIDATION_DATASET,
+        default=None,
     )
 
     parser.add_argument(
@@ -182,7 +180,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--staging-root",
         type=Path,
-        default=DEFAULT_STAGING_ROOT,
+        default=None,
+    )
+
+    parser.add_argument(
+        "--folders-file",
+        type=Path,
+        default=Path("data/folders.yaml"),
+        help="Machine-specific folders configuration file.",
     )
 
     parser.add_argument(
@@ -226,6 +231,47 @@ def parse_args() -> argparse.Namespace:
     )
 
     return parser.parse_args()
+
+
+def resolve_production_paths(
+    args: argparse.Namespace,
+) -> tuple[Path, Path, Path]:
+    """Resolve and persist machine-specific production paths."""
+    config = load_folders_config(
+        args.folders_file
+    )
+
+    h5_root = resolve_path(
+        key="h5_root",
+        cli_value=args.h5_root,
+        config=config,
+        selector=None,
+    )
+
+    validation_dataset = resolve_path(
+        key="yaml_validation_dataset_path",
+        cli_value=args.validation_dataset,
+        config=config,
+        selector=None,
+    )
+
+    staging_root = resolve_path(
+        key="br_lora_staging_root",
+        cli_value=args.staging_root,
+        config=config,
+        selector=None,
+    )
+
+    save_folders_config(
+        args.folders_file,
+        config,
+    )
+
+    return (
+        h5_root,
+        validation_dataset,
+        staging_root,
+    )
 
 
 def resolve_existing_file(
@@ -1189,18 +1235,26 @@ def main() -> None:
         args.batch
     )
 
+    (
+        h5_root,
+        validation_dataset,
+        staging_root,
+    ) = resolve_production_paths(
+        args
+    )
+
     design_batch_dir = resolve_existing_directory(
         args.design_batch_dir,
         name="Frozen design batch directory",
     )
 
     h5_root = resolve_existing_directory(
-        args.h5_root,
+        h5_root,
         name="BraTS H5 root",
     )
 
     validation_dataset = resolve_existing_file(
-        args.validation_dataset,
+        validation_dataset,
         name="Validation dataset specification",
     )
 
@@ -1230,7 +1284,7 @@ def main() -> None:
     ).resolve()
 
     staging_root = (
-        args.staging_root
+        staging_root
         .expanduser()
         .resolve()
     )
