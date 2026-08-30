@@ -1,0 +1,45 @@
+# Downstream segmentation evaluation settings.
+#
+# Scientific defaults reproduce the preliminary experiments already run.
+# Machine-specific paths are resolved separately through data/folders.yaml
+# or explicit command-line overrides.
+
+seed: 42
+
+data:
+  image_channel: 0
+  batch_size: 26
+  num_workers: 4
+
+  # null preserves the legacy behavior:
+  # pin memory only when training on CUDA.
+  # Set explicitly to true/false to override.
+  pin_memory: null
+
+training:
+  epochs: 20
+  learning_rate: 0.001
+  threshold: 0.5
+
+reproducibility:
+  deterministic_algorithms: true
+  cudnn_deterministic: true
+  cudnn_benchmark: false
+  cublas_workspace_config: ":4096:8"
+
+expected_counts:
+  real_training_slices: 41460
+  synthetic_training_cases: 10000
+  combined_training_slices: 51460
+  validation_slices: 5735
+
+regimes:
+  real_only:
+    synthetic_mode: none
+
+  real_plus_br_lora_mean:
+    synthetic_mode: posterior_mean
+
+  real_plus_br_lora_posterior:
+    synthetic_mode: posterior_sample
+    posterior_samples_available: 100

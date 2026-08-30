@@ -1,0 +1,84 @@
+Downstream segmentation GPU reproducibility diagnostic
+Host: fal031
+Date: Sun Aug 30 12:23:27 PM EDT 2026
+SLURM_JOB_ID=554539
+SLURM_JOB_PARTITION=a30_normal_q
+
+Runtime configuration
+==============================================================================
+Repository root   : /home/bhanug/localized-medical-image-synthesis
+Conda environment : brats-nnunet
+Partition         : a30_normal_q
+Python            : /home/bhanug/.conda/envs/brats-nnunet/bin/python
+Python version    : Python 3.11.15
+==============================================================================
+
+GPU
+==============================================================================
+Sun Aug 30 12:23:27 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A30                     On  |   00000000:CA:00.0 Off |                    0 |
+| N/A   24C    P0             34W /  165W |       0MiB /  24576MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+==============================================================================
+GPU: NVIDIA A30
+PyTorch: 2.13.0+cu126
+Seed: 42
+Steps: 10
+cudnn deterministic: False
+cudnn benchmark: False
+
+RUN A
+Initial model hash: 020a172a2b2a4f8167812722bf0e1435c3dd0db454fb5bc21ee8d855ef1c3a4e
+Step 01 loss: 1.646098852158
+Step 02 loss: 1.596411585808
+Step 03 loss: 1.322957754135
+Step 04 loss: 1.168984055519
+Step 05 loss: 1.191045999527
+Step 06 loss: 1.063139319420
+Step 07 loss: 1.083929538727
+Step 08 loss: 1.061446666718
+Step 09 loss: 1.023333191872
+Step 10 loss: 1.001918196678
+Final model hash: 4030a273c62472a308b85f7aa7ff37f46acb809c96b74190a864433c85a23892
+
+RUN B
+Initial model hash: 020a172a2b2a4f8167812722bf0e1435c3dd0db454fb5bc21ee8d855ef1c3a4e
+Step 01 loss: 1.646098852158
+Step 02 loss: 1.596411585808
+Step 03 loss: 1.322957754135
+Step 04 loss: 1.168984055519
+Step 05 loss: 1.191045999527
+Step 06 loss: 1.063139319420
+Step 07 loss: 1.083929538727
+Step 08 loss: 1.061446666718
+Step 09 loss: 1.023333191872
+Step 10 loss: 1.001918196678
+Final model hash: 4030a273c62472a308b85f7aa7ff37f46acb809c96b74190a864433c85a23892
+
+================================================================================
+Initial weights identical: True
+Loss sequence identical   : True
+Final weights identical   : True
+CURRENT CUDA TRAINING PATH: BITWISE REPRODUCIBLE FOR THIS TEST
+
+==============================================================================
+Reproducibility diagnostic complete
+Host: fal031
+Done: Sun Aug 30 12:24:03 PM EDT 2026
+==============================================================================

@@ -1,0 +1,61 @@
+Downstream real + BR-LoRA segmentation training
+Host: fal029
+Date: Sat Aug 29 06:44:35 PM EDT 2026
+SLURM_JOB_ID=552474
+SLURM_JOB_PARTITION=a30_normal_q
+CUDA_VISIBLE_DEVICES=0
+
+Runtime configuration
+==============================================================================
+Repository root          : /home/bhanug/localized-medical-image-synthesis
+Conda environment        : brats-nnunet
+Partition                : a30_normal_q
+Python                   : /home/bhanug/.conda/envs/brats-nnunet/bin/python
+Python version           : Python 3.11.15
+==============================================================================
+
+GPU
+==============================================================================
+Sat Aug 29 18:44:35 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A30                     On  |   00000000:E1:00.0 Off |                    0 |
+| N/A   27C    P0             29W /  165W |       0MiB /  24576MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Torch version      : 2.13.0+cu126
+Torch CUDA build   : 12.6
+CUDA available     : True
+CUDA device count  : 1
+CUDA device        : NVIDIA A30
+GPU memory (GiB)   : 23.6
+==============================================================================
+
+Starting real + BR-LoRA downstream training
+Start time: Sat Aug 29 06:44:39 PM EDT 2026
+==============================================================================
+Device: cuda
+Seed: 42
+Real training slices: 41460
+Synthetic training slices: 10000
+Combined training slices: 51460
+Validation slices: 5735
+
+Starting real + BR-LoRA downstream training.
+Epochs: 20
+Batch size: 26
+Learning rate: 0.001
+

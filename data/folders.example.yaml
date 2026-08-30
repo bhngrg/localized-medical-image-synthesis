@@ -23,3 +23,10 @@ br_lora_library_root: null
 # nnunet_run_root contains trained models and prediction outputs.
 nnunet_archive_root: null
 nnunet_run_root: null
+
+# Downstream segmentation evaluation paths.
+downstream_real_training_manifest: null
+downstream_validation_manifest: null
+downstream_synthetic_manifest: null
+ucsf_pdgm_root: null
+ucsf_pdgm_manifest: null

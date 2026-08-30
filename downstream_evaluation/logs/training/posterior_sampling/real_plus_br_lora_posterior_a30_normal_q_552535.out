@@ -1,0 +1,118 @@
+Downstream segmentation: real + BR-LoRA posterior sampling
+Host: fal030
+Date: Sat Aug 29 07:14:50 PM EDT 2026
+SLURM_JOB_ID=552535
+SLURM_JOB_PARTITION=a30_normal_q
+CUDA_VISIBLE_DEVICES=0
+
+Runtime configuration
+==============================================================================
+Repository root          : /home/bhanug/localized-medical-image-synthesis
+Conda environment        : brats-nnunet
+Partition                : a30_normal_q
+Python                   : /home/bhanug/.conda/envs/brats-nnunet/bin/python
+Python version           : Python 3.11.15
+==============================================================================
+
+GPU
+==============================================================================
+Sat Aug 29 19:14:50 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A30                     On  |   00000000:61:00.0 Off |                    0 |
+| N/A   25C    P0             32W /  165W |       0MiB /  24576MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Torch version      : 2.13.0+cu126
+Torch CUDA build   : 12.6
+CUDA available     : True
+CUDA device count  : 1
+CUDA device        : NVIDIA A30
+==============================================================================
+
+Starting Experiment 3 production training
+Start time: Sat Aug 29 07:15:05 PM EDT 2026
+==============================================================================
+Device: cuda
+Seed: 42
+Real training slices: 41460
+Synthetic training cases: 10000
+Combined training slices: 51460
+Validation slices: 5735
+
+Starting real + BR-LoRA posterior-sampling downstream training.
+Epochs: 20
+Batch size: 26
+Learning rate: 0.001
+Posterior realizations available per case: 100
+Distinct posterior realizations used per case: 20
+
+Epoch 01: posterior schedule position 0
+Epoch 01/20 | train_loss=0.442713 | train_dice=0.707462 | val_loss=0.621061 | val_dice=0.716739 | val_iou=0.674861 | val_positive_dice=0.699020 | val_positive_iou=0.600869
+  Saved new best checkpoint: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/real_plus_br_lora_posterior_seed42_a30_normal_q/best_model.pt
+Epoch 02: posterior schedule position 1
+Epoch 02/20 | train_loss=0.278449 | train_dice=0.789040 | val_loss=0.573099 | val_dice=0.812517 | val_iou=0.774173 | val_positive_dice=0.682380 | val_positive_iou=0.592515
+Epoch 03: posterior schedule position 2
+Epoch 03/20 | train_loss=0.198023 | train_dice=0.829479 | val_loss=0.529989 | val_dice=0.817567 | val_iou=0.786711 | val_positive_dice=0.632099 | val_positive_iou=0.559783
+Epoch 04: posterior schedule position 3
+Epoch 04/20 | train_loss=0.148526 | train_dice=0.855006 | val_loss=0.526141 | val_dice=0.831710 | val_iou=0.800314 | val_positive_dice=0.654213 | val_positive_iou=0.580631
+Epoch 05: posterior schedule position 4
+Epoch 05/20 | train_loss=0.126801 | train_dice=0.867960 | val_loss=0.466038 | val_dice=0.835407 | val_iou=0.806261 | val_positive_dice=0.660016 | val_positive_iou=0.591707
+Epoch 06: posterior schedule position 5
+Epoch 06/20 | train_loss=0.111532 | train_dice=0.876352 | val_loss=0.485848 | val_dice=0.842919 | val_iou=0.812638 | val_positive_dice=0.684570 | val_positive_iou=0.613601
+Epoch 07: posterior schedule position 6
+Epoch 07/20 | train_loss=0.102236 | train_dice=0.883570 | val_loss=0.378628 | val_dice=0.839257 | val_iou=0.810452 | val_positive_dice=0.676804 | val_positive_iou=0.609293
+Epoch 08: posterior schedule position 7
+Epoch 08/20 | train_loss=0.096084 | train_dice=0.887549 | val_loss=0.430149 | val_dice=0.849341 | val_iou=0.818314 | val_positive_dice=0.707384 | val_positive_iou=0.634668
+  Saved new best checkpoint: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/real_plus_br_lora_posterior_seed42_a30_normal_q/best_model.pt
+Epoch 09: posterior schedule position 8
+Epoch 09/20 | train_loss=0.090143 | train_dice=0.890121 | val_loss=0.552877 | val_dice=0.828704 | val_iou=0.799836 | val_positive_dice=0.637359 | val_positive_iou=0.569702
+Epoch 10: posterior schedule position 9
+Epoch 10/20 | train_loss=0.087192 | train_dice=0.893127 | val_loss=0.475639 | val_dice=0.844258 | val_iou=0.810379 | val_positive_dice=0.684847 | val_positive_iou=0.605444
+Epoch 11: posterior schedule position 10
+Epoch 11/20 | train_loss=0.082762 | train_dice=0.895176 | val_loss=0.490478 | val_dice=0.847474 | val_iou=0.817377 | val_positive_dice=0.680125 | val_positive_iou=0.609585
+Epoch 12: posterior schedule position 11
+Epoch 12/20 | train_loss=0.080545 | train_dice=0.896827 | val_loss=0.399052 | val_dice=0.852485 | val_iou=0.822763 | val_positive_dice=0.678790 | val_positive_iou=0.609131
+Epoch 13: posterior schedule position 12
+Epoch 13/20 | train_loss=0.077590 | train_dice=0.898466 | val_loss=0.471324 | val_dice=0.852105 | val_iou=0.821260 | val_positive_dice=0.699969 | val_positive_iou=0.627677
+Epoch 14: posterior schedule position 13
+Epoch 14/20 | train_loss=0.074869 | train_dice=0.900932 | val_loss=0.449892 | val_dice=0.849970 | val_iou=0.820217 | val_positive_dice=0.683931 | val_positive_iou=0.614198
+Epoch 15: posterior schedule position 14
+Epoch 15/20 | train_loss=0.072533 | train_dice=0.902633 | val_loss=0.443328 | val_dice=0.856127 | val_iou=0.825868 | val_positive_dice=0.709395 | val_positive_iou=0.638477
+  Saved new best checkpoint: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/real_plus_br_lora_posterior_seed42_a30_normal_q/best_model.pt
+Epoch 16: posterior schedule position 15
+Epoch 16/20 | train_loss=0.070823 | train_dice=0.904032 | val_loss=0.468452 | val_dice=0.850355 | val_iou=0.819611 | val_positive_dice=0.691781 | val_positive_iou=0.619725
+Epoch 17: posterior schedule position 16
+Epoch 17/20 | train_loss=0.069522 | train_dice=0.905830 | val_loss=0.457289 | val_dice=0.859843 | val_iou=0.828541 | val_positive_dice=0.717694 | val_positive_iou=0.644333
+  Saved new best checkpoint: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/real_plus_br_lora_posterior_seed42_a30_normal_q/best_model.pt
+Epoch 18: posterior schedule position 17
+Epoch 18/20 | train_loss=0.068215 | train_dice=0.906335 | val_loss=0.396145 | val_dice=0.861761 | val_iou=0.831095 | val_positive_dice=0.716059 | val_positive_iou=0.644188
+Epoch 19: posterior schedule position 18
+Epoch 19/20 | train_loss=0.066403 | train_dice=0.907684 | val_loss=0.430352 | val_dice=0.851939 | val_iou=0.820191 | val_positive_dice=0.717151 | val_positive_iou=0.642745
+Epoch 20: posterior schedule position 19
+Epoch 20/20 | train_loss=0.064779 | train_dice=0.908378 | val_loss=0.420426 | val_dice=0.855692 | val_iou=0.823342 | val_positive_dice=0.731261 | val_positive_iou=0.655442
+  Saved new best checkpoint: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/real_plus_br_lora_posterior_seed42_a30_normal_q/best_model.pt
+
+Training complete.
+Best tumor-positive validation Dice: 0.7312612908345795
+Best checkpoint: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/real_plus_br_lora_posterior_seed42_a30_normal_q/best_model.pt
+Training history: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/real_plus_br_lora_posterior_seed42_a30_normal_q/training_history.csv
+
+==============================================================================
+Experiment 3 production training complete
+Host: fal030
+Done: Sat Aug 29 10:25:20 PM EDT 2026
+==============================================================================
