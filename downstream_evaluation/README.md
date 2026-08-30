@@ -197,12 +197,29 @@ than overwritten.
 ## External Evaluation
 
 The independent external validation cohort is derived from UCSF-PDGM after
-removing patients overlapping with BraTS. The frozen external cohort contains
-202 subjects.
+excluding records that overlap the BraTS 2021 segmentation cohort and removing
+the single follow-up examination from the independent cohort. The frozen
+external cohort contains 202 baseline subjects.
+
+Validate the frozen cohort provenance with:
+
+```bash
+python downstream_evaluation/scripts/validate_ucsf_pdgm_external_cohort.py --help
+```
+
+Run external evaluation with:
+
+```bash
+python -m downstream_evaluation.segmentation.evaluate_ucsf_pdgm --help
+```
 
 External evaluation uses the repository's established FLAIR preprocessing
 contract and reports slice-level metrics as well as subject-level volumetric
 Dice and IoU.
+
+See [`../docs/ucsf_pdgm_external_validation.md`](../docs/ucsf_pdgm_external_validation.md)
+for acquisition, cohort derivation, preprocessing, validation, and evaluator
+details.
 
 ## Reference Implementation and Attribution
 

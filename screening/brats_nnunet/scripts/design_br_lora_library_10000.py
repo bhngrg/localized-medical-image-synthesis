@@ -58,6 +58,11 @@ import scipy
 from scipy.sparse import coo_matrix
 from scipy.sparse.csgraph import maximum_flow
 
+from src.config import (
+    load_folders_config,
+    resolve_path,
+    save_folders_config,
+)
 from src.data import (
     get_brain_mask,
     load_h5_full,
@@ -94,6 +99,20 @@ DESIGN_NAME = "br_lora_library_design_10000.csv"
 AUDIT_NAME = "br_lora_library_design_10000_audit.csv"
 SUMMARY_NAME = "br_lora_library_design_10000_summary.json"
 
+DEFAULT_TRAINING_DONOR_POOL = (
+    PROJECT_ROOT
+    / "downstream_evaluation"
+    / "manifests"
+    / "brats_downstream_training_donor_pool.csv"
+)
+
+DEFAULT_BATCH0001_MANIFEST = (
+    PROJECT_ROOT
+    / "downstream_evaluation"
+    / "manifests"
+    / "br_lora_synthetic_250.csv"
+)
+
 
 class LibraryDesignError(RuntimeError):
     """Raised when frozen BR-LoRA library construction fails."""
@@ -107,38 +126,64 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument(
-        "--validation-dataset",
-        required=True,
+        "--folders-file",
         type=Path,
-        help="Registered BraTS 2020 validation_dataset.yaml.",
+        default=Path("data/folders.yaml"),
+        help=(
+            "Machine-specific path configuration YAML. "
+            "Default: data/folders.yaml."
+        ),
+    )
+
+    parser.add_argument(
+        "--validation-dataset",
+        type=Path,
+        default=None,
+        help=(
+            "Registered BraTS 2020 validation_dataset.yaml. Overrides "
+            "yaml_validation_dataset_path in --folders-file."
+        ),
     )
 
     parser.add_argument(
         "--base-counts-csv",
-        required=True,
         type=Path,
-        help="external_base_compatibility_counts.csv.",
+        default=None,
+        help=(
+            "external_base_compatibility_counts.csv. If omitted, uses "
+            "<nnunet_run_root>/external_pair_space_audit/"
+            "external_base_compatibility_counts.csv."
+        ),
     )
 
     parser.add_argument(
         "--training-donor-pool",
-        required=True,
         type=Path,
-        help="Training-only donor-pool CSV after downstream split.",
+        default=None,
+        help=(
+            "Training-only donor-pool CSV after downstream split. "
+            "If omitted, uses the tracked repository donor pool."
+        ),
     )
 
     parser.add_argument(
         "--h5-root",
-        required=True,
         type=Path,
-        help="BraTS reconstructed H5 directory.",
+        default=None,
+        help=(
+            "BraTS reconstructed H5 directory. Overrides h5_root "
+            "in --folders-file."
+        ),
     )
 
     parser.add_argument(
         "--batch0001-manifest",
-        required=True,
         type=Path,
-        help="Portable 250-case synthetic manifest.",
+        default=None,
+        help=(
+            "Portable frozen 250-case synthetic manifest. If omitted, "
+            "uses the tracked repository manifest."
+        ),
     )
 
     parser.add_argument(
@@ -2294,29 +2339,71 @@ def load_compatibility_cache(
 def main() -> None:
     args = parse_args()
 
+    folders_config = load_folders_config(
+        args.folders_file
+    )
+
     validation_dataset = resolve_file(
-        args.validation_dataset,
+        resolve_path(
+            key="yaml_validation_dataset_path",
+            cli_value=args.validation_dataset,
+            config=folders_config,
+            selector=None,
+        ),
         "Validation dataset specification",
     )
 
-    base_counts_path = resolve_file(
-        args.base_counts_csv,
-        "External-base compatibility table",
+    h5_root = resolve_directory(
+        resolve_path(
+            key="h5_root",
+            cli_value=args.h5_root,
+            config=folders_config,
+            selector=None,
+        ),
+        "BraTS H5 root",
     )
 
+    if args.base_counts_csv is not None:
+        base_counts_path = resolve_file(
+            args.base_counts_csv,
+            "External-base compatibility table",
+        )
+    else:
+        nnunet_run_root = resolve_path(
+            key="nnunet_run_root",
+            cli_value=None,
+            config=folders_config,
+            selector=None,
+        ).expanduser().resolve()
+
+        base_counts_path = resolve_file(
+            nnunet_run_root
+            / "external_pair_space_audit"
+            / "external_base_compatibility_counts.csv",
+            "External-base compatibility table",
+        )
+
     donor_pool_path = resolve_file(
-        args.training_donor_pool,
+        (
+            args.training_donor_pool
+            if args.training_donor_pool is not None
+            else DEFAULT_TRAINING_DONOR_POOL
+        ),
         "Training-only donor pool",
     )
 
     batch1_path = resolve_file(
-        args.batch0001_manifest,
+        (
+            args.batch0001_manifest
+            if args.batch0001_manifest is not None
+            else DEFAULT_BATCH0001_MANIFEST
+        ),
         "Batch 0001 manifest",
     )
 
-    h5_root = resolve_directory(
-        args.h5_root,
-        "BraTS H5 root",
+    save_folders_config(
+        args.folders_file,
+        folders_config,
     )
 
     output_dir = (

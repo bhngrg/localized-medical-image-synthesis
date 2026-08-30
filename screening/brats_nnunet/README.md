@@ -1,19 +1,22 @@
 # BraTS nnU-Net External-Cohort Screening
 
-This subtree contains the nnU-Net workflow used to construct a screened
-external BraTS 2020 validation cohort for localized medical image
-synthesis evaluation.
+This subtree contains the nnU-Net workflow used to construct the screened
+BraTS 2020 validation cohort used by the BR-LoRA external-cohort and synthetic
+library pipelines.
 
-The screening workflow is intentionally separate from BR-LoRA training,
-inference, posterior analysis, and reliability assessment. Its sole
-scientific purpose is to identify BraTS 2020 validation slices with no
-predicted whole-tumor involvement so that they can serve as candidate
-external base images.
+Its scientific role is limited to identifying validation slices with no
+predicted whole-tumor involvement and auditing their compatibility with the
+eligible donor pool. nnU-Net is not trained jointly with BR-LoRA, used during
+BR-LoRA optimization, used to modify BR-LoRA predictions, or treated as ground
+truth for synthesized-image quality.
 
 ## Role in the Project
 
-``` text
-BraTS 2020 training release
+```text
+Registered BraTS 2020 Training + Validation
+        │
+        ▼
+prepare_nnunet_dataset.py
         │
         ▼
 Dataset500_BraTS2020Screening
@@ -22,109 +25,163 @@ Dataset500_BraTS2020Screening
 Five-fold nnU-Net training
         │
         ▼
-Frozen screening model
+Five-fold validation ensemble prediction
         │
         ▼
-BraTS 2020 validation release
+screen_validation_slices.py
         │
         ▼
-Five-fold ensemble prediction
+Compatibility and donor-morphology audits
         │
         ▼
-Predicted whole-tumor masks
+Candidate-cohort design and matching
         │
         ▼
-Slice-level screening
+Frozen 250-case external cohort
         │
         ▼
-Compatibility analysis
+Frozen 10,000-case BR-LoRA library design
         │
         ▼
-Donor-morphology audit
-        │
-        ▼
-Nested candidate cohorts
-        │
-        ▼
-Global one-to-one matching
-        │
-        ▼
-Compatibility-conditioned audit
-        │
-        ▼
-Frozen 250-case manifest
-        │
-        ▼
-10,000-case BR-LoRA library design
-        │
-        ▼
-Batch-wise synthetic library production
+Synthetic-library production
         │
         ▼
 Downstream segmentation evaluation
 ```
 
-The nnU-Net model is a cohort-screening tool only. It is not trained
-jointly with BR-LoRA, used during BR-LoRA optimization, used to modify
-BR-LoRA predictions, or treated as ground truth for synthesized-image
-quality.
+The screening stage is an operational dependency of the implemented synthetic
+library workflow because the official BraTS 2020 validation release does not
+contain segmentation labels.
 
-The frozen screening outputs also define the admissible external base-image
-pool used by the BR-LoRA synthetic library production pipeline. All library
-design manifests are generated downstream of this screening stage and do not
-modify the screening results.
+## 1. Prepare the nnU-Net Dataset
 
-## Slice-Level Screening
+Both registered BraTS 2020 releases are required.
 
-The slice-level screening workflow has been fully implemented and
-audited.
+```bash
+python screening/brats_nnunet/scripts/prepare_nnunet_dataset.py --help
+python screening/brats_nnunet/scripts/prepare_nnunet_dataset.py --validate-only
+```
 
-The primary tumor-free criterion mirrors the historical composition
-pipeline:
+The preparation script resolves the registered Training and Validation dataset
+specifications from `data/folders.yaml` unless explicit CLI paths are supplied.
 
-``` text
+See [`../../data/README.md`](../../data/README.md) for BraTS acquisition and
+registration.
+
+## 2. Train the Five nnU-Net Folds
+
+Production nnU-Net training is intended for a **CUDA-capable GPU**. Ordinary
+CPU execution and Apple MPS are not the supported production path for this
+stage.
+
+The provided Slurm array workflow trains folds 0-4:
+
+```text
+training/train_all_folds.slurm
+```
+
+The five folds are independent and can run concurrently as cluster resources
+permit.
+
+See [`training/README.md`](training/README.md) for the repository-specific
+training workflow and the
+[official nnU-Net documentation](https://github.com/MIC-DKFZ/nnUNet) for
+nnU-Net installation and general usage.
+
+## 3. Predict the BraTS Validation Cohort
+
+Production inference also requires a **CUDA-capable GPU**.
+
+The provided five-fold ensemble workflow is:
+
+```text
+inference/predict_validation.slurm
+```
+
+It produces one whole-tumor prediction for each of the 125 registered BraTS
+validation subjects.
+
+See [`inference/README.md`](inference/README.md).
+
+## 4. Screen Validation Slices
+
+Inspect the user-facing interface with:
+
+```bash
+python screening/brats_nnunet/scripts/screen_validation_slices.py --help
+python screening/brats_nnunet/scripts/screen_validation_slices.py --validate-only
+```
+
+The primary tumor-free criterion is:
+
+```text
 predicted_tumor_pixels == 0
 ```
 
-Screening additionally verifies compatibility with the donor pool using
-the established brain-overlap and eligibility criteria before candidate
-external bases are admitted to the evaluation cohort.
+The completed screening workflow identified 11,414 tumor-free validation
+slices and 8,632 compatibility-eligible external bases across all 125
+validation subjects.
 
-The resulting screened cohort is subjected to compatibility-space,
-donor-morphology, compatibility-conditioned donor-selection,
-deterministic matching, and definitive-manifest audits before external
-BR-LoRA evaluation.
+## 5. Audit Compatibility and Freeze the External Cohort
 
-## Final External Evaluation Cohort
+After slice-level screening, the implemented workflow proceeds through:
 
-The completed screening workflow produced
+```text
+audit_external_pair_space.py
+        ├──► analyze_external_pair_space.py
+        │
+        ▼
+audit_donor_morphology.py
+        │
+        ▼
+audit_external_manifest_design.py
+        ├──► audit_external_matching_diagnostics.py
+        ├──► audit_compatibility_conditioned_donor_selection.py
+        │
+        ▼
+finalize_external_manifest.py
+        │
+        ▼
+audit_definitive_compatibility_conditioned_donor_selection.py
+```
 
--   125 validation subjects
--   11,414 tumor-free validation slices
--   8,632 compatibility-eligible external bases
--   nested candidate cohorts containing 125, 250, and 625 external cases
--   a definitive frozen evaluation cohort of 250 external cases
--   exactly two external bases per validation subject
--   250 unique donor slices
--   deterministic one-to-one compatibility-constrained donor matching
--   complete compatibility-conditioned donor-selection audits
--   complete provenance and reproducibility metadata
+These scripts resolve deterministic workflow locations under
+`nnunet_run_root` when explicit paths are omitted. Their scientific matching
+and audit parameters remain explicit CLI options.
 
+The finalized external cohort contains:
 
-## Relationship to the BR-LoRA Library Pipeline
+- 250 cases,
+- exactly two selected bases per validation subject,
+- 250 unique donor slices, and
+- deterministic compatibility-constrained donor assignments.
 
-The screening workflow is executed once to produce a fixed, reproducible pool
-of compatibility-eligible external base slices.
+Use `--help` on any script to inspect its supported arguments.
 
-Subsequent BR-LoRA library generation consumes these frozen manifests but does
-not rerun nnU-Net inference or alter the screened cohort. This separation
-ensures that cohort selection and synthetic image generation remain
-independently reproducible.
+## 6. Construct the Frozen 10,000-Case Library Design
 
+The 10,000-case BR-LoRA design is downstream of the frozen screening and
+matching outputs.
+
+```bash
+python screening/brats_nnunet/scripts/design_br_lora_library_10000.py --help
+```
+
+The canonical design is tracked under:
+
+```text
+downstream_evaluation/manifests/br_lora_library_design_10000/
+```
+
+`--output-dir` is intentionally required when reconstructing the design so the
+tracked canonical artifacts cannot be overwritten accidentally.
+
+Synthetic-library production itself is documented in
+[`../../docs/synthetic_library.md`](../../docs/synthetic_library.md).
 
 ## Repository Layout
 
-``` text
+```text
 screening/brats_nnunet/
 ├── README.md
 ├── configs/
@@ -140,6 +197,7 @@ screening/brats_nnunet/
 │   ├── audit_external_manifest_design.py
 │   ├── audit_external_matching_diagnostics.py
 │   ├── audit_external_pair_space.py
+│   ├── design_br_lora_library_10000.py
 │   ├── finalize_external_manifest.py
 │   ├── prepare_nnunet_dataset.py
 │   └── screen_validation_slices.py
@@ -151,11 +209,10 @@ screening/brats_nnunet/
 
 ## Reproducibility Requirements
 
-Record the nnU-Net version, dataset identifier, trainer/plans, fold
-checkpoints, Git commit, Slurm partition, prediction provenance,
-screening thresholds, compatibility-space audit, donor-selection audit,
-definitive manifest checksum, and all generated provenance metadata for
-production runs.
+For production runs, record the nnU-Net version, dataset identifier,
+trainer/plans, fold checkpoints, Git commit, Slurm partition, prediction
+provenance, screening thresholds, compatibility audits, definitive-manifest
+checksum, and generated provenance metadata.
 
-Generated datasets, checkpoints, predictions, and runtime logs are not
-stored in the Git repository.
+Generated nnU-Net datasets, checkpoints, predictions, and runtime logs are not
+stored in Git.

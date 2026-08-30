@@ -1,70 +1,75 @@
 # Data Flow
 
-This document summarizes the main data flow through the project.
+This document summarizes the implemented data dependencies across the project.
 
 ```text
-BraTS 2020 Training NIfTI
-        │
-        ├──────────────► nnU-Net training
-        │                    │
-        │                    ▼
-        │              frozen 5-fold model
-        │                    │
-        │                    ▼
-        │             validation screening
-        │                    │
-        │                    ▼
-        │           tumor-free base candidates
-        │                    │
-        ▼                    │
-H5 reconstruction           │
-        │                    │
-        ▼                    │
-training manifest            │
-        │                    │
-        ├────► baseline training
-        │            │
-        │            ▼
-        │      diffusion checkpoint
-        │            │
-        └────► BR-LoRA training
-                     │
-                     ▼
-               BR-LoRA checkpoint
-                     │
-                     ├──────────────────┐
-                     │                  │
-                     ▼                  ▼
-             donor pool           screened bases
-                     │                  │
-                     └────────┬─────────┘
-                              ▼
-                   compatibility graph
-                              │
-                              ▼
-                     exact-flow matching
-                              │
-                              ▼
-                  10,000-case design
-                              │
-                              ▼
-                    40 × 250 batches
-                              │
-                              ▼
-                  posterior generation
-                              │
-                              ▼
-                  synthetic library
-                              │
-                              ▼
-                  downstream evaluation
+BraTS 2020 Training NIfTI                  BraTS 2020 Validation NIfTI
+        │                                             │
+        ▼                                             ▼
+register_dataset.py                    register_validation_dataset.py
+        │                                             │
+        ├──────────────────────┐        ┌─────────────┘
+        │                      │        │
+        ▼                      │        ▼
+H5 reconstruction             └──► prepare_nnunet_dataset.py
+        │                              │
+        ▼                              ▼
+training manifest                Dataset500 screening data
+        │                              │
+        ├──► baseline training         ▼
+        │         │              five-fold nnU-Net training
+        │         ▼                    │
+        │   diffusion checkpoint       ▼
+        │         │              validation ensemble prediction
+        │         ▼                    │
+        └──► BR-LoRA training          ▼
+                  │              validation slice screening
+                  │                    │
+                  ▼                    ▼
+          BR-LoRA checkpoint     tumor-free base candidates
+                  │                    │
+                  │              compatibility + morphology audits
+                  │                    │
+                  │                    ▼
+                  │              frozen 250-case cohort
+                  │                    │
+                  └──────────┬─────────┘
+                             ▼
+                  frozen 10,000-case design
+                             │
+                             ▼
+                   BR-LoRA library batches
+                             │
+                             ▼
+                    accepted synthetic library
+                             │
+              ┌──────────────┼──────────────┐
+              ▼              ▼              ▼
+          real only      real + mean    real + sampling
+              │              │              │
+              └──────────────┼──────────────┘
+                             ▼
+                 downstream segmentation
+                             │
+                             ▼
+                  frozen UCSF-PDGM cohort
+                             │
+                             ▼
+                    external evaluation
 ```
 
 ## Key Boundaries
 
-- Screening does not modify BR-LoRA.
+- BraTS Training and Validation are registered separately.
+- nnU-Net screening uses both registered BraTS releases but does not modify
+  BR-LoRA or participate in BR-LoRA optimization.
 - BR-LoRA does not discover external cases internally.
-- Library design is frozen before batch production.
+- Compatibility-constrained cohort construction is frozen before synthetic
+  library design.
+- The 10,000-case design is frozen before batch production.
 - Batch production does not modify the scientific design.
-- Batch acceptance does not regenerate cases; it validates staged artifacts and promotes them into the permanent library.
-- Downstream experiments consume frozen library artifacts and manifests.
+- Batch acceptance validates staged artifacts; it does not regenerate cases.
+- Downstream experiments consume frozen manifests and accepted library
+  artifacts.
+- UCSF-PDGM evaluation is downstream of the trained segmentation checkpoints
+  and is independent of the BraTS screening cohort.

@@ -56,6 +56,11 @@ import numpy as np
 import pandas as pd
 import torch
 
+from src.config import (
+    load_folders_config,
+    resolve_path,
+    save_folders_config,
+)
 from src.data import (
     load_validation_dataset_specification,
 )
@@ -105,37 +110,68 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument(
-        "--validation-dataset",
-        required=True,
+        "--folders-file",
         type=Path,
+        default=Path("data/folders.yaml"),
+        help=(
+            "Machine-specific path configuration YAML. "
+            "Default: data/folders.yaml."
+        ),
+    )
+
+    parser.add_argument(
+        "--validation-dataset",
+        type=Path,
+        default=None,
+        help=(
+            "Registered BraTS validation dataset YAML. Overrides "
+            "yaml_validation_dataset_path in --folders-file."
+        ),
     )
 
     parser.add_argument(
         "--candidate-assignments",
-        required=True,
         type=Path,
+        default=None,
         help=(
-            "candidate_assignments_all.csv from the completed "
-            "nested external-manifest design audit."
+            "candidate_assignments_all.csv from the completed nested "
+            "external-manifest design audit. If omitted, uses "
+            "<nnunet_run_root>/external_manifest_design_audit/"
+            "candidate_assignments_all.csv."
         ),
     )
 
     parser.add_argument(
         "--donor-morphology-csv",
-        required=True,
         type=Path,
+        default=None,
+        help=(
+            "Donor morphology CSV. If omitted, uses "
+            "<nnunet_run_root>/donor_morphology_audit/"
+            "donor_morphology.csv."
+        ),
     )
 
     parser.add_argument(
         "--pair-space-summary",
-        required=True,
         type=Path,
+        default=None,
+        help=(
+            "Pair-space summary JSON. If omitted, uses "
+            "<nnunet_run_root>/external_pair_space_audit/"
+            "external_pair_space_summary.json."
+        ),
     )
 
     parser.add_argument(
         "--output-dir",
-        required=True,
         type=Path,
+        default=None,
+        help=(
+            "Directory for the definitive 250-case manifest. "
+            "If omitted, uses "
+            "<nnunet_run_root>/definitive_external_manifest_250."
+        ),
     )
 
     parser.add_argument(
@@ -898,30 +934,89 @@ def solve_final_matching(
 def main() -> None:
     args = parse_args()
 
+    folders_config = load_folders_config(
+        args.folders_file
+    )
+
     validation_path = resolve_file(
-        args.validation_dataset,
+        resolve_path(
+            key="yaml_validation_dataset_path",
+            cli_value=args.validation_dataset,
+            config=folders_config,
+            selector=None,
+        ),
         name="Validation dataset",
     )
 
-    candidate_path = resolve_file(
-        args.candidate_assignments,
-        name="Candidate assignments",
-    )
+    nnunet_run_root = None
 
-    donor_path = resolve_file(
-        args.donor_morphology_csv,
-        name="Donor morphology CSV",
-    )
+    if (
+        args.candidate_assignments is None
+        or args.donor_morphology_csv is None
+        or args.pair_space_summary is None
+        or args.output_dir is None
+    ):
+        nnunet_run_root = resolve_path(
+            key="nnunet_run_root",
+            cli_value=None,
+            config=folders_config,
+            selector=None,
+        ).expanduser().resolve()
 
-    pair_summary_path = resolve_file(
-        args.pair_space_summary,
-        name="Pair-space summary",
-    )
+    if args.candidate_assignments is not None:
+        candidate_path = resolve_file(
+            args.candidate_assignments,
+            name="Candidate assignments",
+        )
+    else:
+        candidate_path = resolve_file(
+            nnunet_run_root
+            / "external_manifest_design_audit"
+            / "candidate_assignments_all.csv",
+            name="Candidate assignments",
+        )
 
-    output_dir = (
-        args.output_dir
-        .expanduser()
-        .resolve()
+    if args.donor_morphology_csv is not None:
+        donor_path = resolve_file(
+            args.donor_morphology_csv,
+            name="Donor morphology CSV",
+        )
+    else:
+        donor_path = resolve_file(
+            nnunet_run_root
+            / "donor_morphology_audit"
+            / "donor_morphology.csv",
+            name="Donor morphology CSV",
+        )
+
+    if args.pair_space_summary is not None:
+        pair_summary_path = resolve_file(
+            args.pair_space_summary,
+            name="Pair-space summary",
+        )
+    else:
+        pair_summary_path = resolve_file(
+            nnunet_run_root
+            / "external_pair_space_audit"
+            / "external_pair_space_summary.json",
+            name="Pair-space summary",
+        )
+
+    if args.output_dir is not None:
+        output_dir = (
+            args.output_dir
+            .expanduser()
+            .resolve()
+        )
+    else:
+        output_dir = (
+            nnunet_run_root
+            / "definitive_external_manifest_250"
+        )
+
+    save_folders_config(
+        args.folders_file,
+        folders_config,
     )
 
     output_dir.mkdir(

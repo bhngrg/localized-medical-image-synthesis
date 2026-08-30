@@ -28,5 +28,11 @@ nnunet_run_root: null
 downstream_real_training_manifest: null
 downstream_validation_manifest: null
 downstream_synthetic_manifest: null
+
+# UCSF-PDGM external-validation paths.
+# ucsf_pdgm_root contains the downloaded UCSF-PDGM imaging dataset.
+# ucsf_pdgm_metadata_root contains the cohort-provenance CSVs.
+# ucsf_pdgm_manifest may override the tracked frozen subject manifest.
 ucsf_pdgm_root: null
+ucsf_pdgm_metadata_root: null
 ucsf_pdgm_manifest: null

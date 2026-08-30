@@ -39,12 +39,29 @@ import json
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
 from typing import Any
 
 import h5py
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(
+        0,
+        str(PROJECT_ROOT),
+    )
+
+
+from src.config import (
+    load_folders_config,
+    resolve_path,
+    save_folders_config,
+)
 
 
 IMAGE_HEIGHT = 240
@@ -87,31 +104,46 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument(
-        "--donor-counts-csv",
-        required=True,
+        "--folders-file",
         type=Path,
+        default=Path("data/folders.yaml"),
         help=(
-            "external_donor_compatibility_counts.csv from the "
-            "completed external pair-space audit."
+            "Machine-specific path configuration YAML. "
+            "Default: data/folders.yaml."
+        ),
+    )
+
+    parser.add_argument(
+        "--donor-counts-csv",
+        type=Path,
+        default=None,
+        help=(
+            "external_donor_compatibility_counts.csv from the completed "
+            "external pair-space audit. If omitted, uses "
+            "<nnunet_run_root>/external_pair_space_audit/"
+            "external_donor_compatibility_counts.csv."
         ),
     )
 
     parser.add_argument(
         "--pair-space-summary",
-        required=True,
         type=Path,
+        default=None,
         help=(
             "external_pair_space_summary.json from the completed "
-            "external pair-space audit."
+            "external pair-space audit. If omitted, uses "
+            "<nnunet_run_root>/external_pair_space_audit/"
+            "external_pair_space_summary.json."
         ),
     )
 
     parser.add_argument(
         "--output-dir",
-        required=True,
         type=Path,
+        default=None,
         help=(
-            "Directory for donor morphology tables, summary, and figures."
+            "Directory for donor morphology tables, summary, and figures. "
+            "If omitted, uses <nnunet_run_root>/donor_morphology_audit."
         ),
     )
 
@@ -962,20 +994,65 @@ def main() -> None:
 
     args = parse_args()
 
-    donor_counts_path = resolve_existing_file(
-        args.donor_counts_csv,
-        name="Donor compatibility CSV",
+    folders_config = load_folders_config(
+        args.folders_file
     )
 
-    pair_space_summary_path = resolve_existing_file(
-        args.pair_space_summary,
-        name="Pair-space summary JSON",
-    )
+    nnunet_run_root = None
 
-    output_dir = (
-        args.output_dir
-        .expanduser()
-        .resolve()
+    if (
+        args.donor_counts_csv is None
+        or args.pair_space_summary is None
+        or args.output_dir is None
+    ):
+        nnunet_run_root = resolve_path(
+            key="nnunet_run_root",
+            cli_value=None,
+            config=folders_config,
+            selector=None,
+        ).expanduser().resolve()
+
+    if args.donor_counts_csv is not None:
+        donor_counts_path = resolve_existing_file(
+            args.donor_counts_csv,
+            name="Donor compatibility CSV",
+        )
+    else:
+        donor_counts_path = resolve_existing_file(
+            nnunet_run_root
+            / "external_pair_space_audit"
+            / "external_donor_compatibility_counts.csv",
+            name="Donor compatibility CSV",
+        )
+
+    if args.pair_space_summary is not None:
+        pair_space_summary_path = resolve_existing_file(
+            args.pair_space_summary,
+            name="Pair-space summary JSON",
+        )
+    else:
+        pair_space_summary_path = resolve_existing_file(
+            nnunet_run_root
+            / "external_pair_space_audit"
+            / "external_pair_space_summary.json",
+            name="Pair-space summary JSON",
+        )
+
+    if args.output_dir is not None:
+        output_dir = (
+            args.output_dir
+            .expanduser()
+            .resolve()
+        )
+    else:
+        output_dir = (
+            nnunet_run_root
+            / "donor_morphology_audit"
+        )
+
+    save_folders_config(
+        args.folders_file,
+        folders_config,
     )
 
     if args.dpi <= 0:

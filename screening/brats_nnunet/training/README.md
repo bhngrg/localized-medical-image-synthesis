@@ -1,6 +1,7 @@
 # nnU-Net Screening Training
 
-This directory contains the repository-owned training entry points for the BraTS 2020 nnU-Net screening model.
+This directory contains the repository-owned training entry points for the
+BraTS 2020 nnU-Net screening model.
 
 The production configuration is:
 
@@ -14,9 +15,17 @@ device        = cuda
 
 The ResEnc L plan uses a `160 x 192 x 160` 3D patch at 1 mm isotropic spacing.
 
+Production training requires a **CUDA-capable GPU**. Ordinary CPU execution and
+Apple MPS are not the supported production path for this workflow.
+
+For nnU-Net installation and general usage, follow the
+[official nnU-Net documentation](https://github.com/MIC-DKFZ/nnUNet). This
+README documents only the repository-specific screening workflow.
+
 ## Cross-Validation Split
 
-Training uses five-fold cross-validation over 369 labeled BraTS 2020 training subjects.
+Training uses five-fold cross-validation over 369 labeled BraTS 2020 training
+subjects.
 
 ```text
 fold 0: train=295, validation=74
@@ -26,11 +35,12 @@ fold 3: train=295, validation=74
 fold 4: train=296, validation=73
 ```
 
-The split is stored in the nnU-Net preprocessed Dataset500 directory as `splits_final.json`.
+The split is stored in the nnU-Net preprocessed Dataset500 directory as
+`splits_final.json`.
 
 ## Entry Points
 
-Run one fold with:
+Run one fold directly with:
 
 ```bash
 screening/brats_nnunet/training/train_fold.sh 0
@@ -50,9 +60,13 @@ Submit it from the repository root:
 sbatch screening/brats_nnunet/training/train_all_folds.slurm
 ```
 
-The completed production run launched folds 0-4 as a Slurm array on `l40s_normal_q` using the `fdtbiotech` account.
+The launcher trains folds 0-4 as a Slurm array using the `fdtbiotech` account.
+The folds are independent and may run concurrently as cluster resources permit.
 
-When `train_fold.sh` is run directly, it requires the standard nnU-Net environment variables:
+## Path Configuration
+
+When `train_fold.sh` is run directly, it requires the standard nnU-Net
+environment variables:
 
 ```text
 nnUNet_raw
@@ -60,9 +74,18 @@ nnUNet_preprocessed
 nnUNet_results
 ```
 
-The Slurm launcher derives these paths from `nnunet_archive_root` and `nnunet_run_root` in `data/folders.yaml`. The roots may instead be supplied through `NNUNET_ARCHIVE_ROOT` and `NNUNET_RUN_ROOT`.
+The Slurm launcher derives these paths from `nnunet_archive_root` and
+`nnunet_run_root` in `data/folders.yaml`.
 
-Environment-variable overrides for the nnU-Net training configuration remain available:
+The roots may instead be supplied through:
+
+```text
+NNUNET_ARCHIVE_ROOT
+NNUNET_RUN_ROOT
+```
+
+Environment-variable overrides for the nnU-Net training configuration remain
+available:
 
 ```text
 NNUNET_DATASET_ID
@@ -70,6 +93,9 @@ NNUNET_CONFIGURATION
 NNUNET_PLANS
 NNUNET_DEVICE
 ```
+
+See [`../../../data/README.md`](../../../data/README.md) for the shared
+machine-specific path configuration.
 
 ## Completed Production Training
 
@@ -96,44 +122,36 @@ progress.png
 debug.json
 ```
 
-Training used `--npz` so validation probability outputs are retained where supported by nnU-Net.
-
-
-
-## Relationship to the BR-LoRA Pipeline
-
-The nnU-Net model is trained once and then frozen. The resulting five-fold
-ensemble is used exclusively for external-cohort screening and is **not**
-updated during BR-LoRA development.
-
-Its outputs provide the tumor-screening predictions used to construct the
-screened external cohort, which subsequently feeds the BR-LoRA synthetic
-library design and downstream evaluation pipeline.
-
+Training used `--npz` so validation probability outputs are retained where
+supported by nnU-Net.
 
 ## Output Location
 
-Production results are stored outside Git beneath the configured `nnunet_run_root`:
+Production results are stored outside Git beneath the configured
+`nnunet_run_root`:
 
 ```text
 <nnunet_run_root>/
-nnUNet_results_l40s_normal_q/
+└── nnUNet_results_l40s_normal_q/
 ```
 
-Set `nnunet_run_root` in `data/folders.yaml`, or provide `NNUNET_RUN_ROOT` in the job environment.
+The repository does not store checkpoints, fold validation predictions,
+training logs, or other large generated artifacts.
 
-The repository does not store checkpoints, fold validation predictions, training logs, or other large generated artifacts.
-
-The completed fold models are consumed by the validation-inference launcher in:
+The completed folds are consumed by:
 
 ```text
 screening/brats_nnunet/inference/predict_validation.slurm
 ```
 
+## Relationship to BR-LoRA
 
-## Scientific Scope
+The nnU-Net model is trained once and then frozen. Its ensemble predictions are
+used only to screen the BraTS validation cohort and construct the admissible
+external base-image pool.
 
-This training workflow is independent of BR-LoRA optimization, Bayesian
-adaptation, posterior uncertainty estimation, synthetic image generation,
-and downstream segmentation experiments. Its sole purpose is to produce the
-frozen screening model used for external-cohort construction.
+It is not updated during BR-LoRA training and is not used as a synthesized-image
+quality target.
+
+See [`../README.md`](../README.md) for the complete screening and
+compatibility workflow.

@@ -11,13 +11,23 @@ The raw datasets are **not distributed** with this repository.
 
 ---
 
-# Dataset Download
+# Dataset Acquisition
 
-The BraTS 2020 datasets are publicly available from Kaggle:
+This repository expects the original BraTS 2020 Training and Validation NIfTI
+releases.
+
+Official BraTS 2020 information and data-use guidance are available from:
+
+https://www.med.upenn.edu/cbica/brats2020/data.html
+
+A commonly used Kaggle mirror of the BraTS 2020 training and validation
+releases is also available at:
 
 https://www.kaggle.com/datasets/awsaf49/brats20-dataset-training-validation
 
-A Kaggle account is required to download the data.
+The repository does not download or redistribute the datasets. Obtain the
+Training and Validation releases separately, then register their local
+directories using the scripts below.
 
 ---
 
@@ -141,7 +151,7 @@ folders configuration.
 Paths selected explicitly by CLI or through an interactive selector are saved
 to the folders configuration for reuse.
 
-The configuration supports the following keys:
+The current configuration contract is:
 
 ```yaml
 data_root: null
@@ -155,8 +165,20 @@ manifest_path: null
 
 br_lora_staging_root: null
 br_lora_library_root: null
+
+nnunet_archive_root: null
+nnunet_run_root: null
+
+downstream_real_training_manifest: null
+downstream_validation_manifest: null
+downstream_synthetic_manifest: null
+
+ucsf_pdgm_root: null
+ucsf_pdgm_metadata_root: null
+ucsf_pdgm_manifest: null
 ```
 
+The authoritative example is [`folders.example.yaml`](folders.example.yaml).
 Explicit CLI arguments always override saved values.
 
 ---
@@ -298,7 +320,25 @@ dataset registration from model development.
 
 # Citation
 
-If you use this repository in academic work, please cite
+Use of the BraTS 2020 data should follow the citation guidance provided by the
+BraTS organizers. The official BraTS 2020 data page requests citation of the
+following works:
 
-- the BraTS challenge and dataset, and
-- this repository (once publicly released).
+1. Menze BH, Jakab A, Bauer S, et al. *The Multimodal Brain Tumor Image
+   Segmentation Benchmark (BRATS).* IEEE Transactions on Medical Imaging.
+   2015;34(10):1993-2024. DOI: 10.1109/TMI.2014.2377694.
+
+2. Bakas S, Akbari H, Sotiras A, et al. *Advancing The Cancer Genome Atlas
+   glioma MRI collections with expert segmentation labels and radiomic
+   features.* Scientific Data. 2017;4:170117.
+   DOI: 10.1038/sdata.2017.117.
+
+3. Bakas S, Reyes M, Jakab A, et al. *Identifying the Best Machine Learning
+   Algorithms for Brain Tumor Segmentation, Progression Assessment, and
+   Overall Survival Prediction in the BRATS Challenge.* arXiv:1811.02629
+   (2018).
+
+See the official BraTS 2020 data page for the complete data-use and
+data-citation guidance:
+
+https://www.med.upenn.edu/cbica/brats2020/data.html

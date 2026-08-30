@@ -45,11 +45,28 @@ import json
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
 from typing import Any
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(
+        0,
+        str(PROJECT_ROOT),
+    )
+
+
+from src.config import (
+    load_folders_config,
+    resolve_path as resolve_config_path,
+    save_folders_config,
+)
 
 
 SUBJECT_SUMMARY_NAME = "subject_summary.csv"
@@ -100,51 +117,69 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument(
-        "--screening-csv",
-        required=True,
+        "--folders-file",
         type=Path,
+        default=Path("data/folders.yaml"),
         help=(
-            "Slice-level validation screening CSV."
+            "Machine-specific path configuration YAML. "
+            "Default: data/folders.yaml."
+        ),
+    )
+
+    parser.add_argument(
+        "--screening-csv",
+        type=Path,
+        default=None,
+        help=(
+            "Slice-level validation screening CSV. If omitted, uses "
+            "<nnunet_run_root>/validation_slice_screening/"
+            "validation_slice_screening.csv."
         ),
     )
 
     parser.add_argument(
         "--base-counts-csv",
-        required=True,
         type=Path,
+        default=None,
         help=(
-            "External-base compatibility-count CSV "
-            "from audit_external_pair_space.py."
+            "External-base compatibility-count CSV from "
+            "audit_external_pair_space.py. If omitted, uses "
+            "<nnunet_run_root>/external_pair_space_audit/"
+            "external_base_compatibility_counts.csv."
         ),
     )
 
     parser.add_argument(
         "--donor-counts-csv",
-        required=True,
         type=Path,
+        default=None,
         help=(
-            "Training-donor compatibility-count CSV "
-            "from audit_external_pair_space.py."
+            "Training-donor compatibility-count CSV from "
+            "audit_external_pair_space.py. If omitted, uses "
+            "<nnunet_run_root>/external_pair_space_audit/"
+            "external_donor_compatibility_counts.csv."
         ),
     )
 
     parser.add_argument(
         "--pair-space-summary",
-        required=True,
         type=Path,
+        default=None,
         help=(
-            "Pair-space summary JSON from "
-            "audit_external_pair_space.py."
+            "Pair-space summary JSON from audit_external_pair_space.py. "
+            "If omitted, uses <nnunet_run_root>/external_pair_space_audit/"
+            "external_pair_space_summary.json."
         ),
     )
 
     parser.add_argument(
         "--output-dir",
-        required=True,
         type=Path,
+        default=None,
         help=(
-            "Directory for descriptive audit tables "
-            "and figures."
+            "Directory for descriptive audit tables and figures. "
+            "If omitted, uses "
+            "<nnunet_run_root>/external_pair_space_analysis."
         ),
     )
 
@@ -1175,30 +1210,93 @@ def main() -> None:
 
     args = parse_args()
 
-    screening_csv = resolve_path(
-        args.screening_csv,
-        kind="Screening CSV",
+    folders_config = load_folders_config(
+        args.folders_file
     )
 
-    base_counts_csv = resolve_path(
-        args.base_counts_csv,
-        kind="Base compatibility CSV",
-    )
+    nnunet_run_root = None
 
-    donor_counts_csv = resolve_path(
-        args.donor_counts_csv,
-        kind="Donor compatibility CSV",
-    )
+    if (
+        args.screening_csv is None
+        or args.base_counts_csv is None
+        or args.donor_counts_csv is None
+        or args.pair_space_summary is None
+        or args.output_dir is None
+    ):
+        nnunet_run_root = resolve_config_path(
+            key="nnunet_run_root",
+            cli_value=None,
+            config=folders_config,
+            selector=None,
+        ).expanduser().resolve()
 
-    pair_space_summary_path = resolve_path(
-        args.pair_space_summary,
-        kind="Pair-space summary JSON",
-    )
+    if args.screening_csv is not None:
+        screening_csv = resolve_path(
+            args.screening_csv,
+            kind="Screening CSV",
+        )
+    else:
+        screening_csv = resolve_path(
+            nnunet_run_root
+            / "validation_slice_screening"
+            / "validation_slice_screening.csv",
+            kind="Screening CSV",
+        )
 
-    output_dir = (
-        args.output_dir
-        .expanduser()
-        .resolve()
+    if args.base_counts_csv is not None:
+        base_counts_csv = resolve_path(
+            args.base_counts_csv,
+            kind="Base compatibility CSV",
+        )
+    else:
+        base_counts_csv = resolve_path(
+            nnunet_run_root
+            / "external_pair_space_audit"
+            / "external_base_compatibility_counts.csv",
+            kind="Base compatibility CSV",
+        )
+
+    if args.donor_counts_csv is not None:
+        donor_counts_csv = resolve_path(
+            args.donor_counts_csv,
+            kind="Donor compatibility CSV",
+        )
+    else:
+        donor_counts_csv = resolve_path(
+            nnunet_run_root
+            / "external_pair_space_audit"
+            / "external_donor_compatibility_counts.csv",
+            kind="Donor compatibility CSV",
+        )
+
+    if args.pair_space_summary is not None:
+        pair_space_summary_path = resolve_path(
+            args.pair_space_summary,
+            kind="Pair-space summary JSON",
+        )
+    else:
+        pair_space_summary_path = resolve_path(
+            nnunet_run_root
+            / "external_pair_space_audit"
+            / "external_pair_space_summary.json",
+            kind="Pair-space summary JSON",
+        )
+
+    if args.output_dir is not None:
+        output_dir = (
+            args.output_dir
+            .expanduser()
+            .resolve()
+        )
+    else:
+        output_dir = (
+            nnunet_run_root
+            / "external_pair_space_analysis"
+        )
+
+    save_folders_config(
+        args.folders_file,
+        folders_config,
     )
 
     balance_targets = tuple(

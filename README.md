@@ -1,521 +1,435 @@
 # Localized Medical Image Synthesis
 
-A modular research framework for donor-conditioned localized medical image synthesis, regional composition, parameter-efficient adaptation, Bayesian Regional LoRA (BR-LoRA), and image-level reliability assessment.
+A modular research framework for donor-conditioned localized medical image
+synthesis with Bayesian Regional LoRA (BR-LoRA), compatibility-constrained
+regional composition, synthetic-data generation, and downstream evaluation.
 
-> **Project status:** Active development. The baseline patch-conditioned x0 diffusion workflow has been refactored from the original notebook into modular Python components and validated against the reference implementation. The repository now supports validated BR-LoRA training, posterior-mean and posterior-sampling inference, screened external evaluation, and reproducible construction of a frozen 10,000-case BR-LoRA synthetic library. The current production workflow generates the library in 40 audited batches of 250 cases, with checksum verification and acceptance into a master library manifest.
+BR-LoRA adapts a frozen conditional diffusion model by placing mean-field
+Gaussian distributions over low-rank adapter parameters. The implemented
+workflow uses tumor-free base images, tumor-containing donor images, and donor
+lesion masks to synthesize localized pathology while preserving unaffected
+base anatomy through hard regional composition.
 
----
-
-## Overview
-
-This project investigates localized medical image synthesis in which pathological appearance from a donor image is synthesized within a prescribed region of a tumor-free base image while preserving unaffected anatomy outside that region.
-
-The framework explicitly separates:
-
-- tumor-free base anatomy,
-- donor pathological appearance,
-- prescribed lesion masks,
-- regional synthesis, and
-- hard regional composition.
-
-The primary Bayesian adaptation method is **Bayesian Regional LoRA (BR-LoRA)**. BR-LoRA places mean-field Gaussian distributions over low-rank adapter parameters while keeping the conditional diffusion backbone frozen. The repository also supports deterministic parameter-efficient alternatives including BitFit, LoRA, DoRA, and LoKr.
-
-The broader research workflow evaluates localized synthesis through complementary measures of predictive uncertainty, structural consistency, repeat stability, and robustness to controlled perturbations.
+The repository includes the complete implemented workflow from BraTS 2020 data
+registration through BR-LoRA training, nnU-Net screening, frozen synthetic
+library construction, downstream segmentation, and external validation on
+UCSF-PDGM.
 
 ---
 
-## Current Capabilities
+## Workflow at a Glance
 
-The repository currently supports:
-
-- BraTS 2020 dataset registration and validation,
-- reconstruction of the historical H5 training representation,
-- reproducible slice-level manifest generation,
-- modular diffusion scheduling,
-- modular `AppearanceX0UNet` training and inference,
-- localized lesion synthesis,
-- hard regional image composition,
-- internal 90/10 model-selection workflows,
-- fixed-epoch full-training refits,
-- BitFit, LoRA, DoRA, LoKr, and BR-LoRA adaptation,
-- mean-field Gaussian variational posteriors,
-- analytic KL divergence,
-- reparameterized posterior sampling,
-- posterior-mean inference,
-- posterior variance and standard-deviation summaries,
-- checkpoint save/load and resume support,
-- Monte Carlo convergence analysis,
-- Monte Carlo standard error (MCSE) analysis,
-- registered external BraTS validation-slice loading,
-- external preprocessing equivalence validation,
-- frozen-manifest external BR-LoRA evaluation,
-- deterministic per-case posterior sampling,
-- nnU-Net-based external-cohort screening,
-- compatibility-constrained base/donor pairing,
-- frozen 10,000-case library design,
-- batch-wise synthetic-library production,
-- SHA-256 transfer verification, and
-- batch acceptance into a master library manifest.
-
-Ongoing work focuses on downstream reliability analyses, topology-aware structural evaluation, robustness experiments, benchmarking across adaptation strategies, and manuscript figures and tables.
-
----
-
-## Repository Organization
+The main execution order is:
 
 ```text
-localized-medical-image-synthesis/
-│
-├── checkpoints/          Model checkpoints (generated artifacts)
-├── configs/              Baseline and BR-LoRA configuration files
-├── data/                 Dataset setup documentation
-├── docs/                 Extended project documentation
-├── downstream_evaluation/
-│   └── manifests/        Frozen downstream and synthetic-library manifests
-├── logs/                 Training, evaluation, screening, and production logs
-├── notebooks/            Original research notebooks / reference implementation
-├── outputs/              Generated analyses, figures, and synthesis outputs
-├── screening/
-│   └── brats_nnunet/     nnU-Net screening and compatibility workflow
-├── scripts/              Executable training, inference, analysis, and production workflows
-├── src/                  Modular Python implementation
-├── README.md
-├── PROJECT_PLAN.md
-├── LICENSE
-└── .gitignore
+BraTS 2020 Training                     BraTS 2020 Validation
+        │                                       │
+        ▼                                       ▼
+register_dataset.py             register_validation_dataset.py
+        │                                       │
+        ├───────────────┐               ┌───────┘
+        │               │               │
+        ▼               │               ▼
+build_h5_dataset.py     │       prepare_nnunet_dataset.py
+        │               │               │
+        ▼               │               ▼
+create_dataset_manifest.py      nnU-Net five-fold training
+        │                               │
+        ▼                               ▼
+baseline diffusion              validation prediction
+        │                               │
+        ▼                               ▼
+BR-LoRA training                validation slice screening
+        │                               │
+        │                               ▼
+        │                      compatibility audits
+        │                               │
+        │                               ▼
+        │                      frozen 250-case cohort
+        │                               │
+        └───────────────┬───────────────┘
+                        ▼
+              frozen 10,000-case design
+                        │
+                        ▼
+                synthetic library
+                        │
+                        ▼
+            downstream segmentation
+              ┌─────────┼─────────┐
+              ▼         ▼         ▼
+          real only   real +    real +
+                      posterior posterior
+                        mean    sampling
+              └─────────┼─────────┘
+                        ▼
+              UCSF-PDGM evaluation
 ```
 
-The repository is still under active development. Script locations are intentionally being kept stable while the 10,000-case production run is in progress; structural cleanup will be performed after production completes.
+BraTS training and validation registration are independent and can be run in
+parallel. The baseline/BR-LoRA training branch can proceed once the registered
+training data and H5 representation are available. The nnU-Net screening branch
+requires both registered BraTS releases.
+
+Once their prerequisites are available, the three downstream segmentation
+regimes are independent. The real-only regime does not require the synthetic
+library and can therefore start earlier. UCSF-PDGM evaluation requires all
+three downstream checkpoints.
 
 ---
 
-## Dataset Pipeline
+## 1. Configure Machine-Specific Paths
 
-The repository operates from the official BraTS 2020 NIfTI releases.
+Copy the example path configuration:
 
-### Training data
+```bash
+cp data/folders.example.yaml data/folders.yaml
+```
+
+`data/folders.yaml` is machine-specific and is not committed to Git.
+
+Important path keys used by the implemented workflow include:
+
+```yaml
+data_root: null
+yaml_dataset_path: null
+validation_data_root: null
+yaml_validation_dataset_path: null
+
+h5_root: null
+
+nnunet_archive_root: null
+nnunet_run_root: null
+
+br_lora_library_root: null
+downstream_real_training_manifest: null
+downstream_synthetic_manifest: null
+downstream_validation_manifest: null
+
+ucsf_pdgm_root: null
+ucsf_pdgm_metadata_root: null
+ucsf_pdgm_manifest: null
+```
+
+See [`data/README.md`](data/README.md) for the complete BraTS training and
+validation setup and [`data/folders.example.yaml`](data/folders.example.yaml)
+for the supported machine-specific path configuration.
+
+---
+
+## 2. Register BraTS 2020 Training and Validation Data
+
+Both the official BraTS 2020 training and validation releases are required by
+the complete workflow.
+
+Training registration:
+
+```bash
+python scripts/register_dataset.py --help
+```
+
+Validation registration:
+
+```bash
+python scripts/register_validation_dataset.py --help
+```
+
+These two registration steps are independent and may run in parallel.
+
+The resulting registered dataset specifications are:
 
 ```text
-Raw BraTS 2020 Training NIfTI
-        │
-        ▼
-register_dataset.py
-        │
-        ▼
 dataset.yaml
-        │
-        ▼
-build_h5_dataset.py
-        │
-        ▼
-57,195 reconstructed H5 slices
-        │
-        ▼
-create_dataset_manifest.py
-        │
-        ▼
-manifest.csv
-```
-
-The reconstructed training dataset contains 57,195 H5 slices. Of these, 19,941 tumor-containing slices satisfy the validated slice-selection criteria used by the synthesis workflow.
-
-### Validation data
-
-The official BraTS 2020 validation release is registered independently:
-
-```text
-Raw BraTS 2020 Validation NIfTI
-        │
-        ▼
-register_validation_dataset.py
-        │
-        ▼
 validation_dataset.yaml
 ```
 
-The official validation release does not contain tumor segmentation masks, so it is not used for masked reconstruction loss or checkpoint selection. Instead, it is reserved for downstream external inference, screening, predictive uncertainty estimation, and reliability evaluation.
+Dataset registration performs the expensive source-data validation once.
+Downstream workflows reuse the registered specifications rather than repeating
+the full scan.
 
-A registered validation-slice loader reproduces the effective training image representation from raw validation NIfTI data. This preprocessing path has been numerically validated against the reconstructed H5 training representation.
-
-See [`data/README.md`](data/README.md) for dataset setup and registration details. Dataset paths may be supplied explicitly through CLI arguments or stored in a machine-specific `data/folders.yaml`; [`data/folders.example.yaml`](data/folders.example.yaml) documents the supported path keys.
-
----
-
-## External Cohort Screening
-
-A frozen five-fold nnU-Net ensemble is used to screen the official BraTS 2020 validation release for tumor-free candidate slices.
-
-The screening workflow then audits candidate bases for anatomical compatibility with eligible donor lesions. This produced a reproducible nested 125/250/625 external cohort design and a definitive 250-case external evaluation cohort.
-
-The definitive external cohort contains two cases per validation subject. Each base is paired with a unique donor slice through deterministic compatibility-constrained matching and is consumed directly by the external BR-LoRA evaluation workflow.
-
-Screening code and documentation are located under:
-
-```text
-screening/brats_nnunet/
-```
+See [`data/README.md`](data/README.md).
 
 ---
 
-## Training Split Modes
+## 3. Reconstruct the Training H5 Representation
 
-The baseline configuration preserves the original notebook behavior.
+The synthesis model uses the validated H5 representation of the BraTS training
+release.
 
-### Internal model selection
-
-```yaml
-data:
-  split_mode: internal
-  train_fraction: 0.9
+```bash
+python scripts/build_h5_dataset.py --help
+python scripts/create_dataset_manifest.py --help
 ```
 
-This uses 90% of eligible tumor-containing training slices for optimization and reserves 10% for internal model selection.
+The complete reconstructed training representation contains 57,195 axial H5
+slices from 369 BraTS training subjects.
 
-### Full training
+The generated manifest is subsequently used by baseline training, BR-LoRA
+training, donor-pool construction, and downstream data preparation.
+
+---
+
+## 4. Train the Baseline Conditional Diffusion Model
+
+The modular baseline preserves the original notebook behavior as the default
+configuration.
+
+```bash
+python scripts/train_patch_x0.py --help
+```
+
+The original notebook remains the scientific reference implementation; the
+modular Python implementation is the primary executable workflow.
+
+For the production generator used in downstream synthetic-data experiments,
+the final model uses the full BraTS training configuration:
 
 ```yaml
 data:
   split_mode: full_train
 ```
 
-This uses 100% of eligible BraTS training slices and omits the masked validation loss used during internal model selection. It is intended for fixed-epoch final refits after model settings have been established.
-
-Validated reference workflows include:
-
-- 50-epoch internal baseline training,
-- 50-epoch internal BR-LoRA training,
-- 50-epoch full-training baseline, and
-- 50-epoch full-training BR-LoRA.
+The earlier internal 90/10 split remains supported in the code for development
+and provenance but is not part of the main downstream production path.
 
 ---
 
-## Bayesian Regional LoRA
+## 5. Train BR-LoRA
 
-BR-LoRA extends the validated local `AppearanceX0UNet` through Bayesian low-rank adaptation while preserving the frozen backbone.
+BR-LoRA adapts the frozen baseline diffusion backbone using Bayesian low-rank
+adapters.
 
-The validated rank-4, alpha-8 configuration targets seven convolutional layers:
-
-```yaml
-br_lora:
-  target_layers:
-    - enc1.conv2
-    - enc2.conv2
-    - enc3.conv2
-    - mid.conv2
-    - dec2.conv2
-    - dec1.conv2
-    - out
-
-  rank: 4
-  alpha: 8.0
-  dropout: 0.0
-
-  initial_std: 0.01
-  prior_mean: 0.0
-  prior_std: 1.0
-  minimum_std: 1.0e-8
+```bash
+python scripts/train_br_lora.py --help
 ```
 
-This configuration contains 18,052 deterministic LoRA parameters and 36,104 variational posterior parameters distributed across 28 trainable posterior tensors.
+The production configuration is defined in the tracked configuration files
+under [`configs/`](configs/).
 
-Each LoRA factor is represented by a trainable mean-field Gaussian posterior. Inference can use either posterior samples or posterior means:
+BR-LoRA supports posterior-mean and posterior-sampled inference while retaining
+the frozen diffusion backbone.
 
-```yaml
-sample_posterior: true
+For implementation and training details, see
+[`docs/br_lora_pipeline.md`](docs/br_lora_pipeline.md).
+
+Posterior products can be generated and audited with:
+
+```bash
+python scripts/audit_br_lora_posterior.py --help
+python scripts/analyze_br_lora_posterior_convergence.py --help
+python scripts/analyze_br_lora_posterior_mcse.py --help
 ```
 
-or
-
-```yaml
-sample_posterior: false
-```
-
-Posterior realizations are generated on demand. The evaluation pipeline can retain the exact posterior realization stack for reproducible downstream analyses.
+The convergence and MCSE analyses are independent once the posterior
+realization artifact has been generated.
 
 ---
 
-## BR-LoRA Variational Objective
+## 6. Prepare and Run nnU-Net Screening
 
-BR-LoRA preserves the validated regional reconstruction objective while adding parameter-normalized KL regularization.
+nnU-Net screening is required because the BraTS 2020 validation release has no
+tumor labels. A five-fold nnU-Net ensemble is used to identify tumor-free
+candidate base slices before compatibility-constrained pairing.
 
-Conceptually:
+```bash
+python screening/brats_nnunet/scripts/prepare_nnunet_dataset.py --help
+python screening/brats_nnunet/scripts/prepare_nnunet_dataset.py --validate-only
+```
+
+Production nnU-Net training and inference require a **CUDA-capable GPU**.
+Five folds can be trained concurrently using:
 
 ```text
-reconstruction
-    = inside-mask L1
-    + outside_weight * outside-mask L1
-
-normalized_kl
-    = KL(q || p) / number_of_variational_parameters
-
-total
-    = reconstruction
-    + kl_weight
-      * warmup_multiplier
-      * normalized_kl
+screening/brats_nnunet/training/train_all_folds.slurm
 ```
 
-Training uses reparameterized posterior sampling with linear KL warmup. Internal validation is performed in posterior-mean mode so checkpoint selection is based on a deterministic criterion.
-
----
-
-## Baseline and BR-LoRA Validation
-
-The modular implementation has been checked against the reference notebook and independently audited across baseline and Bayesian components.
-
-Validated baseline behavior includes:
-
-- dataset filtering and train/validation splitting,
-- diffusion schedule construction and q-sampling,
-- model parameterization and seeded initialization,
-- forward inference,
-- masked training loss,
-- gradients,
-- AdamW updates,
-- optimizer state,
-- epoch-level losses,
-- checkpoint contents,
-- reconstruction inference,
-- candidate discovery and seeded pair selection, and
-- localized hard regional composition.
-
-Validated BR-LoRA behavior includes:
-
-- exact seven-layer target selection,
-- deterministic and variational parameter accounting,
-- frozen-backbone preservation,
-- zero-update initialization,
-- posterior-mean equivalence at initialization,
-- seeded posterior reproducibility,
-- analytic KL divergence and gradients,
-- reconstruction-loss equivalence,
-- KL warmup and normalization,
-- real-H5 optimization,
-- gradient clipping,
-- checkpoint save/load and resume,
-- posterior mean and posterior sampling inference,
-- posterior convergence analysis,
-- MCSE analysis,
-- external preprocessing equivalence,
-- manifest-driven external inference,
-- retained posterior realization validation, and
-- case-specific reproducibility independent of manifest order.
-
-The original notebook remains the scientific reference implementation. The modular repository is the primary development and experimentation platform.
-
----
-
-## External BR-LoRA Evaluation
-
-External evaluation consumes a fixed manifest rather than selecting cases internally. This ensures that trained models are evaluated on exactly the same external bases and donor lesions.
-
-The evaluation workflow supports:
-
-- deterministic per-case seeds,
-- fixed diffusion noise across posterior draws,
-- configurable posterior sample counts,
-- resume-safe case validation,
-- retained posterior realization stacks,
-- posterior mean,
-- posterior variance,
-- posterior standard deviation,
-- composite mean reconstruction, and
-- per-case metadata and run-level summaries.
-
-Primary entry point:
+Validation prediction uses:
 
 ```text
-scripts/evaluate_br_lora_external.py
+screening/brats_nnunet/inference/predict_validation.slurm
 ```
+
+See [`screening/brats_nnunet/README.md`](screening/brats_nnunet/README.md)
+and the [official nnU-Net documentation](https://github.com/MIC-DKFZ/nnUNet).
 
 ---
 
-## Frozen 10,000-Case Synthetic Library
+## 7. Screen Validation Slices and Freeze the External Cohort
 
-The repository includes a prespecified library design for 10,000 BR-LoRA synthetic cases.
+After nnU-Net prediction:
 
-The final design contains:
+```bash
+python screening/brats_nnunet/scripts/screen_validation_slices.py --help
+python screening/brats_nnunet/scripts/screen_validation_slices.py --validate-only
+```
 
-- 10,000 total cases,
-- 125 external subjects,
-- 80 cases per external subject,
-- 40 batches of 250 cases,
-- globally unique donor slices,
-- compatibility-constrained base/donor assignments,
-- a donor-subject cap of 31 cases,
-- a maximum final base reuse of 10, and
-- exact preservation of the original 250-case Batch 0001 cohort.
+The screening and compatibility scripts then identify tumor-free bases,
+evaluate donor compatibility, and freeze the definitive 250-case external
+cohort.
 
-The frozen design artifacts are stored under:
+All scripts use deterministic locations under `nnunet_run_root` when explicit
+paths are omitted.
+
+See [`screening/brats_nnunet/README.md`](screening/brats_nnunet/README.md)
+for the complete audit and matching sequence.
+
+---
+
+## 8. Construct the Frozen 10,000-Case Design
+
+The canonical 10,000-case BR-LoRA design is tracked under:
 
 ```text
 downstream_evaluation/manifests/br_lora_library_design_10000/
 ```
 
-The compatibility cache used during library construction is intentionally not version controlled because it is recomputable from the frozen inputs.
+It contains 125 validation subjects, 80 cases per subject, 40 batches of 250,
+and compatibility-constrained donor assignments.
 
----
+For reproducible reconstruction:
 
-## Library Production Workflow
-
-The 10,000-case library is produced sequentially in 40 batches of 250 cases.
-
-The production workflow is:
-
-```text
-Frozen batch manifest
-        │
-        ▼
-BR-LoRA posterior inference
-        │
-        ▼
-Production audit
-        │
-        ▼
-Canonical SHA-256 inventory
-        │
-        ▼
-Staging area
-        │
-        ▼
-Batch integrity verification and acceptance
-        │
-        ▼
-Permanent synthetic library
-        │
-        ▼
-Master library manifest update
+```bash
+python screening/brats_nnunet/scripts/design_br_lora_library_10000.py --help
 ```
 
-Primary library-production scripts are:
+`--output-dir` is intentionally required to prevent accidental overwrite of the
+tracked canonical design.
 
-```text
-scripts/run_br_lora_library_batch.py
-scripts/accept_br_lora_library_batch.py
-screening/brats_nnunet/scripts/design_br_lora_library_10000.py
+See [`docs/synthetic_library.md`](docs/synthetic_library.md).
+
+---
+
+## 9. Produce the Synthetic Library
+
+Synthetic-library production uses the frozen design and trained BR-LoRA
+checkpoint.
+
+```bash
+python scripts/run_br_lora_library_batch.py --help
+python scripts/accept_br_lora_library_batch.py --help
 ```
 
-Batch production writes completed artifacts, a production audit, and a canonical SHA-256 inventory to the configured staging root. Acceptance independently verifies the staged batch, validates its design and metadata against the current library state, copies the accepted artifacts into the configured permanent library, and updates the master manifest.
+Generated batches are audited, hashed, staged, and accepted into the permanent
+library. Independent batches can run in parallel when they use distinct batch
+and staging locations.
 
-Machine-specific storage locations are supplied through the shared folders configuration rather than encoded in the workflow.
-
----
-
-## Downstream Evaluation Manifests
-
-Version-controlled downstream manifests include:
-
-- real BraTS slice catalogs,
-- subject-level summaries,
-- downstream subject splits,
-- training-only donor pools,
-- external cohort manifests,
-- the frozen 10,000-case library design,
-- per-batch library manifests, and
-- per-batch external evaluation manifests.
-
-These artifacts provide a frozen record of case selection and experimental composition without requiring generated posterior tensors or large image outputs to be stored in Git.
+See [`docs/synthetic_library.md`](docs/synthetic_library.md).
 
 ---
 
-## Current User-Facing Scripts
+## 10. Train the Downstream Segmentation Models
+
+The downstream comparison uses three regimes:
 
 ```text
-Dataset preparation
--------------------
-scripts/register_dataset.py
-scripts/register_validation_dataset.py
-scripts/build_h5_dataset.py
-scripts/create_dataset_manifest.py
-
-Model training
---------------
-scripts/train_patch_x0.py
-scripts/train_br_lora.py
-
-Image synthesis
----------------
-scripts/synthesize_patch_x0.py
-scripts/synthesize_br_lora.py
-
-External evaluation
--------------------
-scripts/evaluate_br_lora_external.py
-
-Posterior analysis
-------------------
-scripts/audit_br_lora_posterior.py
-scripts/analyze_br_lora_posterior_convergence.py
-scripts/analyze_br_lora_posterior_mcse.py
-
-Synthetic-library production
-----------------------------
-scripts/run_br_lora_library_batch.py
-scripts/accept_br_lora_library_batch.py
+real_only
+real_plus_br_lora_mean
+real_plus_br_lora_posterior
 ```
 
-The historical preprocessing audit utility `scripts/verify_h5_conversion.py` is retained for equivalence and provenance checks.
+The frozen split contains 332 BraTS subjects for training and 37 held-out
+subjects for internal validation.
 
-Infrastructure-specific scripts used for the original Mac-to-Falcon production run are retained under `scripts/historical/` as provenance records and are not part of the supported public workflow.
+```bash
+python scripts/train_downstream_segmentation.py --help
+```
+
+The real-only experiment can run before synthetic-library production finishes.
+The two augmented regimes can run independently once the library is available.
+
+The downstream U-Net is adapted from
+[Low-Grade-Glioma-Segmentation](https://github.com/edaaydinea/Low-Grade-Glioma-Segmentation).
+
+See [`downstream_evaluation/README.md`](downstream_evaluation/README.md) and
+[`docs/downstream_evaluation.md`](docs/downstream_evaluation.md).
 
 ---
 
-## Repository Design Principles
+## 11. Evaluate on UCSF-PDGM
 
-- Preserve the original notebook as the scientific reference implementation.
-- Preserve notebook behavior as the default baseline configuration.
-- Expose legitimate experiment parameters rather than silently changing behavior.
-- Refactor incrementally and validate extracted components.
-- Validate Bayesian components independently before end-to-end integration.
-- Avoid implicit dataset discovery and hidden preprocessing assumptions.
-- Separate reusable library code from executable workflows.
-- Perform expensive dataset validation once and reuse generated metadata.
-- Share common functionality across training, inference, and evaluation workflows.
-- Keep frozen experimental manifests under version control.
-- Keep large generated tensors, checkpoints, and recomputable caches out of Git.
-- Preserve provenance through logs, hashes, manifests, and deterministic seeds.
+The three downstream checkpoints are externally evaluated on the frozen
+202-subject UCSF-PDGM cohort.
+
+Official dataset source:
+
+[UCSF-PDGM on The Cancer Imaging Archive](https://www.cancerimagingarchive.net/collection/ucsf-pdgm/)
+
+Validate cohort provenance:
+
+```bash
+python downstream_evaluation/scripts/validate_ucsf_pdgm_external_cohort.py --help
+```
+
+Run evaluation:
+
+```bash
+python -m downstream_evaluation.segmentation.evaluate_ucsf_pdgm --help
+```
+
+See [`docs/ucsf_pdgm_external_validation.md`](docs/ucsf_pdgm_external_validation.md)
+for cohort derivation, preprocessing, and evaluation details.
+
+---
+
+## Additional BR-LoRA Evaluation
+
+BR-LoRA itself can also be evaluated on the fixed official BraTS validation
+cohort independently of the downstream segmentation experiment:
+
+```bash
+python scripts/evaluate_br_lora_external.py --help
+```
+
+This is distinct from the downstream UCSF-PDGM segmentation evaluation.
+
+---
+
+## Documentation
+
+Focused documentation is organized as follows:
+
+- [`data/README.md`](data/README.md) — BraTS training and validation setup
+- [`screening/brats_nnunet/README.md`](screening/brats_nnunet/README.md) — nnU-Net screening and compatibility workflow
+- [`docs/br_lora_pipeline.md`](docs/br_lora_pipeline.md) — BR-LoRA implementation workflow
+- [`docs/synthetic_library.md`](docs/synthetic_library.md) — frozen synthetic-library design and production
+- [`downstream_evaluation/README.md`](downstream_evaluation/README.md) — downstream segmentation workflow
+- [`docs/downstream_evaluation.md`](docs/downstream_evaluation.md) — downstream scientific design
+- [`docs/ucsf_pdgm_external_validation.md`](docs/ucsf_pdgm_external_validation.md) — UCSF-PDGM external validation
+- [`docs/reproducibility.md`](docs/reproducibility.md) — reproducibility conventions
+- [`docs/architecture.md`](docs/architecture.md) — repository architecture
+- [`docs/data_flow.md`](docs/data_flow.md) — data-flow summary
+- [`docs/README.md`](docs/README.md) — documentation index
 
 ---
 
 ## Reproducibility
 
-The repository uses deterministic manifests, fixed seeds, explicit dataset specifications, frozen case assignments, checkpoint provenance, and SHA-256 inventories to make research artifacts traceable.
+The repository uses registered dataset specifications, deterministic manifests,
+fixed seeds, frozen case assignments, checkpoint provenance, strict downstream
+training controls, and SHA-256 inventories to make experimental artifacts
+traceable.
 
-Large generated datasets and posterior tensors are not distributed through Git. Instead, the repository retains the code, configuration, manifests, audit outputs, and provenance needed to reconstruct the workflows.
+Large generated datasets, checkpoints, synthetic images, and posterior tensors
+are not stored in Git. The repository instead retains the code, configuration,
+frozen manifests, audit outputs, and provenance required to reconstruct the
+implemented workflows.
 
-Before public release, remaining machine-specific paths in operational scripts and historical logs will be reviewed and documented or parameterized where appropriate.
-
----
-
-## Development Roadmap
-
-See [`PROJECT_PLAN.md`](PROJECT_PLAN.md) for the detailed engineering and research roadmap.
-
-Near-term work includes:
-
-- completion and final audit of the 10,000-case BR-LoRA library,
-- downstream segmentation experiments,
-- predictive uncertainty analyses,
-- topology-aware structural analyses,
-- repeat-stability analyses,
-- controlled source/base/mask perturbation experiments,
-- PEFT benchmarking, and
-- manuscript tables and figures.
+See [`docs/reproducibility.md`](docs/reproducibility.md).
 
 ---
 
 ## Citation
 
-If you use this repository in academic work, please cite:
+If you use this repository in academic work, please cite the BraTS dataset,
+relevant third-party software used in the workflow, and the corresponding
+BR-LoRA manuscript or repository release when available.
 
-- the BraTS challenge and dataset,
-- relevant third-party software used in your workflow, and
-- the associated BR-LoRA manuscript or repository release once available.
-
-A formal citation entry will be added when the corresponding manuscript and public release are finalized.
+Specific dataset and software attribution is documented in the relevant
+workflow documentation.
 
 ---
 
 ## License
 
-This repository is distributed under the terms of the license provided in [`LICENSE`](LICENSE).
+This repository is distributed under the terms of the license provided in
+[`LICENSE`](LICENSE).

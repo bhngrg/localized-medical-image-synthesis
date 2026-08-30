@@ -45,6 +45,22 @@ import numpy as np
 import yaml
 
 
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(
+        0,
+        str(PROJECT_ROOT),
+    )
+
+
+from src.config import (
+    load_folders_config,
+    resolve_path,
+    save_folders_config,
+)
+
+
 SUPPORTED_SCHEMA_VERSION = 1
 
 TRAINING_DATASET_ID = "brats2020_training"
@@ -106,30 +122,43 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument(
+        "--folders-file",
+        type=Path,
+        default=Path("data/folders.yaml"),
+        help=(
+            "Machine-specific path configuration YAML. "
+            "Default: data/folders.yaml."
+        ),
+    )
+
+    parser.add_argument(
         "--training-dataset",
         type=Path,
-        required=True,
+        default=None,
         help=(
-            "Registered BraTS 2020 training dataset.yaml."
+            "Registered BraTS 2020 training dataset.yaml. Overrides "
+            "yaml_dataset_path in --folders-file."
         ),
     )
 
     parser.add_argument(
         "--validation-dataset",
         type=Path,
-        required=True,
+        default=None,
         help=(
-            "Registered BraTS 2020 validation_dataset.yaml."
+            "Registered BraTS 2020 validation_dataset.yaml. Overrides "
+            "yaml_validation_dataset_path in --folders-file."
         ),
     )
 
     parser.add_argument(
         "--nnunet-raw",
         type=Path,
-        required=True,
+        default=None,
         help=(
-            "nnU-Net raw-data root. The DatasetXXX_Name directory will be "
-            "created beneath this path."
+            "nnU-Net raw-data root. If omitted, uses "
+            "<nnunet_archive_root>/nnUNet_raw. The DatasetXXX_Name "
+            "directory will be created beneath this path."
         ),
     )
 
@@ -1706,13 +1735,55 @@ def main() -> None:
         args.dataset_name
     )
 
+    folders_config = load_folders_config(
+        args.folders_file
+    )
+
+    training_dataset_path = resolve_path(
+        key="yaml_dataset_path",
+        cli_value=args.training_dataset,
+        config=folders_config,
+        selector=None,
+    ).expanduser().resolve()
+
+    validation_dataset_path = resolve_path(
+        key="yaml_validation_dataset_path",
+        cli_value=args.validation_dataset,
+        config=folders_config,
+        selector=None,
+    ).expanduser().resolve()
+
+    if args.nnunet_raw is not None:
+        nnunet_raw = (
+            args.nnunet_raw
+            .expanduser()
+            .resolve()
+        )
+    else:
+        nnunet_archive_root = resolve_path(
+            key="nnunet_archive_root",
+            cli_value=None,
+            config=folders_config,
+            selector=None,
+        ).expanduser().resolve()
+
+        nnunet_raw = (
+            nnunet_archive_root
+            / "nnUNet_raw"
+        )
+
+    save_folders_config(
+        args.folders_file,
+        folders_config,
+    )
+
     training_specification = load_yaml(
-        args.training_dataset,
+        training_dataset_path,
         name="Training dataset specification",
     )
 
     validation_specification = load_yaml(
-        args.validation_dataset,
+        validation_dataset_path,
         name="Validation dataset specification",
     )
 
@@ -1815,7 +1886,7 @@ def main() -> None:
         return
 
     outputs = create_output_structure(
-        nnunet_raw=args.nnunet_raw,
+        nnunet_raw=nnunet_raw,
         dataset_id=args.dataset_id,
         dataset_name=dataset_name,
     )

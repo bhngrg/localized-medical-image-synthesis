@@ -70,6 +70,11 @@ import numpy as np
 import pandas as pd
 import torch
 
+from src.config import (
+    load_folders_config,
+    resolve_path,
+    save_folders_config,
+)
 from src.data import (
     get_brain_mask,
     load_h5_full,
@@ -107,42 +112,64 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument(
-        "--validation-dataset",
-        required=True,
+        "--folders-file",
         type=Path,
-        help="Registered BraTS validation_dataset.yaml.",
+        default=Path("data/folders.yaml"),
+        help=(
+            "Machine-specific path configuration YAML. "
+            "Default: data/folders.yaml."
+        ),
+    )
+
+    parser.add_argument(
+        "--validation-dataset",
+        type=Path,
+        default=None,
+        help=(
+            "Registered BraTS validation_dataset.yaml. Overrides "
+            "yaml_validation_dataset_path in --folders-file."
+        ),
     )
 
     parser.add_argument(
         "--screening-csv",
-        required=True,
         type=Path,
+        default=None,
         help=(
-            "Slice-level nnU-Net validation screening CSV."
+            "Slice-level nnU-Net validation screening CSV. If omitted, "
+            "uses <nnunet_run_root>/validation_slice_screening/"
+            "validation_slice_screening.csv."
         ),
     )
 
     parser.add_argument(
         "--training-manifest",
-        required=True,
         type=Path,
-        help="Training H5 manifest.csv.",
+        default=None,
+        help=(
+            "Training H5 manifest.csv. Overrides "
+            "downstream_real_training_manifest in --folders-file."
+        ),
     )
 
     parser.add_argument(
         "--h5-root",
-        required=True,
         type=Path,
+        default=None,
         help=(
-            "Directory containing reconstructed training H5 slices."
+            "Directory containing reconstructed training H5 slices. "
+            "Overrides h5_root in --folders-file."
         ),
     )
 
     parser.add_argument(
         "--output-dir",
-        required=True,
         type=Path,
-        help="Directory for audit outputs.",
+        default=None,
+        help=(
+            "Directory for audit outputs. If omitted, uses "
+            "<nnunet_run_root>/external_pair_space_audit."
+        ),
     )
 
     parser.add_argument(
@@ -1023,34 +1050,72 @@ def refuse_existing_outputs(
 def main() -> None:
     args = parse_args()
 
-    validation_dataset_path = (
-        args.validation_dataset
-        .expanduser()
-        .resolve()
+    folders_config = load_folders_config(
+        args.folders_file
     )
 
-    screening_csv = (
-        args.screening_csv
-        .expanduser()
-        .resolve()
-    )
+    validation_dataset_path = resolve_path(
+        key="yaml_validation_dataset_path",
+        cli_value=args.validation_dataset,
+        config=folders_config,
+        selector=None,
+    ).expanduser().resolve()
 
-    training_manifest = (
-        args.training_manifest
-        .expanduser()
-        .resolve()
-    )
+    training_manifest = resolve_path(
+        key="downstream_real_training_manifest",
+        cli_value=args.training_manifest,
+        config=folders_config,
+        selector=None,
+    ).expanduser().resolve()
 
-    h5_root = (
-        args.h5_root
-        .expanduser()
-        .resolve()
-    )
+    h5_root = resolve_path(
+        key="h5_root",
+        cli_value=args.h5_root,
+        config=folders_config,
+        selector=None,
+    ).expanduser().resolve()
 
-    output_dir = (
-        args.output_dir
-        .expanduser()
-        .resolve()
+    nnunet_run_root = None
+
+    if (
+        args.screening_csv is None
+        or args.output_dir is None
+    ):
+        nnunet_run_root = resolve_path(
+            key="nnunet_run_root",
+            cli_value=None,
+            config=folders_config,
+            selector=None,
+        ).expanduser().resolve()
+
+    if args.screening_csv is not None:
+        screening_csv = (
+            args.screening_csv
+            .expanduser()
+            .resolve()
+        )
+    else:
+        screening_csv = (
+            nnunet_run_root
+            / "validation_slice_screening"
+            / "validation_slice_screening.csv"
+        )
+
+    if args.output_dir is not None:
+        output_dir = (
+            args.output_dir
+            .expanduser()
+            .resolve()
+        )
+    else:
+        output_dir = (
+            nnunet_run_root
+            / "external_pair_space_audit"
+        )
+
+    save_folders_config(
+        args.folders_file,
+        folders_config,
     )
 
     if not screening_csv.is_file():

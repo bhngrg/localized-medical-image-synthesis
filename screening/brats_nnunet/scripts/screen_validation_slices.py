@@ -35,12 +35,29 @@ import subprocess
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
 from typing import Any
 
 import nibabel as nib
 import numpy as np
 import pandas as pd
 import yaml
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(
+        0,
+        str(PROJECT_ROOT),
+    )
+
+
+from src.config import (
+    load_folders_config,
+    resolve_path,
+    save_folders_config,
+)
 
 
 EXPECTED_PREDICTION_SUFFIX = ".nii.gz"
@@ -85,32 +102,43 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument(
-        "--validation-dataset",
-        required=True,
+        "--folders-file",
         type=Path,
+        default=Path("data/folders.yaml"),
         help=(
-            "Registered BraTS validation "
-            "dataset YAML specification."
+            "Machine-specific path configuration YAML. "
+            "Default: data/folders.yaml."
+        ),
+    )
+
+    parser.add_argument(
+        "--validation-dataset",
+        type=Path,
+        default=None,
+        help=(
+            "Registered BraTS validation dataset YAML specification. "
+            "Overrides yaml_validation_dataset_path in --folders-file."
         ),
     )
 
     parser.add_argument(
         "--prediction-dir",
-        required=True,
         type=Path,
+        default=None,
         help=(
-            "Directory containing one nnU-Net "
-            "prediction NIfTI per validation subject."
+            "Directory containing one nnU-Net prediction NIfTI per "
+            "validation subject. If omitted, uses "
+            "<nnunet_run_root>/validation_predictions_l40s_normal_q."
         ),
     )
 
     parser.add_argument(
         "--output-dir",
-        required=True,
         type=Path,
+        default=None,
         help=(
-            "Directory for screening CSV and "
-            "summary JSON."
+            "Directory for screening CSV and summary JSON. If omitted, "
+            "uses <nnunet_run_root>/validation_slice_screening."
         ),
     )
 
@@ -1338,22 +1366,61 @@ def main() -> None:
 
     args = parse_args()
 
-    dataset = (
-        load_validation_specification(
-            args.validation_dataset
+    folders_config = load_folders_config(
+        args.folders_file
+    )
+
+    validation_dataset_path = resolve_path(
+        key="yaml_validation_dataset_path",
+        cli_value=args.validation_dataset,
+        config=folders_config,
+        selector=None,
+    )
+
+    nnunet_run_root = None
+
+    if (
+        args.prediction_dir is None
+        or args.output_dir is None
+    ):
+        nnunet_run_root = resolve_path(
+            key="nnunet_run_root",
+            cli_value=None,
+            config=folders_config,
+            selector=None,
+        ).expanduser().resolve()
+
+    if args.prediction_dir is not None:
+        prediction_dir = (
+            args.prediction_dir
+            .expanduser()
+            .resolve()
         )
+    else:
+        prediction_dir = (
+            nnunet_run_root
+            / "validation_predictions_l40s_normal_q"
+        )
+
+    if args.output_dir is not None:
+        output_dir = (
+            args.output_dir
+            .expanduser()
+            .resolve()
+        )
+    else:
+        output_dir = (
+            nnunet_run_root
+            / "validation_slice_screening"
+        )
+
+    save_folders_config(
+        args.folders_file,
+        folders_config,
     )
 
-    prediction_dir = (
-        args.prediction_dir
-        .expanduser()
-        .resolve()
-    )
-
-    output_dir = (
-        args.output_dir
-        .expanduser()
-        .resolve()
+    dataset = load_validation_specification(
+        validation_dataset_path
     )
 
     reference_modality = (
