@@ -93,6 +93,51 @@ retained BR-LoRA posterior realizations. The training dataset updates its
 posterior realization assignment by epoch while preserving the frozen case
 design.
 
+For a training seed `s` and synthetic case indexed by `library_index`, the
+posterior realization order is deterministically defined by
+
+```text
+numpy.default_rng(s + library_index).permutation(100)
+```
+
+and the realization at the corresponding epoch is selected from that
+case-specific permutation. Under the current seed-42, 20-epoch experiment,
+each case therefore contributes 20 distinct realizations from the 100 retained
+posterior samples.
+
+### Posterior shard-cache representation
+
+The repository includes an optional derived shard-cache representation for the
+posterior-sampling data. The cache exists solely to reduce shared-filesystem
+I/O associated with repeatedly opening the original per-case posterior files.
+
+The original BR-LoRA posterior library remains the scientific source of truth.
+Cache construction preserves the exact case-specific deterministic schedule
+described above and copies the selected tensors without numerical
+transformation. The cache therefore changes storage organization only, not the
+synthetic cases or posterior realizations used by the experiment.
+
+The default cache layout groups 500 cases per shard and stores one shard file
+per epoch. For the 10,000-case, 20-epoch experiment, this yields 20 shards per
+epoch and 400 shard files in total.
+
+During cache construction, every written shard is reloaded and required to
+match its source-derived tensor exactly using `torch.equal`. Seed, epoch,
+library-index, and original posterior-realization metadata are also checked.
+SHA-256 hashes and verification status are recorded in a cache manifest.
+
+Because the cache is a derived runtime artifact, it is not treated as a
+replacement for the original posterior library. Cache-backed loading is
+implemented as an explicit opt-in training path. A verified cache may be
+selected through a command-line path or a machine-specific
+`data/folders.yaml` entry; when neither is configured, the original per-case
+posterior loader remains the repository fallback.
+
+Cache-backed runs record the cache root, cache-manifest SHA-256, and loader mode
+in run provenance rather than silently substituting the derived representation
+for the canonical library. Machine-specific cache locations are not tracked in
+Git.
+
 For details of synthetic-library construction and acceptance, see
 [`synthetic_library.md`](synthetic_library.md).
 

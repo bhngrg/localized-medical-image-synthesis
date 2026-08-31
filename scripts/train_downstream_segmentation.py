@@ -69,6 +69,9 @@ from downstream_evaluation.segmentation.model import (
 from downstream_evaluation.segmentation.posterior_sample_dataset import (
     BRLoRAPosteriorSampleSegmentationDataset,
 )
+from downstream_evaluation.segmentation.posterior_shard_dataset import (
+    BRLoRAPosteriorShardSegmentationDataset,
+)
 from downstream_evaluation.segmentation.reproducibility import (
     DEFAULT_CUBLAS_WORKSPACE_CONFIG,
     configure_reproducibility,
@@ -176,6 +179,19 @@ def parse_args() -> argparse.Namespace:
         help=(
             "BR-LoRA library root. Overrides br_lora_library_root "
             "in --folders-file."
+        ),
+    )
+
+    parser.add_argument(
+        "--posterior-shard-cache-root",
+        type=Path,
+        default=None,
+        help=(
+            "Optional verified posterior shard-cache root for the "
+            "real_plus_br_lora_posterior regime. CLI overrides "
+            "downstream_posterior_shard_cache_root in --folders-file. "
+            "If omitted and no folders value is configured, the original "
+            "per-case posterior loader is used."
         ),
     )
 
@@ -322,6 +338,31 @@ def resolve_optional_repo_path(
     return default
 
 
+def resolve_optional_machine_path(
+    *,
+    key: str,
+    cli_value: Path | None,
+    folders_config: dict[str, str],
+) -> Path | None:
+    """
+    Resolve an optional machine-specific path using CLI > folders YAML.
+
+    Unlike resolve_optional_repo_path(), there is no tracked repository
+    default. Absence therefore means the optional feature is disabled.
+    """
+    if cli_value is not None:
+        path = Path(cli_value)
+        folders_config[key] = str(path)
+        return path
+
+    configured = folders_config.get(key)
+
+    if configured:
+        return Path(configured)
+
+    return None
+
+
 def resolve_paths(
     args: argparse.Namespace,
 ) -> dict[str, Path | None]:
@@ -352,6 +393,7 @@ def resolve_paths(
 
     synthetic_manifest = None
     library_root = None
+    posterior_shard_cache_root = None
 
     if args.regime != "real_only":
         synthetic_manifest = resolve_optional_repo_path(
@@ -366,6 +408,13 @@ def resolve_paths(
             cli_value=args.br_lora_library_root,
             config=folders_config,
             selector=None,
+        )
+
+    if args.regime == "real_plus_br_lora_posterior":
+        posterior_shard_cache_root = resolve_optional_machine_path(
+            key="downstream_posterior_shard_cache_root",
+            cli_value=args.posterior_shard_cache_root,
+            folders_config=folders_config,
         )
 
     save_folders_config(
@@ -386,6 +435,11 @@ def resolve_paths(
             None
             if library_root is None
             else Path(library_root)
+        ),
+        "posterior_shard_cache_root": (
+            None
+            if posterior_shard_cache_root is None
+            else Path(posterior_shard_cache_root)
         ),
     }
 
@@ -528,6 +582,36 @@ def build_run_metadata(
                 "sha256": sha256_file(path),
             }
 
+    posterior_cache_metadata = None
+
+    posterior_cache_root = paths.get(
+        "posterior_shard_cache_root"
+    )
+
+    if posterior_cache_root is not None:
+        cache_manifest_path = (
+            posterior_cache_root
+            / "cache_manifest.json"
+        )
+
+        validate_file(
+            cache_manifest_path,
+            "Posterior shard-cache manifest",
+        )
+
+        posterior_cache_metadata = {
+            "root": str(
+                posterior_cache_root
+            ),
+            "manifest": str(
+                cache_manifest_path
+            ),
+            "manifest_sha256": sha256_file(
+                cache_manifest_path
+            ),
+            "loader_mode": "posterior_shard_cache",
+        }
+
     metadata = {
         "created_utc": datetime.now(
             timezone.utc
@@ -539,6 +623,7 @@ def build_run_metadata(
             "sha256": sha256_file(config_path),
         },
         "manifests": manifest_hashes,
+        "posterior_cache": posterior_cache_metadata,
         "paths": {
             key: (
                 None
@@ -951,19 +1036,57 @@ def main() -> None:
         ):
             synthetic_transform.set_random_seed(seed)
 
-        synthetic_dataset = (
-            BRLoRAPosteriorSampleSegmentationDataset(
-                manifest_path=paths[
-                    "synthetic_manifest"
-                ],
-                library_root=paths[
-                    "library_root"
-                ],
-                h5_root=paths["h5_root"],
-                seed=seed,
-                transform=synthetic_transform,
+        posterior_cache_root = paths[
+            "posterior_shard_cache_root"
+        ]
+
+        if posterior_cache_root is None:
+            synthetic_dataset = (
+                BRLoRAPosteriorSampleSegmentationDataset(
+                    manifest_path=paths[
+                        "synthetic_manifest"
+                    ],
+                    library_root=paths[
+                        "library_root"
+                    ],
+                    h5_root=paths["h5_root"],
+                    seed=seed,
+                    transform=synthetic_transform,
+                )
             )
-        )
+
+            print(
+                "Posterior loader: original per-case files"
+            )
+
+        else:
+            synthetic_dataset = (
+                BRLoRAPosteriorShardSegmentationDataset(
+                    manifest_path=paths[
+                        "synthetic_manifest"
+                    ],
+                    library_root=paths[
+                        "library_root"
+                    ],
+                    h5_root=paths["h5_root"],
+                    cache_root=posterior_cache_root,
+                    seed=seed,
+                    expected_epochs=epochs,
+                    transform=synthetic_transform,
+                )
+            )
+
+            print(
+                "Posterior loader: verified shard cache"
+            )
+            print(
+                "Posterior shard-cache root:",
+                posterior_cache_root,
+            )
+            print(
+                "Posterior shard-cache manifest SHA-256:",
+                synthetic_dataset.cache_manifest_sha256,
+            )
 
         expected_posterior_samples = int(
             regime_cfg.get(
@@ -1315,8 +1438,31 @@ def main() -> None:
                         "posterior_schedule_position": (
                             posterior_position
                         ),
+                        "posterior_loader_mode": getattr(
+                            synthetic_dataset,
+                            "loader_mode",
+                            "original_per_case",
+                        ),
                     }
                 )
+
+                if isinstance(
+                    synthetic_dataset,
+                    BRLoRAPosteriorShardSegmentationDataset,
+                ):
+                    checkpoint.update(
+                        {
+                            "posterior_shard_cache_root": str(
+                                synthetic_dataset.cache_root
+                            ),
+                            "posterior_shard_cache_manifest": str(
+                                synthetic_dataset.cache_manifest_path
+                            ),
+                            "posterior_shard_cache_manifest_sha256": (
+                                synthetic_dataset.cache_manifest_sha256
+                            ),
+                        }
+                    )
 
             best_checkpoint_path.parent.mkdir(
                 parents=True,

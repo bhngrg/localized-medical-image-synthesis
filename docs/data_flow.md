@@ -43,11 +43,14 @@ training manifest                Dataset500 screening data
                              ▼
                     accepted synthetic library
                              │
-              ┌──────────────┼──────────────┐
-              ▼              ▼              ▼
-          real only      real + mean    real + sampling
-              │              │              │
-              └──────────────┼──────────────┘
+              ┌──────────────┼──────────────────────┐
+              ▼              ▼                      ▼
+          real only      real + mean       posterior shard cache
+                                                    │
+                                                    ▼
+                                             real + sampling
+              │              │                      │
+              └──────────────┼──────────────────────┘
                              ▼
                  downstream segmentation
                              │
@@ -57,6 +60,11 @@ training manifest                Dataset500 screening data
                              ▼
                     external evaluation
 ```
+
+The posterior shard cache is an optional derived representation used only by
+the posterior-sampling branch. The accepted synthetic library remains the
+canonical source artifact; posterior-mean training continues to use the
+accepted posterior-mean products directly.
 
 ## Key Boundaries
 

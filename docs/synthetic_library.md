@@ -171,3 +171,35 @@ Production and acceptance are deliberately separate. If either stage fails:
 Acceptance preserves the staging copy after successful promotion; staging cleanup is an explicit user-controlled operation.
 
 Infrastructure-specific Mac-to-Falcon orchestration used for the original library build is retained under `scripts/historical/` for provenance only and is not part of the supported public workflow.
+
+## Downstream Posterior Shard Cache
+
+The accepted synthetic library is the canonical source artifact for downstream
+BR-LoRA augmentation. In particular, the accepted per-case
+`posterior_samples.pt` files remain the source of truth for posterior-sampling
+experiments.
+
+For downstream segmentation, the repository can derive an optional
+epoch-specific shard cache from those accepted posterior files to reduce
+shared-filesystem file-open and metadata overhead. The cache is not part of
+synthetic-library generation or batch acceptance, and it is not promoted into
+the permanent library.
+
+Cache construction preserves the exact deterministic downstream
+case-to-realization schedule and copies the selected posterior tensors without
+numerical transformation. Written shards are reloaded and checked with exact
+`torch.equal` comparison, and per-shard SHA-256 hashes plus source provenance
+are recorded in `cache_manifest.json`.
+
+The cache builder is:
+
+```text
+downstream_evaluation/segmentation/build_posterior_shard_cache.py
+```
+
+Operational and methodological details are documented in:
+
+```text
+downstream_evaluation/README.md
+docs/downstream_evaluation.md
+```

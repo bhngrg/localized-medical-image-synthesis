@@ -105,6 +105,7 @@ br_lora_library_root: null
 downstream_real_training_manifest: null
 downstream_synthetic_manifest: null
 downstream_validation_manifest: null
+downstream_posterior_shard_cache_root: null
 
 ucsf_pdgm_root: null
 ucsf_pdgm_metadata_root: null
@@ -314,6 +315,40 @@ library. Independent batches can run in parallel when they use distinct batch
 and staging locations.
 
 See [`docs/synthetic_library.md`](docs/synthetic_library.md).
+
+### Optional posterior-sampling shard cache
+
+The accepted BR-LoRA posterior library remains the source of truth for the
+posterior-sampling downstream experiment. For shared-filesystem efficiency,
+the exact deterministic posterior realizations required by a downstream run
+may also be reorganized into a verified epoch-specific shard cache.
+
+The cache is a derived storage/I/O artifact only. It does not replace or modify
+the accepted synthetic library and does not change the frozen case design,
+posterior samples, seed, or case-to-realization schedule.
+
+Cache use is machine-specific rather than a tracked repository default. Users
+may persist a verified cache location through
+`downstream_posterior_shard_cache_root` in the ignored `data/folders.yaml`, or
+override it for an individual run with `--posterior-shard-cache-root`. If
+neither is configured, posterior training uses the original per-case posterior
+files.
+
+Build and verify the optional cache with:
+
+```bash
+python downstream_evaluation/segmentation/build_posterior_shard_cache.py --help
+```
+
+Falcon users may use:
+
+```text
+downstream_evaluation/segmentation/build_posterior_shard_cache.slurm
+```
+
+See [`downstream_evaluation/README.md`](downstream_evaluation/README.md) and
+[`docs/downstream_evaluation.md`](docs/downstream_evaluation.md) for the cache
+contract and downstream usage.
 
 ---
 

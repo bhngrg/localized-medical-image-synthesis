@@ -72,6 +72,122 @@ data/folders.example.yaml
 
 for the available path keys.
 
+## Posterior-Sampling Shard Cache
+
+The posterior-sampling regime is defined by the original BR-LoRA posterior
+library and its deterministic case-specific realization schedule. The original
+posterior library remains the source of truth and is not modified by the cache
+workflow.
+
+Each synthetic case stores 100 retained posterior realizations. For training
+seed `42`, the realization order for a synthetic case with `library_index` is
+defined by:
+
+```text
+numpy.default_rng(42 + library_index).permutation(100)
+```
+
+The current 20-epoch downstream experiment uses the first 20 entries of that
+case-specific permutation, one realization per epoch.
+
+Reading one realization at a time from the original per-case posterior files
+creates substantial shared-filesystem and file-open overhead. The optional
+posterior shard cache reorganizes the exact selected tensors into larger,
+epoch-specific shard files. This is a storage/I/O optimization only: it does
+not change the frozen synthetic-library design, posterior samples, seed,
+case-to-realization assignment, epoch schedule, masks, preprocessing, or
+training objective.
+
+The cache builder is:
+
+```text
+downstream_evaluation/segmentation/build_posterior_shard_cache.py
+```
+
+The Falcon Slurm launcher is:
+
+```text
+downstream_evaluation/segmentation/build_posterior_shard_cache.slurm
+```
+
+The default cache-build contract is:
+
+```text
+seed: 42
+epochs: 20
+posterior realizations available per case: 100
+synthetic cases: 10,000
+shard size: 500 cases
+```
+
+For 10,000 cases and a shard size of 500, this produces 20 shards per epoch
+and 400 shard files across 20 epochs.
+
+The builder is deliberately non-overwriting. The requested output directory
+must not already exist. The original posterior library is read-only from the
+builder's perspective.
+
+Each written shard is immediately reloaded and checked using exact
+`torch.equal` comparison against the source-derived selected tensor. The
+builder also verifies seed, epoch, library-index, and original
+posterior-realization metadata. A SHA-256 hash is recorded for every verified
+shard.
+
+After all shards have been built successfully, the cache root contains a
+`cache_manifest.json` recording the source manifest and its SHA-256 hash, the
+source library root, the deterministic schedule rule, shard layout, shard
+hashes, and aggregate verification status.
+
+A machine-specific cache location may be recorded with:
+
+```text
+downstream_posterior_shard_cache_root
+```
+
+in `data/folders.yaml`.
+
+Cache-backed posterior training is implemented as an explicit opt-in path.
+The original per-case posterior loader remains the repository fallback when no
+cache root is configured. A machine can opt in persistently by setting
+`downstream_posterior_shard_cache_root` in its ignored `data/folders.yaml`, or
+for a single invocation by passing `--posterior-shard-cache-root`.
+
+The resolution order is:
+
+```text
+--posterior-shard-cache-root
+    >
+data/folders.yaml: downstream_posterior_shard_cache_root
+    >
+original per-case posterior loader
+```
+
+No tracked configuration hard-codes a machine-specific shard-cache location.
+
+Before launching a cache-backed training run, validate the complete downstream
+data contract with:
+
+```bash
+python scripts/train_downstream_segmentation.py \
+  --regime real_plus_br_lora_posterior \
+  --posterior-shard-cache-root /path/to/verified/cache \
+  --device cpu \
+  --validate-only
+```
+
+The shared A30 launcher forwards the same explicit trainer option:
+
+```bash
+sbatch downstream_evaluation/segmentation/train_downstream_segmentation_a30.slurm \
+  real_plus_br_lora_posterior \
+  --posterior-shard-cache-root /path/to/verified/cache
+```
+
+When a cache is used, run metadata and checkpoints record the cache root,
+cache-manifest path and SHA-256, and the posterior loader mode. This preserves
+an explicit provenance distinction between the canonical per-case posterior
+library and its derived shard-cache representation.
+
 ## Validate Before Training
 
 The unified user-facing entry point is:

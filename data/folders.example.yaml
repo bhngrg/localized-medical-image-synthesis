@@ -29,6 +29,11 @@ downstream_real_training_manifest: null
 downstream_validation_manifest: null
 downstream_synthetic_manifest: null
 
+# Optional verified posterior-sampling shard cache.
+# This is a derived storage/I/O optimization; the original BR-LoRA library
+# remains the source of truth.
+downstream_posterior_shard_cache_root: null
+
 # UCSF-PDGM external-validation paths.
 # ucsf_pdgm_root contains the downloaded UCSF-PDGM imaging dataset.
 # ucsf_pdgm_metadata_root contains the cohort-provenance CSVs.

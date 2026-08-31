@@ -5,7 +5,7 @@
 #SBATCH --gres=gpu:a30:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
-#SBATCH --time=06:00:00
+#SBATCH --time=24:00:00
 #SBATCH --output=downstream_evaluation/logs/training/downstream_seg_%j.out
 #SBATCH --error=downstream_evaluation/logs/training/downstream_seg_%j.err
 
@@ -50,6 +50,9 @@ if [ "$#" -lt 1 ]; then
     echo "  real_only" >&2
     echo "  real_plus_br_lora_mean" >&2
     echo "  real_plus_br_lora_posterior" >&2
+    echo >&2
+    echo "Optional verified posterior shard cache:" >&2
+    echo "  --posterior-shard-cache-root <path>" >&2
     exit 2
 fi
 
