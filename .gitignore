@@ -53,3 +53,6 @@ outputs/*
 
 # Recomputable BR-LoRA compatibility caches
 training_only_compatibility_cache.npz
+
+# Local repository development roadmap
+PROJECT_PLAN.md
