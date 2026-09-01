@@ -7,8 +7,8 @@
 #SBATCH --mem=64G
 #SBATCH --time=4-00:00:00
 #SBATCH --array=0-4%5
-#SBATCH --output=screening/brats_nnunet/logs/nnunet_resencL_l40s_normal_q_%A_%a.out
-#SBATCH --error=screening/brats_nnunet/logs/nnunet_resencL_l40s_normal_q_%A_%a.err
+#SBATCH --output=logs/screening/brats_nnunet/training/nnunet_resencL_l40s_normal_q_%A_%a.out
+#SBATCH --error=logs/screening/brats_nnunet/training/nnunet_resencL_l40s_normal_q_%A_%a.err
 
 set -euo pipefail
 
@@ -99,7 +99,7 @@ NNUNET_PREPROCESSED="${NNUNET_ARCHIVE_ROOT}/nnUNet_preprocessed"
 
 NNUNET_RESULTS="${NNUNET_RUN_ROOT}/nnUNet_results_l40s_normal_q"
 
-LOG_DIR="${REPO_ROOT}/screening/brats_nnunet/logs"
+LOG_DIR="${REPO_ROOT}/logs/screening/brats_nnunet/training"
 
 DATASET_ID="500"
 DATASET_NAME="Dataset500_BraTS2020Screening"

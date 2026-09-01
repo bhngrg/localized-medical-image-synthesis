@@ -6,8 +6,8 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --time=08:00:00
-#SBATCH --output=screening/brats_nnunet/logs/nnunet_predict_l40s_normal_q_%j.out
-#SBATCH --error=screening/brats_nnunet/logs/nnunet_predict_l40s_normal_q_%j.err
+#SBATCH --output=logs/screening/brats_nnunet/inference/nnunet_predict_l40s_normal_q_%j.out
+#SBATCH --error=logs/screening/brats_nnunet/inference/nnunet_predict_l40s_normal_q_%j.err
 
 set -euo pipefail
 
@@ -100,7 +100,7 @@ INPUT_DIR="${NNUNET_RAW}/Dataset500_BraTS2020Screening/imagesTs"
 
 PREDICTION_DIR="${NNUNET_RUN_ROOT}/validation_predictions_l40s_normal_q"
 
-LOG_DIR="${REPO_ROOT}/screening/brats_nnunet/logs"
+LOG_DIR="${REPO_ROOT}/logs/screening/brats_nnunet/inference"
 
 DATASET_ID="500"
 DATASET_NAME="Dataset500_BraTS2020Screening"

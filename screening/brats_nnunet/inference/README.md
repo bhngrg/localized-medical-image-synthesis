@@ -121,8 +121,9 @@ The resulting screening output defines the candidate external base-image pool
 used by the compatibility audits, frozen 250-case external cohort, and
 10,000-case BR-LoRA library design.
 
-Prediction masks and runtime logs are generated artifacts and are not stored in
-Git.
+Prediction masks remain generated artifacts outside Git. Selected production
+inference logs that provide scientific or reproducibility provenance are
+retained under `logs/screening/brats_nnunet/inference/`.
 
 ## Scientific Scope
 

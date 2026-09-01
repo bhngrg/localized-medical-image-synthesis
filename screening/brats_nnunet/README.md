@@ -214,5 +214,7 @@ trainer/plans, fold checkpoints, Git commit, Slurm partition, prediction
 provenance, screening thresholds, compatibility audits, definitive-manifest
 checksum, and generated provenance metadata.
 
-Generated nnU-Net datasets, checkpoints, predictions, and runtime logs are not
-stored in Git.
+Generated nnU-Net datasets, checkpoints, and prediction masks remain outside
+Git. Selected production and reproducibility-relevant execution logs are
+retained under the canonical repository-level `logs/screening/brats_nnunet/`
+tree.

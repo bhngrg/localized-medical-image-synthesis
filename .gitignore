@@ -51,9 +51,5 @@ outputs/*
 !logs/**/*.out
 !logs/**/*.err
 
-# Keep nnU-Net screening logs under version control
-!screening/brats_nnunet/logs/
-!screening/brats_nnunet/logs/*.log
-!screening/brats_nnunet/logs/*.err
 # Recomputable BR-LoRA compatibility caches
 training_only_compatibility_cache.npz

@@ -135,8 +135,10 @@ Production results are stored outside Git beneath the configured
 └── nnUNet_results_l40s_normal_q/
 ```
 
-The repository does not store checkpoints, fold validation predictions,
-training logs, or other large generated artifacts.
+The repository does not store nnU-Net checkpoints, fold validation
+predictions, or other large generated artifacts. Selected production training
+logs that provide scientific or reproducibility provenance are retained under
+`logs/screening/brats_nnunet/training/`.
 
 The completed folds are consumed by:
 
