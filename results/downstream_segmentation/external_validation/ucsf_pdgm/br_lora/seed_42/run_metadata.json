@@ -1,0 +1,117 @@
+{
+  "checkpoints": {
+    "real_only": {
+      "path": "outputs/downstream_segmentation/runs/real_only/seed_42/a30_normal_q_job_555201/best_model.pt",
+      "sha256": "243441726c8b4c4bf7ddb09d07f29640b9d76a5e9286055e5bea06aed0a79466"
+    },
+    "real_plus_br_lora_posterior_mean": {
+      "path": "outputs/downstream_segmentation/runs/real_plus_br_lora_mean/seed_42/a30_normal_q_job_555202/best_model.pt",
+      "sha256": "2b8ce0f3520332604eafebc4af842c4e05547f02a31a453483e9401678f53d68"
+    },
+    "real_plus_br_lora_posterior_sampling": {
+      "path": "outputs/downstream_segmentation/runs/real_plus_br_lora_posterior/seed_42/a30_normal_q_job_555874/best_model.pt",
+      "sha256": "3288073c9ff25033ed4dd6af8f3bb22c787bab764a5df1da6180dd0bd4fd1d65"
+    }
+  },
+  "cohort": {
+    "expected_image_shape": [
+      240,
+      240,
+      155
+    ],
+    "frozen_subject_count": 202,
+    "image_modality": "FLAIR",
+    "manifest": {
+      "path": "downstream_evaluation/manifests/ucsf_pdgm_external_202_subjects.csv",
+      "sha256": "7c9ba1250ecf744e510b494bca31ff9c19d8a3e2b0cb38b26b78dbb574d08347"
+    },
+    "name": "UCSF-PDGM",
+    "raw_root": "/scratch/bhanug/archive/UCSF_PDGM/raw/PKG - UCSF-PDGM Version 5/UCSF-PDGM-v5",
+    "whole_tumor_rule": "segmentation > 0"
+  },
+  "completed_utc": "2026-09-01T05:16:30.370492+00:00",
+  "created_utc": "2026-09-01T05:09:20.215718+00:00",
+  "evaluation": {
+    "batch_size": 26,
+    "empty_empty_dice": 1.0,
+    "empty_empty_iou": 1.0,
+    "output_dir": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_hardened_seed42"
+  },
+  "git_commit": "de67094e5a7f50a6b95eecfdfde8d830f0c4d955",
+  "provenance": {
+    "note": "Downstream segmentation idea and vanilla U-Net structure adapted in part from the reference repository; the current implementation was rewritten for the BraTS/UCSF-PDGM and BR-LoRA workflow.",
+    "reference_repository": "https://github.com/edaaydinea/Low-Grade-Glioma-Segmentation"
+  },
+  "runtime": {
+    "cuda_available": true,
+    "cuda_build": "12.6",
+    "device": "cuda",
+    "gpu_name": "NVIDIA A30",
+    "host": "fal007",
+    "nibabel": "5.4.2",
+    "numpy": "2.4.4",
+    "python": "3.11.15 | packaged by conda-forge | (main, Aug 11 2026, 10:26:29) [GCC 14.4.0]",
+    "slurm_job_id": "556856",
+    "slurm_partition": "a30_normal_q",
+    "torch": "2.13.0+cu126"
+  },
+  "summaries": {
+    "real_only": {
+      "checkpoint_epoch": 8,
+      "checkpoint_path": "outputs/downstream_segmentation/runs/real_only/seed_42/a30_normal_q_job_555201/best_model.pt",
+      "experiment": "real_only",
+      "mean_dice_all_slices": 0.6787852180366885,
+      "mean_dice_positive_slices": 0.6925998251580294,
+      "mean_iou_all_slices": 0.6470839601629119,
+      "mean_iou_positive_slices": 0.6068267190373983,
+      "mean_subject_dice_all_slices": 0.6787852180366886,
+      "mean_subject_dice_positive_slices": 0.6727237249728002,
+      "mean_subject_iou_all_slices": 0.647083960162912,
+      "mean_subject_iou_positive_slices": 0.587522535280534,
+      "mean_subject_volumetric_dice": 0.6644356688808619,
+      "mean_subject_volumetric_iou": 0.5301291142748048,
+      "n_positive_slices": 11572,
+      "n_slices": 31310,
+      "n_subjects": 202,
+      "threshold": 0.5
+    },
+    "real_plus_br_lora_posterior_mean": {
+      "checkpoint_epoch": 20,
+      "checkpoint_path": "outputs/downstream_segmentation/runs/real_plus_br_lora_mean/seed_42/a30_normal_q_job_555202/best_model.pt",
+      "experiment": "real_plus_br_lora_posterior_mean",
+      "mean_dice_all_slices": 0.828688785730896,
+      "mean_dice_positive_slices": 0.7241830177354264,
+      "mean_iou_all_slices": 0.801716410876098,
+      "mean_iou_positive_slices": 0.6512047031222459,
+      "mean_subject_dice_all_slices": 0.828688785730896,
+      "mean_subject_dice_positive_slices": 0.7061736930370537,
+      "mean_subject_iou_all_slices": 0.8017164108760981,
+      "mean_subject_iou_positive_slices": 0.6340010264682421,
+      "mean_subject_volumetric_dice": 0.8118993755687188,
+      "mean_subject_volumetric_iou": 0.7086586701709996,
+      "n_positive_slices": 11572,
+      "n_slices": 31310,
+      "n_subjects": 202,
+      "threshold": 0.5
+    },
+    "real_plus_br_lora_posterior_sampling": {
+      "checkpoint_epoch": 5,
+      "checkpoint_path": "outputs/downstream_segmentation/runs/real_plus_br_lora_posterior/seed_42/a30_normal_q_job_555874/best_model.pt",
+      "experiment": "real_plus_br_lora_posterior_sampling",
+      "mean_dice_all_slices": 0.7145173164804463,
+      "mean_dice_positive_slices": 0.6962095730213248,
+      "mean_iou_all_slices": 0.6841315103434823,
+      "mean_iou_positive_slices": 0.6139956436963733,
+      "mean_subject_dice_all_slices": 0.7145173164804463,
+      "mean_subject_dice_positive_slices": 0.6780749513270149,
+      "mean_subject_iou_all_slices": 0.6841315103434824,
+      "mean_subject_iou_positive_slices": 0.5973919064536275,
+      "mean_subject_volumetric_dice": 0.710639350234873,
+      "mean_subject_volumetric_iou": 0.5834238977804259,
+      "n_positive_slices": 11572,
+      "n_slices": 31310,
+      "n_subjects": 202,
+      "threshold": 0.5
+    }
+  }
+}

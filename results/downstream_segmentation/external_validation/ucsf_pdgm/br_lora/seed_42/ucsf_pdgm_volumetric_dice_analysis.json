@@ -1,0 +1,123 @@
+{
+  "artifacts": {
+    "analysis_json": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_hardened_seed42/ucsf_pdgm_volumetric_dice_analysis.json",
+    "table_csv": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_hardened_seed42/ucsf_pdgm_volumetric_dice_table.csv",
+    "table_markdown": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_hardened_seed42/ucsf_pdgm_volumetric_dice_table.md"
+  },
+  "created_utc": "2026-09-01T12:28:04.323657+00:00",
+  "evaluation_root": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_hardened_seed42",
+  "input_files": {
+    "posterior_mean": {
+      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_hardened_seed42/real_plus_br_lora_posterior_mean/subject_metrics.csv",
+      "sha256": "7640d97dbbde0bcfb8a470d72c974a21006c4fbd85b7bf42e07a0680a4f2d072"
+    },
+    "posterior_sampling": {
+      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_hardened_seed42/real_plus_br_lora_posterior_sampling/subject_metrics.csv",
+      "sha256": "f33bf09eaaa7d2c2dd011184326164583f4b4bd5d6cb493d30a749bd54c76e3f"
+    },
+    "real_only": {
+      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_hardened_seed42/real_only/subject_metrics.csv",
+      "sha256": "1f4b24e12546a2561ee42c232362205575c1a7c85d06a01dc4957fd16172ed36"
+    }
+  },
+  "results": {
+    "paired_comparisons": {
+      "posterior_mean_minus_real_only": {
+        "ci_95_high": 0.1660139711037616,
+        "ci_95_low": 0.12925556464368249,
+        "denominator": "real_only",
+        "mean_difference": 0.14746370668785663,
+        "n_subjects": 202,
+        "numerator": "posterior_mean"
+      },
+      "posterior_sampling_minus_posterior_mean": {
+        "ci_95_high": -0.08667827878034948,
+        "ci_95_low": -0.11641839588454991,
+        "denominator": "posterior_mean",
+        "mean_difference": -0.10126002533384562,
+        "n_subjects": 202,
+        "numerator": "posterior_sampling"
+      },
+      "posterior_sampling_minus_real_only": {
+        "ci_95_high": 0.05695554395990552,
+        "ci_95_low": 0.035606813578314925,
+        "denominator": "real_only",
+        "mean_difference": 0.046203681354011,
+        "n_subjects": 202,
+        "numerator": "posterior_sampling"
+      }
+    },
+    "regimes": {
+      "posterior_mean": {
+        "ci_95_high": 0.8336335565399263,
+        "ci_95_low": 0.788372167685645,
+        "label": "Real + BR-LoRA posterior mean",
+        "mean": 0.8118993755687188,
+        "n_subjects": 202,
+        "sd": 0.1666205306458348
+      },
+      "posterior_sampling": {
+        "ci_95_high": 0.7378800719599385,
+        "ci_95_low": 0.6826540907953069,
+        "label": "Real + BR-LoRA posterior sampling",
+        "mean": 0.710639350234873,
+        "n_subjects": 202,
+        "sd": 0.20121382645608227
+      },
+      "real_only": {
+        "ci_95_high": 0.6925923035440766,
+        "ci_95_low": 0.6354341905780384,
+        "label": "Real only",
+        "mean": 0.6644356688808619,
+        "n_subjects": 202,
+        "sd": 0.20846496098854228
+      }
+    }
+  },
+  "settings": {
+    "additional_paired_comparison": "posterior_sampling_minus_posterior_mean",
+    "analysis_name": "UCSF-PDGM external volumetric Dice bootstrap",
+    "analysis_unit": "subject",
+    "bootstrap": {
+      "confidence_level": 0.95,
+      "interval_method": "percentile",
+      "paired_comparisons": true,
+      "pairing_unit": "subject_id",
+      "quantiles": [
+        0.025,
+        0.975
+      ],
+      "replicates": 10000,
+      "same_resample_indices_for_all_regimes_and_comparisons": true,
+      "seed": 2026,
+      "slice_level_resampling": false,
+      "type": "nonparametric subject-level bootstrap with replacement"
+    },
+    "expected_subject_count": 202,
+    "observed_subject_count": 202,
+    "point_estimate": "arithmetic mean across subjects",
+    "primary_metric": "volumetric_dice",
+    "regimes": {
+      "posterior_mean": {
+        "label": "Real + BR-LoRA posterior mean",
+        "relative_subject_metrics_path": "real_plus_br_lora_posterior_mean/subject_metrics.csv"
+      },
+      "posterior_sampling": {
+        "label": "Real + BR-LoRA posterior sampling",
+        "relative_subject_metrics_path": "real_plus_br_lora_posterior_sampling/subject_metrics.csv"
+      },
+      "real_only": {
+        "label": "Real only",
+        "relative_subject_metrics_path": "real_only/subject_metrics.csv"
+      }
+    },
+    "table_primary_comparisons": [
+      "posterior_mean_minus_real_only",
+      "posterior_sampling_minus_real_only"
+    ],
+    "variability": {
+      "ddof": 1,
+      "statistic": "sample standard deviation across subjects"
+    }
+  }
+}
