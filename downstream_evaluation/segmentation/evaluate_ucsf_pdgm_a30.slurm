@@ -6,15 +6,15 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
 #SBATCH --time=02:00:00
-#SBATCH --output=downstream_evaluation/logs/evaluation/ucsf_pdgm_eval_%j.out
-#SBATCH --error=downstream_evaluation/logs/evaluation/ucsf_pdgm_eval_%j.err
+#SBATCH --output=logs/evaluation/downstream_segmentation/ucsf_pdgm/ucsf_pdgm_eval_%j.out
+#SBATCH --error=logs/evaluation/downstream_segmentation/ucsf_pdgm/ucsf_pdgm_eval_%j.err
 
 set -euo pipefail
 
 cd "${SLURM_SUBMIT_DIR}"
 
 mkdir -p \
-  downstream_evaluation/logs/evaluation \
+  logs/evaluation/downstream_segmentation/ucsf_pdgm \
   outputs/downstream_segmentation/evaluations
 
 CONDA_ENV="${CONDA_ENV:-brats-nnunet}"

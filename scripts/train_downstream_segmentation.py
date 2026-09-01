@@ -42,6 +42,7 @@ import importlib.metadata
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 
@@ -231,8 +232,9 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=None,
         help=(
-            "Run output directory. If omitted, a non-overwriting path "
-            "under outputs/downstream_segmentation/runs is generated."
+            "Run output directory. If omitted, the canonical path under "
+            "checkpoints/downstream_segmentation is used; any existing "
+            "checkpoint bundle there is archived before the new run."
         ),
     )
 
@@ -490,10 +492,44 @@ def package_version(
         return None
 
 
+CHECKPOINT_METHOD_DIRS = {
+    "real_only": "real_only",
+    "real_plus_br_lora_mean": "br_lora_mean",
+    "real_plus_br_lora_posterior": "br_lora_posterior",
+}
+
+
 def default_output_dir(
     regime: str,
     seed: int,
 ) -> Path:
+    try:
+        method = CHECKPOINT_METHOD_DIRS[regime]
+    except KeyError as error:
+        raise ValueError(
+            f"Unsupported downstream segmentation regime: {regime}"
+        ) from error
+
+    return (
+        PROJECT_ROOT
+        / "checkpoints"
+        / "downstream_segmentation"
+        / method
+        / f"seed_{seed}"
+    )
+
+
+def historical_output_dir(
+    regime: str,
+    seed: int,
+) -> Path:
+    try:
+        method = CHECKPOINT_METHOD_DIRS[regime]
+    except KeyError as error:
+        raise ValueError(
+            f"Unsupported downstream segmentation regime: {regime}"
+        ) from error
+
     partition = os.environ.get(
         "SLURM_JOB_PARTITION",
         "local",
@@ -503,27 +539,35 @@ def default_output_dir(
         "SLURM_JOB_ID"
     )
 
+    timestamp = datetime.now(
+        timezone.utc
+    ).strftime("%Y%m%dT%H%M%SZ")
+
     if job_id:
-        run_id = f"job_{job_id}"
+        archive_id = (
+            f"{timestamp}_{partition}_before_job_{job_id}"
+        )
     else:
-        timestamp = datetime.now(
-            timezone.utc
-        ).strftime("%Y%m%dT%H%M%SZ")
-        run_id = f"run_{timestamp}"
+        archive_id = (
+            f"{timestamp}_{partition}_before_local_run"
+        )
 
     return (
         PROJECT_ROOT
-        / "outputs"
+        / "checkpoints"
+        / "historical"
         / "downstream_segmentation"
-        / "runs"
-        / regime
+        / method
         / f"seed_{seed}"
-        / f"{partition}_{run_id}"
+        / archive_id
     )
 
 
 def prepare_output_directory(
     path: Path,
+    *,
+    archive_existing: bool = False,
+    archive_path: Path | None = None,
 ) -> Path:
     path = path.expanduser().resolve()
 
@@ -534,9 +578,46 @@ def prepare_output_directory(
             )
 
         if any(path.iterdir()):
-            raise RuntimeError(
-                "Refusing to overwrite a non-empty output directory:\n"
-                f"{path}"
+            if not archive_existing:
+                raise RuntimeError(
+                    "Refusing to overwrite a non-empty output directory:\n"
+                    f"{path}"
+                )
+
+            if archive_path is None:
+                raise ValueError(
+                    "archive_path is required when archive_existing=True."
+                )
+
+            archive_path = (
+                archive_path
+                .expanduser()
+                .resolve()
+            )
+
+            if archive_path.exists():
+                raise RuntimeError(
+                    "Historical archive destination already exists:\n"
+                    f"{archive_path}"
+                )
+
+            archive_path.parent.mkdir(
+                parents=True,
+                exist_ok=True,
+            )
+
+            print(
+                "Archiving existing checkpoint bundle:",
+                path,
+            )
+            print(
+                "Historical destination:",
+                archive_path,
+            )
+
+            shutil.move(
+                str(path),
+                str(archive_path),
             )
 
     path.mkdir(
@@ -921,12 +1002,16 @@ def main() -> None:
         cudnn_benchmark=cudnn_benchmark,
     )
 
+    using_default_output_dir = (
+        args.output_dir is None
+    )
+
     output_dir = (
         default_output_dir(
             args.regime,
             seed,
         )
-        if args.output_dir is None
+        if using_default_output_dir
         else args.output_dir
     )
 
@@ -1202,7 +1287,16 @@ def main() -> None:
         return
 
     output_dir = prepare_output_directory(
-        output_dir
+        output_dir,
+        archive_existing=using_default_output_dir,
+        archive_path=(
+            historical_output_dir(
+                args.regime,
+                seed,
+            )
+            if using_default_output_dir
+            else None
+        ),
     )
 
     run_metadata = build_run_metadata(

@@ -6,15 +6,15 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
 #SBATCH --time=12:00:00
-#SBATCH --output=downstream_evaluation/logs/training/posterior_cache_%j.out
-#SBATCH --error=downstream_evaluation/logs/training/posterior_cache_%j.err
+#SBATCH --output=logs/training/downstream_segmentation/posterior_cache/posterior_cache_%j.out
+#SBATCH --error=logs/training/downstream_segmentation/posterior_cache/posterior_cache_%j.err
 
 set -euo pipefail
 
 cd "${SLURM_SUBMIT_DIR}"
 
 mkdir -p \
-  downstream_evaluation/logs/training
+  logs/training/downstream_segmentation/posterior_cache
 
 CONDA_ENV="${CONDA_ENV:-brats-nnunet}"
 

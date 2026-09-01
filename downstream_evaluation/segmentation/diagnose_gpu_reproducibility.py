@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
+from pathlib import Path
 import random
 
 import numpy as np
 import torch
+import yaml
 from torch.utils.data import (
     ConcatDataset,
     DataLoader,
@@ -24,19 +27,194 @@ from downstream_evaluation.segmentation.synthetic_dataset import (
 from downstream_evaluation.segmentation.transforms import (
     build_train_transform,
 )
-from downstream_evaluation.segmentation.train_real_plus_br_lora import (
-    BATCH_SIZE,
-    BR_LORA_LIBRARY_ROOT,
-    H5_ROOT,
-    LEARNING_RATE,
-    NUM_WORKERS,
-    REAL_TRAIN_MANIFEST,
-    SEED,
-    SYNTHETIC_MANIFEST,
+from src.config import (
+    load_folders_config,
+    resolve_path,
+    save_folders_config,
 )
 
 
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+DEFAULT_CONFIG = (
+    PROJECT_ROOT
+    / "downstream_evaluation"
+    / "configs"
+    / "segmentation.yaml"
+)
+
+DEFAULT_REAL_TRAIN_MANIFEST = (
+    PROJECT_ROOT
+    / "downstream_evaluation"
+    / "manifests"
+    / "downstream_real_training_manifest.csv"
+)
+
+DEFAULT_SYNTHETIC_MANIFEST = (
+    PROJECT_ROOT
+    / "downstream_evaluation"
+    / "manifests"
+    / "br_lora_library_design_10000"
+    / "br_lora_library_design_10000.csv"
+)
+
 N_STEPS = 10
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description=(
+            "Diagnose bitwise CUDA reproducibility for the downstream "
+            "real + BR-LoRA posterior-mean training path."
+        )
+    )
+
+    parser.add_argument(
+        "--config",
+        type=Path,
+        default=DEFAULT_CONFIG,
+        help="Tracked downstream segmentation configuration YAML.",
+    )
+
+    parser.add_argument(
+        "--folders-file",
+        type=Path,
+        default=Path("data/folders.yaml"),
+        help="Machine-specific path configuration YAML.",
+    )
+
+    parser.add_argument(
+        "--h5-root",
+        type=Path,
+        default=None,
+        help="BraTS H5 root. Overrides h5_root in --folders-file.",
+    )
+
+    parser.add_argument(
+        "--br-lora-library-root",
+        type=Path,
+        default=None,
+        help=(
+            "BR-LoRA library root. Overrides br_lora_library_root "
+            "in --folders-file."
+        ),
+    )
+
+    parser.add_argument(
+        "--real-train-manifest",
+        type=Path,
+        default=None,
+        help=(
+            "Frozen real-training manifest. CLI overrides folders YAML; "
+            "otherwise the tracked repository manifest is used."
+        ),
+    )
+
+    parser.add_argument(
+        "--synthetic-manifest",
+        type=Path,
+        default=None,
+        help=(
+            "Frozen BR-LoRA synthetic-library manifest. CLI overrides "
+            "folders YAML; otherwise the tracked repository manifest "
+            "is used."
+        ),
+    )
+
+    return parser.parse_args()
+
+
+def load_config(path: Path) -> dict:
+    path = path.expanduser().resolve()
+
+    if not path.is_file():
+        raise ValueError(
+            f"Configuration file not found:\n{path}"
+        )
+
+    with path.open(
+        "r",
+        encoding="utf-8",
+    ) as file:
+        loaded = yaml.safe_load(file)
+
+    if not isinstance(loaded, dict):
+        raise ValueError(
+            "Configuration must contain a YAML mapping."
+        )
+
+    return loaded
+
+
+def resolve_optional_repo_path(
+    *,
+    key: str,
+    cli_value: Path | None,
+    folders_config: dict[str, str],
+    default: Path,
+) -> Path:
+    """
+    Resolve CLI > folders YAML > tracked repository default.
+    """
+    if cli_value is not None:
+        path = Path(cli_value)
+        folders_config[key] = str(path)
+        return path
+
+    configured = folders_config.get(key)
+
+    if configured:
+        return Path(configured)
+
+    return default
+
+
+def resolve_paths(
+    args: argparse.Namespace,
+) -> dict[str, Path]:
+    folders_config = load_folders_config(
+        args.folders_file
+    )
+
+    h5_root = resolve_path(
+        key="h5_root",
+        cli_value=args.h5_root,
+        config=folders_config,
+        selector=None,
+    )
+
+    library_root = resolve_path(
+        key="br_lora_library_root",
+        cli_value=args.br_lora_library_root,
+        config=folders_config,
+        selector=None,
+    )
+
+    real_train_manifest = resolve_optional_repo_path(
+        key="downstream_real_training_manifest",
+        cli_value=args.real_train_manifest,
+        folders_config=folders_config,
+        default=DEFAULT_REAL_TRAIN_MANIFEST,
+    )
+
+    synthetic_manifest = resolve_optional_repo_path(
+        key="downstream_synthetic_manifest",
+        cli_value=args.synthetic_manifest,
+        folders_config=folders_config,
+        default=DEFAULT_SYNTHETIC_MANIFEST,
+    )
+
+    save_folders_config(
+        args.folders_file,
+        folders_config,
+    )
+
+    return {
+        "h5_root": Path(h5_root),
+        "library_root": Path(library_root),
+        "real_train_manifest": Path(real_train_manifest),
+        "synthetic_manifest": Path(synthetic_manifest),
+    }
 
 
 def set_seed(seed: int) -> None:
@@ -96,30 +274,39 @@ def collate(batch):
     }
 
 
-def build_loader() -> DataLoader:
+def build_loader(
+    *,
+    seed: int,
+    batch_size: int,
+    num_workers: int,
+    h5_root: Path,
+    library_root: Path,
+    real_train_manifest: Path,
+    synthetic_manifest: Path,
+) -> DataLoader:
     real_transform = build_train_transform()
     synthetic_transform = build_train_transform()
 
     if hasattr(real_transform, "set_random_seed"):
-        real_transform.set_random_seed(SEED)
+        real_transform.set_random_seed(seed)
 
     if hasattr(
         synthetic_transform,
         "set_random_seed",
     ):
-        synthetic_transform.set_random_seed(SEED)
+        synthetic_transform.set_random_seed(seed)
 
     real = DownstreamBraTSSegmentationDataset(
-        manifest_path=REAL_TRAIN_MANIFEST,
-        h5_root=H5_ROOT,
+        manifest_path=real_train_manifest,
+        h5_root=h5_root,
         image_channel=0,
         transform=real_transform,
     )
 
     synthetic = BRLoRAPosteriorMeanSegmentationDataset(
-        manifest_path=SYNTHETIC_MANIFEST,
-        library_root=BR_LORA_LIBRARY_ROOT,
-        h5_root=H5_ROOT,
+        manifest_path=synthetic_manifest,
+        library_root=library_root,
+        h5_root=h5_root,
         transform=synthetic_transform,
     )
 
@@ -128,13 +315,13 @@ def build_loader() -> DataLoader:
     )
 
     generator = torch.Generator()
-    generator.manual_seed(SEED)
+    generator.manual_seed(seed)
 
     return DataLoader(
         dataset,
-        batch_size=BATCH_SIZE,
+        batch_size=batch_size,
         shuffle=True,
-        num_workers=NUM_WORKERS,
+        num_workers=num_workers,
         pin_memory=True,
         worker_init_fn=seed_worker,
         generator=generator,
@@ -158,10 +345,26 @@ def state_hash(model: torch.nn.Module) -> str:
     return digest.hexdigest()
 
 
-def run_once(run_label: str) -> dict[str, object]:
-    set_seed(SEED)
+def run_once(
+    run_label: str,
+    *,
+    seed: int,
+    batch_size: int,
+    num_workers: int,
+    learning_rate: float,
+    paths: dict[str, Path],
+) -> dict[str, object]:
+    set_seed(seed)
 
-    loader = build_loader()
+    loader = build_loader(
+        seed=seed,
+        batch_size=batch_size,
+        num_workers=num_workers,
+        h5_root=paths["h5_root"],
+        library_root=paths["library_root"],
+        real_train_manifest=paths["real_train_manifest"],
+        synthetic_manifest=paths["synthetic_manifest"],
+    )
 
     device = torch.device("cuda")
 
@@ -174,7 +377,7 @@ def run_once(run_label: str) -> dict[str, object]:
 
     optimizer = torch.optim.Adamax(
         model.parameters(),
-        lr=LEARNING_RATE,
+        lr=learning_rate,
     )
 
     initial_hash = state_hash(model)
@@ -244,10 +447,37 @@ def main() -> None:
             "CUDA is required for this diagnostic."
         )
 
+    args = parse_args()
+    config = load_config(args.config)
+    paths = resolve_paths(args)
+
+    seed = int(config["seed"])
+    batch_size = int(config["data"]["batch_size"])
+    num_workers = int(config["data"]["num_workers"])
+    learning_rate = float(
+        config["training"]["learning_rate"]
+    )
+
     print("GPU:", torch.cuda.get_device_name(0))
     print("PyTorch:", torch.__version__)
-    print("Seed:", SEED)
+    print("Seed:", seed)
+    print("Batch size:", batch_size)
+    print("Workers:", num_workers)
+    print("Learning rate:", learning_rate)
     print("Steps:", N_STEPS)
+    print("H5 root:", paths["h5_root"])
+    print(
+        "BR-LoRA library root:",
+        paths["library_root"],
+    )
+    print(
+        "Real-training manifest:",
+        paths["real_train_manifest"],
+    )
+    print(
+        "Synthetic manifest:",
+        paths["synthetic_manifest"],
+    )
     print(
         "cudnn deterministic:",
         torch.backends.cudnn.deterministic,
@@ -257,8 +487,23 @@ def main() -> None:
         torch.backends.cudnn.benchmark,
     )
 
-    run_a = run_once("RUN A")
-    run_b = run_once("RUN B")
+    run_a = run_once(
+        "RUN A",
+        seed=seed,
+        batch_size=batch_size,
+        num_workers=num_workers,
+        learning_rate=learning_rate,
+        paths=paths,
+    )
+
+    run_b = run_once(
+        "RUN B",
+        seed=seed,
+        batch_size=batch_size,
+        num_workers=num_workers,
+        learning_rate=learning_rate,
+        paths=paths,
+    )
 
     same_initial = (
         run_a["initial_hash"]

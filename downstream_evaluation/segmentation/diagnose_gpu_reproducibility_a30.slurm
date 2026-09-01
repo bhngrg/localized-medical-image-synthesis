@@ -6,10 +6,8 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
 #SBATCH --time=00:30:00
-#SBATCH --mail-user=bhanug@vt.edu
-#SBATCH --mail-type=BEGIN,END
-#SBATCH --output=downstream_evaluation/logs/seg_repro_diag_a30_normal_q_%j.out
-#SBATCH --error=downstream_evaluation/logs/seg_repro_diag_a30_normal_q_%j.err
+#SBATCH --output=logs/reproducibility/downstream_segmentation/seg_repro_diag_a30_normal_q_%j.out
+#SBATCH --error=logs/reproducibility/downstream_segmentation/seg_repro_diag_a30_normal_q_%j.err
 
 set -euo pipefail
 
@@ -43,7 +41,7 @@ activate_environment
 
 cd "${REPO_ROOT}"
 
-mkdir -p downstream_evaluation/logs
+mkdir -p logs/reproducibility/downstream_segmentation
 
 export OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1

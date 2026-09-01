@@ -45,9 +45,10 @@ outputs/*
 # Logs
 # ============================================================
 
-# Keep experiment logs under version control
+# Keep curated experiment logs under version control
 !logs/
 !logs/**/*.log
+!logs/**/*.out
 !logs/**/*.err
 
 # Keep nnU-Net screening logs under version control
@@ -56,25 +57,3 @@ outputs/*
 !screening/brats_nnunet/logs/*.err
 # Recomputable BR-LoRA compatibility caches
 training_only_compatibility_cache.npz
-
-# Downstream segmentation job logs
-# Ignore miscellaneous runtime logs by default. Curated logs are moved
-# into the organized subdirectories below and retained as provenance.
-downstream_evaluation/logs/*
-
-!downstream_evaluation/logs/training/
-downstream_evaluation/logs/training/*
-!downstream_evaluation/logs/training/real_only/
-!downstream_evaluation/logs/training/real_only/**
-!downstream_evaluation/logs/training/posterior_mean/
-!downstream_evaluation/logs/training/posterior_mean/**
-!downstream_evaluation/logs/training/posterior_sampling/
-!downstream_evaluation/logs/training/posterior_sampling/**
-
-!downstream_evaluation/logs/evaluation/
-downstream_evaluation/logs/evaluation/*
-!downstream_evaluation/logs/evaluation/ucsf_pdgm/
-!downstream_evaluation/logs/evaluation/ucsf_pdgm/**
-
-!downstream_evaluation/logs/reproducibility/
-!downstream_evaluation/logs/reproducibility/**

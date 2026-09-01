@@ -279,14 +279,25 @@ The same launcher supports all three regimes.
 
 ## Outputs and Provenance
 
-New hardened runs are written under:
+Persistent downstream segmentation training bundles are written under:
 
 ```text
-outputs/downstream_segmentation/runs/
+checkpoints/downstream_segmentation/
 ```
 
-Run directories are non-overwriting and include the regime, seed, partition,
-and Slurm job ID when available.
+The canonical directory is organized by training condition and seed. Each
+bundle contains the best checkpoint together with the resolved configuration,
+run metadata, and training history.
+
+When a default canonical training destination already contains a previous
+bundle, that bundle is preserved before the new run begins under:
+
+```text
+checkpoints/historical/downstream_segmentation/
+```
+
+Explicit user-specified output directories remain overwrite-protected rather
+than being moved automatically.
 
 Each training run records:
 
@@ -299,16 +310,31 @@ Each training run records:
 - training history
 - best checkpoint and checkpoint hash
 
-Large runtime outputs remain outside version control. Selected logs that are
-useful for scientific or reproducibility provenance are curated under:
+Retained execution logs that provide useful scientific or reproducibility
+provenance are organized by workflow under the repository-level:
 
 ```text
-downstream_evaluation/logs/
+logs/
 ```
 
-The files under `downstream_evaluation/results/` currently summarize the
-preliminary pre-hardening runs and are retained as historical evidence rather
-than overwritten.
+Raw generated workflow products, including external-evaluation outputs, are
+written under:
+
+```text
+outputs/
+```
+
+Curated scientific results intended for preservation and reporting are stored
+separately under:
+
+```text
+results/
+```
+
+For the hardened UCSF-PDGM analysis, rerunning the default locked analysis
+archives only the analysis artifacts owned by that script under
+`results/historical/` before regenerating them. Other curated files sharing
+the result directory are left untouched.
 
 ## External Evaluation
 

@@ -1,0 +1,46 @@
+Downstream BR-LoRA posterior shard-cache build
+==============================================================================
+Host: fal156
+Date: Sun Aug 30 11:00:40 PM EDT 2026
+SLURM_JOB_ID=555747
+SLURM_JOB_PARTITION=t4_normal_q
+Manifest=downstream_evaluation/manifests/br_lora_library_design_10000/br_lora_library_design_10000.csv
+Library root=/scratch/bhanug/br_lora_library/batches
+Output root=/scratch/bhanug/br_lora_library/downstream_seed42_epoch20_shards
+Seed=42
+Epochs=20
+Shard size=500
+
+Posterior shard-cache build
+==============================================================================
+Cases: 10,000
+Seed: 42
+Epochs: 20
+Shard size: 500
+Shards per epoch: 20
+Output: /scratch/bhanug/br_lora_library/downstream_seed42_epoch20_shards
+
+Built shard 001/020 (manifest positions 0:500)
+Built shard 002/020 (manifest positions 500:1000)
+Built shard 003/020 (manifest positions 1000:1500)
+Built shard 004/020 (manifest positions 1500:2000)
+Built shard 005/020 (manifest positions 2000:2500)
+Built shard 006/020 (manifest positions 2500:3000)
+Built shard 007/020 (manifest positions 3000:3500)
+Built shard 008/020 (manifest positions 3500:4000)
+Built shard 009/020 (manifest positions 4000:4500)
+Built shard 010/020 (manifest positions 4500:5000)
+Built shard 011/020 (manifest positions 5000:5500)
+Built shard 012/020 (manifest positions 5500:6000)
+Built shard 013/020 (manifest positions 6000:6500)
+Built shard 014/020 (manifest positions 6500:7000)
+Built shard 015/020 (manifest positions 7000:7500)
+Built shard 016/020 (manifest positions 7500:8000)
+Built shard 017/020 (manifest positions 8000:8500)
+Built shard 018/020 (manifest positions 8500:9000)
+Built shard 019/020 (manifest positions 9000:9500)
+Built shard 020/020 (manifest positions 9500:10000)
+
+Cache build complete.
+Manifest: /scratch/bhanug/br_lora_library/downstream_seed42_epoch20_shards/cache_manifest.json
+Total shard files: 400

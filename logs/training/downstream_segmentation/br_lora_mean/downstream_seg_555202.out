@@ -1,0 +1,51 @@
+Downstream segmentation
+Host: fal020
+Date: Sun Aug 30 05:41:12 PM EDT 2026
+SLURM_JOB_ID=555202
+SLURM_JOB_PARTITION=a30_normal_q
+Regime=real_plus_br_lora_mean
+
+Downstream segmentation training
+==============================================================================
+Regime: real_plus_br_lora_mean
+Device: cuda
+Seed: 42
+Output directory: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/runs/real_plus_br_lora_mean/seed_42/a30_normal_q_job_555202
+Strict deterministic algorithms: True
+CUBLAS_WORKSPACE_CONFIG: :4096:8
+cuDNN deterministic: True
+cuDNN benchmark: False
+Real training slices: 41,460
+Synthetic training cases: 10,000
+Total training samples: 51,460
+Validation slices: 5,735
+Epochs: 20
+Batch size: 26
+Learning rate: 0.001
+Threshold: 0.5
+
+Epoch 01/20 | train loss 0.438414 | train Dice 0.712354 | val loss 0.573302 | val Dice 0.756375 | val IoU 0.714470 | val+ Dice 0.677078 | val+ IoU 0.578866
+Epoch 02/20 | train loss 0.273975 | train Dice 0.794760 | val loss 0.623564 | val Dice 0.824765 | val IoU 0.788693 | val+ Dice 0.646108 | val+ IoU 0.561567
+Epoch 03/20 | train loss 0.191998 | train Dice 0.831064 | val loss 0.542342 | val Dice 0.811760 | val IoU 0.782455 | val+ Dice 0.596831 | val+ IoU 0.528148
+Epoch 04/20 | train loss 0.143241 | train Dice 0.856614 | val loss 0.560746 | val Dice 0.834561 | val IoU 0.802855 | val+ Dice 0.654355 | val+ IoU 0.580046
+Epoch 05/20 | train loss 0.119790 | train Dice 0.871925 | val loss 0.366920 | val Dice 0.848070 | val IoU 0.815592 | val+ Dice 0.707268 | val+ IoU 0.631149
+Epoch 06/20 | train loss 0.107862 | train Dice 0.878893 | val loss 0.511605 | val Dice 0.821231 | val IoU 0.791805 | val+ Dice 0.612489 | val+ IoU 0.543523
+Epoch 07/20 | train loss 0.097970 | train Dice 0.886396 | val loss 0.415536 | val Dice 0.844385 | val IoU 0.814564 | val+ Dice 0.681467 | val+ IoU 0.611575
+Epoch 08/20 | train loss 0.094356 | train Dice 0.888420 | val loss 0.513072 | val Dice 0.844711 | val IoU 0.814308 | val+ Dice 0.712881 | val+ IoU 0.641626
+Epoch 09/20 | train loss 0.089152 | train Dice 0.891290 | val loss 0.375277 | val Dice 0.844115 | val IoU 0.813227 | val+ Dice 0.668165 | val+ IoU 0.595773
+Epoch 10/20 | train loss 0.083104 | train Dice 0.894562 | val loss 0.385999 | val Dice 0.856027 | val IoU 0.826875 | val+ Dice 0.697717 | val+ IoU 0.629394
+Epoch 11/20 | train loss 0.081911 | train Dice 0.895947 | val loss 0.366932 | val Dice 0.823823 | val IoU 0.796266 | val+ Dice 0.631233 | val+ IoU 0.566648
+Epoch 12/20 | train loss 0.078549 | train Dice 0.898157 | val loss 0.454929 | val Dice 0.855285 | val IoU 0.825458 | val+ Dice 0.699657 | val+ IoU 0.629752
+Epoch 13/20 | train loss 0.075440 | train Dice 0.900829 | val loss 0.435772 | val Dice 0.857739 | val IoU 0.825731 | val+ Dice 0.726251 | val+ IoU 0.651234
+Epoch 14/20 | train loss 0.074120 | train Dice 0.901538 | val loss 0.437673 | val Dice 0.861321 | val IoU 0.830416 | val+ Dice 0.710941 | val+ IoU 0.638512
+Epoch 15/20 | train loss 0.072677 | train Dice 0.902577 | val loss 0.377562 | val Dice 0.853909 | val IoU 0.822609 | val+ Dice 0.717682 | val+ IoU 0.644324
+Epoch 16/20 | train loss 0.069674 | train Dice 0.905579 | val loss 0.460082 | val Dice 0.858075 | val IoU 0.828513 | val+ Dice 0.705379 | val+ IoU 0.636093
+Epoch 17/20 | train loss 0.068976 | train Dice 0.905531 | val loss 0.433764 | val Dice 0.854627 | val IoU 0.824835 | val+ Dice 0.696480 | val+ IoU 0.626656
+Epoch 18/20 | train loss 0.066788 | train Dice 0.906874 | val loss 0.464630 | val Dice 0.853181 | val IoU 0.822625 | val+ Dice 0.715567 | val+ IoU 0.643953
+Epoch 19/20 | train loss 0.065270 | train Dice 0.908459 | val loss 0.451766 | val Dice 0.851299 | val IoU 0.820921 | val+ Dice 0.713199 | val+ IoU 0.642004
+Epoch 20/20 | train loss 0.063786 | train Dice 0.909304 | val loss 0.472574 | val Dice 0.843987 | val IoU 0.812665 | val+ Dice 0.726304 | val+ IoU 0.652894
+
+==============================================================================
+Training complete.
+Best validation positive-slice Dice: 0.726303793383
+Best checkpoint: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/runs/real_plus_br_lora_mean/seed_42/a30_normal_q_job_555202/best_model.pt

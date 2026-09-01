@@ -1,0 +1,50 @@
+Downstream segmentation
+Host: fal011
+Date: Sun Aug 30 05:39:25 PM EDT 2026
+SLURM_JOB_ID=555201
+SLURM_JOB_PARTITION=a30_normal_q
+Regime=real_only
+
+Downstream segmentation training
+==============================================================================
+Regime: real_only
+Device: cuda
+Seed: 42
+Output directory: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/runs/real_only/seed_42/a30_normal_q_job_555201
+Strict deterministic algorithms: True
+CUBLAS_WORKSPACE_CONFIG: :4096:8
+cuDNN deterministic: True
+cuDNN benchmark: False
+Real training slices: 41,460
+Total training samples: 41,460
+Validation slices: 5,735
+Epochs: 20
+Batch size: 26
+Learning rate: 0.001
+Threshold: 0.5
+
+Epoch 01/20 | train loss 0.402848 | train Dice 0.785814 | val loss 0.597922 | val Dice 0.811780 | val IoU 0.776930 | val+ Dice 0.635292 | val+ IoU 0.553615
+Epoch 02/20 | train loss 0.223045 | train Dice 0.839932 | val loss 0.601099 | val Dice 0.819486 | val IoU 0.781629 | val+ Dice 0.666022 | val+ IoU 0.577296
+Epoch 03/20 | train loss 0.193116 | train Dice 0.853736 | val loss 0.540882 | val Dice 0.833055 | val IoU 0.799197 | val+ Dice 0.682702 | val+ IoU 0.603349
+Epoch 04/20 | train loss 0.179388 | train Dice 0.860150 | val loss 0.511098 | val Dice 0.830008 | val IoU 0.798030 | val+ Dice 0.673109 | val+ IoU 0.598162
+Epoch 05/20 | train loss 0.164469 | train Dice 0.864652 | val loss 0.380939 | val Dice 0.845546 | val IoU 0.816617 | val+ Dice 0.672335 | val+ IoU 0.604536
+Epoch 06/20 | train loss 0.157759 | train Dice 0.867841 | val loss 0.366414 | val Dice 0.835322 | val IoU 0.807161 | val+ Dice 0.640201 | val+ IoU 0.574201
+Epoch 07/20 | train loss 0.150402 | train Dice 0.869861 | val loss 0.552164 | val Dice 0.806287 | val IoU 0.771405 | val+ Dice 0.705376 | val+ IoU 0.623624
+Epoch 08/20 | train loss 0.140011 | train Dice 0.873083 | val loss 0.546669 | val Dice 0.813247 | val IoU 0.779492 | val+ Dice 0.727411 | val+ IoU 0.648299
+Epoch 09/20 | train loss 0.134668 | train Dice 0.875156 | val loss 0.526266 | val Dice 0.850892 | val IoU 0.818580 | val+ Dice 0.722055 | val+ IoU 0.646324
+Epoch 10/20 | train loss 0.128919 | train Dice 0.878675 | val loss 0.340874 | val Dice 0.850059 | val IoU 0.820627 | val+ Dice 0.663705 | val+ IoU 0.594726
+Epoch 11/20 | train loss 0.125012 | train Dice 0.879196 | val loss 0.398045 | val Dice 0.858603 | val IoU 0.826391 | val+ Dice 0.717240 | val+ IoU 0.641747
+Epoch 12/20 | train loss 0.121952 | train Dice 0.881576 | val loss 0.402215 | val Dice 0.857095 | val IoU 0.825367 | val+ Dice 0.723107 | val+ IoU 0.648746
+Epoch 13/20 | train loss 0.121254 | train Dice 0.882280 | val loss 0.449420 | val Dice 0.850058 | val IoU 0.817597 | val+ Dice 0.710700 | val+ IoU 0.634622
+Epoch 14/20 | train loss 0.115168 | train Dice 0.886030 | val loss 0.373827 | val Dice 0.851901 | val IoU 0.821777 | val+ Dice 0.690092 | val+ IoU 0.619490
+Epoch 15/20 | train loss 0.115255 | train Dice 0.885399 | val loss 0.389024 | val Dice 0.855372 | val IoU 0.823992 | val+ Dice 0.711302 | val+ IoU 0.637758
+Epoch 16/20 | train loss 0.111647 | train Dice 0.887259 | val loss 0.331749 | val Dice 0.852870 | val IoU 0.822127 | val+ Dice 0.708709 | val+ IoU 0.636657
+Epoch 17/20 | train loss 0.111199 | train Dice 0.889175 | val loss 0.295046 | val Dice 0.851224 | val IoU 0.818605 | val+ Dice 0.723241 | val+ IoU 0.646792
+Epoch 18/20 | train loss 0.112272 | train Dice 0.888865 | val loss 0.369537 | val Dice 0.848120 | val IoU 0.816270 | val+ Dice 0.712288 | val+ IoU 0.637641
+Epoch 19/20 | train loss 0.108243 | train Dice 0.890495 | val loss 0.395558 | val Dice 0.857754 | val IoU 0.826937 | val+ Dice 0.713207 | val+ IoU 0.640981
+Epoch 20/20 | train loss 0.105998 | train Dice 0.892438 | val loss 0.434189 | val Dice 0.857908 | val IoU 0.826499 | val+ Dice 0.723377 | val+ IoU 0.649763
+
+==============================================================================
+Training complete.
+Best validation positive-slice Dice: 0.727410669912
+Best checkpoint: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/runs/real_only/seed_42/a30_normal_q_job_555201/best_model.pt

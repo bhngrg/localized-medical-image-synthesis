@@ -1,0 +1,74 @@
+Downstream segmentation
+Host: fal009
+Date: Mon Aug 31 01:26:15 AM EDT 2026
+SLURM_JOB_ID=555874
+SLURM_JOB_PARTITION=a30_normal_q
+Regime=real_plus_br_lora_posterior
+
+Downstream segmentation training
+==============================================================================
+Regime: real_plus_br_lora_posterior
+Device: cuda
+Seed: 42
+Output directory: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/runs/real_plus_br_lora_posterior/seed_42/a30_normal_q_job_555874
+Strict deterministic algorithms: True
+CUBLAS_WORKSPACE_CONFIG: :4096:8
+cuDNN deterministic: True
+cuDNN benchmark: False
+Posterior loader: verified shard cache
+Posterior shard-cache root: /scratch/bhanug/br_lora_library/downstream_seed42_epoch20_shards
+Posterior shard-cache manifest SHA-256: 25bc5966dff7b5f80e3f2636408a6828f794a8bd2146a26d990855a21f5a88d1
+Real training slices: 41,460
+Synthetic training cases: 10,000
+Total training samples: 51,460
+Validation slices: 5,735
+Epochs: 20
+Batch size: 26
+Learning rate: 0.001
+Threshold: 0.5
+
+Epoch 01: posterior schedule position 0
+Epoch 01/20 | train loss 0.509161 | train Dice 0.643763 | val loss 0.641831 | val Dice 0.743491 | val IoU 0.701652 | val+ Dice 0.642387 | val+ IoU 0.544329
+Epoch 02: posterior schedule position 1
+Epoch 02/20 | train loss 0.311349 | train Dice 0.773170 | val loss 0.613138 | val Dice 0.782815 | val IoU 0.744751 | val+ Dice 0.656495 | val+ IoU 0.567286
+Epoch 03: posterior schedule position 2
+Epoch 03/20 | train loss 0.233516 | train Dice 0.814133 | val loss 0.585727 | val Dice 0.776378 | val IoU 0.739704 | val+ Dice 0.671650 | val+ IoU 0.585697
+Epoch 04: posterior schedule position 3
+Epoch 04/20 | train loss 0.165544 | train Dice 0.849716 | val loss 0.515140 | val Dice 0.835021 | val IoU 0.802414 | val+ Dice 0.655433 | val+ IoU 0.579014
+Epoch 05: posterior schedule position 4
+Epoch 05/20 | train loss 0.133032 | train Dice 0.867054 | val loss 0.538132 | val Dice 0.817057 | val IoU 0.783580 | val+ Dice 0.723672 | val+ IoU 0.645211
+Epoch 06: posterior schedule position 5
+Epoch 06/20 | train loss 0.117583 | train Dice 0.873931 | val loss 0.532531 | val Dice 0.821297 | val IoU 0.793772 | val+ Dice 0.620407 | val+ IoU 0.555898
+Epoch 07: posterior schedule position 6
+Epoch 07/20 | train loss 0.105782 | train Dice 0.880499 | val loss 0.462384 | val Dice 0.838736 | val IoU 0.809287 | val+ Dice 0.685390 | val+ IoU 0.616371
+Epoch 08: posterior schedule position 7
+Epoch 08/20 | train loss 0.098266 | train Dice 0.884223 | val loss 0.541003 | val Dice 0.818921 | val IoU 0.786261 | val+ Dice 0.712102 | val+ IoU 0.635557
+Epoch 09: posterior schedule position 8
+Epoch 09/20 | train loss 0.092847 | train Dice 0.888571 | val loss 0.402031 | val Dice 0.848781 | val IoU 0.818117 | val+ Dice 0.687275 | val+ IoU 0.615408
+Epoch 10: posterior schedule position 9
+Epoch 10/20 | train loss 0.087856 | train Dice 0.892220 | val loss 0.336461 | val Dice 0.846570 | val IoU 0.819122 | val+ Dice 0.676779 | val+ IoU 0.612449
+Epoch 11: posterior schedule position 10
+Epoch 11/20 | train loss 0.083990 | train Dice 0.894374 | val loss 0.422363 | val Dice 0.842652 | val IoU 0.812240 | val+ Dice 0.675769 | val+ IoU 0.604494
+Epoch 12: posterior schedule position 11
+Epoch 12/20 | train loss 0.081557 | train Dice 0.894918 | val loss 0.437905 | val Dice 0.836193 | val IoU 0.809483 | val+ Dice 0.646329 | val+ IoU 0.583729
+Epoch 13: posterior schedule position 12
+Epoch 13/20 | train loss 0.077325 | train Dice 0.897578 | val loss 0.359367 | val Dice 0.821835 | val IoU 0.795756 | val+ Dice 0.602870 | val+ IoU 0.541749
+Epoch 14: posterior schedule position 13
+Epoch 14/20 | train loss 0.077167 | train Dice 0.898490 | val loss 0.444883 | val Dice 0.851949 | val IoU 0.821279 | val+ Dice 0.702055 | val+ IoU 0.630175
+Epoch 15: posterior schedule position 14
+Epoch 15/20 | train loss 0.073977 | train Dice 0.900637 | val loss 0.508904 | val Dice 0.841392 | val IoU 0.810908 | val+ Dice 0.703058 | val+ IoU 0.631614
+Epoch 16: posterior schedule position 15
+Epoch 16/20 | train loss 0.072344 | train Dice 0.902024 | val loss 0.451448 | val Dice 0.848334 | val IoU 0.818830 | val+ Dice 0.692765 | val+ IoU 0.623618
+Epoch 17: posterior schedule position 16
+Epoch 17/20 | train loss 0.070854 | train Dice 0.902938 | val loss 0.401465 | val Dice 0.847928 | val IoU 0.817417 | val+ Dice 0.676692 | val+ IoU 0.605183
+Epoch 18: posterior schedule position 17
+Epoch 18/20 | train loss 0.068359 | train Dice 0.905200 | val loss 0.486601 | val Dice 0.848052 | val IoU 0.817958 | val+ Dice 0.694147 | val+ IoU 0.623617
+Epoch 19: posterior schedule position 18
+Epoch 19/20 | train loss 0.067288 | train Dice 0.905029 | val loss 0.422595 | val Dice 0.853821 | val IoU 0.823571 | val+ Dice 0.703582 | val+ IoU 0.632685
+Epoch 20: posterior schedule position 19
+Epoch 20/20 | train loss 0.065427 | train Dice 0.907469 | val loss 0.362844 | val Dice 0.847546 | val IoU 0.818026 | val+ Dice 0.692144 | val+ IoU 0.622959
+
+==============================================================================
+Training complete.
+Best validation positive-slice Dice: 0.723671555139
+Best checkpoint: /home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/runs/real_plus_br_lora_posterior/seed_42/a30_normal_q_job_555874/best_model.pt

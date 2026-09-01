@@ -355,15 +355,35 @@ Evaluation provenance records include:
 
 Large evaluation outputs are not stored in Git.
 
-Selected logs and repository-controlled summaries may be retained under:
+Retained execution provenance is stored under the canonical top-level log tree:
 
 ```text
-downstream_evaluation/logs/
-downstream_evaluation/results/
+logs/evaluation/downstream_segmentation/ucsf_pdgm/
 ```
 
-Existing files identified as preliminary or pre-hardening results are
-historical provenance records and should not be overwritten.
+Raw, recomputable external-evaluation products remain under:
+
+```text
+outputs/downstream_segmentation/evaluations/
+```
+
+Curated reproducibility-verified UCSF-PDGM results are preserved under:
+
+```text
+results/downstream_segmentation/external_validation/ucsf_pdgm/
+```
+
+Persistent downstream model checkpoints are organized separately under:
+
+```text
+checkpoints/downstream_segmentation/
+```
+
+Superseded preliminary downstream results are not part of the canonical
+scientific record. When a maintained workflow intentionally replaces an
+existing canonical artifact, prior artifacts that must be retained are moved
+to the corresponding top-level `historical/` tree rather than silently
+overwritten.
 
 ## Reproducibility Boundary
 

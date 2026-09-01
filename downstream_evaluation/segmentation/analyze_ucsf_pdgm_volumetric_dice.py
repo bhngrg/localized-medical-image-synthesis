@@ -24,10 +24,48 @@ import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+import shutil
 
 import numpy as np
 import pandas as pd
 
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+DEFAULT_EVALUATION_ROOT = (
+    PROJECT_ROOT
+    / "outputs"
+    / "downstream_segmentation"
+    / "evaluations"
+    / "ucsf_pdgm_hardened_seed42"
+)
+
+DEFAULT_OUTPUT_DIR = (
+    PROJECT_ROOT
+    / "results"
+    / "downstream_segmentation"
+    / "external_validation"
+    / "ucsf_pdgm"
+    / "br_lora"
+    / "seed_42"
+)
+
+HISTORICAL_OUTPUT_ROOT = (
+    PROJECT_ROOT
+    / "results"
+    / "historical"
+    / "downstream_segmentation"
+    / "external_validation"
+    / "ucsf_pdgm"
+    / "br_lora"
+    / "seed_42"
+)
+
+ANALYSIS_ARTIFACT_NAMES = (
+    "ucsf_pdgm_volumetric_dice_table.csv",
+    "ucsf_pdgm_volumetric_dice_table.md",
+    "ucsf_pdgm_volumetric_dice_analysis.json",
+)
 
 EXPECTED_SUBJECTS = 202
 METRIC = "volumetric_dice"
@@ -69,10 +107,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--evaluation-root",
         type=Path,
-        default=Path(
-            "outputs/downstream_segmentation/evaluations/"
-            "ucsf_pdgm_hardened_seed42"
-        ),
+        default=DEFAULT_EVALUATION_ROOT,
         help=(
             "Evaluation directory containing the three regime subdirectories "
             "and subject_metrics.csv files."
@@ -82,7 +117,11 @@ def parse_args() -> argparse.Namespace:
         "--output-dir",
         type=Path,
         default=None,
-        help="Directory for analysis outputs. Defaults to --evaluation-root.",
+        help=(
+            "Directory for curated analysis outputs. If omitted, the "
+            "canonical UCSF-PDGM BR-LoRA result directory under results/ "
+            "is used."
+        ),
     )
     return parser.parse_args()
 
@@ -103,6 +142,70 @@ def refuse_overwrite(paths: list[Path]) -> None:
             "Refusing to overwrite existing analysis artifact(s):\n"
             f"{formatted}"
         )
+
+
+def archive_existing_analysis_artifacts(
+    output_dir: Path,
+) -> Path | None:
+    """
+    Archive only artifacts owned by this analysis script.
+
+    Other curated files that share the canonical result directory, including
+    subject-level metrics, summaries, and run metadata, are left untouched.
+    """
+    existing = [
+        output_dir / name
+        for name in ANALYSIS_ARTIFACT_NAMES
+        if (output_dir / name).exists()
+    ]
+
+    if not existing:
+        return None
+
+    timestamp = datetime.now(
+        timezone.utc
+    ).strftime("%Y%m%dT%H%M%S%fZ")
+
+    archive_dir = (
+        HISTORICAL_OUTPUT_ROOT
+        / timestamp
+    )
+
+    if archive_dir.exists():
+        raise RuntimeError(
+            "Historical analysis archive already exists:\n"
+            f"{archive_dir}"
+        )
+
+    archive_dir.mkdir(
+        parents=True,
+        exist_ok=False,
+    )
+
+    print(
+        "Archiving existing canonical analysis artifacts:"
+    )
+    print(
+        "Historical destination:",
+        archive_dir,
+    )
+
+    for source in existing:
+        destination = archive_dir / source.name
+
+        print(
+            "  ",
+            source,
+            "->",
+            destination,
+        )
+
+        shutil.move(
+            str(source),
+            str(destination),
+        )
+
+    return archive_dir
 
 
 def load_subject_metric(path: Path) -> pd.DataFrame:
@@ -142,18 +245,30 @@ def load_subject_metric(path: Path) -> pd.DataFrame:
 
 def main() -> None:
     args = parse_args()
-    evaluation_root = args.evaluation_root.expanduser().resolve()
+    evaluation_root = (
+        args.evaluation_root
+        .expanduser()
+        .resolve()
+    )
+
+    using_default_output_dir = (
+        args.output_dir is None
+    )
+
     output_dir = (
-        evaluation_root
-        if args.output_dir is None
+        DEFAULT_OUTPUT_DIR
+        if using_default_output_dir
         else args.output_dir.expanduser().resolve()
     )
-    output_dir.mkdir(parents=True, exist_ok=True)
+
+    output_dir.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
     csv_path = output_dir / "ucsf_pdgm_volumetric_dice_table.csv"
     md_path = output_dir / "ucsf_pdgm_volumetric_dice_table.md"
     json_path = output_dir / "ucsf_pdgm_volumetric_dice_analysis.json"
-    refuse_overwrite([csv_path, md_path, json_path])
 
     dataframes: dict[str, pd.DataFrame] = {}
     input_files: dict[str, dict[str, str]] = {}
@@ -254,7 +369,6 @@ def main() -> None:
         )
 
     table = pd.DataFrame(table_rows)
-    table.to_csv(csv_path, index=False)
 
     def fmt_mean_sd(row: pd.Series) -> str:
         return f"{row['mean_volumetric_dice']:.3f} ± {row['sd_volumetric_dice']:.3f}"
@@ -281,7 +395,10 @@ def main() -> None:
         }
     )
 
-    md_path.write_text(display_table.to_markdown(index=False) + "\n", encoding="utf-8")
+    markdown_text = (
+        display_table.to_markdown(index=False)
+        + "\n"
+    )
 
     settings = {
         "analysis_name": "UCSF-PDGM external volumetric Dice bootstrap",
@@ -336,8 +453,36 @@ def main() -> None:
         },
     }
 
+    if using_default_output_dir:
+        archive_existing_analysis_artifacts(
+            output_dir
+        )
+    else:
+        refuse_overwrite(
+            [
+                csv_path,
+                md_path,
+                json_path,
+            ]
+        )
+
+    table.to_csv(
+        csv_path,
+        index=False,
+    )
+
+    md_path.write_text(
+        markdown_text,
+        encoding="utf-8",
+    )
+
     json_path.write_text(
-        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        json.dumps(
+            payload,
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
         encoding="utf-8",
     )
 

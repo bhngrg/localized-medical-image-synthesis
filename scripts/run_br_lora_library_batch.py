@@ -65,7 +65,7 @@ DEFAULT_DESIGN_BATCH_DIR = (
 
 DEFAULT_CHECKPOINT = (
     PROJECT_ROOT
-    / "checkpoints/br_lora_full_train/final.pt"
+    / "checkpoints/peft/br_lora/full_train/final.pt"
 )
 
 DEFAULT_POSTERIOR_SAMPLES = 100
