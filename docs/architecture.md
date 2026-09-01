@@ -16,13 +16,15 @@ production, and downstream experiments.
 
 ```text
 localized-medical-image-synthesis/
+├── checkpoints/              Persistent model state; ignored by Git
 ├── configs/                  Experiment configuration files
 ├── data/                     Dataset setup and machine-path documentation
 ├── docs/                     Extended technical documentation
 ├── downstream_evaluation/    Frozen manifests and downstream evaluation code
-├── logs/                     Selected provenance logs
+├── logs/                     Selected execution provenance logs
 ├── notebooks/                Historical/reference notebooks
-├── outputs/                  Generated local outputs
+├── outputs/                  Raw and generated workflow products
+├── results/                  Curated scientific results
 ├── screening/
 │   └── brats_nnunet/         nnU-Net screening and compatibility workflow
 ├── scripts/                  User-facing executable workflows

@@ -80,7 +80,7 @@ The following should remain outside Git unless there is a specific reason to ver
 - large compatibility caches;
 - cluster scratch outputs.
 
-Git should contain the code, configuration, small manifests, audit summaries, and documentation required to reproduce those artifacts.
+Git should contain the code, configuration, small manifests, audit summaries, and documentation required to reproduce those artifacts. Selected production and reproducibility-relevant execution logs may also be retained under the canonical top-level `logs/` tree when they provide useful scientific provenance.
 
 ## Public-Repository Hygiene
 

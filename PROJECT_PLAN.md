@@ -11,12 +11,16 @@ functionality is introduced.
 
 # Current Status
 
-**Active milestone:** Large-scale BR-LoRA synthetic library production, downstream evaluation infrastructure, and reliability-aware benchmarking.
+**Active milestone:** Reliability-aware benchmarking, PEFT comparison, and manuscript experiments.
 
 The repository foundation, data infrastructure, baseline notebook refactor,
-full-training baseline workflow, core BR-LoRA learning infrastructure,
-posterior-sampling analyses, and manifest-driven external BR-LoRA evaluation
-infrastructure are complete or independently validated. Current development focuses on large-scale BR-LoRA synthetic library production, frozen manifest generation, automated batch orchestration, downstream evaluation infrastructure, predictive uncertainty estimation, image-level reliability assessment, and comparative benchmarking.
+full-training baseline workflow, BR-LoRA learning and posterior-inference
+infrastructure, nnU-Net screening, frozen synthetic-library production,
+hardened downstream segmentation training, and UCSF-PDGM external validation
+are complete or independently validated. Current development focuses on
+image-level reliability analyses, remaining PEFT comparator implementations,
+comparative benchmarking, reproducibility documentation, and manuscript
+experiments.
 
 ---
 
@@ -331,8 +335,8 @@ The BR-LoRA implementation has been independently audited for
 
 ## Remaining Deliverables
 
-- [ ] Run 100-realization external evaluation for the internal (90/10) BR-LoRA model
-- [ ] Run 100-realization external evaluation for the full-training BR-LoRA model
+- [x] Run 100-realization external evaluation for the internal (90/10) BR-LoRA model
+- [x] Run 100-realization external evaluation for the full-training BR-LoRA model
 - [ ] Predictive uncertainty summaries across the definitive external cohort
 - [ ] Uncertainty calibration analyses
 - [ ] Reliability-score construction
@@ -383,15 +387,15 @@ by `scripts/evaluate_br_lora_external.py`.
 - [x] Hard-composite reconstruction from retained artifacts
 - [x] Case-specific deterministic seeding
 - [x] Plug the definitive screened external manifest into the evaluator
-- [ ] Run internal (90/10) BR-LoRA with 100 posterior realizations per case
-- [ ] Run full-training BR-LoRA with 100 posterior realizations per case
+- [x] Run internal (90/10) BR-LoRA with 100 posterior realizations per case
+- [x] Run full-training BR-LoRA with 100 posterior realizations per case
 
 
 ---
 
 # Phase 7.5 — BR-LoRA Synthetic Library Production
 
-**Status:** ✅ Complete (production infrastructure)
+**Status:** ✅ Complete
 
 ## Goal
 
@@ -416,11 +420,11 @@ Produce a deterministic, reproducible synthetic image library suitable for downs
 - [x] Acceptance audits
 - [x] Resumable production workflow
 
-## Remaining
+## Completion
 
-- [ ] Complete production of all 40 batches
-- [ ] Final library integrity audit
-- [ ] Freeze master synthetic library manifest
+- [x] Complete production of all 40 batches
+- [x] Final library integrity audit
+- [x] Freeze master synthetic library manifest
 
 
 ---
@@ -504,13 +508,11 @@ accuracy, computational efficiency, and image-level reliability.
 
 # Current Next Actions
 
-1. Finish production of the remaining BR-LoRA synthetic-library batches.
-2. Complete the final production audit and freeze the master library manifest.
-3. Launch downstream segmentation experiments using the completed synthetic library.
-4. Complete image-level reliability analyses.
-5. Finish the remaining PEFT baselines.
-6. Perform comparative benchmarking.
-7. Prepare the AAAI manuscript experiments.
+1. Complete the remaining image-level reliability analyses.
+2. Implement and validate the remaining PEFT comparators under the common protocol.
+3. Run the comparative accuracy-efficiency-reliability benchmarks.
+4. Complete the remaining reproducibility and workflow documentation.
+5. Integrate the finalized experimental evidence into the AAAI manuscript.
 
 ---
 
