@@ -54,7 +54,7 @@ the corresponding three-dimensional reference tumor mask.
 Volumetric Dice is
 
 $$
-\mathrm{Dice} = \frac{2\,|P \cap G|}{|P| + |G|},
+\mathrm{Dice} = \frac{2 \ |P \cap G|}{|P| + |G|},
 $$
 
 where $P$ is the set of voxels predicted as tumor and $G$ is the set of
