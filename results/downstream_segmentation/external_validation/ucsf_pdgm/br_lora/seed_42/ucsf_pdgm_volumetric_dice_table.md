@@ -53,14 +53,14 @@ the corresponding three-dimensional reference tumor mask.
 
 Volumetric Dice is
 
-\[
+$$
 \mathrm{Dice}
 =
 \frac{2\,|P \cap G|}
 {|P| + |G|},
-\]
+$$
 
-where \(P\) is the set of voxels predicted as tumor and \(G\) is the set of
+where $P$ is the set of voxels predicted as tumor and $G$ is the set of
 reference tumor voxels for the subject.
 
 A Dice value of **1** indicates perfect spatial overlap, whereas **0** indicates
@@ -88,8 +88,8 @@ training regimes and comparisons. Slice-level resampling was not used.
 Both BR-LoRA-augmented training regimes improved external volumetric Dice
 relative to real-only training under this frozen evaluation protocol. The
 posterior-mean augmentation regime produced the largest improvement
-(\(\Delta=+0.147\)), while posterior-sampled augmentation also improved over
-real-only training (\(\Delta=+0.046\)).
+($\Delta=+0.147$), while posterior-sampled augmentation also improved over
+real-only training ($\Delta=+0.046$).
 
 These results characterize the downstream performance of the specific
 synthetic-data construction and training protocols evaluated here. They should
