@@ -68,7 +68,7 @@ volume agrees with the complete reference tumor volume for each external
 subject.
 
 The table reports the **arithmetic mean ± bootstrap standard error (SE) across the 202 
-subjects**. The bootstrap SE was calculated as the standard deviation of the 10,000 bootstrap 
+subjects**. The bootstrap SE was calculated as the sample standard deviation of the 10,000 bootstrap 
 estimates of the mean volumetric Dice. The 95% confidence intervals and paired differences 
 were estimated using the same **10,000 nonparametric subject-level bootstrap resamples with 
 replacement**, using percentile intervals and seed 2026. Resampling was paired by subject ID, 
