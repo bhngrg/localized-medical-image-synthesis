@@ -13,7 +13,7 @@ available to each model:
   with synthetic images generated from the posterior-mean BR-LoRA model.
 - **Real + BR-LoRA posterior sampling:** trained using the same real data
   augmented with fixed, reproducibly seeded posterior draws from the accepted
-  BR-LoRA synthetic library.
+  BR-LoRA synthetic library. $$\color{red}{\text{I am still trying to work this one out. For direct comparison with other PEFT models/full fine-tuning, we can use Real + synthetic.}}$$
 
 The BraTS downstream split was defined at the subject level, with 332 subjects
 assigned to downstream training and 37 subjects assigned to downstream
