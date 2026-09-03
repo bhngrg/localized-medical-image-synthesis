@@ -23,6 +23,7 @@
   "results": {
     "paired_comparisons": {
       "posterior_mean_minus_real_only": {
+        "bootstrap_se": 0.009469598909033337,
         "ci_95_high": 0.1660139711037616,
         "ci_95_low": 0.12925556464368249,
         "denominator": "real_only",
@@ -31,6 +32,7 @@
         "numerator": "posterior_mean"
       },
       "posterior_sampling_minus_posterior_mean": {
+        "bootstrap_se": 0.007671638544412165,
         "ci_95_high": -0.08667827878034948,
         "ci_95_low": -0.11641839588454991,
         "denominator": "posterior_mean",
@@ -39,6 +41,7 @@
         "numerator": "posterior_sampling"
       },
       "posterior_sampling_minus_real_only": {
+        "bootstrap_se": 0.005402192343452645,
         "ci_95_high": 0.05695554395990552,
         "ci_95_low": 0.035606813578314925,
         "denominator": "real_only",
@@ -49,28 +52,28 @@
     },
     "regimes": {
       "posterior_mean": {
+        "bootstrap_se": 0.011707641653175109,
         "ci_95_high": 0.8336335565399263,
         "ci_95_low": 0.788372167685645,
         "label": "Real + BR-LoRA posterior mean",
         "mean": 0.8118993755687188,
-        "n_subjects": 202,
-        "sd": 0.1666205306458348
+        "n_subjects": 202
       },
       "posterior_sampling": {
+        "bootstrap_se": 0.014092021263640056,
         "ci_95_high": 0.7378800719599385,
         "ci_95_low": 0.6826540907953069,
         "label": "Real + BR-LoRA posterior sampling",
         "mean": 0.710639350234873,
-        "n_subjects": 202,
-        "sd": 0.20121382645608227
+        "n_subjects": 202
       },
       "real_only": {
+        "bootstrap_se": 0.014595717386915959,
         "ci_95_high": 0.6925923035440766,
         "ci_95_low": 0.6354341905780384,
         "label": "Real only",
         "mean": 0.6644356688808619,
-        "n_subjects": 202,
-        "sd": 0.20846496098854228
+        "n_subjects": 202
       }
     }
   },
@@ -117,7 +120,8 @@
     ],
     "variability": {
       "ddof": 1,
-      "statistic": "sample standard deviation across subjects"
+      "definition": "sample standard deviation of the bootstrap mean estimates",
+      "statistic": "bootstrap standard error of the arithmetic mean"
     }
   }
 }

@@ -7,7 +7,7 @@ Locked analysis protocol:
 - primary metric: volumetric_dice
 - expected cohort size: 202 matched UCSF-PDGM subjects
 - point estimate: arithmetic mean across subjects
-- variability: sample standard deviation (ddof=1)
+- variability: bootstrap standard error of the mean (ddof=1 across bootstrap estimates)
 - bootstrap: nonparametric subject-level bootstrap with replacement
 - bootstrap replicates: 10,000
 - bootstrap seed: 2026
@@ -73,7 +73,6 @@ BOOTSTRAP_REPLICATES = 10_000
 BOOTSTRAP_SEED = 2026
 CI_LEVEL = 0.95
 CI_QUANTILES = (0.025, 0.975)
-SD_DDOF = 1
 
 REGIMES = {
     "real_only": {
@@ -323,7 +322,7 @@ def main() -> None:
             "label": spec["label"],
             "n_subjects": n_subjects,
             "mean": float(np.mean(x)),
-            "sd": float(np.std(x, ddof=SD_DDOF)),
+            "bootstrap_se": float(np.std(bootstrap_means, ddof=1)),
             "ci_95_low": float(ci_low),
             "ci_95_high": float(ci_high),
         }
@@ -339,6 +338,7 @@ def main() -> None:
             "denominator": denominator,
             "n_subjects": n_subjects,
             "mean_difference": float(np.mean(paired_difference)),
+            "bootstrap_se": float(np.std(bootstrap_differences, ddof=1)),
             "ci_95_low": float(ci_low),
             "ci_95_high": float(ci_high),
         }
@@ -359,10 +359,13 @@ def main() -> None:
                 "training_regime": stats["label"],
                 "n_subjects": n_subjects,
                 "mean_volumetric_dice": stats["mean"],
-                "sd_volumetric_dice": stats["sd"],
+                "bootstrap_se_volumetric_dice": stats["bootstrap_se"],
                 "ci_95_low": stats["ci_95_low"],
                 "ci_95_high": stats["ci_95_high"],
                 "paired_delta_vs_real_only": delta,
+                "paired_delta_bootstrap_se_vs_real_only": (
+                    None if regime == "real_only" else comparison["bootstrap_se"]
+                ),
                 "paired_delta_ci_95_low": delta_low,
                 "paired_delta_ci_95_high": delta_high,
             }
@@ -370,8 +373,11 @@ def main() -> None:
 
     table = pd.DataFrame(table_rows)
 
-    def fmt_mean_sd(row: pd.Series) -> str:
-        return f"{row['mean_volumetric_dice']:.3f} ± {row['sd_volumetric_dice']:.3f}"
+    def fmt_mean_bootstrap_se(row: pd.Series) -> str:
+        return (
+            f"{row['mean_volumetric_dice']:.3f} ± "
+            f"{row['bootstrap_se_volumetric_dice']:.3f}"
+        )
 
     def fmt_ci(row: pd.Series) -> str:
         return f"[{row['ci_95_low']:.3f}, {row['ci_95_high']:.3f}]"
@@ -389,7 +395,10 @@ def main() -> None:
     display_table = pd.DataFrame(
         {
             "Training regime": table["training_regime"],
-            "External volumetric Dice (mean ± SD)": table.apply(fmt_mean_sd, axis=1),
+            "External volumetric Dice (mean ± bootstrap SE)": table.apply(
+                fmt_mean_bootstrap_se,
+                axis=1,
+            ),
             "95% CI": table.apply(fmt_ci, axis=1),
             "Paired Δ vs. real-only": table.apply(fmt_delta, axis=1),
         }
@@ -408,8 +417,11 @@ def main() -> None:
         "observed_subject_count": n_subjects,
         "point_estimate": "arithmetic mean across subjects",
         "variability": {
-            "statistic": "sample standard deviation across subjects",
-            "ddof": SD_DDOF,
+            "statistic": "bootstrap standard error of the arithmetic mean",
+            "definition": (
+                "sample standard deviation of the bootstrap mean estimates"
+            ),
+            "ddof": 1,
         },
         "bootstrap": {
             "type": "nonparametric subject-level bootstrap with replacement",
@@ -495,7 +507,7 @@ def main() -> None:
     print(f"  Bootstrap replicates   : {BOOTSTRAP_REPLICATES:,}")
     print(f"  Bootstrap seed         : {BOOTSTRAP_SEED}")
     print("  Interval               : 95% percentile")
-    print(f"  Sample SD ddof         : {SD_DDOF}")
+    print("  Bootstrap SE ddof      : 1")
     print("  Paired resampling      : subject_id")
     print("  Shared bootstrap draws : yes")
     print()
