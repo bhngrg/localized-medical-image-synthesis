@@ -67,12 +67,13 @@ slice-level Dice scores. It measures how well the complete predicted tumor
 volume agrees with the complete reference tumor volume for each external
 subject.
 
-The table reports the **arithmetic mean ± sample standard deviation across the
-202 subjects**. The 95% confidence intervals and paired differences were
-estimated using **10,000 nonparametric subject-level bootstrap resamples with
-replacement** using percentile intervals and seed 2026. Resampling was paired
-by subject ID, and the same bootstrap subject indices were used for all three
-training regimes and comparisons. Slice-level resampling was not used.
+The table reports the **arithmetic mean ± bootstrap standard error (SE) across the 202 
+subjects**. The bootstrap SE was calculated as the standard deviation of the 10,000 bootstrap 
+estimates of the mean volumetric Dice. The 95% confidence intervals and paired differences 
+were estimated using the same **10,000 nonparametric subject-level bootstrap resamples with 
+replacement**, using percentile intervals and seed 2026. Resampling was paired by subject ID, 
+and the same bootstrap subject indices were used for all three training regimes and comparisons. 
+Slice-level resampling was not used.
 
 ## Results
 
