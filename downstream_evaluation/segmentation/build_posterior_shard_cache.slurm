@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=posterior_cache
 #SBATCH --account=fdtbiotech
-#SBATCH --partition=t4_normal_q
-#SBATCH --gres=gpu:t4:1
+#SBATCH --partition=a30_normal_q
+#SBATCH --gres=gpu:a30:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
 #SBATCH --time=12:00:00
@@ -11,15 +11,24 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$(
-    cd "$(dirname "${BASH_SOURCE[0]}")"
+if [[ -z "${SLURM_SUBMIT_DIR:-}" ]]; then
+    echo "SLURM_SUBMIT_DIR is not available." >&2
+    echo "Submit this launcher with sbatch from the repository root." >&2
+    exit 1
+fi
+
+REPO_ROOT="$(
+    cd "${SLURM_SUBMIT_DIR}"
     pwd
 )"
 
-REPO_ROOT="$(
-    cd "${SCRIPT_DIR}/../.."
-    pwd
-)"
+if [[ ! -f "${REPO_ROOT}/data/folders.example.yaml" ]] || \
+   [[ ! -f "${REPO_ROOT}/downstream_evaluation/segmentation/build_posterior_shard_cache.py" ]]; then
+    echo "SLURM_SUBMIT_DIR does not appear to be the repository root:" >&2
+    echo "${REPO_ROOT}" >&2
+    echo "Submit this launcher with sbatch from the repository root." >&2
+    exit 1
+fi
 
 FOLDERS_FILE="${REPO_ROOT}/data/folders.yaml"
 

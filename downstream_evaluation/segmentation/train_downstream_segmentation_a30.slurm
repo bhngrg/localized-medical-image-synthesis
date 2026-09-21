@@ -11,7 +11,26 @@
 
 set -euo pipefail
 
-cd "${SLURM_SUBMIT_DIR}"
+if [[ -z "${SLURM_SUBMIT_DIR:-}" ]]; then
+    echo "SLURM_SUBMIT_DIR is not available." >&2
+    echo "Submit this launcher with sbatch from the repository root." >&2
+    exit 1
+fi
+
+REPO_ROOT="$(
+    cd "${SLURM_SUBMIT_DIR}"
+    pwd
+)"
+
+if [[ ! -f "${REPO_ROOT}/data/folders.example.yaml" ]] || \
+   [[ ! -f "${REPO_ROOT}/scripts/train_downstream_segmentation.py" ]]; then
+    echo "SLURM_SUBMIT_DIR does not appear to be the repository root:" >&2
+    echo "${REPO_ROOT}" >&2
+    echo "Submit this launcher with sbatch from the repository root." >&2
+    exit 1
+fi
+
+cd "${REPO_ROOT}"
 
 mkdir -p \
   logs/training/downstream_segmentation \
@@ -30,6 +49,7 @@ activate_environment() {
         eval "$("${CONDA_EXE}" shell.bash hook)"
     else
         echo "Conda is not available in the job environment." >&2
+        echo "Activate ${CONDA_ENV} before submission or expose conda on PATH." >&2
         exit 1
     fi
 
