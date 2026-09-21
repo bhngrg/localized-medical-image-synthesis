@@ -113,18 +113,21 @@ I/O associated with repeatedly opening the original per-case posterior files.
 
 The original BR-LoRA posterior library remains the scientific source of truth.
 Cache construction preserves the exact case-specific deterministic schedule
-described above and copies the selected tensors without numerical
-transformation. The cache therefore changes storage organization only, not the
-synthetic cases or posterior realizations used by the experiment.
+described above. Each selected raw posterior prediction is combined with its
+stored base image and transferred lesion mask using the downstream inner-only
+feathering rule with a four-pixel Euclidean feather width. Pixels outside the
+lesion mask remain exactly equal to the base image, while full-weight interior
+pixels retain the exact posterior prediction.
 
 The default cache layout groups 500 cases per shard and stores one shard file
 per epoch. For the 10,000-case, 20-epoch experiment, this yields 20 shards per
 epoch and 400 shard files in total.
 
 During cache construction, every written shard is reloaded and required to
-match its source-derived tensor exactly using `torch.equal`. Seed, epoch,
-library-index, and original posterior-realization metadata are also checked.
-SHA-256 hashes and verification status are recorded in a cache manifest.
+match its source-derived feathered tensor exactly using `torch.equal`. Seed,
+epoch, library-index, and original posterior-realization metadata are also
+checked. SHA-256 hashes and verification status are recorded in a cache
+manifest.
 
 Because the cache is a derived runtime artifact, it is not treated as a
 replacement for the original posterior library. Cache-backed loading is
