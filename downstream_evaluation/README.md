@@ -113,6 +113,12 @@ The Falcon Slurm launcher is:
 downstream_evaluation/segmentation/build_posterior_shard_cache.slurm
 ```
 
+For cache construction, the source posterior library is resolved from
+`POSTERIOR_CACHE_LIBRARY_ROOT` when set, otherwise from `br_lora_library_root`
+in `data/folders.yaml`. The cache destination is resolved from
+`POSTERIOR_CACHE_OUTPUT_ROOT` when set, otherwise from
+`downstream_posterior_shard_cache_root`.
+
 The default cache-build contract is:
 
 ```text

@@ -11,10 +11,17 @@
 
 set -euo pipefail
 
-cd "${SLURM_SUBMIT_DIR}"
+SCRIPT_DIR="$(
+    cd "$(dirname "${BASH_SOURCE[0]}")"
+    pwd
+)"
 
-mkdir -p \
-  logs/training/downstream_segmentation/posterior_cache
+REPO_ROOT="$(
+    cd "${SCRIPT_DIR}/../.."
+    pwd
+)"
+
+FOLDERS_FILE="${REPO_ROOT}/data/folders.yaml"
 
 CONDA_ENV="${CONDA_ENV:-brats-nnunet}"
 
@@ -29,6 +36,7 @@ activate_environment() {
         eval "$("${CONDA_EXE}" shell.bash hook)"
     else
         echo "Conda is not available in the job environment." >&2
+        echo "Activate ${CONDA_ENV} before submission or expose conda on PATH." >&2
         exit 1
     fi
 
@@ -37,14 +45,60 @@ activate_environment() {
 
 activate_environment
 
+read_folder_path() {
+    local key="$1"
+
+    python - "${FOLDERS_FILE}" "${key}" <<'PY_CONFIG'
+from pathlib import Path
+import sys
+import yaml
+
+config_path = Path(sys.argv[1])
+key = sys.argv[2]
+
+if not config_path.is_file():
+    raise SystemExit(
+        "Missing machine-specific folders configuration:\n"
+        f"{config_path}\n"
+        "Copy data/folders.example.yaml to data/folders.yaml "
+        "and configure the required paths."
+    )
+
+payload = yaml.safe_load(config_path.read_text()) or {}
+value = payload.get(key)
+
+if not value:
+    raise SystemExit(
+        f"Required folders.yaml key is not configured: {key}"
+    )
+
+print(Path(value).expanduser().resolve())
+PY_CONFIG
+}
+
+if [[ -z "${POSTERIOR_CACHE_LIBRARY_ROOT:-}" ]]; then
+    POSTERIOR_CACHE_LIBRARY_ROOT="$(read_folder_path br_lora_library_root)"
+fi
+
+if [[ -z "${POSTERIOR_CACHE_OUTPUT_ROOT:-}" ]]; then
+    POSTERIOR_CACHE_OUTPUT_ROOT="$(
+        read_folder_path downstream_posterior_shard_cache_root
+    )"
+fi
+
+cd "${REPO_ROOT}"
+
+mkdir -p \
+  logs/training/downstream_segmentation/posterior_cache
+
 export OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 
 MANIFEST="${POSTERIOR_CACHE_MANIFEST:-downstream_evaluation/manifests/br_lora_library_design_10000/br_lora_library_design_10000.csv}"
-LIBRARY_ROOT="${POSTERIOR_CACHE_LIBRARY_ROOT:-/scratch/bhanug/br_lora_library/batches}"
-OUTPUT_ROOT="${POSTERIOR_CACHE_OUTPUT_ROOT:-/scratch/bhanug/br_lora_library/downstream_seed42_epoch20_shards}"
+LIBRARY_ROOT="${POSTERIOR_CACHE_LIBRARY_ROOT}"
+OUTPUT_ROOT="${POSTERIOR_CACHE_OUTPUT_ROOT}"
 
 SEED="${POSTERIOR_CACHE_SEED:-42}"
 EPOCHS="${POSTERIOR_CACHE_EPOCHS:-20}"
