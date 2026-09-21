@@ -12,11 +12,20 @@ import numpy as np
 import pandas as pd
 import torch
 
+from downstream_evaluation.segmentation.feather_composition import (
+    DEFAULT_INNER_FEATHER_WIDTH,
+    inner_feather_composite,
+)
+
 
 POSTERIOR_SAMPLES = 100
 DEFAULT_EPOCHS = 20
 DEFAULT_SEED = 42
 DEFAULT_SHARD_SIZE = 500
+CACHE_SCHEMA_VERSION = 2
+CACHE_TYPE = (
+    "downstream_br_lora_posterior_inner_feather_epoch_shards"
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -261,13 +270,97 @@ def main() -> None:
                     f"Expected dict in {source_path}."
                 )
 
-            if "prediction_samples" not in obj:
+            required_artifact_keys = (
+                "prediction_samples",
+                "base_image",
+                "transferred_mask",
+            )
+
+            missing_artifact_keys = [
+                key
+                for key in required_artifact_keys
+                if key not in obj
+            ]
+
+            if missing_artifact_keys:
                 raise KeyError(
-                    "'prediction_samples' missing from "
-                    f"{source_path}"
+                    "Required keys missing from "
+                    f"{source_path}: "
+                    + ", ".join(missing_artifact_keys)
                 )
 
             samples = obj["prediction_samples"]
+
+            if not isinstance(samples, torch.Tensor):
+                raise TypeError(
+                    "prediction_samples is not a tensor in "
+                    f"{source_path}."
+                )
+
+            base_image = obj["base_image"]
+            transferred_mask = obj["transferred_mask"]
+
+            if not isinstance(base_image, torch.Tensor):
+                raise TypeError(
+                    "base_image is not a tensor in "
+                    f"{source_path}."
+                )
+
+            if not isinstance(transferred_mask, torch.Tensor):
+                raise TypeError(
+                    "transferred_mask is not a tensor in "
+                    f"{source_path}."
+                )
+
+            base_image = (
+                base_image
+                .detach()
+                .to(dtype=torch.float32)
+            )
+
+            transferred_mask = (
+                transferred_mask
+                .detach()
+                .to(dtype=torch.float32)
+            )
+
+            if base_image.shape != (1, 240, 240):
+                raise ValueError(
+                    "Unexpected base-image shape in "
+                    f"{source_path}: {tuple(base_image.shape)}"
+                )
+
+            if transferred_mask.shape != (1, 240, 240):
+                raise ValueError(
+                    "Unexpected transferred-mask shape in "
+                    f"{source_path}: "
+                    f"{tuple(transferred_mask.shape)}"
+                )
+
+            if not torch.isfinite(base_image).all():
+                raise ValueError(
+                    "Non-finite base image in "
+                    f"{source_path}."
+                )
+
+            if not torch.isfinite(transferred_mask).all():
+                raise ValueError(
+                    "Non-finite transferred mask in "
+                    f"{source_path}."
+                )
+
+            unique_mask = torch.unique(
+                transferred_mask
+            )
+
+            if not torch.all(
+                (unique_mask == 0)
+                | (unique_mask == 1)
+            ):
+                raise ValueError(
+                    "Transferred mask is not binary in "
+                    f"{source_path}."
+                )
 
             expected_shape = (
                 POSTERIOR_SAMPLES,
@@ -309,10 +402,30 @@ def main() -> None:
                         f"epoch={epoch}."
                     )
 
+                composite = inner_feather_composite(
+                    prediction=selected,
+                    base_image=base_image,
+                    transferred_mask=transferred_mask,
+                    width=DEFAULT_INNER_FEATHER_WIDTH,
+                )
+
+                outside_mask = transferred_mask == 0
+
+                if not torch.equal(
+                    composite[outside_mask],
+                    base_image[outside_mask],
+                ):
+                    raise RuntimeError(
+                        "Feathered cache construction failed exact "
+                        "outside-mask preservation for "
+                        f"library_index={library_index}, "
+                        f"epoch={epoch}."
+                    )
+
                 shard_tensor[
                     epoch,
                     local_index,
-                ].copy_(selected)
+                ].copy_(composite)
 
             library_indices.append(
                 library_index
@@ -443,19 +556,24 @@ def main() -> None:
         )
 
     cache_manifest = {
-        "schema_version": 1,
-        "cache_type": (
-            "downstream_br_lora_posterior_epoch_shards"
-        ),
+        "schema_version": CACHE_SCHEMA_VERSION,
+        "cache_type": CACHE_TYPE,
         "created_utc": datetime.now(
             timezone.utc
         ).isoformat(),
         "scientific_contract": {
             "note": (
-                "Storage-only optimization. Posterior realization "
-                "selection is identical to the original deterministic "
-                "case-specific schedule."
+                "Posterior realization selection is identical to the "
+                "original deterministic case-specific schedule. Stored "
+                "images are deterministic inner-only feathered composites."
             ),
+            "composition": {
+                "method": "inner_only_distance_feather",
+                "feather_width_pixels": DEFAULT_INNER_FEATHER_WIDTH,
+                "outside_mask": "exact_base_image",
+                "full_weight_pixels": "exact_prediction",
+                "distance_metric": "euclidean",
+            },
             "seed": seed,
             "epochs": epochs,
             "posterior_samples_available": (
@@ -485,7 +603,8 @@ def main() -> None:
         "verification": {
             "method": (
                 "Post-write torch.equal against the exact "
-                "source-derived selected tensor, with shard SHA-256."
+                "source-derived inner-feathered composite tensor, "
+                "with shard SHA-256."
             ),
             "verified_shards": verified_shards,
             "expected_shards": n_shards * epochs,

@@ -10,6 +10,11 @@ import pandas as pd
 import torch
 from torch.utils.data import Dataset
 
+from downstream_evaluation.segmentation.feather_composition import (
+    DEFAULT_INNER_FEATHER_WIDTH,
+    inner_feather_composite,
+)
+
 
 class BRLoRAPosteriorMeanSegmentationDataset(Dataset):
     """
@@ -106,6 +111,17 @@ class BRLoRAPosteriorMeanSegmentationDataset(Dataset):
             / str(row["batch_id"])
             / self._case_directory(row)
             / "posterior_mean.pt"
+        )
+
+    def _posterior_samples_path(
+        self,
+        row: pd.Series,
+    ) -> Path:
+        return (
+            self.library_root
+            / str(row["batch_id"])
+            / self._case_directory(row)
+            / "posterior_samples.pt"
         )
 
     def _donor_h5_path(
@@ -217,13 +233,88 @@ class BRLoRAPosteriorMeanSegmentationDataset(Dataset):
             row,
         )
 
-        image = self._load_posterior_mean(
+        prediction_mean = self._load_posterior_mean(
             posterior_mean_path,
+        )
+
+        posterior_samples_path = self._posterior_samples_path(
+            row,
+        )
+
+        if not posterior_samples_path.is_file():
+            raise FileNotFoundError(
+                "Posterior-sample artifact not found: "
+                f"{posterior_samples_path}"
+            )
+
+        payload = torch.load(
+            posterior_samples_path,
+            map_location="cpu",
+            weights_only=False,
+            mmap=True,
+        )
+
+        if not isinstance(payload, dict):
+            raise TypeError(
+                "Expected posterior-sample artifact to contain a dict: "
+                f"{posterior_samples_path}"
+            )
+
+        for key in (
+            "base_image",
+            "transferred_mask",
+        ):
+            if key not in payload:
+                raise KeyError(
+                    f"{key!r} not found in {posterior_samples_path}"
+                )
+
+        base_image = (
+            payload["base_image"]
+            .detach()
+            .to(dtype=torch.float32)
+        )
+
+        transferred_mask = (
+            payload["transferred_mask"]
+            .detach()
+            .to(dtype=torch.float32)
+        )
+
+        if base_image.shape != (1, 240, 240):
+            raise ValueError(
+                "Expected base_image shape (1, 240, 240) in "
+                f"{posterior_samples_path}; "
+                f"got {tuple(base_image.shape)}."
+            )
+
+        if transferred_mask.shape != (1, 240, 240):
+            raise ValueError(
+                "Expected transferred_mask shape (1, 240, 240) in "
+                f"{posterior_samples_path}; "
+                f"got {tuple(transferred_mask.shape)}."
+            )
+
+        image = inner_feather_composite(
+            prediction=prediction_mean,
+            base_image=base_image,
+            transferred_mask=transferred_mask,
+            width=DEFAULT_INNER_FEATHER_WIDTH,
         )
 
         mask = self._load_whole_tumor_mask(
             donor_h5_path,
         )
+
+        if not torch.equal(
+            transferred_mask,
+            mask,
+        ):
+            raise ValueError(
+                "Stored transferred mask does not exactly match the "
+                "donor whole-tumor mask for "
+                f"{row['library_case_id']}."
+            )
 
         expected_mask_pixels = int(
             row["donor_mask_pixels"]

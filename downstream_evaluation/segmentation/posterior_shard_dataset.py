@@ -8,6 +8,9 @@ from pathlib import Path
 
 import torch
 
+from downstream_evaluation.segmentation.feather_composition import (
+    DEFAULT_INNER_FEATHER_WIDTH,
+)
 from downstream_evaluation.segmentation.posterior_sample_dataset import (
     BRLoRAPosteriorSampleSegmentationDataset,
 )
@@ -25,9 +28,11 @@ class BRLoRAPosteriorShardSegmentationDataset(
     donor masks, transforms, and returned sample metadata.
     """
 
-    CACHE_TYPE = "downstream_br_lora_posterior_epoch_shards"
-    CACHE_SCHEMA_VERSION = 1
-    LOADER_MODE = "posterior_shard_cache"
+    CACHE_TYPE = (
+        "downstream_br_lora_posterior_inner_feather_epoch_shards"
+    )
+    CACHE_SCHEMA_VERSION = 2
+    LOADER_MODE = "posterior_shard_cache_inner_feather"
 
     def __init__(
         self,
@@ -129,6 +134,58 @@ class BRLoRAPosteriorShardSegmentationDataset(
             "scientific_contract",
             {},
         )
+
+        composition = scientific.get(
+            "composition",
+            {},
+        )
+
+        if (
+            composition.get("method")
+            != "inner_only_distance_feather"
+        ):
+            raise ValueError(
+                "Posterior shard-cache composition method does not "
+                "match the downstream training contract."
+            )
+
+        if int(
+            composition.get(
+                "feather_width_pixels",
+                -1,
+            )
+        ) != DEFAULT_INNER_FEATHER_WIDTH:
+            raise ValueError(
+                "Posterior shard-cache feather width does not match "
+                "the downstream training contract."
+            )
+
+        if (
+            composition.get("outside_mask")
+            != "exact_base_image"
+        ):
+            raise ValueError(
+                "Posterior shard-cache does not guarantee exact "
+                "outside-mask base preservation."
+            )
+
+        if (
+            composition.get("full_weight_pixels")
+            != "exact_prediction"
+        ):
+            raise ValueError(
+                "Posterior shard-cache does not guarantee exact "
+                "prediction values at full feather weight."
+            )
+
+        if (
+            composition.get("distance_metric")
+            != "euclidean"
+        ):
+            raise ValueError(
+                "Posterior shard-cache distance metric does not "
+                "match the downstream training contract."
+            )
 
         if int(scientific.get("seed", -1)) != self.seed:
             raise ValueError(

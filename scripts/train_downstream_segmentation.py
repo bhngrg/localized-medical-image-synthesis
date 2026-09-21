@@ -67,6 +67,9 @@ from downstream_evaluation.segmentation.losses import (
 from downstream_evaluation.segmentation.model import (
     VanillaUNet,
 )
+from downstream_evaluation.segmentation.feather_composition import (
+    DEFAULT_INNER_FEATHER_WIDTH,
+)
 from downstream_evaluation.segmentation.posterior_sample_dataset import (
     BRLoRAPosteriorSampleSegmentationDataset,
 )
@@ -690,7 +693,9 @@ def build_run_metadata(
             "manifest_sha256": sha256_file(
                 cache_manifest_path
             ),
-            "loader_mode": "posterior_shard_cache",
+            "loader_mode": (
+                "posterior_shard_cache_inner_feather"
+            ),
         }
 
     metadata = {
@@ -705,6 +710,19 @@ def build_run_metadata(
         },
         "manifests": manifest_hashes,
         "posterior_cache": posterior_cache_metadata,
+        "synthetic_composition": (
+            None
+            if args.regime == "real_only"
+            else {
+                "method": "inner_only_distance_feather",
+                "feather_width_pixels": (
+                    DEFAULT_INNER_FEATHER_WIDTH
+                ),
+                "distance_metric": "euclidean",
+                "outside_mask": "exact_base_image",
+                "full_weight_pixels": "exact_prediction",
+            }
+        ),
         "paths": {
             key: (
                 None
@@ -1514,6 +1532,19 @@ def main() -> None:
                         "combined_training_slices": len(
                             train_dataset
                         ),
+                        "synthetic_composition": {
+                            "method": (
+                                "inner_only_distance_feather"
+                            ),
+                            "feather_width_pixels": (
+                                DEFAULT_INNER_FEATHER_WIDTH
+                            ),
+                            "distance_metric": "euclidean",
+                            "outside_mask": "exact_base_image",
+                            "full_weight_pixels": (
+                                "exact_prediction"
+                            ),
+                        },
                     }
                 )
 

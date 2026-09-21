@@ -92,11 +92,14 @@ case-specific permutation, one realization per epoch.
 
 Reading one realization at a time from the original per-case posterior files
 creates substantial shared-filesystem and file-open overhead. The optional
-posterior shard cache reorganizes the exact selected tensors into larger,
-epoch-specific shard files. This is a storage/I/O optimization only: it does
-not change the frozen synthetic-library design, posterior samples, seed,
-case-to-realization assignment, epoch schedule, masks, preprocessing, or
-training objective.
+posterior shard cache selects the same deterministic posterior realization for
+each case and epoch, applies the downstream inner-only feathered regional
+composition, and stores the resulting training images in larger epoch-specific
+shard files. The cache does not change the frozen synthetic-library design,
+posterior realization schedule, masks, or training objective. Pixels outside
+the lesion mask remain exactly equal to the base image; prediction weight
+increases with Euclidean distance inside the mask and reaches one at four
+pixels.
 
 The cache builder is:
 

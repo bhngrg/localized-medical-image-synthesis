@@ -323,9 +323,11 @@ posterior-sampling downstream experiment. For shared-filesystem efficiency,
 the exact deterministic posterior realizations required by a downstream run
 may also be reorganized into a verified epoch-specific shard cache.
 
-The cache is a derived storage/I/O artifact only. It does not replace or modify
-the accepted synthetic library and does not change the frozen case design,
-posterior samples, seed, or case-to-realization schedule.
+The cache is a derived downstream-training artifact and does not replace or
+modify the accepted synthetic library. It preserves the frozen case design,
+posterior samples, seed, and case-to-realization schedule, while storing the
+selected posterior realizations after deterministic inner-only feathered
+regional composition with the corresponding base image and lesion mask.
 
 Cache use is machine-specific rather than a tracked repository default. Users
 may persist a verified cache location through
@@ -337,7 +339,7 @@ files.
 Build and verify the optional cache with:
 
 ```bash
-python downstream_evaluation/segmentation/build_posterior_shard_cache.py --help
+python -m downstream_evaluation.segmentation.build_posterior_shard_cache --help
 ```
 
 Falcon users may use:

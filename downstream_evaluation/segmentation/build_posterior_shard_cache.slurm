@@ -64,7 +64,7 @@ echo "Epochs=${EPOCHS}"
 echo "Shard size=${SHARD_SIZE}"
 echo
 
-python downstream_evaluation/segmentation/build_posterior_shard_cache.py \
+python -m downstream_evaluation.segmentation.build_posterior_shard_cache \
   --manifest "${MANIFEST}" \
   --library-root "${LIBRARY_ROOT}" \
   --output-root "${OUTPUT_ROOT}" \

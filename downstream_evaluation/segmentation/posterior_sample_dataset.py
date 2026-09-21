@@ -10,6 +10,11 @@ import pandas as pd
 import torch
 from torch.utils.data import Dataset
 
+from downstream_evaluation.segmentation.feather_composition import (
+    DEFAULT_INNER_FEATHER_WIDTH,
+    inner_feather_composite,
+)
+
 
 class BRLoRAPosteriorSampleSegmentationDataset(Dataset):
     """
@@ -262,7 +267,60 @@ class BRLoRAPosteriorSampleSegmentationDataset(Dataset):
                 f"non-finite values: {path}"
             )
 
-        return image
+        for key in (
+            "base_image",
+            "transferred_mask",
+        ):
+            if key not in obj:
+                raise KeyError(
+                    f"{key!r} not found in {path}"
+                )
+
+        base_image = obj["base_image"]
+        transferred_mask = obj["transferred_mask"]
+
+        if not isinstance(base_image, torch.Tensor):
+            raise TypeError(
+                f"Expected base_image tensor in {path}."
+            )
+
+        if not isinstance(transferred_mask, torch.Tensor):
+            raise TypeError(
+                f"Expected transferred_mask tensor in {path}."
+            )
+
+        base_image = (
+            base_image
+            .detach()
+            .to(dtype=torch.float32)
+        )
+
+        transferred_mask = (
+            transferred_mask
+            .detach()
+            .to(dtype=torch.float32)
+        )
+
+        if base_image.shape != (1, 240, 240):
+            raise ValueError(
+                f"Expected base_image shape (1, 240, 240) "
+                f"in {path}; got {tuple(base_image.shape)}."
+            )
+
+        if transferred_mask.shape != (1, 240, 240):
+            raise ValueError(
+                f"Expected transferred_mask shape (1, 240, 240) "
+                f"in {path}; got {tuple(transferred_mask.shape)}."
+            )
+
+        image = inner_feather_composite(
+            prediction=image,
+            base_image=base_image,
+            transferred_mask=transferred_mask,
+            width=DEFAULT_INNER_FEATHER_WIDTH,
+        )
+
+        return image, transferred_mask
 
     @staticmethod
     def _load_whole_tumor_mask(
@@ -329,7 +387,10 @@ class BRLoRAPosteriorSampleSegmentationDataset(Dataset):
             row,
         )
 
-        image = self._load_selected_realization(
+        (
+            image,
+            transferred_mask,
+        ) = self._load_selected_realization(
             posterior_samples_path,
             realization_index,
         )
@@ -337,6 +398,16 @@ class BRLoRAPosteriorSampleSegmentationDataset(Dataset):
         mask = self._load_whole_tumor_mask(
             donor_h5_path,
         )
+
+        if not torch.equal(
+            transferred_mask,
+            mask,
+        ):
+            raise ValueError(
+                "Stored transferred mask does not exactly match the "
+                "donor whole-tumor mask for "
+                f"{row['library_case_id']}."
+            )
 
         expected_mask_pixels = int(
             row["donor_mask_pixels"]
