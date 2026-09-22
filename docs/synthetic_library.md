@@ -188,10 +188,10 @@ the permanent library.
 Cache construction preserves the exact deterministic downstream
 case-to-realization schedule. Each selected raw posterior prediction is
 combined with its stored base image and transferred lesion mask using the
-downstream inner-only feathering rule (four-pixel Euclidean feather width)
-before being written to the cache. Pixels outside the lesion mask are preserved
-exactly from the base image, while full-weight interior pixels retain the exact
-posterior prediction. Written shards are reloaded and checked with exact
+configured downstream inner-only feathering rule (currently a four-pixel
+Euclidean feather width) before being written to the cache. Pixels outside the
+lesion mask are preserved exactly from the base image, while full-weight
+interior pixels retain the exact posterior prediction. Written shards are reloaded and checked with exact
 `torch.equal` comparison against the derived feathered tensors, and per-shard
 SHA-256 hashes plus source provenance are recorded in `cache_manifest.json`.
 

@@ -8,9 +8,6 @@ from pathlib import Path
 
 import torch
 
-from downstream_evaluation.segmentation.feather_composition import (
-    DEFAULT_INNER_FEATHER_WIDTH,
-)
 from downstream_evaluation.segmentation.posterior_sample_dataset import (
     BRLoRAPosteriorSampleSegmentationDataset,
 )
@@ -31,7 +28,7 @@ class BRLoRAPosteriorShardSegmentationDataset(
     CACHE_TYPE = (
         "downstream_br_lora_posterior_inner_feather_epoch_shards"
     )
-    CACHE_SCHEMA_VERSION = 2
+    CACHE_SCHEMA_VERSION = 3
     LOADER_MODE = "posterior_shard_cache_inner_feather"
 
     def __init__(
@@ -42,6 +39,7 @@ class BRLoRAPosteriorShardSegmentationDataset(
         cache_root: str | Path,
         seed: int,
         expected_epochs: int,
+        feather_width: int,
         transform=None,
     ) -> None:
         super().__init__(
@@ -49,6 +47,7 @@ class BRLoRAPosteriorShardSegmentationDataset(
             library_root=library_root,
             h5_root=h5_root,
             seed=seed,
+            feather_width=feather_width,
             transform=transform,
         )
 
@@ -154,7 +153,7 @@ class BRLoRAPosteriorShardSegmentationDataset(
                 "feather_width_pixels",
                 -1,
             )
-        ) != DEFAULT_INNER_FEATHER_WIDTH:
+        ) != self.feather_width:
             raise ValueError(
                 "Posterior shard-cache feather width does not match "
                 "the downstream training contract."

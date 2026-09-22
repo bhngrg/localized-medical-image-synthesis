@@ -1,10 +1,10 @@
 {
   "artifacts": {
-    "analysis_json": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_595944/ucsf_pdgm_volumetric_dice_analysis.json",
-    "table_csv": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_595944/ucsf_pdgm_volumetric_dice_table.csv",
-    "table_markdown": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_595944/ucsf_pdgm_volumetric_dice_table.md"
+    "analysis_json": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/br_lora/seed_42/ucsf_pdgm_volumetric_dice_analysis.json",
+    "table_csv": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/br_lora/seed_42/ucsf_pdgm_volumetric_dice_table.csv",
+    "table_markdown": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/br_lora/seed_42/ucsf_pdgm_volumetric_dice_table.md"
   },
-  "created_utc": "2026-09-22T15:11:10.952729+00:00",
+  "created_utc": "2026-09-22T16:31:16.523430+00:00",
   "evaluation_root": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_595944",
   "input_files": {
     "posterior_mean": {

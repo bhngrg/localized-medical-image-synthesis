@@ -32,14 +32,6 @@ import pandas as pd
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-DEFAULT_EVALUATION_ROOT = (
-    PROJECT_ROOT
-    / "outputs"
-    / "downstream_segmentation"
-    / "evaluations"
-    / "ucsf_pdgm_hardened_seed42"
-)
-
 DEFAULT_OUTPUT_DIR = (
     PROJECT_ROOT
     / "results"
@@ -106,7 +98,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--evaluation-root",
         type=Path,
-        default=DEFAULT_EVALUATION_ROOT,
+        required=True,
         help=(
             "Evaluation directory containing the three regime subdirectories "
             "and subject_metrics.csv files."

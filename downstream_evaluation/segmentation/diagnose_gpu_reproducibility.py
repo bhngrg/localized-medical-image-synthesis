@@ -283,6 +283,7 @@ def build_loader(
     library_root: Path,
     real_train_manifest: Path,
     synthetic_manifest: Path,
+    feather_width: int,
 ) -> DataLoader:
     real_transform = build_train_transform()
     synthetic_transform = build_train_transform()
@@ -307,6 +308,7 @@ def build_loader(
         manifest_path=synthetic_manifest,
         library_root=library_root,
         h5_root=h5_root,
+        feather_width=feather_width,
         transform=synthetic_transform,
     )
 
@@ -352,6 +354,7 @@ def run_once(
     batch_size: int,
     num_workers: int,
     learning_rate: float,
+    feather_width: int,
     paths: dict[str, Path],
 ) -> dict[str, object]:
     set_seed(seed)
@@ -364,6 +367,7 @@ def run_once(
         library_root=paths["library_root"],
         real_train_manifest=paths["real_train_manifest"],
         synthetic_manifest=paths["synthetic_manifest"],
+        feather_width=feather_width,
     )
 
     device = torch.device("cuda")
@@ -458,12 +462,49 @@ def main() -> None:
         config["training"]["learning_rate"]
     )
 
+    composition_cfg = config.get("composition")
+
+    if not isinstance(composition_cfg, dict):
+        raise ValueError(
+            "composition must be a YAML mapping."
+        )
+
+    if "method" not in composition_cfg:
+        raise ValueError(
+            "composition.method must be configured."
+        )
+
+    if "feather_width_pixels" not in composition_cfg:
+        raise ValueError(
+            "composition.feather_width_pixels must be configured."
+        )
+
+    composition_method = str(
+        composition_cfg["method"]
+    )
+
+    if composition_method != "inner_only_distance_feather":
+        raise ValueError(
+            "composition.method must be "
+            "'inner_only_distance_feather'."
+        )
+
+    feather_width = int(
+        composition_cfg["feather_width_pixels"]
+    )
+
+    if feather_width <= 0:
+        raise ValueError(
+            "composition.feather_width_pixels must be positive."
+        )
+
     print("GPU:", torch.cuda.get_device_name(0))
     print("PyTorch:", torch.__version__)
     print("Seed:", seed)
     print("Batch size:", batch_size)
     print("Workers:", num_workers)
     print("Learning rate:", learning_rate)
+    print("Feather width:", feather_width)
     print("Steps:", N_STEPS)
     print("H5 root:", paths["h5_root"])
     print(
@@ -493,6 +534,7 @@ def main() -> None:
         batch_size=batch_size,
         num_workers=num_workers,
         learning_rate=learning_rate,
+        feather_width=feather_width,
         paths=paths,
     )
 
@@ -502,6 +544,7 @@ def main() -> None:
         batch_size=batch_size,
         num_workers=num_workers,
         learning_rate=learning_rate,
+        feather_width=feather_width,
         paths=paths,
     )
 

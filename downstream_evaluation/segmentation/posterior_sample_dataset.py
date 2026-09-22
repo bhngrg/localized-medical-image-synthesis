@@ -11,7 +11,6 @@ import torch
 from torch.utils.data import Dataset
 
 from downstream_evaluation.segmentation.feather_composition import (
-    DEFAULT_INNER_FEATHER_WIDTH,
     inner_feather_composite,
 )
 
@@ -49,14 +48,21 @@ class BRLoRAPosteriorSampleSegmentationDataset(Dataset):
         library_root: str | Path,
         h5_root: str | Path,
         seed: int,
+        feather_width: int,
         transform=None,
     ) -> None:
         self.manifest_path = Path(manifest_path)
         self.library_root = Path(library_root)
         self.h5_root = Path(h5_root)
         self.seed = int(seed)
+        self.feather_width = int(feather_width)
         self.transform = transform
         self.epoch = 0
+
+        if self.feather_width <= 0:
+            raise ValueError(
+                "feather_width must be positive."
+            )
 
         if not self.manifest_path.is_file():
             raise FileNotFoundError(
@@ -317,7 +323,7 @@ class BRLoRAPosteriorSampleSegmentationDataset(Dataset):
             prediction=image,
             base_image=base_image,
             transferred_mask=transferred_mask,
-            width=DEFAULT_INNER_FEATHER_WIDTH,
+            width=self.feather_width,
         )
 
         return image, transferred_mask

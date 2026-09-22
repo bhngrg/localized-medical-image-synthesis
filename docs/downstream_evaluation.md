@@ -114,8 +114,9 @@ I/O associated with repeatedly opening the original per-case posterior files.
 The original BR-LoRA posterior library remains the scientific source of truth.
 Cache construction preserves the exact case-specific deterministic schedule
 described above. Each selected raw posterior prediction is combined with its
-stored base image and transferred lesion mask using the downstream inner-only
-feathering rule with a four-pixel Euclidean feather width. Pixels outside the
+stored base image and transferred lesion mask using the configured downstream
+inner-only feathering rule, currently using a four-pixel Euclidean feather
+width. Pixels outside the
 lesion mask remain exactly equal to the base image, while full-weight interior
 pixels retain the exact posterior prediction.
 

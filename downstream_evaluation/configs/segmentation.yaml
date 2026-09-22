@@ -21,6 +21,14 @@ training:
   learning_rate: 0.001
   threshold: 0.5
 
+# Synthetic BR-LoRA images preserve the base image exactly outside the
+# transferred lesion mask. Within the mask, prediction weight increases
+# with Euclidean distance from the boundary and reaches one at the
+# configured feather width.
+composition:
+  method: inner_only_distance_feather
+  feather_width_pixels: 4
+
 reproducibility:
   deterministic_algorithms: true
   cudnn_deterministic: true

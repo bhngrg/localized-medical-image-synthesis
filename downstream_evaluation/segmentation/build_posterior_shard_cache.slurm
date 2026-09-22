@@ -112,6 +112,7 @@ OUTPUT_ROOT="${POSTERIOR_CACHE_OUTPUT_ROOT}"
 SEED="${POSTERIOR_CACHE_SEED:-42}"
 EPOCHS="${POSTERIOR_CACHE_EPOCHS:-20}"
 SHARD_SIZE="${POSTERIOR_CACHE_SHARD_SIZE:-500}"
+CONFIG="${POSTERIOR_CACHE_CONFIG:-downstream_evaluation/configs/segmentation.yaml}"
 
 echo "Downstream BR-LoRA posterior shard-cache build"
 echo "=============================================================================="
@@ -125,6 +126,7 @@ echo "Output root=${OUTPUT_ROOT}"
 echo "Seed=${SEED}"
 echo "Epochs=${EPOCHS}"
 echo "Shard size=${SHARD_SIZE}"
+echo "Config=${CONFIG}"
 echo
 
 python -m downstream_evaluation.segmentation.build_posterior_shard_cache \
@@ -133,4 +135,5 @@ python -m downstream_evaluation.segmentation.build_posterior_shard_cache \
   --output-root "${OUTPUT_ROOT}" \
   --seed "${SEED}" \
   --epochs "${EPOCHS}" \
+  --config "${CONFIG}" \
   --shard-size "${SHARD_SIZE}"

@@ -67,9 +67,6 @@ from downstream_evaluation.segmentation.losses import (
 from downstream_evaluation.segmentation.model import (
     VanillaUNet,
 )
-from downstream_evaluation.segmentation.feather_composition import (
-    DEFAULT_INNER_FEATHER_WIDTH,
-)
 from downstream_evaluation.segmentation.posterior_sample_dataset import (
     BRLoRAPosteriorSampleSegmentationDataset,
 )
@@ -650,6 +647,7 @@ def build_run_metadata(
     seed: int,
     device: torch.device,
     reproducibility_cfg: dict,
+    feather_width: int,
 ) -> dict:
     manifest_hashes = {}
 
@@ -716,7 +714,7 @@ def build_run_metadata(
             else {
                 "method": "inner_only_distance_feather",
                 "feather_width_pixels": (
-                    DEFAULT_INNER_FEATHER_WIDTH
+                    feather_width
                 ),
                 "distance_metric": "euclidean",
                 "outside_mask": "exact_base_image",
@@ -908,6 +906,41 @@ def main() -> None:
     reproducibility_cfg = config["reproducibility"]
     expected_cfg = config["expected_counts"]
     regime_cfg = config["regimes"][args.regime]
+    composition_cfg = config.get("composition")
+
+    if not isinstance(composition_cfg, dict):
+        raise ValueError(
+            "composition must be a YAML mapping."
+        )
+
+    if "method" not in composition_cfg:
+        raise ValueError(
+            "composition.method must be configured."
+        )
+
+    if "feather_width_pixels" not in composition_cfg:
+        raise ValueError(
+            "composition.feather_width_pixels must be configured."
+        )
+
+    composition_method = str(
+        composition_cfg["method"]
+    )
+
+    if composition_method != "inner_only_distance_feather":
+        raise ValueError(
+            "composition.method must be "
+            "'inner_only_distance_feather'."
+        )
+
+    feather_width = int(
+        composition_cfg["feather_width_pixels"]
+    )
+
+    if feather_width <= 0:
+        raise ValueError(
+            "composition.feather_width_pixels must be positive."
+        )
 
     image_channel = int(
         data_cfg.get(
@@ -1117,6 +1150,7 @@ def main() -> None:
                     "library_root"
                 ],
                 h5_root=paths["h5_root"],
+                feather_width=feather_width,
                 transform=synthetic_transform,
             )
         )
@@ -1154,6 +1188,7 @@ def main() -> None:
                     ],
                     h5_root=paths["h5_root"],
                     seed=seed,
+                    feather_width=feather_width,
                     transform=synthetic_transform,
                 )
             )
@@ -1175,6 +1210,7 @@ def main() -> None:
                     cache_root=posterior_cache_root,
                     seed=seed,
                     expected_epochs=epochs,
+                    feather_width=feather_width,
                     transform=synthetic_transform,
                 )
             )
@@ -1325,6 +1361,7 @@ def main() -> None:
         seed=seed,
         device=device,
         reproducibility_cfg=reproducibility_cfg,
+        feather_width=feather_width,
     )
 
     write_json(
@@ -1537,7 +1574,7 @@ def main() -> None:
                                 "inner_only_distance_feather"
                             ),
                             "feather_width_pixels": (
-                                DEFAULT_INNER_FEATHER_WIDTH
+                                feather_width
                             ),
                             "distance_metric": "euclidean",
                             "outside_mask": "exact_base_image",

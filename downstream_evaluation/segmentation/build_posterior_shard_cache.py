@@ -11,9 +11,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import torch
+import yaml
 
 from downstream_evaluation.segmentation.feather_composition import (
-    DEFAULT_INNER_FEATHER_WIDTH,
     inner_feather_composite,
 )
 
@@ -22,7 +22,10 @@ POSTERIOR_SAMPLES = 100
 DEFAULT_EPOCHS = 20
 DEFAULT_SEED = 42
 DEFAULT_SHARD_SIZE = 500
-CACHE_SCHEMA_VERSION = 2
+DEFAULT_CONFIG = Path(
+    "downstream_evaluation/configs/segmentation.yaml"
+)
+CACHE_SCHEMA_VERSION = 3
 CACHE_TYPE = (
     "downstream_br_lora_posterior_inner_feather_epoch_shards"
 )
@@ -64,6 +67,16 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=DEFAULT_EPOCHS,
     )
+    parser.add_argument(
+        "--config",
+        type=Path,
+        default=DEFAULT_CONFIG,
+        help=(
+            "Tracked downstream experiment configuration YAML. "
+            "Composition settings are read from this file."
+        ),
+    )
+
     parser.add_argument(
         "--shard-size",
         type=int,
@@ -109,6 +122,60 @@ def posterior_path(
 
 def main() -> None:
     args = parse_args()
+
+    config_path = args.config.expanduser().resolve()
+
+    if not config_path.is_file():
+        raise FileNotFoundError(
+            f"Configuration file not found: {config_path}"
+        )
+
+    with config_path.open(
+        "r",
+        encoding="utf-8",
+    ) as file:
+        config = yaml.safe_load(file)
+
+    if not isinstance(config, dict):
+        raise ValueError(
+            "Configuration must contain a YAML mapping."
+        )
+
+    composition = config.get("composition")
+
+    if not isinstance(composition, dict):
+        raise ValueError(
+            "composition must be a YAML mapping."
+        )
+
+    if "method" not in composition:
+        raise ValueError(
+            "composition.method must be configured."
+        )
+
+    if "feather_width_pixels" not in composition:
+        raise ValueError(
+            "composition.feather_width_pixels must be configured."
+        )
+
+    composition_method = str(
+        composition["method"]
+    )
+
+    if composition_method != "inner_only_distance_feather":
+        raise ValueError(
+            "composition.method must be "
+            "'inner_only_distance_feather'."
+        )
+
+    feather_width = int(
+        composition["feather_width_pixels"]
+    )
+
+    if feather_width <= 0:
+        raise ValueError(
+            "composition.feather_width_pixels must be positive."
+        )
 
     manifest_path = args.manifest.expanduser().resolve()
     library_root = args.library_root.expanduser().resolve()
@@ -406,7 +473,7 @@ def main() -> None:
                     prediction=selected,
                     base_image=base_image,
                     transferred_mask=transferred_mask,
-                    width=DEFAULT_INNER_FEATHER_WIDTH,
+                    width=feather_width,
                 )
 
                 outside_mask = transferred_mask == 0
@@ -569,7 +636,7 @@ def main() -> None:
             ),
             "composition": {
                 "method": "inner_only_distance_feather",
-                "feather_width_pixels": DEFAULT_INNER_FEATHER_WIDTH,
+                "feather_width_pixels": feather_width,
                 "outside_mask": "exact_base_image",
                 "full_weight_pixels": "exact_prediction",
                 "distance_metric": "euclidean",
@@ -585,6 +652,10 @@ def main() -> None:
             ),
         },
         "source": {
+            "config": str(config_path),
+            "config_sha256": sha256_file(
+                config_path
+            ),
             "manifest": str(manifest_path),
             "manifest_sha256": sha256_file(
                 manifest_path

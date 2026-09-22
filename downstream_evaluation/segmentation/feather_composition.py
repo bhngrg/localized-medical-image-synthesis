@@ -16,9 +16,6 @@ import torch
 from scipy.ndimage import distance_transform_edt
 
 
-DEFAULT_INNER_FEATHER_WIDTH = 4
-
-
 def make_inner_feather_weights(
     mask: np.ndarray,
     width: int,
@@ -198,7 +195,6 @@ def inner_feather_composite(
 
 
 __all__ = [
-    "DEFAULT_INNER_FEATHER_WIDTH",
     "inner_feather_composite",
     "make_inner_feather_weights",
 ]

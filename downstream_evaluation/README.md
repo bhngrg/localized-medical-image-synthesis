@@ -107,6 +107,12 @@ The cache builder is:
 downstream_evaluation/segmentation/build_posterior_shard_cache.py
 ```
 
+The downstream composition contract is read from the tracked
+`downstream_evaluation/configs/segmentation.yaml` configuration. In
+particular, `composition.feather_width_pixels` controls the Euclidean
+inner-feather width used by both direct synthetic loading and cache
+construction. The current experiment uses a width of 4 pixels.
+
 The Falcon Slurm launcher is:
 
 ```text
