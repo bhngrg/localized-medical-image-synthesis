@@ -13,7 +13,7 @@ available to each model:
   with synthetic images generated from the posterior-mean BR-LoRA model.
 - **Real + BR-LoRA posterior sampling:** trained using the same real data
   augmented with fixed, reproducibly seeded posterior draws from the accepted
-  BR-LoRA synthetic library. $\color{red}{\text{I am still trying to work this one out. For direct comparison with other PEFT models/full fine-tuning, we can use Real + synthetic images created vs. Real + BR-LoRA posterior sampling.}}$
+  BR-LoRA synthetic library.
 
 The BraTS downstream split was defined at the subject level, with 332 subjects
 assigned to downstream training and 37 subjects assigned to downstream
@@ -77,19 +77,22 @@ Slice-level resampling was not used.
 
 ## Results
 
-| Training regime                   | External volumetric Dice (mean ± bootstrap SE)   | 95% CI         | Paired Δ vs. real-only   |
-|:----------------------------------|:---------------------------------------|:---------------|:-------------------------|
-| Real only                         | 0.664 ± 0.015                          | [0.635, 0.693] | —                        |
-| Real + BR-LoRA posterior mean     | 0.812 ± 0.012                          | [0.788, 0.834] | +0.147 [0.129, 0.166]    |
-| Real + BR-LoRA posterior sampling | 0.711 ± 0.014                          | [0.683, 0.738] | +0.046 [0.036, 0.057]    |
+| Training regime                   | External volumetric Dice (mean ± bootstrap SE) | 95% CI         | Paired Δ vs. real-only |
+|:----------------------------------|:------------------------------------------------|:---------------|:-----------------------|
+| Real only                         | 0.664 ± 0.015                                   | [0.635, 0.693] | —                      |
+| Real + BR-LoRA posterior mean     | 0.772 ± 0.012                                   | [0.747, 0.795] | +0.107 [0.092, 0.123]  |
+| Real + BR-LoRA posterior sampling | 0.805 ± 0.011                                   | [0.783, 0.826] | +0.141 [0.123, 0.158]  |
 
 Both BR-LoRA-augmented training regimes improved external volumetric Dice
 relative to real-only training under this frozen evaluation protocol. The
-posterior-mean augmentation regime produced the largest improvement
-($\Delta=+0.147$), while posterior-sampled augmentation also improved over
-real-only training ($\Delta=+0.046$).
+posterior-mean augmentation regime had a paired mean difference of
+$\Delta=+0.107$ relative to real-only training, while posterior-sampled
+augmentation had a paired mean difference of $\Delta=+0.141$.
+
+Posterior-sampled augmentation also exceeded posterior-mean augmentation by a
+paired mean difference of $\Delta=+0.033$ (95% CI: [0.024, 0.043]).
 
 These results characterize the downstream performance of the specific
-synthetic-data construction and training protocols evaluated here. They should
-not be interpreted as evidence that posterior-mean synthesis is intrinsically
-superior to posterior sampling in general.
+synthetic-data construction and training protocols evaluated here and should
+not be interpreted as establishing the general superiority of one BR-LoRA
+posterior synthesis strategy over another.
