@@ -5,13 +5,16 @@
 UCSF-PDGM is used as the independent external cohort for the downstream
 segmentation evaluation.
 
-The downstream experiment compares segmentation models trained using:
+The primary downstream experiment compares segmentation models trained using:
 
 1. real BraTS training data only;
-2. real BraTS data plus BR-LoRA posterior-mean synthetic images; and
-3. real BraTS data plus BR-LoRA posterior-sampling synthetic images.
+2. real BraTS data plus feathered BR-LoRA posterior-mean synthetic images; and
+3. real BraTS data plus feathered BR-LoRA posterior-sampling synthetic images.
 
-All three models are evaluated on the same frozen UCSF-PDGM cohort.
+All three primary models are evaluated on the same frozen UCSF-PDGM cohort.
+Earlier non-feathered posterior-mean and posterior-sampling models are retained
+as development and provenance comparators and are reported alongside the
+primary analysis where appropriate.
 
 For instructions for training the downstream segmentation models, see
 [`../downstream_evaluation/README.md`](../downstream_evaluation/README.md).
@@ -372,6 +375,10 @@ Curated reproducibility-verified UCSF-PDGM results are preserved under:
 ```text
 results/downstream_segmentation/external_validation/ucsf_pdgm/
 ```
+
+The curated volumetric-Dice results report the three primary conditions
+together with the earlier non-feathered posterior-mean and posterior-sampling
+comparators for development and provenance context.
 
 Persistent downstream model checkpoints are organized separately under:
 
