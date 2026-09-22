@@ -32,7 +32,10 @@ Three training regimes are implemented:
 
 The real training and validation cohorts are held fixed across regimes. The
 only intended experimental difference is the presence and form of BR-LoRA
-synthetic augmentation.
+synthetic augmentation. The primary augmented regimes use the configured
+inner-only feathering rule. Earlier non-feathered augmented runs are retained
+only as development and provenance comparators and are not part of the primary
+three-regime analysis.
 
 ## Frozen BraTS Training Data
 

@@ -8,7 +8,8 @@ BR-LoRA adapts a frozen conditional diffusion model by placing mean-field
 Gaussian distributions over low-rank adapter parameters. The implemented
 workflow uses tumor-free base images, tumor-containing donor images, and donor
 lesion masks to synthesize localized pathology while preserving unaffected
-base anatomy through hard regional composition.
+base anatomy. Downstream segmentation applies a deterministic inner-only
+feathering rule at the transferred lesion boundary.
 
 The repository includes the complete implemented workflow from BraTS 2020 data
 registration through BR-LoRA training, nnU-Net screening, frozen synthetic
@@ -356,13 +357,18 @@ contract and downstream usage.
 
 ## 10. Train the Downstream Segmentation Models
 
-The downstream comparison uses three regimes:
+The primary downstream comparison uses three regimes:
 
 ```text
 real_only
 real_plus_br_lora_mean
 real_plus_br_lora_posterior
 ```
+
+The two BR-LoRA-augmented regimes use the configured deterministic inner-only
+feathering rule at the transferred lesion boundary. Earlier non-feathered
+posterior-mean and posterior-sampling runs are retained only as development and
+provenance comparators; they are not part of the primary three-regime analysis.
 
 The frozen split contains 332 BraTS subjects for training and 37 held-out
 subjects for internal validation.
