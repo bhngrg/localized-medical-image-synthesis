@@ -4,16 +4,21 @@
 
 The downstream experiment evaluates whether augmenting the real BraTS training
 set with BR-LoRA synthetic images improves tumor segmentation on an independent
-external cohort. Three segmentation models were trained under the same
-architecture and optimization protocol, differing only in the training data
-available to each model:
+external cohort. The primary analysis compares three segmentation models
+trained under the same architecture and optimization protocol:
 
 - **Real only:** trained using the real BraTS downstream-training set.
-- **Real + BR-LoRA posterior mean:** trained using the same real data augmented
-  with synthetic images generated from the posterior-mean BR-LoRA model.
-- **Real + BR-LoRA posterior sampling:** trained using the same real data
-  augmented with fixed, reproducibly seeded posterior draws from the accepted
-  BR-LoRA synthetic library.
+- **Real + BR-LoRA posterior mean (feathered):** trained using the same real
+  data augmented with posterior-mean BR-LoRA synthetic images after the
+  configured deterministic inner-only feathering step.
+- **Real + BR-LoRA posterior sampling (feathered):** trained using the same real
+  data augmented with fixed, reproducibly seeded posterior draws from the
+  accepted BR-LoRA synthetic library after the same feathering step.
+
+Earlier **non-feathered posterior-mean** and **non-feathered posterior-sampling**
+models are also reported as development and provenance comparators. They use
+the corresponding BR-LoRA synthetic images without the downstream feathering
+step and are not part of the primary three-model analysis.
 
 The BraTS downstream split was defined at the subject level, with 332 subjects
 assigned to downstream training and 37 subjects assigned to downstream
@@ -31,7 +36,7 @@ prevents an exact synthetic donor slice from also appearing as a real
 segmentation-training example without claiming that all subjects contributing
 to synthetic generation were excluded from downstream training.
 
-All three models were trained with seed 42 and were evaluated on the same
+All reported models were trained with seed 42 and were evaluated on the same
 frozen **202-subject UCSF-PDGM external cohort** after subjects overlapping with
 the BraTS cohort were excluded. No UCSF-PDGM cases were used for downstream
 model training or model selection.
@@ -67,30 +72,38 @@ slice-level Dice scores. It measures how well the complete predicted tumor
 volume agrees with the complete reference tumor volume for each external
 subject.
 
-The table reports the **arithmetic mean ± bootstrap standard error (SE) across the 202 
-subjects**. The bootstrap SE was calculated as the sample standard deviation of the 10,000 bootstrap 
-estimates of the mean volumetric Dice. The 95% confidence intervals and paired differences 
-were estimated using the same **10,000 nonparametric subject-level bootstrap resamples with 
-replacement**, using percentile intervals and seed 2026. Resampling was paired by subject ID, 
-and the same bootstrap subject indices were used for all three training regimes and comparisons. 
-Slice-level resampling was not used.
+The table reports the **arithmetic mean ± bootstrap standard error (SE) across
+the 202 subjects**. The bootstrap SE was calculated as the sample standard
+deviation of the 10,000 bootstrap estimates of the mean volumetric Dice. The
+95% confidence intervals and paired differences were estimated using the same
+**10,000 nonparametric subject-level bootstrap resamples with replacement**,
+using percentile intervals and seed 2026. Resampling was paired by subject ID,
+and the same bootstrap subject indices were used for all reported conditions
+and comparisons. Slice-level resampling was not used.
 
 ## Results
 
-| Training regime                   | External volumetric Dice (mean ± bootstrap SE) | 95% CI         | Paired Δ vs. real-only |
-|:----------------------------------|:------------------------------------------------|:---------------|:-----------------------|
-| Real only                         | 0.664 ± 0.015                                   | [0.635, 0.693] | —                      |
-| Real + BR-LoRA posterior mean     | 0.772 ± 0.012                                   | [0.747, 0.795] | +0.107 [0.092, 0.123]  |
-| Real + BR-LoRA posterior sampling | 0.805 ± 0.011                                   | [0.783, 0.826] | +0.141 [0.123, 0.158]  |
+| Training regime                   | Composition   | External volumetric Dice (mean ± bootstrap SE) | 95% CI         | Paired Δ vs. real-only |
+|:----------------------------------|:--------------|:------------------------------------------------|:---------------|:-----------------------|
+| Real only                         | —             | 0.664 ± 0.015                                   | [0.635, 0.693] | —                      |
+| Real + BR-LoRA posterior mean     | Non-feathered | 0.812 ± 0.012                                   | [0.788, 0.834] | +0.147 [0.129, 0.166]  |
+| Real + BR-LoRA posterior mean     | Feathered     | 0.772 ± 0.012                                   | [0.747, 0.795] | +0.107 [0.092, 0.123]  |
+| Real + BR-LoRA posterior sampling | Non-feathered | 0.711 ± 0.014                                   | [0.683, 0.738] | +0.046 [0.036, 0.057]  |
+| Real + BR-LoRA posterior sampling | Feathered     | 0.805 ± 0.011                                   | [0.783, 0.826] | +0.141 [0.123, 0.158]  |
 
-Both BR-LoRA-augmented training regimes improved external volumetric Dice
-relative to real-only training under this frozen evaluation protocol. The
-posterior-mean augmentation regime had a paired mean difference of
-$\Delta=+0.107$ relative to real-only training, while posterior-sampled
-augmentation had a paired mean difference of $\Delta=+0.141$.
+All four BR-LoRA-augmented conditions had higher mean external volumetric Dice
+than real-only training under the corresponding frozen evaluation protocols.
+The non-feathered posterior-mean condition had a paired mean difference of
+$\Delta=+0.147$ relative to real-only training, while the feathered
+posterior-mean condition had $\Delta=+0.107$. The non-feathered
+posterior-sampling condition had $\Delta=+0.046$, while the feathered
+posterior-sampling condition had $\Delta=+0.141$.
 
-Posterior-sampled augmentation also exceeded posterior-mean augmentation by a
-paired mean difference of $\Delta=+0.033$ (95% CI: [0.024, 0.043]).
+The primary downstream analysis uses the real-only condition together with the
+two feathered BR-LoRA conditions. The non-feathered augmented conditions are
+retained here as development and provenance comparators. Accordingly, direct
+feathered-versus-non-feathered differences are presented descriptively rather
+than as additional primary inferential comparisons.
 
 These results characterize the downstream performance of the specific
 synthetic-data construction and training protocols evaluated here and should
