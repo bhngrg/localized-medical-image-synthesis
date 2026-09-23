@@ -20,6 +20,10 @@ from .lora import (
     iter_lora_modules,
 )
 
+from .regional_lora import (
+    configure_regional_lora,
+)
+
 from .selection import (
     ModuleSelectionError,
     replace_named_module,
@@ -56,6 +60,7 @@ __all__ = [
     "VariationalLoRAConv2d",
     "VariationalLoRAError",
     "VariationalParameterError",
+    "configure_regional_lora",
     "convert_lora_to_variational",
     "count_parameters",
     "deterministic_lora_parameter_count",

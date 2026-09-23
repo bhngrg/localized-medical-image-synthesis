@@ -54,9 +54,8 @@ from src.data.loaders import (
 from src.diffusion import DiffusionSchedule
 from src.models import AppearanceX0UNet
 from src.models.adapters import (
+    configure_regional_lora,
     convert_lora_to_variational,
-    freeze_module,
-    inject_lora,
     iter_lora_modules,
     iter_variational_lora_modules,
     variational_lora_parameter_count,
@@ -506,12 +505,9 @@ def configure_br_lora(
             "br_lora.target_layers must contain at least one layer."
         )
 
-    freeze_module(
-        model
-    )
-
-    injected = inject_lora(
+    injected = configure_regional_lora(
         model,
+        target_layers=target_layers,
         rank=int(
             br_lora_cfg.get(
                 "rank",
@@ -530,45 +526,7 @@ def configure_br_lora(
                 0.0,
             )
         ),
-        exact_names=target_layers,
     )
-
-    if injected != target_layers:
-        raise RuntimeError(
-            "Fresh LoRA injection inventory does not match "
-            "br_lora.target_layers.\n"
-            f"Configured: {target_layers}\n"
-            f"Injected:   {injected}"
-        )
-
-    deterministic_names = tuple(
-        name
-        for name, _
-        in iter_lora_modules(
-            model
-        )
-    )
-
-    if deterministic_names != target_layers:
-        raise RuntimeError(
-            "Deterministic LoRA inventory does not match the "
-            "configured target-layer sequence."
-        )
-
-    for name, module in iter_lora_modules(
-        model
-    ):
-        nonzero_b = int(
-            torch.count_nonzero(
-                module.lora_B.weight
-            ).item()
-        )
-
-        if nonzero_b != 0:
-            raise RuntimeError(
-                "Fresh deterministic LoRA B factors must be exactly zero; "
-                f"{name!r} contains {nonzero_b} nonzero elements."
-            )
 
     converted = convert_lora_to_variational(
         model,
