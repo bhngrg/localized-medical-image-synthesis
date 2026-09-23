@@ -128,10 +128,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--checkpoint-dir",
         type=Path,
-        default=Path(
-            "checkpoints/peft/regional_lora/full_train"
+        default=None,
+        help=(
+            "Comparator checkpoint output directory. When omitted, defaults "
+            "to checkpoints/peft/<method>/full_train."
         ),
-        help="Comparator checkpoint output directory.",
     )
 
     parser.add_argument(
@@ -503,6 +504,68 @@ def configure_method(
     )
 
 
+def validate_configured_method(
+    *,
+    model: torch.nn.Module,
+    method: str,
+    injected: tuple[str, ...],
+    trainable_parameter_count: int,
+    trainable_tensor_count: int,
+) -> None:
+    """Validate method-specific invariants after deterministic adaptation."""
+
+    if method == "regional_lora":
+        lora_parameter_count = deterministic_lora_parameter_count(
+            model
+        )
+
+        if (
+            lora_parameter_count
+            != trainable_parameter_count
+        ):
+            raise RuntimeError(
+                "Regional LoRA trainable parameter count does not equal "
+                "the deterministic LoRA parameter count."
+            )
+
+        if (
+            trainable_parameter_count
+            != EXPECTED_REGIONAL_LORA_PARAMETER_COUNT
+        ):
+            raise RuntimeError(
+                "Regional LoRA parameter count changed unexpectedly: "
+                f"{trainable_parameter_count} != "
+                f"{EXPECTED_REGIONAL_LORA_PARAMETER_COUNT}."
+            )
+
+        if (
+            trainable_tensor_count
+            != EXPECTED_REGIONAL_LORA_TRAINABLE_TENSOR_COUNT
+        ):
+            raise RuntimeError(
+                "Regional LoRA trainable tensor count changed unexpectedly: "
+                f"{trainable_tensor_count} != "
+                f"{EXPECTED_REGIONAL_LORA_TRAINABLE_TENSOR_COUNT}."
+            )
+
+        if tuple(
+            name
+            for name, _
+            in iter_lora_modules(
+                model
+            )
+        ) != injected:
+            raise RuntimeError(
+                "Regional LoRA module inventory changed after configuration."
+            )
+
+        return
+
+    raise ValueError(
+        f"Unsupported adaptation method: {method!r}"
+    )
+
+
 def load_adaptation_checkpoint(
     path: Path,
     *,
@@ -702,7 +765,18 @@ def main() -> None:
     )
 
     checkpoint_dir = (
-        args.checkpoint_dir
+        Path(
+            "checkpoints"
+        )
+        / "peft"
+        / args.method
+        / FULL_TRAIN_SPLIT_MODE
+        if args.checkpoint_dir is None
+        else args.checkpoint_dir
+    )
+
+    checkpoint_dir = (
+        checkpoint_dir
         .expanduser()
         .resolve()
     )
@@ -822,50 +896,13 @@ def main() -> None:
             "Adaptation configuration produced no trainable parameters."
         )
 
-    if args.method == "regional_lora":
-        lora_parameter_count = deterministic_lora_parameter_count(
-            model
-        )
-
-        if (
-            lora_parameter_count
-            != report.trainable_parameters
-        ):
-            raise RuntimeError(
-                "Regional LoRA trainable parameter count does not equal "
-                "the deterministic LoRA parameter count."
-            )
-
-        if (
-            report.trainable_parameters
-            != EXPECTED_REGIONAL_LORA_PARAMETER_COUNT
-        ):
-            raise RuntimeError(
-                "Regional LoRA parameter count changed unexpectedly: "
-                f"{report.trainable_parameters} != "
-                f"{EXPECTED_REGIONAL_LORA_PARAMETER_COUNT}."
-            )
-
-        if (
-            trainable_tensor_count
-            != EXPECTED_REGIONAL_LORA_TRAINABLE_TENSOR_COUNT
-        ):
-            raise RuntimeError(
-                "Regional LoRA trainable tensor count changed unexpectedly: "
-                f"{trainable_tensor_count} != "
-                f"{EXPECTED_REGIONAL_LORA_TRAINABLE_TENSOR_COUNT}."
-            )
-
-        if tuple(
-            name
-            for name, _
-            in iter_lora_modules(
-                model
-            )
-        ) != injected:
-            raise RuntimeError(
-                "Regional LoRA module inventory changed after configuration."
-            )
+    validate_configured_method(
+        model=model,
+        method=args.method,
+        injected=injected,
+        trainable_parameter_count=report.trainable_parameters,
+        trainable_tensor_count=trainable_tensor_count,
+    )
 
     learning_rate = float(
         training_cfg.get(
