@@ -51,8 +51,35 @@ from src.config import (
 )
 
 EXPECTED_BATCH_SIZE = 250
-FIRST_PRODUCTION_BATCH = 2
+FIRST_PRODUCTION_BATCH = 1
 LAST_LIBRARY_BATCH = 40
+
+MASTER_COLUMNS = (
+    "library_index",
+    "library_case_id",
+    "batch_id",
+    "source_case_id",
+    "pair_key",
+    "external_subject_name",
+    "external_subject_numeric_id",
+    "external_slice_index",
+    "donor_h5_file",
+    "donor_volume",
+    "donor_slice_index",
+    "mask_pixels",
+    "image_relative_path",
+    "label_container_relative_path",
+    "metadata_relative_path",
+    "label_tensor_key",
+    "image_height",
+    "image_width",
+    "image_channel",
+    "image_role",
+    "label_role",
+    "generator_checkpoint",
+    "generator_git_commit",
+    "posterior_samples",
+)
 
 EXPECTED_CASE_ARTIFACTS = (
     "posterior_samples.pt",
@@ -309,32 +336,7 @@ def compute_batch_checksums(
 def verify_existing_master(
     master: pd.DataFrame,
 ) -> None:
-    required = {
-        "library_index",
-        "library_case_id",
-        "batch_id",
-        "source_case_id",
-        "pair_key",
-        "external_subject_name",
-        "external_subject_numeric_id",
-        "external_slice_index",
-        "donor_h5_file",
-        "donor_volume",
-        "donor_slice_index",
-        "mask_pixels",
-        "image_relative_path",
-        "label_container_relative_path",
-        "metadata_relative_path",
-        "label_tensor_key",
-        "image_height",
-        "image_width",
-        "image_channel",
-        "image_role",
-        "label_role",
-        "generator_checkpoint",
-        "generator_git_commit",
-        "posterior_samples",
-    }
+    required = set(MASTER_COLUMNS)
 
     missing = required - set(master.columns)
 
@@ -429,6 +431,20 @@ def build_new_master_rows(
         raise BatchAcceptanceError(
             "Incoming design contains an unexpected batch_id."
         )
+
+    if batch_number == 1:
+        if "source_case_id" not in design.columns:
+            raise BatchAcceptanceError(
+                "batch_0001 design is missing source_case_id."
+            )
+
+        if not design[
+            "source_case_id"
+        ].notna().all():
+            raise BatchAcceptanceError(
+                "batch_0001 must contain source_case_id "
+                "for all 250 cases."
+            )
 
     expected_first = (
         (batch_number - 1)
@@ -576,7 +592,11 @@ def build_new_master_rows(
                 batch_id,
 
             "source_case_id":
-                case_id,
+                (
+                    str(row.source_case_id)
+                    if batch_number == 1
+                    else case_id
+                ),
 
             "pair_key":
                 str(row.pair_key),
@@ -790,11 +810,10 @@ def main() -> None:
         name="Production checksum inventory",
     )
 
-    master_path = require_file(
+    master_path = (
         library_root
         / "manifests"
-        / "br_lora_library_manifest.csv",
-        name="Current master library manifest",
+        / "br_lora_library_manifest.csv"
     )
 
     print()
@@ -912,51 +931,76 @@ def main() -> None:
     # Master pre-state.
     # ------------------------------------------------------------
 
-    master = pd.read_csv(
-        master_path
-    )
-
-    verify_existing_master(
-        master
-    )
-
     expected_existing_rows = (
         (batch_number - 1)
         * EXPECTED_BATCH_SIZE
     )
 
-    if len(master) != expected_existing_rows:
-        raise BatchAcceptanceError(
-            f"{batch_id} cannot be accepted out of order.\n"
-            f"Expected current master rows: "
-            f"{expected_existing_rows}\n"
-            f"Observed current master rows: {len(master)}"
+    if batch_number == 1:
+        if master_path.exists():
+            raise BatchAcceptanceError(
+                "batch_0001 can only initialize a new library; "
+                "a master manifest already exists:\n"
+                f"{master_path}"
+            )
+
+        master = pd.DataFrame(
+            columns=MASTER_COLUMNS
         )
 
-    if batch_id in set(
-        master["batch_id"].astype(str)
-    ):
-        raise BatchAcceptanceError(
-            f"{batch_id} is already present in the master."
+        current_master_sha = None
+
+    else:
+        master_path = require_file(
+            master_path,
+            name="Current master library manifest",
         )
 
-    current_master_sha = sha256_file(
-        master_path
-    )
+        master = pd.read_csv(
+            master_path
+        )
+
+        verify_existing_master(
+            master
+        )
+
+        if len(master) != expected_existing_rows:
+            raise BatchAcceptanceError(
+                f"{batch_id} cannot be accepted out of order.\n"
+                f"Expected current master rows: "
+                f"{expected_existing_rows}\n"
+                f"Observed current master rows: {len(master)}"
+            )
+
+        if batch_id in set(
+            master["batch_id"].astype(str)
+        ):
+            raise BatchAcceptanceError(
+                f"{batch_id} is already present in the master."
+            )
+
+        current_master_sha = sha256_file(
+            master_path
+        )
 
     print()
     print("===== MASTER PRE-STATE =====")
     print("Rows                     :", len(master))
-    print(
-        "Library IDs              :",
-        master["library_case_id"].iloc[0],
-        "to",
-        master["library_case_id"].iloc[-1],
-    )
-    print(
-        "Current master SHA-256   :",
-        current_master_sha,
-    )
+
+    if master.empty:
+        print("Library IDs              : none")
+        print("Current master SHA-256   : none")
+    else:
+        print(
+            "Library IDs              :",
+            master["library_case_id"].iloc[0],
+            "to",
+            master["library_case_id"].iloc[-1],
+        )
+        print(
+            "Current master SHA-256   :",
+            current_master_sha,
+        )
 
     # ------------------------------------------------------------
     # Incoming design and generated outputs.
@@ -1112,12 +1156,16 @@ def main() -> None:
     )
 
     snapshot_path = (
-        library_root
-        / "manifests"
-        / (
-            "br_lora_library_manifest_"
-            f"{len(master):05d}_pre_{batch_id}.csv"
+        (
+            library_root
+            / "manifests"
+            / (
+                "br_lora_library_manifest_"
+                f"{len(master):05d}_pre_{batch_id}.csv"
+            )
         )
+        if batch_number > 1
+        else None
     )
 
     acceptance_path = (
@@ -1141,10 +1189,15 @@ def main() -> None:
         library_execution_path,
         library_audit_path,
         library_checksum_path,
-        snapshot_path,
         acceptance_path,
         master_hash_path,
     )
+
+    if snapshot_path is not None:
+        destinations = (
+            *destinations,
+            snapshot_path,
+        )
 
     existing = [
         path
@@ -1206,18 +1259,19 @@ def main() -> None:
     # Preserve the exact pre-promotion master.
     # ------------------------------------------------------------
 
-    shutil.copy2(
-        master_path,
-        snapshot_path,
-    )
-
-    if sha256_file(
-        snapshot_path
-    ) != current_master_sha:
-        raise BatchAcceptanceError(
-            "Pre-promotion snapshot hash does not match "
-            "the current master."
+    if snapshot_path is not None:
+        shutil.copy2(
+            master_path,
+            snapshot_path,
         )
+
+        if sha256_file(
+            snapshot_path
+        ) != current_master_sha:
+            raise BatchAcceptanceError(
+                "Pre-promotion snapshot hash does not match "
+                "the current master."
+            )
 
     # ------------------------------------------------------------
     # Promote atomically.
@@ -1294,11 +1348,19 @@ def main() -> None:
             new_master_sha,
 
         "pre_promotion_snapshot":
-            str(snapshot_path),
+            (
+                str(snapshot_path)
+                if snapshot_path is not None
+                else None
+            ),
 
         "pre_promotion_snapshot_sha256":
-            sha256_file(
-                snapshot_path
+            (
+                sha256_file(
+                    snapshot_path
+                )
+                if snapshot_path is not None
+                else None
             ),
 
         "frozen_batch_manifest":
@@ -1453,7 +1515,11 @@ def main() -> None:
     )
     print(
         "Pre-promotion snapshot   :",
-        snapshot_path,
+        (
+            snapshot_path
+            if snapshot_path is not None
+            else "none"
+        ),
     )
     print()
     print("Staging batch was preserved after acceptance.")

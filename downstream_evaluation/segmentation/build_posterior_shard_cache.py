@@ -100,11 +100,6 @@ def sha256_file(path: Path) -> str:
 
 
 def case_directory(row: pd.Series) -> str:
-    source_case_id = row["source_case_id"]
-
-    if pd.notna(source_case_id):
-        return str(source_case_id)
-
     return str(row["library_case_id"])
 
 
@@ -114,6 +109,7 @@ def posterior_path(
 ) -> Path:
     return (
         library_root
+        / "batches"
         / str(row["batch_id"])
         / case_directory(row)
         / "posterior_samples.pt"

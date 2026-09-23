@@ -165,11 +165,6 @@ class BRLoRAPosteriorSampleSegmentationDataset(Dataset):
     def _case_directory(
         row: pd.Series,
     ) -> str:
-        source_case_id = row["source_case_id"]
-
-        if pd.notna(source_case_id):
-            return str(source_case_id)
-
         return str(row["library_case_id"])
 
     def _posterior_samples_path(
@@ -178,6 +173,7 @@ class BRLoRAPosteriorSampleSegmentationDataset(Dataset):
     ) -> Path:
         return (
             self.library_root
+            / "batches"
             / str(row["batch_id"])
             / self._case_directory(row)
             / "posterior_samples.pt"

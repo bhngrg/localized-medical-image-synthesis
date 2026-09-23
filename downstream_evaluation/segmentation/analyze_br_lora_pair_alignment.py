@@ -317,32 +317,22 @@ def main() -> None:
             row.case_status
         )
 
-        if case_status == "already_generated":
-            if pd.isna(
-                row.source_case_id
-            ):
-                raise ValueError(
-                    f"{row.library_case_id}: already-generated case "
-                    "is missing source_case_id."
-                )
-
-            artifact_case_id = str(
-                row.source_case_id
-            )
-
-        elif case_status == "planned":
-            artifact_case_id = str(
-                row.library_case_id
-            )
-
-        else:
+        if case_status not in (
+            "already_generated",
+            "planned",
+        ):
             raise ValueError(
                 f"{row.library_case_id}: unsupported case_status "
                 f"{case_status!r}."
             )
 
+        artifact_case_id = str(
+            row.library_case_id
+        )
+
         case_directory = (
             library_root
+            / "batches"
             / str(row.batch_id)
             / artifact_case_id
         )

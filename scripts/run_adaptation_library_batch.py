@@ -1242,6 +1242,7 @@ def main() -> None:
 
     reference_batch_root = (
         reference_library_root
+        / "batches"
         / batch_id
     )
 

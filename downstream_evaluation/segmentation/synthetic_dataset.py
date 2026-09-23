@@ -101,11 +101,6 @@ class BRLoRAPosteriorMeanSegmentationDataset(Dataset):
 
     @staticmethod
     def _case_directory(row: pd.Series) -> str:
-        source_case_id = row["source_case_id"]
-
-        if pd.notna(source_case_id):
-            return str(source_case_id)
-
         return str(row["library_case_id"])
 
     def _posterior_mean_path(
@@ -114,6 +109,7 @@ class BRLoRAPosteriorMeanSegmentationDataset(Dataset):
     ) -> Path:
         return (
             self.library_root
+            / "batches"
             / str(row["batch_id"])
             / self._case_directory(row)
             / "posterior_mean.pt"
@@ -125,6 +121,7 @@ class BRLoRAPosteriorMeanSegmentationDataset(Dataset):
     ) -> Path:
         return (
             self.library_root
+            / "batches"
             / str(row["batch_id"])
             / self._case_directory(row)
             / "posterior_samples.pt"
