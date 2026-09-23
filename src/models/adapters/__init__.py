@@ -1,5 +1,5 @@
 """
-Adapter infrastructure for deterministic LoRA and Bayesian Regional LoRA.
+Adapter infrastructure for deterministic adaptation and Bayesian Regional LoRA.
 """
 
 from .base import (
@@ -28,6 +28,16 @@ from .dora import (
     deterministic_dora_parameter_count,
     inject_dora,
     iter_dora_modules,
+)
+
+from .lokr import (
+    LoKrConv2d,
+    LoKrError,
+    balanced_factor_pair,
+    configure_lokr,
+    deterministic_lokr_parameter_count,
+    inject_lokr,
+    iter_lokr_modules,
 )
 
 from .regional_lora import (
@@ -68,17 +78,22 @@ __all__ = [
     "DoRAError",
     "LoRAConv2d",
     "LoRAError",
+    "LoKrConv2d",
+    "LoKrError",
     "ModuleSelectionError",
     "VariationalLoRAConv2d",
     "VariationalLoRAError",
     "VariationalParameterError",
+    "balanced_factor_pair",
     "configure_bitfit",
     "configure_dora",
+    "configure_lokr",
     "configure_regional_lora",
     "convert_lora_to_variational",
     "count_parameters",
     "deterministic_dora_parameter_count",
     "deterministic_lora_parameter_count",
+    "deterministic_lokr_parameter_count",
     "disable_variational_lora",
     "disable_variational_sampling",
     "enable_variational_lora",
@@ -86,8 +101,10 @@ __all__ = [
     "freeze_module",
     "inject_dora",
     "inject_lora",
+    "inject_lokr",
     "iter_dora_modules",
     "iter_lora_modules",
+    "iter_lokr_modules",
     "iter_variational_lora_modules",
     "make_adaptation_report",
     "replace_named_module",

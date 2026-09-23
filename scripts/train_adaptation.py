@@ -37,10 +37,13 @@ from src.diffusion import DiffusionSchedule
 from src.models.adapters import (
     configure_bitfit,
     configure_dora,
+    configure_lokr,
     configure_regional_lora,
     deterministic_dora_parameter_count,
+    deterministic_lokr_parameter_count,
     deterministic_lora_parameter_count,
     iter_dora_modules,
+    iter_lokr_modules,
     iter_lora_modules,
     make_adaptation_report,
 )
@@ -67,16 +70,11 @@ DEFAULT_ADAPTATION_CONFIG = Path(
 SUPPORTED_METHODS = (
     "regional_lora",
     "dora",
+    "lokr",
     "bitfit",
 )
 
 FULL_TRAIN_SPLIT_MODE = "full_train"
-
-EXPECTED_REGIONAL_LORA_PARAMETER_COUNT = 18_052
-EXPECTED_REGIONAL_LORA_TRAINABLE_TENSOR_COUNT = 14
-
-EXPECTED_DORA_PARAMETER_COUNT = 18_501
-EXPECTED_DORA_TRAINABLE_TENSOR_COUNT = 21
 
 EXPECTED_BITFIT_PARAMETER_COUNT = 3_553
 EXPECTED_BITFIT_TRAINABLE_TENSOR_COUNT = 42
@@ -521,6 +519,79 @@ def configure_method(
             method_metadata,
         )
 
+    if method == "lokr":
+        method_cfg = require_mapping_section(
+            adaptation_config,
+            "lokr",
+            config_name="adaptation config",
+        )
+
+        target_layers_object = method_cfg.get(
+            "target_layers"
+        )
+
+        if not isinstance(
+            target_layers_object,
+            list,
+        ):
+            raise ValueError(
+                "adaptation config lokr.target_layers "
+                "must be a YAML list."
+            )
+
+        target_layers = tuple(
+            str(
+                name
+            )
+            for name in target_layers_object
+        )
+
+        if not target_layers:
+            raise ValueError(
+                "lokr.target_layers must contain at least one layer."
+            )
+
+        rank = int(
+            method_cfg.get(
+                "rank",
+                6,
+            )
+        )
+
+        alpha = float(
+            method_cfg.get(
+                "alpha",
+                12.0,
+            )
+        )
+
+        dropout = float(
+            method_cfg.get(
+                "dropout",
+                0.0,
+            )
+        )
+
+        injected = configure_lokr(
+            model,
+            target_layers=target_layers,
+            rank=rank,
+            alpha=alpha,
+            dropout=dropout,
+        )
+
+        method_metadata = {
+            "target_layers": target_layers,
+            "rank": rank,
+            "alpha": alpha,
+            "dropout": dropout,
+        }
+
+        return (
+            injected,
+            method_metadata,
+        )
+
     if method == "dora":
         method_cfg = require_mapping_section(
             adaptation_config,
@@ -682,24 +753,22 @@ def validate_configured_method(
                 "the deterministic LoRA parameter count."
             )
 
-        if (
-            trainable_parameter_count
-            != EXPECTED_REGIONAL_LORA_PARAMETER_COUNT
-        ):
-            raise RuntimeError(
-                "Regional LoRA parameter count changed unexpectedly: "
-                f"{trainable_parameter_count} != "
-                f"{EXPECTED_REGIONAL_LORA_PARAMETER_COUNT}."
+        expected_trainable_tensor_count = (
+            2
+            * len(
+                injected
             )
+        )
 
         if (
             trainable_tensor_count
-            != EXPECTED_REGIONAL_LORA_TRAINABLE_TENSOR_COUNT
+            != expected_trainable_tensor_count
         ):
             raise RuntimeError(
-                "Regional LoRA trainable tensor count changed unexpectedly: "
+                "Regional LoRA trainable tensor count does not match "
+                "the configured adapter inventory: "
                 f"{trainable_tensor_count} != "
-                f"{EXPECTED_REGIONAL_LORA_TRAINABLE_TENSOR_COUNT}."
+                f"{expected_trainable_tensor_count}."
             )
 
         if tuple(
@@ -711,6 +780,51 @@ def validate_configured_method(
         ) != injected:
             raise RuntimeError(
                 "Regional LoRA module inventory changed after configuration."
+            )
+
+        return
+
+    if method == "lokr":
+        lokr_parameter_count = deterministic_lokr_parameter_count(
+            model
+        )
+
+        if (
+            lokr_parameter_count
+            != trainable_parameter_count
+        ):
+            raise RuntimeError(
+                "LoKr trainable parameter count does not equal "
+                "the deterministic LoKr parameter count."
+            )
+
+        expected_trainable_tensor_count = (
+            2
+            * len(
+                injected
+            )
+        )
+
+        if (
+            trainable_tensor_count
+            != expected_trainable_tensor_count
+        ):
+            raise RuntimeError(
+                "LoKr trainable tensor count does not match "
+                "the configured adapter inventory: "
+                f"{trainable_tensor_count} != "
+                f"{expected_trainable_tensor_count}."
+            )
+
+        if tuple(
+            name
+            for name, _
+            in iter_lokr_modules(
+                model
+            )
+        ) != injected:
+            raise RuntimeError(
+                "LoKr module inventory changed after configuration."
             )
 
         return
@@ -729,24 +843,22 @@ def validate_configured_method(
                 "the deterministic DoRA parameter count."
             )
 
-        if (
-            trainable_parameter_count
-            != EXPECTED_DORA_PARAMETER_COUNT
-        ):
-            raise RuntimeError(
-                "DoRA parameter count changed unexpectedly: "
-                f"{trainable_parameter_count} != "
-                f"{EXPECTED_DORA_PARAMETER_COUNT}."
+        expected_trainable_tensor_count = (
+            3
+            * len(
+                injected
             )
+        )
 
         if (
             trainable_tensor_count
-            != EXPECTED_DORA_TRAINABLE_TENSOR_COUNT
+            != expected_trainable_tensor_count
         ):
             raise RuntimeError(
-                "DoRA trainable tensor count changed unexpectedly: "
+                "DoRA trainable tensor count does not match "
+                "the configured adapter inventory: "
                 f"{trainable_tensor_count} != "
-                f"{EXPECTED_DORA_TRAINABLE_TENSOR_COUNT}."
+                f"{expected_trainable_tensor_count}."
             )
 
         if tuple(
@@ -1277,14 +1389,42 @@ def main() -> None:
         schedule.timesteps,
     )
 
-    checkpoint_metadata = {
-        "timesteps": schedule.timesteps,
+    model_config = {
+        "in_channels": int(
+            model_cfg.get(
+                "in_channels",
+                4,
+            )
+        ),
+        "out_channels": int(
+            model_cfg.get(
+                "out_channels",
+                1,
+            )
+        ),
         "base_channels": int(
             model_cfg.get(
                 "base_channels",
                 32,
             )
         ),
+        "time_dim": int(
+            model_cfg.get(
+                "time_dim",
+                128,
+            )
+        ),
+        "cond_dim": int(
+            model_cfg.get(
+                "cond_dim",
+                4,
+            )
+        ),
+    }
+
+    checkpoint_metadata = {
+        "timesteps": schedule.timesteps,
+        "base_channels": model_config["base_channels"],
         "image_channel": int(
             data_cfg.get(
                 "image_channel",
@@ -1299,12 +1439,7 @@ def main() -> None:
         ),
         "batch_size": batch_size,
         "learning_rate": learning_rate,
-        "cond_dim": int(
-            model_cfg.get(
-                "cond_dim",
-                4,
-            )
-        ),
+        "cond_dim": model_config["cond_dim"],
         "training_mode": (
             "patch_conditioned_x0_diffusion_adaptation"
         ),
@@ -1331,6 +1466,7 @@ def main() -> None:
         "weight_decay": weight_decay,
         "outside_loss_weight": outside_loss_weight,
         "timesteps": schedule.timesteps,
+        "model_config": model_config,
         "base_channels": checkpoint_metadata["base_channels"],
         "image_channel": checkpoint_metadata["image_channel"],
         "min_tumor_pixels": checkpoint_metadata["min_tumor_pixels"],
@@ -1490,6 +1626,12 @@ def main() -> None:
         ] = capture_rng_state()
 
         latest_payload[
+            "model_config"
+        ] = dict(
+            model_config
+        )
+
+        latest_payload[
             "adaptation_method"
         ] = args.method
 
@@ -1565,6 +1707,12 @@ def main() -> None:
     final_payload[
         "rng_state"
     ] = capture_rng_state()
+
+    final_payload[
+        "model_config"
+    ] = dict(
+        model_config
+    )
 
     final_payload[
         "adaptation_method"

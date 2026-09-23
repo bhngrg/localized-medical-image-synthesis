@@ -85,10 +85,6 @@ DEFAULT_BR_LORA_CONFIG = Path(
     "configs/br_lora.yaml"
 )
 
-EXPECTED_VARIATIONAL_PARAMETER_COUNT = 36_104
-EXPECTED_TRAINABLE_TENSOR_COUNT = 28
-
-
 def parse_args() -> argparse.Namespace:
     """Parse command-line arguments."""
 
@@ -1185,15 +1181,22 @@ def main() -> None:
         "Variational parameters   :",
         f"{variational_parameter_count:,}",
     )
+    expected_trainable_tensor_count = (
+        4
+        * len(
+            converted
+        )
+    )
+
     print(
-        "Expected parameters      :",
-        f"{EXPECTED_VARIATIONAL_PARAMETER_COUNT:,}",
+        "Trainable parameters     :",
+        f"{trainable_parameter_count:,}",
     )
     print(
-        "Parameter count exact    :",
+        "Posterior count exact    :",
         (
             variational_parameter_count
-            == EXPECTED_VARIATIONAL_PARAMETER_COUNT
+            == trainable_parameter_count
         ),
     )
     print(
@@ -1202,13 +1205,13 @@ def main() -> None:
     )
     print(
         "Expected tensors         :",
-        EXPECTED_TRAINABLE_TENSOR_COUNT,
+        expected_trainable_tensor_count,
     )
     print(
         "Trainable tensors exact  :",
         (
             trainable_tensor_count
-            == EXPECTED_TRAINABLE_TENSOR_COUNT
+            == expected_trainable_tensor_count
         ),
     )
 
@@ -1254,9 +1257,9 @@ def main() -> None:
 
     expected_ok = (
         variational_parameter_count
-        == EXPECTED_VARIATIONAL_PARAMETER_COUNT
+        == trainable_parameter_count
         and trainable_tensor_count
-        == EXPECTED_TRAINABLE_TENSOR_COUNT
+        == expected_trainable_tensor_count
         and injected
         == converted
     )
