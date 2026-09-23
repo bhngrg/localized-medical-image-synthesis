@@ -102,6 +102,52 @@ def trainable_parameter_names(
     )
 
 
+def configure_bitfit(
+    module: nn.Module,
+) -> tuple[str, ...]:
+    """Freeze a model and enable only its existing bias parameters."""
+
+    freeze_module(
+        module
+    )
+
+    trainable_names = tuple(
+        name
+        for name, parameter
+        in module.named_parameters()
+        if name.endswith(
+            ".bias"
+        )
+    )
+
+    if not trainable_names:
+        raise AdaptationError(
+            "BitFit found no trainable bias parameters."
+        )
+
+    for name, parameter in module.named_parameters():
+        if name.endswith(
+            ".bias"
+        ):
+            parameter.requires_grad_(
+                True
+            )
+
+    actual_trainable_names = trainable_parameter_names(
+        module
+    )
+
+    if actual_trainable_names != trainable_names:
+        raise RuntimeError(
+            "BitFit trainable-parameter inventory does not match "
+            "the expected bias-only sequence.\n"
+            f"Expected: {trainable_names}\n"
+            f"Actual:   {actual_trainable_names}"
+        )
+
+    return trainable_names
+
+
 def count_parameters(
     module: nn.Module,
     *,
@@ -159,6 +205,7 @@ def make_adaptation_report(
 __all__ = [
     "AdaptationError",
     "AdaptationReport",
+    "configure_bitfit",
     "count_parameters",
     "freeze_module",
     "make_adaptation_report",

@@ -5,6 +5,7 @@ Adapter infrastructure for deterministic LoRA and Bayesian Regional LoRA.
 from .base import (
     AdaptationError,
     AdaptationReport,
+    configure_bitfit,
     count_parameters,
     freeze_module,
     make_adaptation_report,
@@ -71,6 +72,7 @@ __all__ = [
     "VariationalLoRAConv2d",
     "VariationalLoRAError",
     "VariationalParameterError",
+    "configure_bitfit",
     "configure_dora",
     "configure_regional_lora",
     "convert_lora_to_variational",

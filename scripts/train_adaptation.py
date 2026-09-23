@@ -35,6 +35,7 @@ from src.data import BraTSH5PatchX0Dataset
 from src.data.loaders import create_full_train_loader
 from src.diffusion import DiffusionSchedule
 from src.models.adapters import (
+    configure_bitfit,
     configure_dora,
     configure_regional_lora,
     deterministic_dora_parameter_count,
@@ -66,6 +67,7 @@ DEFAULT_ADAPTATION_CONFIG = Path(
 SUPPORTED_METHODS = (
     "regional_lora",
     "dora",
+    "bitfit",
 )
 
 FULL_TRAIN_SPLIT_MODE = "full_train"
@@ -75,6 +77,9 @@ EXPECTED_REGIONAL_LORA_TRAINABLE_TENSOR_COUNT = 14
 
 EXPECTED_DORA_PARAMETER_COUNT = 18_501
 EXPECTED_DORA_TRAINABLE_TENSOR_COUNT = 21
+
+EXPECTED_BITFIT_PARAMETER_COUNT = 3_553
+EXPECTED_BITFIT_TRAINABLE_TENSOR_COUNT = 42
 
 
 def parse_args() -> argparse.Namespace:
@@ -433,6 +438,16 @@ def configure_method(
 ]:
     """Configure one supported deterministic adaptation method."""
 
+    if method == "bitfit":
+        configure_bitfit(
+            model
+        )
+
+        return (
+            (),
+            {},
+        )
+
     if method == "regional_lora":
         method_cfg = require_mapping_section(
             adaptation_config,
@@ -602,6 +617,56 @@ def validate_configured_method(
     trainable_tensor_count: int,
 ) -> None:
     """Validate method-specific invariants after deterministic adaptation."""
+
+    if method == "bitfit":
+        if (
+            trainable_parameter_count
+            != EXPECTED_BITFIT_PARAMETER_COUNT
+        ):
+            raise RuntimeError(
+                "BitFit parameter count changed unexpectedly: "
+                f"{trainable_parameter_count} != "
+                f"{EXPECTED_BITFIT_PARAMETER_COUNT}."
+            )
+
+        if (
+            trainable_tensor_count
+            != EXPECTED_BITFIT_TRAINABLE_TENSOR_COUNT
+        ):
+            raise RuntimeError(
+                "BitFit trainable tensor count changed unexpectedly: "
+                f"{trainable_tensor_count} != "
+                f"{EXPECTED_BITFIT_TRAINABLE_TENSOR_COUNT}."
+            )
+
+        trainable_names = tuple(
+            name
+            for name, parameter
+            in model.named_parameters()
+            if parameter.requires_grad
+        )
+
+        expected_bias_names = tuple(
+            name
+            for name, _
+            in model.named_parameters()
+            if name.endswith(
+                ".bias"
+            )
+        )
+
+        if trainable_names != expected_bias_names:
+            raise RuntimeError(
+                "BitFit trainable-parameter inventory does not match "
+                "the model's complete bias-parameter inventory."
+            )
+
+        if injected:
+            raise RuntimeError(
+                "BitFit must not report injected or adapted modules."
+            )
+
+        return
 
     if method == "regional_lora":
         lora_parameter_count = deterministic_lora_parameter_count(
