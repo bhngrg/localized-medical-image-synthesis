@@ -58,6 +58,9 @@ import torch
 from torch.utils.data import ConcatDataset, DataLoader
 import yaml
 
+from downstream_evaluation.segmentation.adaptation_dataset import (
+    DeterministicAdaptationSegmentationDataset,
+)
 from downstream_evaluation.segmentation.dataset import (
     DownstreamBraTSSegmentationDataset,
 )
@@ -129,10 +132,18 @@ DEFAULT_SYNTHETIC_MANIFEST = (
     / "br_lora_library_design_10000.csv"
 )
 
+DETERMINISTIC_REGIME_METHODS = {
+    "real_plus_regional_lora": "regional_lora",
+    "real_plus_dora": "dora",
+    "real_plus_lokr": "lokr",
+    "real_plus_bitfit": "bitfit",
+}
+
 REGIMES = (
     "real_only",
     "real_plus_br_lora_mean",
     "real_plus_br_lora_posterior",
+    *DETERMINISTIC_REGIME_METHODS,
 )
 
 
@@ -179,6 +190,18 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help=(
             "BR-LoRA library root. Overrides br_lora_library_root "
+            "in --folders-file."
+        ),
+    )
+
+    parser.add_argument(
+        "--adaptation-library-root",
+        type=Path,
+        default=None,
+        help=(
+            "Deterministic PEFT synthetic-library root. Used only for "
+            "Regional LoRA, DoRA, LoKr, and BitFit downstream regimes. "
+            "CLI overrides the corresponding method-specific library root "
             "in --folders-file."
         ),
     )
@@ -405,12 +428,34 @@ def resolve_paths(
             default=DEFAULT_SYNTHETIC_MANIFEST,
         )
 
-        library_root = resolve_path(
-            key="br_lora_library_root",
-            cli_value=args.br_lora_library_root,
-            config=folders_config,
-            selector=None,
-        )
+        if args.regime in (
+            "real_plus_br_lora_mean",
+            "real_plus_br_lora_posterior",
+        ):
+            library_root = resolve_path(
+                key="br_lora_library_root",
+                cli_value=args.br_lora_library_root,
+                config=folders_config,
+                selector=None,
+            )
+
+        elif args.regime in DETERMINISTIC_REGIME_METHODS:
+            adaptation_method = DETERMINISTIC_REGIME_METHODS[
+                args.regime
+            ]
+
+            library_root = resolve_path(
+                key=f"{adaptation_method}_library_root",
+                cli_value=args.adaptation_library_root,
+                config=folders_config,
+                selector=None,
+            )
+
+        else:
+            raise ValueError(
+                f"Unsupported downstream segmentation regime: "
+                f"{args.regime}"
+            )
 
     if args.regime == "real_plus_br_lora_posterior":
         posterior_shard_cache_root = resolve_optional_machine_path(
@@ -496,6 +541,10 @@ CHECKPOINT_METHOD_DIRS = {
     "real_only": "real_only",
     "real_plus_br_lora_mean": "br_lora_mean",
     "real_plus_br_lora_posterior": "br_lora_posterior",
+    "real_plus_regional_lora": "regional_lora",
+    "real_plus_dora": "dora",
+    "real_plus_lokr": "lokr",
+    "real_plus_bitfit": "bitfit",
 }
 
 
@@ -1150,6 +1199,49 @@ def main() -> None:
                     "library_root"
                 ],
                 h5_root=paths["h5_root"],
+                feather_width=feather_width,
+                transform=synthetic_transform,
+            )
+        )
+
+        train_dataset = ConcatDataset(
+            [
+                real_train_dataset,
+                synthetic_dataset,
+            ]
+        )
+
+        collate_fn = segmentation_collate
+
+    elif synthetic_mode == "deterministic_adaptation":
+        synthetic_transform = build_train_transform()
+
+        if hasattr(
+            synthetic_transform,
+            "set_random_seed",
+        ):
+            synthetic_transform.set_random_seed(seed)
+
+        if args.regime not in DETERMINISTIC_REGIME_METHODS:
+            raise ValueError(
+                "deterministic_adaptation synthetic mode requires a "
+                "deterministic PEFT downstream regime."
+            )
+
+        adaptation_method = DETERMINISTIC_REGIME_METHODS[
+            args.regime
+        ]
+
+        synthetic_dataset = (
+            DeterministicAdaptationSegmentationDataset(
+                manifest_path=paths[
+                    "synthetic_manifest"
+                ],
+                library_root=paths[
+                    "library_root"
+                ],
+                h5_root=paths["h5_root"],
+                adaptation_method=adaptation_method,
                 feather_width=feather_width,
                 transform=synthetic_transform,
             )

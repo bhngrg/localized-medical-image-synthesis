@@ -21,10 +21,11 @@ training:
   learning_rate: 0.001
   threshold: 0.5
 
-# Synthetic BR-LoRA images preserve the base image exactly outside the
+# Synthetic PEFT images preserve the base image exactly outside the
 # transferred lesion mask. Within the mask, prediction weight increases
 # with Euclidean distance from the boundary and reaches one at the
-# configured feather width.
+# configured feather width. This composition rule is shared by BR-LoRA
+# posterior mean and the deterministic PEFT comparators.
 composition:
   method: inner_only_distance_feather
   feather_width_pixels: 4
@@ -51,3 +52,15 @@ regimes:
   real_plus_br_lora_posterior:
     synthetic_mode: posterior_sample
     posterior_samples_available: 100
+
+  real_plus_regional_lora:
+    synthetic_mode: deterministic_adaptation
+
+  real_plus_dora:
+    synthetic_mode: deterministic_adaptation
+
+  real_plus_lokr:
+    synthetic_mode: deterministic_adaptation
+
+  real_plus_bitfit:
+    synthetic_mode: deterministic_adaptation

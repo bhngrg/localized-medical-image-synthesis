@@ -70,6 +70,10 @@ if [ "$#" -lt 1 ]; then
     echo "  real_only" >&2
     echo "  real_plus_br_lora_mean" >&2
     echo "  real_plus_br_lora_posterior" >&2
+    echo "  real_plus_regional_lora" >&2
+    echo "  real_plus_dora" >&2
+    echo "  real_plus_lokr" >&2
+    echo "  real_plus_bitfit" >&2
     echo >&2
     echo "Optional verified posterior shard cache:" >&2
     echo "  --posterior-shard-cache-root <path>" >&2
@@ -80,7 +84,7 @@ REGIME="$1"
 shift
 
 case "${REGIME}" in
-    real_only|real_plus_br_lora_mean|real_plus_br_lora_posterior)
+    real_only|real_plus_br_lora_mean|real_plus_br_lora_posterior|real_plus_regional_lora|real_plus_dora|real_plus_lokr|real_plus_bitfit)
         ;;
     *)
         echo "Unknown downstream regime: ${REGIME}" >&2
