@@ -35,8 +35,11 @@ from src.data import BraTSH5PatchX0Dataset
 from src.data.loaders import create_full_train_loader
 from src.diffusion import DiffusionSchedule
 from src.models.adapters import (
+    configure_dora,
     configure_regional_lora,
+    deterministic_dora_parameter_count,
     deterministic_lora_parameter_count,
+    iter_dora_modules,
     iter_lora_modules,
     make_adaptation_report,
 )
@@ -62,12 +65,16 @@ DEFAULT_ADAPTATION_CONFIG = Path(
 
 SUPPORTED_METHODS = (
     "regional_lora",
+    "dora",
 )
 
 FULL_TRAIN_SPLIT_MODE = "full_train"
 
 EXPECTED_REGIONAL_LORA_PARAMETER_COUNT = 18_052
 EXPECTED_REGIONAL_LORA_TRAINABLE_TENSOR_COUNT = 14
+
+EXPECTED_DORA_PARAMETER_COUNT = 18_501
+EXPECTED_DORA_TRAINABLE_TENSOR_COUNT = 21
 
 
 def parse_args() -> argparse.Namespace:
@@ -426,81 +433,163 @@ def configure_method(
 ]:
     """Configure one supported deterministic adaptation method."""
 
-    if method != "regional_lora":
-        raise ValueError(
-            f"Unsupported adaptation method: {method!r}"
+    if method == "regional_lora":
+        method_cfg = require_mapping_section(
+            adaptation_config,
+            "regional_lora",
+            config_name="adaptation config",
         )
 
-    method_cfg = require_mapping_section(
-        adaptation_config,
-        "regional_lora",
-        config_name="adaptation config",
-    )
-
-    target_layers_object = method_cfg.get(
-        "target_layers"
-    )
-
-    if not isinstance(
-        target_layers_object,
-        list,
-    ):
-        raise ValueError(
-            "adaptation config regional_lora.target_layers "
-            "must be a YAML list."
+        target_layers_object = method_cfg.get(
+            "target_layers"
         )
 
-    target_layers = tuple(
-        str(
-            name
+        if not isinstance(
+            target_layers_object,
+            list,
+        ):
+            raise ValueError(
+                "adaptation config regional_lora.target_layers "
+                "must be a YAML list."
+            )
+
+        target_layers = tuple(
+            str(
+                name
+            )
+            for name in target_layers_object
         )
-        for name in target_layers_object
-    )
 
-    if not target_layers:
-        raise ValueError(
-            "regional_lora.target_layers must contain at least one layer."
+        if not target_layers:
+            raise ValueError(
+                "regional_lora.target_layers must contain at least one layer."
+            )
+
+        rank = int(
+            method_cfg.get(
+                "rank",
+                4,
+            )
         )
 
-    rank = int(
-        method_cfg.get(
-            "rank",
-            4,
+        alpha = float(
+            method_cfg.get(
+                "alpha",
+                8.0,
+            )
         )
-    )
 
-    alpha = float(
-        method_cfg.get(
-            "alpha",
-            8.0,
+        dropout = float(
+            method_cfg.get(
+                "dropout",
+                0.0,
+            )
         )
-    )
 
-    dropout = float(
-        method_cfg.get(
-            "dropout",
-            0.0,
+        injected = configure_regional_lora(
+            model,
+            target_layers=target_layers,
+            rank=rank,
+            alpha=alpha,
+            dropout=dropout,
         )
-    )
 
-    injected = configure_regional_lora(
-        model,
-        target_layers=target_layers,
-        rank=rank,
-        alpha=alpha,
-        dropout=dropout,
-    )
+        method_metadata = {
+            "target_layers": target_layers,
+            "rank": rank,
+            "alpha": alpha,
+            "dropout": dropout,
+        }
 
-    method_metadata = {
-        "target_layers": target_layers,
-        "rank": rank,
-        "alpha": alpha,
-        "dropout": dropout,
-    }
+        return (
+            injected,
+            method_metadata,
+        )
 
-    return (
-        injected,
-        method_metadata,
+    if method == "dora":
+        method_cfg = require_mapping_section(
+            adaptation_config,
+            "dora",
+            config_name="adaptation config",
+        )
+
+        target_layers_object = method_cfg.get(
+            "target_layers"
+        )
+
+        if not isinstance(
+            target_layers_object,
+            list,
+        ):
+            raise ValueError(
+                "adaptation config dora.target_layers "
+                "must be a YAML list."
+            )
+
+        target_layers = tuple(
+            str(
+                name
+            )
+            for name in target_layers_object
+        )
+
+        if not target_layers:
+            raise ValueError(
+                "dora.target_layers must contain at least one layer."
+            )
+
+        rank = int(
+            method_cfg.get(
+                "rank",
+                4,
+            )
+        )
+
+        alpha = float(
+            method_cfg.get(
+                "alpha",
+                8.0,
+            )
+        )
+
+        dropout = float(
+            method_cfg.get(
+                "dropout",
+                0.0,
+            )
+        )
+
+        eps = float(
+            method_cfg.get(
+                "eps",
+                1.0e-6,
+            )
+        )
+
+        injected = configure_dora(
+            model,
+            target_layers=target_layers,
+            rank=rank,
+            alpha=alpha,
+            dropout=dropout,
+            eps=eps,
+        )
+
+        method_metadata = {
+            "target_layers": target_layers,
+            "rank": rank,
+            "alpha": alpha,
+            "dropout": dropout,
+            "eps": eps,
+        }
+
+        return (
+            injected,
+            method_metadata,
+        )
+
+    raise ValueError(
+        f"Unsupported adaptation method: {method!r}"
     )
 
 
@@ -557,6 +646,53 @@ def validate_configured_method(
         ) != injected:
             raise RuntimeError(
                 "Regional LoRA module inventory changed after configuration."
+            )
+
+        return
+
+    if method == "dora":
+        dora_parameter_count = deterministic_dora_parameter_count(
+            model
+        )
+
+        if (
+            dora_parameter_count
+            != trainable_parameter_count
+        ):
+            raise RuntimeError(
+                "DoRA trainable parameter count does not equal "
+                "the deterministic DoRA parameter count."
+            )
+
+        if (
+            trainable_parameter_count
+            != EXPECTED_DORA_PARAMETER_COUNT
+        ):
+            raise RuntimeError(
+                "DoRA parameter count changed unexpectedly: "
+                f"{trainable_parameter_count} != "
+                f"{EXPECTED_DORA_PARAMETER_COUNT}."
+            )
+
+        if (
+            trainable_tensor_count
+            != EXPECTED_DORA_TRAINABLE_TENSOR_COUNT
+        ):
+            raise RuntimeError(
+                "DoRA trainable tensor count changed unexpectedly: "
+                f"{trainable_tensor_count} != "
+                f"{EXPECTED_DORA_TRAINABLE_TENSOR_COUNT}."
+            )
+
+        if tuple(
+            name
+            for name, _
+            in iter_dora_modules(
+                model
+            )
+        ) != injected:
+            raise RuntimeError(
+                "DoRA module inventory changed after configuration."
             )
 
         return

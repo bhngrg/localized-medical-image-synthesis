@@ -20,6 +20,15 @@ from .lora import (
     iter_lora_modules,
 )
 
+from .dora import (
+    DoRAConv2d,
+    DoRAError,
+    configure_dora,
+    deterministic_dora_parameter_count,
+    inject_dora,
+    iter_dora_modules,
+)
+
 from .regional_lora import (
     configure_regional_lora,
 )
@@ -54,22 +63,28 @@ __all__ = [
     "AdaptationError",
     "AdaptationReport",
     "DiagonalGaussianParameter",
+    "DoRAConv2d",
+    "DoRAError",
     "LoRAConv2d",
     "LoRAError",
     "ModuleSelectionError",
     "VariationalLoRAConv2d",
     "VariationalLoRAError",
     "VariationalParameterError",
+    "configure_dora",
     "configure_regional_lora",
     "convert_lora_to_variational",
     "count_parameters",
+    "deterministic_dora_parameter_count",
     "deterministic_lora_parameter_count",
     "disable_variational_lora",
     "disable_variational_sampling",
     "enable_variational_lora",
     "enable_variational_sampling",
     "freeze_module",
+    "inject_dora",
     "inject_lora",
+    "iter_dora_modules",
     "iter_lora_modules",
     "iter_variational_lora_modules",
     "make_adaptation_report",

@@ -17,6 +17,21 @@ regional_lora:
   alpha: 8.0
   dropout: 0.0
 
+dora:
+  target_layers:
+    - enc1.conv2
+    - enc2.conv2
+    - enc3.conv2
+    - mid.conv2
+    - dec2.conv2
+    - dec1.conv2
+    - out
+
+  rank: 4
+  alpha: 8.0
+  dropout: 0.0
+  eps: 1.0e-6
+
 training:
   epochs: 50
   learning_rate: 1.0e-4
