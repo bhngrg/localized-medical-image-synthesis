@@ -1,0 +1,24 @@
+# Deterministic adaptation-comparator settings.
+#
+# Data/model/diffusion settings come from the selected baseline configuration.
+# The production comparator study uses configs/baseline_patch_x0_full_train.yaml.
+
+regional_lora:
+  target_layers:
+    - enc1.conv2
+    - enc2.conv2
+    - enc3.conv2
+    - mid.conv2
+    - dec2.conv2
+    - dec1.conv2
+    - out
+
+  rank: 4
+  alpha: 8.0
+  dropout: 0.0
+
+training:
+  epochs: 50
+  learning_rate: 1.0e-4
+  weight_decay: 0.0
+  outside_loss_weight: 0.05
