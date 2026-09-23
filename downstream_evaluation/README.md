@@ -4,9 +4,12 @@ This directory contains the downstream tumor-segmentation evaluation used to
 assess whether BR-LoRA synthetic images improve the utility of the real BraTS
 training data.
 
-The evaluation compares three training regimes using the same segmentation
-architecture, preprocessing contract, validation cohort, loss, optimizer, and
-evaluation metrics:
+The unified trainer supports the original BR-LoRA downstream regimes together
+with deterministic PEFT comparator augmentation. All regimes use the same
+segmentation architecture, preprocessing contract, validation cohort, loss,
+optimizer, and evaluation metrics.
+
+Implemented regimes are:
 
 1. `real_only`
    - Real BraTS training data only.
@@ -21,6 +24,15 @@ evaluation metrics:
      per epoch.
    - The current 20-epoch training run therefore uses 20 distinct posterior
      realizations per case from the 100 stored realizations.
+
+4. `real_plus_regional_lora`
+5. `real_plus_dora`
+6. `real_plus_lokr`
+7. `real_plus_bitfit`
+   - Each deterministic PEFT regime uses the same frozen 10,000-case design.
+   - Each case contributes the deterministic prediction produced from that
+     method's trained checkpoint while reusing the corresponding accepted
+     BR-LoRA reference diffusion state.
 
 ## Scientific Defaults
 
@@ -203,6 +215,46 @@ cache-manifest path and SHA-256, and the posterior loader mode. This preserves
 an explicit provenance distinction between the canonical per-case posterior
 library and its derived shard-cache representation.
 
+## Deterministic PEFT Synthetic Libraries
+
+The deterministic comparator libraries are produced batch-by-batch with:
+
+```bash
+python scripts/run_adaptation_library_batch.py --help
+```
+
+The underlying deterministic adaptation synthesis evaluator is:
+
+```bash
+python scripts/evaluate_adaptation_external.py --help
+```
+
+Supported methods are Regional LoRA, DoRA, LoKr, and BitFit. Production uses
+the frozen BR-LoRA design and the corresponding accepted BR-LoRA batch as the
+reference source for each case's fixed diffusion state.
+
+The downstream trainer consumes a completed comparator library through the
+deterministic-adaptation dataset path. The library can be supplied explicitly
+with:
+
+```text
+--adaptation-library-root
+```
+
+or resolved from the method-specific machine path configured in
+`data/folders.yaml`.
+
+The method-specific path keys are:
+
+```text
+regional_lora_library_root
+dora_library_root
+lokr_library_root
+bitfit_library_root
+```
+
+These generated libraries are not committed to Git.
+
 ## Validate Before Training
 
 The unified user-facing entry point is:
@@ -237,6 +289,19 @@ python scripts/train_downstream_segmentation.py \
   --device cpu \
   --validate-only
 ```
+
+For a deterministic comparator, for example Regional LoRA:
+
+```bash
+python scripts/train_downstream_segmentation.py \
+  --regime real_plus_regional_lora \
+  --adaptation-library-root /path/to/regional_lora/library \
+  --device cpu \
+  --validate-only
+```
+
+The same pattern applies to `real_plus_dora`, `real_plus_lokr`, and
+`real_plus_bitfit`.
 
 Validation checks the configured paths, manifests, regime-specific dataset
 contracts, and expected sample counts. It does not start training or create a
@@ -290,7 +355,7 @@ sbatch downstream_evaluation/segmentation/train_downstream_segmentation_a30.slur
   --validate-only
 ```
 
-The same launcher supports all three regimes.
+The same launcher supports all implemented downstream regimes.
 
 ## Outputs and Provenance
 

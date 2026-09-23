@@ -17,12 +17,13 @@ provide details for individual parts of that workflow.
   synthesis and downstream evaluation.
 - [`br_lora_pipeline.md`](br_lora_pipeline.md) — BR-LoRA training, inference,
   posterior artifacts, and regional composition.
-- [`synthetic_library.md`](synthetic_library.md) — frozen 10,000-case BR-LoRA
-  synthetic-library design, production, auditing, and acceptance.
+- [`synthetic_library.md`](synthetic_library.md) — shared frozen 10,000-case
+  design, BR-LoRA library production/acceptance, and deterministic PEFT
+  comparator-library production.
 - [`../downstream_evaluation/README.md`](../downstream_evaluation/README.md) —
   operational instructions for the downstream segmentation experiments.
 - [`downstream_evaluation.md`](downstream_evaluation.md) — scientific design and
-  data contracts for downstream evaluation.
+  data contracts for BR-LoRA and deterministic PEFT downstream evaluation.
 - [`ucsf_pdgm_external_validation.md`](ucsf_pdgm_external_validation.md) —
   UCSF-PDGM acquisition, frozen 202-subject cohort, cohort validation,
   preprocessing, and external segmentation evaluation.

@@ -19,6 +19,13 @@ primary analysis where appropriate.
 For instructions for training the downstream segmentation models, see
 [`../downstream_evaluation/README.md`](../downstream_evaluation/README.md).
 
+The downstream trainer also implements deterministic Regional LoRA, DoRA,
+LoKr, and BitFit augmentation regimes. The UCSF-PDGM evaluator documented
+here, however, currently retains the original three-checkpoint interface and
+has not yet been generalized to accept those four comparator checkpoints.
+Accordingly, this document describes the implemented BR-LoRA external
+evaluation rather than claiming deterministic-comparator external results.
+
 ## Dataset Acquisition
 
 UCSF-PDGM is not distributed with this repository.

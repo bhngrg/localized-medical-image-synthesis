@@ -1,20 +1,23 @@
 # Localized Medical Image Synthesis
 
 A modular research framework for donor-conditioned localized medical image
-synthesis with Bayesian Regional LoRA (BR-LoRA), compatibility-constrained
-regional composition, synthetic-data generation, and downstream evaluation.
+synthesis with Bayesian Regional LoRA (BR-LoRA), deterministic parameter-
+efficient fine-tuning (PEFT) comparators, compatibility-constrained regional
+composition, synthetic-data generation, and downstream evaluation.
 
 BR-LoRA adapts a frozen conditional diffusion model by placing mean-field
-Gaussian distributions over low-rank adapter parameters. The implemented
-workflow uses tumor-free base images, tumor-containing donor images, and donor
-lesion masks to synthesize localized pathology while preserving unaffected
-base anatomy. Downstream segmentation applies a deterministic inner-only
-feathering rule at the transferred lesion boundary.
+Gaussian distributions over low-rank adapter parameters. The repository also
+implements deterministic Regional LoRA, DoRA, LoKr, and BitFit comparators on
+the same frozen diffusion backbone. The synthesis workflow uses tumor-free
+base images, tumor-containing donor images, and donor lesion masks to create
+localized pathology while preserving unaffected base anatomy. Downstream
+segmentation applies a deterministic inner-only feathering rule at the
+transferred lesion boundary.
 
-The repository includes the complete implemented workflow from BraTS 2020 data
-registration through BR-LoRA training, nnU-Net screening, frozen synthetic
-library construction, downstream segmentation, and external validation on
-UCSF-PDGM.
+The repository includes the implemented workflow from BraTS 2020 data
+registration through baseline and PEFT training, nnU-Net screening, frozen
+synthetic-library design, BR-LoRA and deterministic comparator synthesis,
+downstream segmentation, and external validation on UCSF-PDGM.
 
 ---
 
@@ -40,9 +43,9 @@ create_dataset_manifest.py      nnU-Net five-fold training
 baseline diffusion              validation prediction
         │                               │
         ▼                               ▼
-BR-LoRA training                validation slice screening
-        │                               │
-        │                               ▼
+PEFT training                   validation slice screening
+(BR-LoRA / Regional LoRA /             │
+ DoRA / LoKr / BitFit)                 ▼
         │                      compatibility audits
         │                               │
         │                               ▼
@@ -52,30 +55,41 @@ BR-LoRA training                validation slice screening
                         ▼
               frozen 10,000-case design
                         │
-                        ▼
-                synthetic library
-                        │
+          ┌─────────────┴─────────────┐
+          ▼                           ▼
+ BR-LoRA posterior library   deterministic PEFT libraries
+          │                           │
+          └─────────────┬─────────────┘
                         ▼
             downstream segmentation
-              ┌─────────┼─────────┐
-              ▼         ▼         ▼
-          real only   real +    real +
-                      posterior posterior
-                        mean    sampling
-              └─────────┼─────────┘
+       ┌──────────┬──────────┬───────────────┐
+       ▼          ▼          ▼               ▼
+   real only   BR-LoRA    BR-LoRA      deterministic PEFT
+                 mean     posterior       comparator regimes
+                          sampling
+       └──────────┴──────────┴───────────────┘
+                        │
                         ▼
               UCSF-PDGM evaluation
 ```
+
+The BR-LoRA posterior-sampling downstream regime remains supported for the
+earlier uncertainty experiment. The current UCSF-PDGM evaluator is still wired
+to the original real-only, BR-LoRA posterior-mean, and BR-LoRA posterior-
+sampling checkpoints; deterministic-comparator external evaluation is the next
+extension of that evaluator.
 
 BraTS training and validation registration are independent and can be run in
 parallel. The baseline/BR-LoRA training branch can proceed once the registered
 training data and H5 representation are available. The nnU-Net screening branch
 requires both registered BraTS releases.
 
-Once their prerequisites are available, the three downstream segmentation
-regimes are independent. The real-only regime does not require the synthetic
-library and can therefore start earlier. UCSF-PDGM evaluation requires all
-three downstream checkpoints.
+Once their prerequisites are available, downstream segmentation regimes are
+independent. The real-only regime does not require a synthetic library and can
+therefore start earlier. BR-LoRA posterior mean, BR-LoRA posterior sampling,
+Regional LoRA, DoRA, LoKr, and BitFit augmentation are implemented as separate
+training regimes. The current UCSF-PDGM evaluator still consumes the original
+three BR-LoRA-era downstream checkpoints.
 
 ---
 
@@ -103,6 +117,11 @@ nnunet_archive_root: null
 nnunet_run_root: null
 
 br_lora_library_root: null
+regional_lora_library_root: null
+dora_library_root: null
+lokr_library_root: null
+bitfit_library_root: null
+
 downstream_real_training_manifest: null
 downstream_synthetic_manifest: null
 downstream_validation_manifest: null
@@ -166,8 +185,9 @@ python scripts/create_dataset_manifest.py --help
 The complete reconstructed training representation contains 57,195 axial H5
 slices from 369 BraTS training subjects.
 
-The generated manifest is subsequently used by baseline training, BR-LoRA
-training, donor-pool construction, and downstream data preparation.
+The generated manifest is subsequently used by baseline training, BR-LoRA and
+deterministic PEFT training, donor-pool construction, and downstream data
+preparation.
 
 ---
 
@@ -196,22 +216,50 @@ and provenance but is not part of the main downstream production path.
 
 ---
 
-## 5. Train BR-LoRA
+## 5. Train BR-LoRA and Deterministic PEFT Comparators
 
 BR-LoRA adapts the frozen baseline diffusion backbone using Bayesian low-rank
-adapters.
+adapters:
 
 ```bash
 python scripts/train_br_lora.py --help
 ```
 
+The repository also implements deterministic PEFT comparators through the
+shared adaptation trainer:
+
+```bash
+python scripts/train_adaptation.py --help
+```
+
+Supported deterministic methods are:
+
+```text
+regional_lora
+dora
+lokr
+bitfit
+```
+
+On Falcon, production comparator training can be launched on an A30 with:
+
+```text
+scripts/train_adaptation_a30.slurm
+```
+
+Production Slurm jobs use the `fdtbiotech` account. Login nodes should be used
+as scheduler/gateway nodes; substantive training, inference, dataset-wide
+diagnostics, and other compute-heavy work should run on allocated compute
+nodes.
+
 The production configuration is defined in the tracked configuration files
 under [`configs/`](configs/).
 
 BR-LoRA supports posterior-mean and posterior-sampled inference while retaining
-the frozen diffusion backbone.
+the frozen diffusion backbone. The deterministic comparators produce one fitted
+adaptation state per method.
 
-For implementation and training details, see
+For BR-LoRA implementation and training details, see
 [`docs/br_lora_pipeline.md`](docs/br_lora_pipeline.md).
 
 Posterior products can be generated and audited with:
@@ -279,7 +327,8 @@ for the complete audit and matching sequence.
 
 ## 8. Construct the Frozen 10,000-Case Design
 
-The canonical 10,000-case BR-LoRA design is tracked under:
+The canonical 10,000-case synthesis design, originally constructed for the
+BR-LoRA library and now shared by all PEFT comparators, is tracked under:
 
 ```text
 downstream_evaluation/manifests/br_lora_library_design_10000/
@@ -301,19 +350,36 @@ See [`docs/synthetic_library.md`](docs/synthetic_library.md).
 
 ---
 
-## 9. Produce the Synthetic Library
+## 9. Produce the Synthetic Libraries
 
-Synthetic-library production uses the frozen design and trained BR-LoRA
-checkpoint.
+BR-LoRA production uses the frozen design and trained Bayesian checkpoint:
 
 ```bash
 python scripts/run_br_lora_library_batch.py --help
 python scripts/accept_br_lora_library_batch.py --help
 ```
 
-Generated batches are audited, hashed, staged, and accepted into the permanent
-library. Independent batches can run in parallel when they use distinct batch
-and staging locations.
+The four deterministic PEFT comparators reuse the same frozen 10,000-case
+base/donor design. Their production path is:
+
+```bash
+python scripts/run_adaptation_library_batch.py --help
+python scripts/evaluate_adaptation_external.py --help
+```
+
+For deterministic comparator synthesis, each case reuses the accepted BR-LoRA
+case's stored diffusion timestep and exact diffusion-noise tensor. The
+reconstructed diffusion state is validated against the accepted BR-LoRA case
+before the deterministic prediction is saved. This keeps the case design and
+diffusion realization fixed so that the fitted PEFT method is the intended
+model-level difference.
+
+BR-LoRA batches are audited, hashed, staged, and accepted into the permanent
+posterior library. Deterministic comparator batches are independently audited
+and hashed under method-specific library roots.
+
+Production synthesis should use immutable completed `final.pt` checkpoints,
+not mutable in-progress `latest.pt` checkpoints.
 
 See [`docs/synthetic_library.md`](docs/synthetic_library.md).
 
@@ -357,18 +423,30 @@ contract and downstream usage.
 
 ## 10. Train the Downstream Segmentation Models
 
-The primary downstream comparison uses three regimes:
+The current deterministic PEFT comparison is designed around six primary
+training conditions:
 
 ```text
 real_only
 real_plus_br_lora_mean
+real_plus_regional_lora
+real_plus_dora
+real_plus_lokr
+real_plus_bitfit
+```
+
+The earlier BR-LoRA posterior-sampling regime remains implemented as:
+
+```text
 real_plus_br_lora_posterior
 ```
 
-The two BR-LoRA-augmented regimes use the configured deterministic inner-only
-feathering rule at the transferred lesion boundary. Earlier non-feathered
-posterior-mean and posterior-sampling runs are retained only as development and
-provenance comparators; they are not part of the primary three-regime analysis.
+and is retained for the posterior-uncertainty experiment and provenance.
+
+BR-LoRA posterior mean and all four deterministic comparator regimes use the
+same configured deterministic inner-only feathering rule at the transferred
+lesion boundary. The current configuration uses a four-pixel Euclidean
+inner-feather width.
 
 The frozen split contains 332 BraTS subjects for training and 37 held-out
 subjects for internal validation.
@@ -378,7 +456,8 @@ python scripts/train_downstream_segmentation.py --help
 ```
 
 The real-only experiment can run before synthetic-library production finishes.
-The two augmented regimes can run independently once the library is available.
+Each augmented regime can run independently once its corresponding synthetic
+library is available.
 
 The downstream U-Net is adapted from
 [Low-Grade-Glioma-Segmentation](https://github.com/edaaydinea/Low-Grade-Glioma-Segmentation).
@@ -390,8 +469,13 @@ See [`downstream_evaluation/README.md`](downstream_evaluation/README.md) and
 
 ## 11. Evaluate on UCSF-PDGM
 
-The three downstream checkpoints are externally evaluated on the frozen
-202-subject UCSF-PDGM cohort.
+The frozen external evaluation cohort contains 202 UCSF-PDGM baseline subjects.
+
+The current evaluator interface accepts the original three downstream
+checkpoints: real only, BR-LoRA posterior mean, and BR-LoRA posterior sampling.
+The deterministic PEFT downstream training regimes are implemented, but their
+UCSF-PDGM evaluator integration has not yet been added to the current
+three-checkpoint interface.
 
 Official dataset source:
 

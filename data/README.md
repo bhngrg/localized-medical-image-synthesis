@@ -144,9 +144,9 @@ interactive selector
 ```
 
 The interactive fallback applies only to scripts that provide an interactive
-selector. Model training, BR-LoRA batch production, and BR-LoRA batch acceptance are
-noninteractive: required paths must be supplied by CLI or available in the
-folders configuration.
+selector. Model training, BR-LoRA batch production, deterministic PEFT batch
+production, and BR-LoRA batch acceptance are noninteractive: required paths
+must be supplied by CLI or available in the folders configuration.
 
 Paths selected explicitly by CLI or through an interactive selector are saved
 to the folders configuration for reuse.
@@ -165,6 +165,11 @@ manifest_path: null
 
 br_lora_staging_root: null
 br_lora_library_root: null
+
+regional_lora_library_root: null
+dora_library_root: null
+lokr_library_root: null
+bitfit_library_root: null
 
 nnunet_archive_root: null
 nnunet_run_root: null

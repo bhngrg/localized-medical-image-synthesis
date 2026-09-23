@@ -15,7 +15,9 @@ Operational commands for running the experiments are documented in
 
 ## Experimental Comparison
 
-Three training regimes are implemented:
+The downstream workflow contains two related comparison sets.
+
+The original BR-LoRA analysis implements three regimes:
 
 1. **Real only**
    - real BraTS training images only.
@@ -36,6 +38,32 @@ synthetic augmentation. The primary augmented regimes use the configured
 inner-only feathering rule. Earlier non-feathered augmented runs are retained
 only as development and provenance comparators and are not part of the primary
 three-regime analysis.
+
+### Deterministic PEFT comparison
+
+The deterministic PEFT extension adds four augmentation regimes:
+
+```text
+real_plus_regional_lora
+real_plus_dora
+real_plus_lokr
+real_plus_bitfit
+```
+
+Together with `real_only` and `real_plus_br_lora_mean`, these regimes allow
+the downstream task to compare Bayesian Regional LoRA with deterministic
+parameter-efficient adaptation methods under the same frozen synthetic-case
+design.
+
+Regional LoRA, DoRA, LoKr, and BitFit each produce one deterministic synthetic
+prediction per frozen case. Their external synthesis workflow reuses the
+corresponding accepted BR-LoRA diffusion state, including the fixed reference
+diffusion noise, so the comparator does not receive an independently sampled
+diffusion trajectory.
+
+The deterministic libraries are consumed through the
+`deterministic_adaptation` synthetic mode. They are generated runtime artifacts
+and remain outside Git.
 
 ## Frozen BraTS Training Data
 
@@ -74,7 +102,8 @@ It contains:
 3,288 tumor-free slices
 ```
 
-The same validation cohort is used for all three training regimes.
+The same validation cohort is used across all implemented downstream
+training regimes.
 
 ## Synthetic Augmentation Design
 
@@ -156,14 +185,13 @@ The implemented training-set sizes are:
 Real only:
     41,460 samples per epoch
 
-Real + BR-LoRA posterior mean:
-    41,460 real + 10,000 synthetic
-    = 51,460 samples per epoch
-
-Real + BR-LoRA posterior sampling:
+Any 10,000-case synthetic augmentation regime:
     41,460 real + 10,000 synthetic
     = 51,460 samples per epoch
 ```
+
+This includes BR-LoRA posterior-mean, BR-LoRA posterior-sampling, Regional
+LoRA, DoRA, LoKr, and BitFit augmentation.
 
 ## Segmentation Model
 
@@ -302,8 +330,15 @@ For additional provenance and reproducibility details, see
 
 ## External Validation
 
-The three trained segmentation models are evaluated on the same frozen
-independent UCSF-PDGM cohort.
+The established UCSF-PDGM evaluator currently exposes the original
+three-checkpoint BR-LoRA analysis interface: real only, BR-LoRA posterior mean,
+and BR-LoRA posterior sampling. Those trained models are evaluated on the same
+frozen independent UCSF-PDGM cohort.
+
+The deterministic PEFT downstream regimes are implemented for training, but
+the current UCSF-PDGM evaluator interface has not yet been generalized to
+accept the four deterministic comparator checkpoints. Documentation therefore
+does not treat comparator external-evaluation results as already implemented.
 
 The external cohort contains:
 

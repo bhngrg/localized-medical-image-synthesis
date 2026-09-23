@@ -18,6 +18,14 @@ manifest_path: null
 br_lora_staging_root: null
 br_lora_library_root: null
 
+# Deterministic PEFT synthetic-library roots.
+# Each root should contain batch_0001 through batch_0040 for the
+# corresponding fitted comparator.
+regional_lora_library_root: null
+dora_library_root: null
+lokr_library_root: null
+bitfit_library_root: null
+
 # nnU-Net screening paths.
 # nnunet_archive_root contains nnUNet_raw/ and nnUNet_preprocessed/.
 # nnunet_run_root contains trained models and prediction outputs.

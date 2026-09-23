@@ -1,10 +1,18 @@
-# BR-LoRA Synthetic Library
+# Synthetic Libraries
 
 ## Purpose
 
-The BR-LoRA synthetic library provides a fixed, reproducible image set for downstream segmentation and reliability experiments.
+The repository uses a shared frozen 10,000-case design to construct synthetic
+libraries for BR-LoRA and the deterministic PEFT comparators Regional LoRA,
+DoRA, LoKr, and BitFit.
 
-The production target is:
+The accepted BR-LoRA library remains the canonical Bayesian synthetic artifact.
+The deterministic comparator libraries use the same case design and reuse the
+accepted BR-LoRA per-case diffusion state so that the adaptation method, rather
+than a newly sampled diffusion trajectory, is the intended synthesis-method
+difference.
+
+The production target for each complete library is:
 
 ```text
 10,000 synthetic cases
@@ -92,7 +100,7 @@ The external-evaluation manifest contains only the fields required by the BR-LoR
 
 ## Production Pipeline
 
-Primary scripts:
+Primary BR-LoRA scripts:
 
 ```text
 scripts/run_br_lora_library_batch.py
@@ -100,7 +108,14 @@ scripts/accept_br_lora_library_batch.py
 screening/brats_nnunet/scripts/design_br_lora_library_10000.py
 ```
 
-The batch production sequence is:
+Deterministic PEFT comparator production uses:
+
+```text
+scripts/run_adaptation_library_batch.py
+scripts/evaluate_adaptation_external.py
+```
+
+The BR-LoRA batch production sequence is:
 
 ```text
 frozen batch manifest
@@ -129,6 +144,36 @@ permanent library
         ▼
 master-library manifest update
 ```
+
+## Deterministic PEFT Comparator Libraries
+
+Regional LoRA, DoRA, LoKr, and BitFit use the same frozen case assignments as
+the accepted BR-LoRA library. For each case, deterministic adaptation inference
+loads the corresponding accepted BR-LoRA payload and reuses its stored
+diffusion state, including the fixed reference diffusion noise.
+
+This pairing is intentional: comparator synthesis is evaluated on the same
+base/donor case and the same diffusion realization rather than introducing a
+second source of stochastic variation.
+
+The batch wrapper validates the frozen design manifest, the accepted BR-LoRA
+reference batch, the deterministic PEFT checkpoint/method pairing, and the
+completed output artifacts. A successful production batch receives a
+production-audit JSON file and a SHA-256 inventory.
+
+Comparator libraries are machine-specific generated artifacts and are not
+stored in Git. Their configured roots are:
+
+```text
+regional_lora_library_root
+dora_library_root
+lokr_library_root
+bitfit_library_root
+```
+
+The deterministic comparator workflow is deliberately separate from BR-LoRA
+posterior sampling: these methods produce one deterministic prediction for the
+fixed case/diffusion state rather than a retained posterior stack.
 
 ## Production Audits
 
