@@ -154,22 +154,11 @@ class DeterministicAdaptationSegmentationDataset(Dataset):
         row: pd.Series,
     ) -> str:
         """
-        Preserve the accepted BR-LoRA library directory convention.
+        Return the canonical deterministic-library case directory name.
 
-        The original 250 cases in batch_0001 use source_case_id.
-        Cases 251-10000 use library_case_id.
+        All production case directories use library_case_id.
+        source_case_id is retained only as frozen-design provenance.
         """
-
-        source_case_id = row[
-            "source_case_id"
-        ]
-
-        if pd.notna(
-            source_case_id
-        ):
-            return str(
-                source_case_id
-            )
 
         return str(
             row[

@@ -65,12 +65,12 @@ DEFAULT_DESIGN_BATCH_DIR = (
 
 DEFAULT_CHECKPOINT = (
     PROJECT_ROOT
-    / "checkpoints/peft/br_lora/full_train/final.pt"
+    / "checkpoints/peft/br_lora/a30_full_train/final.pt"
 )
 
 DEFAULT_POSTERIOR_SAMPLES = 100
 DEFAULT_EVALUATION_SEED = 42
-DEFAULT_DEVICE = "mps"
+DEFAULT_DEVICE = "cuda"
 
 EXPECTED_BATCH_SIZE = 250
 FIRST_PRODUCTION_BATCH = 1

@@ -18,12 +18,16 @@ manifest_path: null
 br_lora_staging_root: null
 br_lora_library_root: null
 
-# Deterministic PEFT synthetic-library roots.
-# Each root should contain batch_0001 through batch_0040 for the
-# corresponding fitted comparator.
+# Deterministic PEFT synthetic-library paths.
+# *_staging_root stores completed production batches before acceptance.
+# *_library_root stores accepted batch_0001 through batch_0040.
+regional_lora_staging_root: null
 regional_lora_library_root: null
+dora_staging_root: null
 dora_library_root: null
+lokr_staging_root: null
 lokr_library_root: null
+bitfit_staging_root: null
 bitfit_library_root: null
 
 # nnU-Net screening paths.

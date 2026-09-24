@@ -33,6 +33,39 @@ fi
 
 cd "${REPO_ROOT}"
 
+FOLDERS_FILE="${REPO_ROOT}/data/folders.yaml"
+
+read_folder_path() {
+    local key="$1"
+
+    python - "${FOLDERS_FILE}" "${key}" <<'PY_CONFIG'
+from pathlib import Path
+import sys
+import yaml
+
+config_path = Path(sys.argv[1])
+key = sys.argv[2]
+
+if not config_path.is_file():
+    raise SystemExit(
+        "Missing machine-specific folders configuration:\n"
+        f"{config_path}\n"
+        "Copy data/folders.example.yaml to data/folders.yaml "
+        "and configure the required paths."
+    )
+
+payload = yaml.safe_load(config_path.read_text()) or {}
+value = payload.get(key)
+
+if not value:
+    raise SystemExit(
+        f"Required folders.yaml key is not configured: {key}"
+    )
+
+print(Path(value).expanduser().resolve())
+PY_CONFIG
+}
+
 CONDA_ENV="${CONDA_ENV:-brats-nnunet}"
 
 activate_environment() {
@@ -86,8 +119,12 @@ esac
 BASELINE_CONFIG="${BASELINE_CONFIG:-configs/baseline_patch_x0_full_train.yaml}"
 ADAPTATION_CONFIG="${ADAPTATION_CONFIG:-configs/adaptation.yaml}"
 BASE_CHECKPOINT="${BASE_CHECKPOINT:-checkpoints/baseline/full_train/final_patch_x0_diffusion_full_train.pt}"
-H5_ROOT="${H5_ROOT:-/scratch/bhanug/archive/BraTS2020_H5_Rebuilt}"
-MANIFEST="${MANIFEST:-/scratch/bhanug/tumor_inpainting_doc/data/BraTS/BraTS20 Training Metadata.csv}"
+if [[ -z "${H5_ROOT:-}" ]]; then
+    H5_ROOT="$(read_folder_path h5_root)"
+fi
+if [[ -z "${MANIFEST:-}" ]]; then
+    MANIFEST="$(read_folder_path manifest_path)"
+fi
 CHECKPOINT_DIR="${CHECKPOINT_DIR:-checkpoints/peft/${METHOD}/full_train}"
 
 for required_file in \

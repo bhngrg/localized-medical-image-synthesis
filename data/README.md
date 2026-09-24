@@ -166,9 +166,13 @@ manifest_path: null
 br_lora_staging_root: null
 br_lora_library_root: null
 
+regional_lora_staging_root: null
 regional_lora_library_root: null
+dora_staging_root: null
 dora_library_root: null
+lokr_staging_root: null
 lokr_library_root: null
+bitfit_staging_root: null
 bitfit_library_root: null
 
 nnunet_archive_root: null

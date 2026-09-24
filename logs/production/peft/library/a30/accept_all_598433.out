@@ -1,0 +1,4509 @@
+======================================================================
+DETERMINISTIC PEFT LIBRARY ACCEPTANCE
+======================================================================
+Host             : fal017
+Date             : Thu Sep 24 12:36:57 PM EDT 2026
+Git commit       : d95a050b2ab903372018a40098c40a696704fd9a
+SLURM_JOB_ID     : 598433
+Python           : /home/bhanug/.conda/envs/brats-nnunet/bin/python
+
+
+======================================================================
+METHOD: regional_lora
+======================================================================
+Staging root     : /scratch/bhanug/regional_lora_staging
+Library root     : /scratch/bhanug/regional_lora_library
+
+----------------------------------------------------------------------
+regional_lora / batch_0001
+----------------------------------------------------------------------
+Already accepted: SKIP
+
+----------------------------------------------------------------------
+regional_lora / batch_0002
+----------------------------------------------------------------------
+Already accepted: SKIP
+
+----------------------------------------------------------------------
+regional_lora / batch_0003
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0003
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0003
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0003
+Accepted cases           : 250
+Library IDs              : synthetic_000501 to synthetic_000750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0003
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0003_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0003: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0004
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0004
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0004
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0004
+Accepted cases           : 250
+Library IDs              : synthetic_000751 to synthetic_001000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0004
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0004_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0004: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0005
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0005
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0005
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0005
+Accepted cases           : 250
+Library IDs              : synthetic_001001 to synthetic_001250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0005
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0005_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0005: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0006
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0006
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0006
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0006
+Accepted cases           : 250
+Library IDs              : synthetic_001251 to synthetic_001500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0006
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0006_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0006: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0007
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0007
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0007
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0007
+Accepted cases           : 250
+Library IDs              : synthetic_001501 to synthetic_001750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0007
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0007_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0007: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0008
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0008
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0008
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0008
+Accepted cases           : 250
+Library IDs              : synthetic_001751 to synthetic_002000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0008
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0008_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0008: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0009
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0009
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0009
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0009
+Accepted cases           : 250
+Library IDs              : synthetic_002001 to synthetic_002250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0009
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0009_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0009: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0010
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0010
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0010
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0010
+Accepted cases           : 250
+Library IDs              : synthetic_002251 to synthetic_002500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0010
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0010_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0010: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0011
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0011
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0011
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0011
+Accepted cases           : 250
+Library IDs              : synthetic_002501 to synthetic_002750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0011
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0011_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0011: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0012
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0012
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0012
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0012
+Accepted cases           : 250
+Library IDs              : synthetic_002751 to synthetic_003000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0012
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0012_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0012: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0013
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0013
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0013
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0013
+Accepted cases           : 250
+Library IDs              : synthetic_003001 to synthetic_003250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0013
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0013_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0013: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0014
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0014
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0014
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0014
+Accepted cases           : 250
+Library IDs              : synthetic_003251 to synthetic_003500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0014
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0014_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0014: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0015
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0015
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0015
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0015
+Accepted cases           : 250
+Library IDs              : synthetic_003501 to synthetic_003750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0015
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0015_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0015: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0016
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0016
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0016
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0016
+Accepted cases           : 250
+Library IDs              : synthetic_003751 to synthetic_004000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0016
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0016_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0016: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0017
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0017
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0017
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0017
+Accepted cases           : 250
+Library IDs              : synthetic_004001 to synthetic_004250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0017
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0017_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0017: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0018
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0018
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0018
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0018
+Accepted cases           : 250
+Library IDs              : synthetic_004251 to synthetic_004500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0018
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0018_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0018: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0019
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0019
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0019
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0019
+Accepted cases           : 250
+Library IDs              : synthetic_004501 to synthetic_004750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0019
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0019_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0019: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0020
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0020
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0020
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0020
+Accepted cases           : 250
+Library IDs              : synthetic_004751 to synthetic_005000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0020
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0020_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0020: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0021
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0021
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0021
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0021
+Accepted cases           : 250
+Library IDs              : synthetic_005001 to synthetic_005250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0021
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0021_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0021: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0022
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0022
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0022
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0022
+Accepted cases           : 250
+Library IDs              : synthetic_005251 to synthetic_005500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0022
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0022_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0022: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0023
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0023
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0023
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0023
+Accepted cases           : 250
+Library IDs              : synthetic_005501 to synthetic_005750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0023
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0023_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0023: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0024
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0024
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0024
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0024
+Accepted cases           : 250
+Library IDs              : synthetic_005751 to synthetic_006000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0024
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0024_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0024: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0025
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0025
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0025
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0025
+Accepted cases           : 250
+Library IDs              : synthetic_006001 to synthetic_006250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0025
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0025_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0025: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0026
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0026
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0026
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0026
+Accepted cases           : 250
+Library IDs              : synthetic_006251 to synthetic_006500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0026
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0026_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0026: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0027
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0027
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0027
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0027
+Accepted cases           : 250
+Library IDs              : synthetic_006501 to synthetic_006750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0027
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0027_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0027: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0028
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0028
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0028
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0028
+Accepted cases           : 250
+Library IDs              : synthetic_006751 to synthetic_007000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0028
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0028_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0028: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0029
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0029
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0029
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0029
+Accepted cases           : 250
+Library IDs              : synthetic_007001 to synthetic_007250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0029
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0029_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0029: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0030
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0030
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0030
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0030
+Accepted cases           : 250
+Library IDs              : synthetic_007251 to synthetic_007500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0030
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0030_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0030: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0031
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0031
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0031
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0031
+Accepted cases           : 250
+Library IDs              : synthetic_007501 to synthetic_007750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0031
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0031_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0031: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0032
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0032
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0032
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0032
+Accepted cases           : 250
+Library IDs              : synthetic_007751 to synthetic_008000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0032
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0032_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0032: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0033
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0033
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0033
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0033
+Accepted cases           : 250
+Library IDs              : synthetic_008001 to synthetic_008250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0033
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0033_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0033: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0034
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0034
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0034
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0034
+Accepted cases           : 250
+Library IDs              : synthetic_008251 to synthetic_008500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0034
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0034_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0034: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0035
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0035
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0035
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0035
+Accepted cases           : 250
+Library IDs              : synthetic_008501 to synthetic_008750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0035
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0035_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0035: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0036
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0036
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0036
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0036
+Accepted cases           : 250
+Library IDs              : synthetic_008751 to synthetic_009000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0036
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0036_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0036: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0037
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0037
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0037
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0037
+Accepted cases           : 250
+Library IDs              : synthetic_009001 to synthetic_009250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0037
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0037_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0037: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0038
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0038
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0038
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0038
+Accepted cases           : 250
+Library IDs              : synthetic_009251 to synthetic_009500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0038
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0038_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0038: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0039
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0039
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0039
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0039
+Accepted cases           : 250
+Library IDs              : synthetic_009501 to synthetic_009750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0039
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0039_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0039: ACCEPTED
+
+----------------------------------------------------------------------
+regional_lora / batch_0040
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : regional_lora
+Batch                    : batch_0040
+Staging batch            : /scratch/bhanug/regional_lora_staging/batch_0040
+Library root             : /scratch/bhanug/regional_lora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : regional_lora
+Accepted batch           : batch_0040
+Accepted cases           : 250
+Library IDs              : synthetic_009751 to synthetic_010000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/regional_lora_library/batch_0040
+Acceptance audit         : /scratch/bhanug/regional_lora_library/_provenance/regional_lora_batch_0040_acceptance.json
+
+Staging data were preserved and were not deleted.
+regional_lora / batch_0040: ACCEPTED
+
+======================================================================
+METHOD: dora
+======================================================================
+Staging root     : /scratch/bhanug/dora_staging
+Library root     : /scratch/bhanug/dora_library
+
+----------------------------------------------------------------------
+dora / batch_0001
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0001
+Staging batch            : /scratch/bhanug/dora_staging/batch_0001
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0001
+Accepted cases           : 250
+Library IDs              : synthetic_000001 to synthetic_000250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0001
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0001_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0001: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0002
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0002
+Staging batch            : /scratch/bhanug/dora_staging/batch_0002
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0002
+Accepted cases           : 250
+Library IDs              : synthetic_000251 to synthetic_000500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0002
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0002_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0002: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0003
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0003
+Staging batch            : /scratch/bhanug/dora_staging/batch_0003
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0003
+Accepted cases           : 250
+Library IDs              : synthetic_000501 to synthetic_000750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0003
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0003_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0003: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0004
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0004
+Staging batch            : /scratch/bhanug/dora_staging/batch_0004
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0004
+Accepted cases           : 250
+Library IDs              : synthetic_000751 to synthetic_001000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0004
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0004_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0004: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0005
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0005
+Staging batch            : /scratch/bhanug/dora_staging/batch_0005
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0005
+Accepted cases           : 250
+Library IDs              : synthetic_001001 to synthetic_001250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0005
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0005_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0005: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0006
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0006
+Staging batch            : /scratch/bhanug/dora_staging/batch_0006
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0006
+Accepted cases           : 250
+Library IDs              : synthetic_001251 to synthetic_001500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0006
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0006_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0006: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0007
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0007
+Staging batch            : /scratch/bhanug/dora_staging/batch_0007
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0007
+Accepted cases           : 250
+Library IDs              : synthetic_001501 to synthetic_001750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0007
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0007_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0007: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0008
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0008
+Staging batch            : /scratch/bhanug/dora_staging/batch_0008
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0008
+Accepted cases           : 250
+Library IDs              : synthetic_001751 to synthetic_002000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0008
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0008_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0008: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0009
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0009
+Staging batch            : /scratch/bhanug/dora_staging/batch_0009
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0009
+Accepted cases           : 250
+Library IDs              : synthetic_002001 to synthetic_002250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0009
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0009_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0009: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0010
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0010
+Staging batch            : /scratch/bhanug/dora_staging/batch_0010
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0010
+Accepted cases           : 250
+Library IDs              : synthetic_002251 to synthetic_002500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0010
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0010_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0010: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0011
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0011
+Staging batch            : /scratch/bhanug/dora_staging/batch_0011
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0011
+Accepted cases           : 250
+Library IDs              : synthetic_002501 to synthetic_002750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0011
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0011_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0011: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0012
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0012
+Staging batch            : /scratch/bhanug/dora_staging/batch_0012
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0012
+Accepted cases           : 250
+Library IDs              : synthetic_002751 to synthetic_003000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0012
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0012_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0012: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0013
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0013
+Staging batch            : /scratch/bhanug/dora_staging/batch_0013
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0013
+Accepted cases           : 250
+Library IDs              : synthetic_003001 to synthetic_003250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0013
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0013_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0013: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0014
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0014
+Staging batch            : /scratch/bhanug/dora_staging/batch_0014
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0014
+Accepted cases           : 250
+Library IDs              : synthetic_003251 to synthetic_003500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0014
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0014_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0014: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0015
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0015
+Staging batch            : /scratch/bhanug/dora_staging/batch_0015
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0015
+Accepted cases           : 250
+Library IDs              : synthetic_003501 to synthetic_003750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0015
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0015_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0015: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0016
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0016
+Staging batch            : /scratch/bhanug/dora_staging/batch_0016
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0016
+Accepted cases           : 250
+Library IDs              : synthetic_003751 to synthetic_004000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0016
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0016_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0016: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0017
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0017
+Staging batch            : /scratch/bhanug/dora_staging/batch_0017
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0017
+Accepted cases           : 250
+Library IDs              : synthetic_004001 to synthetic_004250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0017
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0017_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0017: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0018
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0018
+Staging batch            : /scratch/bhanug/dora_staging/batch_0018
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0018
+Accepted cases           : 250
+Library IDs              : synthetic_004251 to synthetic_004500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0018
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0018_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0018: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0019
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0019
+Staging batch            : /scratch/bhanug/dora_staging/batch_0019
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0019
+Accepted cases           : 250
+Library IDs              : synthetic_004501 to synthetic_004750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0019
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0019_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0019: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0020
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0020
+Staging batch            : /scratch/bhanug/dora_staging/batch_0020
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0020
+Accepted cases           : 250
+Library IDs              : synthetic_004751 to synthetic_005000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0020
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0020_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0020: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0021
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0021
+Staging batch            : /scratch/bhanug/dora_staging/batch_0021
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0021
+Accepted cases           : 250
+Library IDs              : synthetic_005001 to synthetic_005250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0021
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0021_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0021: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0022
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0022
+Staging batch            : /scratch/bhanug/dora_staging/batch_0022
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0022
+Accepted cases           : 250
+Library IDs              : synthetic_005251 to synthetic_005500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0022
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0022_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0022: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0023
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0023
+Staging batch            : /scratch/bhanug/dora_staging/batch_0023
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0023
+Accepted cases           : 250
+Library IDs              : synthetic_005501 to synthetic_005750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0023
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0023_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0023: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0024
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0024
+Staging batch            : /scratch/bhanug/dora_staging/batch_0024
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0024
+Accepted cases           : 250
+Library IDs              : synthetic_005751 to synthetic_006000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0024
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0024_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0024: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0025
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0025
+Staging batch            : /scratch/bhanug/dora_staging/batch_0025
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0025
+Accepted cases           : 250
+Library IDs              : synthetic_006001 to synthetic_006250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0025
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0025_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0025: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0026
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0026
+Staging batch            : /scratch/bhanug/dora_staging/batch_0026
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0026
+Accepted cases           : 250
+Library IDs              : synthetic_006251 to synthetic_006500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0026
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0026_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0026: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0027
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0027
+Staging batch            : /scratch/bhanug/dora_staging/batch_0027
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0027
+Accepted cases           : 250
+Library IDs              : synthetic_006501 to synthetic_006750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0027
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0027_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0027: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0028
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0028
+Staging batch            : /scratch/bhanug/dora_staging/batch_0028
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0028
+Accepted cases           : 250
+Library IDs              : synthetic_006751 to synthetic_007000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0028
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0028_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0028: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0029
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0029
+Staging batch            : /scratch/bhanug/dora_staging/batch_0029
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0029
+Accepted cases           : 250
+Library IDs              : synthetic_007001 to synthetic_007250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0029
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0029_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0029: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0030
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0030
+Staging batch            : /scratch/bhanug/dora_staging/batch_0030
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0030
+Accepted cases           : 250
+Library IDs              : synthetic_007251 to synthetic_007500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0030
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0030_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0030: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0031
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0031
+Staging batch            : /scratch/bhanug/dora_staging/batch_0031
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0031
+Accepted cases           : 250
+Library IDs              : synthetic_007501 to synthetic_007750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0031
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0031_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0031: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0032
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0032
+Staging batch            : /scratch/bhanug/dora_staging/batch_0032
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0032
+Accepted cases           : 250
+Library IDs              : synthetic_007751 to synthetic_008000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0032
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0032_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0032: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0033
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0033
+Staging batch            : /scratch/bhanug/dora_staging/batch_0033
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0033
+Accepted cases           : 250
+Library IDs              : synthetic_008001 to synthetic_008250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0033
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0033_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0033: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0034
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0034
+Staging batch            : /scratch/bhanug/dora_staging/batch_0034
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0034
+Accepted cases           : 250
+Library IDs              : synthetic_008251 to synthetic_008500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0034
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0034_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0034: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0035
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0035
+Staging batch            : /scratch/bhanug/dora_staging/batch_0035
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0035
+Accepted cases           : 250
+Library IDs              : synthetic_008501 to synthetic_008750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0035
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0035_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0035: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0036
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0036
+Staging batch            : /scratch/bhanug/dora_staging/batch_0036
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0036
+Accepted cases           : 250
+Library IDs              : synthetic_008751 to synthetic_009000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0036
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0036_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0036: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0037
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0037
+Staging batch            : /scratch/bhanug/dora_staging/batch_0037
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0037
+Accepted cases           : 250
+Library IDs              : synthetic_009001 to synthetic_009250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0037
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0037_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0037: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0038
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0038
+Staging batch            : /scratch/bhanug/dora_staging/batch_0038
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0038
+Accepted cases           : 250
+Library IDs              : synthetic_009251 to synthetic_009500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0038
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0038_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0038: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0039
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0039
+Staging batch            : /scratch/bhanug/dora_staging/batch_0039
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0039
+Accepted cases           : 250
+Library IDs              : synthetic_009501 to synthetic_009750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0039
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0039_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0039: ACCEPTED
+
+----------------------------------------------------------------------
+dora / batch_0040
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : dora
+Batch                    : batch_0040
+Staging batch            : /scratch/bhanug/dora_staging/batch_0040
+Library root             : /scratch/bhanug/dora_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : dora
+Accepted batch           : batch_0040
+Accepted cases           : 250
+Library IDs              : synthetic_009751 to synthetic_010000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/dora_library/batch_0040
+Acceptance audit         : /scratch/bhanug/dora_library/_provenance/dora_batch_0040_acceptance.json
+
+Staging data were preserved and were not deleted.
+dora / batch_0040: ACCEPTED
+
+======================================================================
+METHOD: lokr
+======================================================================
+Staging root     : /scratch/bhanug/lokr_staging
+Library root     : /scratch/bhanug/lokr_library
+
+----------------------------------------------------------------------
+lokr / batch_0001
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0001
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0001
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0001
+Accepted cases           : 250
+Library IDs              : synthetic_000001 to synthetic_000250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0001
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0001_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0001: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0002
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0002
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0002
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0002
+Accepted cases           : 250
+Library IDs              : synthetic_000251 to synthetic_000500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0002
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0002_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0002: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0003
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0003
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0003
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0003
+Accepted cases           : 250
+Library IDs              : synthetic_000501 to synthetic_000750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0003
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0003_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0003: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0004
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0004
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0004
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0004
+Accepted cases           : 250
+Library IDs              : synthetic_000751 to synthetic_001000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0004
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0004_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0004: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0005
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0005
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0005
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0005
+Accepted cases           : 250
+Library IDs              : synthetic_001001 to synthetic_001250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0005
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0005_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0005: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0006
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0006
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0006
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0006
+Accepted cases           : 250
+Library IDs              : synthetic_001251 to synthetic_001500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0006
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0006_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0006: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0007
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0007
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0007
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0007
+Accepted cases           : 250
+Library IDs              : synthetic_001501 to synthetic_001750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0007
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0007_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0007: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0008
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0008
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0008
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0008
+Accepted cases           : 250
+Library IDs              : synthetic_001751 to synthetic_002000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0008
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0008_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0008: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0009
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0009
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0009
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0009
+Accepted cases           : 250
+Library IDs              : synthetic_002001 to synthetic_002250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0009
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0009_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0009: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0010
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0010
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0010
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0010
+Accepted cases           : 250
+Library IDs              : synthetic_002251 to synthetic_002500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0010
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0010_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0010: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0011
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0011
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0011
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0011
+Accepted cases           : 250
+Library IDs              : synthetic_002501 to synthetic_002750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0011
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0011_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0011: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0012
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0012
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0012
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0012
+Accepted cases           : 250
+Library IDs              : synthetic_002751 to synthetic_003000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0012
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0012_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0012: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0013
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0013
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0013
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0013
+Accepted cases           : 250
+Library IDs              : synthetic_003001 to synthetic_003250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0013
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0013_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0013: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0014
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0014
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0014
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0014
+Accepted cases           : 250
+Library IDs              : synthetic_003251 to synthetic_003500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0014
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0014_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0014: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0015
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0015
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0015
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0015
+Accepted cases           : 250
+Library IDs              : synthetic_003501 to synthetic_003750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0015
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0015_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0015: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0016
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0016
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0016
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0016
+Accepted cases           : 250
+Library IDs              : synthetic_003751 to synthetic_004000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0016
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0016_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0016: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0017
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0017
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0017
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0017
+Accepted cases           : 250
+Library IDs              : synthetic_004001 to synthetic_004250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0017
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0017_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0017: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0018
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0018
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0018
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0018
+Accepted cases           : 250
+Library IDs              : synthetic_004251 to synthetic_004500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0018
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0018_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0018: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0019
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0019
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0019
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0019
+Accepted cases           : 250
+Library IDs              : synthetic_004501 to synthetic_004750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0019
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0019_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0019: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0020
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0020
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0020
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0020
+Accepted cases           : 250
+Library IDs              : synthetic_004751 to synthetic_005000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0020
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0020_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0020: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0021
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0021
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0021
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0021
+Accepted cases           : 250
+Library IDs              : synthetic_005001 to synthetic_005250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0021
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0021_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0021: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0022
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0022
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0022
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0022
+Accepted cases           : 250
+Library IDs              : synthetic_005251 to synthetic_005500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0022
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0022_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0022: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0023
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0023
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0023
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0023
+Accepted cases           : 250
+Library IDs              : synthetic_005501 to synthetic_005750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0023
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0023_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0023: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0024
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0024
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0024
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0024
+Accepted cases           : 250
+Library IDs              : synthetic_005751 to synthetic_006000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0024
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0024_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0024: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0025
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0025
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0025
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0025
+Accepted cases           : 250
+Library IDs              : synthetic_006001 to synthetic_006250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0025
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0025_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0025: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0026
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0026
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0026
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0026
+Accepted cases           : 250
+Library IDs              : synthetic_006251 to synthetic_006500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0026
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0026_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0026: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0027
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0027
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0027
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0027
+Accepted cases           : 250
+Library IDs              : synthetic_006501 to synthetic_006750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0027
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0027_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0027: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0028
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0028
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0028
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0028
+Accepted cases           : 250
+Library IDs              : synthetic_006751 to synthetic_007000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0028
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0028_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0028: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0029
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0029
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0029
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0029
+Accepted cases           : 250
+Library IDs              : synthetic_007001 to synthetic_007250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0029
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0029_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0029: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0030
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0030
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0030
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0030
+Accepted cases           : 250
+Library IDs              : synthetic_007251 to synthetic_007500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0030
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0030_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0030: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0031
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0031
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0031
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0031
+Accepted cases           : 250
+Library IDs              : synthetic_007501 to synthetic_007750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0031
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0031_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0031: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0032
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0032
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0032
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0032
+Accepted cases           : 250
+Library IDs              : synthetic_007751 to synthetic_008000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0032
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0032_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0032: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0033
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0033
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0033
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0033
+Accepted cases           : 250
+Library IDs              : synthetic_008001 to synthetic_008250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0033
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0033_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0033: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0034
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0034
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0034
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0034
+Accepted cases           : 250
+Library IDs              : synthetic_008251 to synthetic_008500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0034
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0034_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0034: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0035
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0035
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0035
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0035
+Accepted cases           : 250
+Library IDs              : synthetic_008501 to synthetic_008750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0035
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0035_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0035: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0036
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0036
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0036
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0036
+Accepted cases           : 250
+Library IDs              : synthetic_008751 to synthetic_009000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0036
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0036_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0036: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0037
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0037
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0037
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0037
+Accepted cases           : 250
+Library IDs              : synthetic_009001 to synthetic_009250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0037
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0037_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0037: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0038
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0038
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0038
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0038
+Accepted cases           : 250
+Library IDs              : synthetic_009251 to synthetic_009500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0038
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0038_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0038: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0039
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0039
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0039
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0039
+Accepted cases           : 250
+Library IDs              : synthetic_009501 to synthetic_009750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0039
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0039_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0039: ACCEPTED
+
+----------------------------------------------------------------------
+lokr / batch_0040
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : lokr
+Batch                    : batch_0040
+Staging batch            : /scratch/bhanug/lokr_staging/batch_0040
+Library root             : /scratch/bhanug/lokr_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : lokr
+Accepted batch           : batch_0040
+Accepted cases           : 250
+Library IDs              : synthetic_009751 to synthetic_010000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/lokr_library/batch_0040
+Acceptance audit         : /scratch/bhanug/lokr_library/_provenance/lokr_batch_0040_acceptance.json
+
+Staging data were preserved and were not deleted.
+lokr / batch_0040: ACCEPTED
+
+======================================================================
+METHOD: bitfit
+======================================================================
+Staging root     : /scratch/bhanug/bitfit_staging
+Library root     : /scratch/bhanug/bitfit_library
+
+----------------------------------------------------------------------
+bitfit / batch_0001
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0001
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0001
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0001
+Accepted cases           : 250
+Library IDs              : synthetic_000001 to synthetic_000250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0001
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0001_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0001: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0002
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0002
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0002
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0002
+Accepted cases           : 250
+Library IDs              : synthetic_000251 to synthetic_000500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0002
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0002_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0002: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0003
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0003
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0003
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0003
+Accepted cases           : 250
+Library IDs              : synthetic_000501 to synthetic_000750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0003
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0003_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0003: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0004
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0004
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0004
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0004
+Accepted cases           : 250
+Library IDs              : synthetic_000751 to synthetic_001000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0004
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0004_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0004: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0005
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0005
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0005
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0005
+Accepted cases           : 250
+Library IDs              : synthetic_001001 to synthetic_001250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0005
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0005_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0005: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0006
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0006
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0006
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0006
+Accepted cases           : 250
+Library IDs              : synthetic_001251 to synthetic_001500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0006
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0006_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0006: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0007
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0007
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0007
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0007
+Accepted cases           : 250
+Library IDs              : synthetic_001501 to synthetic_001750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0007
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0007_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0007: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0008
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0008
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0008
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0008
+Accepted cases           : 250
+Library IDs              : synthetic_001751 to synthetic_002000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0008
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0008_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0008: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0009
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0009
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0009
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0009
+Accepted cases           : 250
+Library IDs              : synthetic_002001 to synthetic_002250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0009
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0009_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0009: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0010
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0010
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0010
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0010
+Accepted cases           : 250
+Library IDs              : synthetic_002251 to synthetic_002500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0010
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0010_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0010: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0011
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0011
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0011
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0011
+Accepted cases           : 250
+Library IDs              : synthetic_002501 to synthetic_002750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0011
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0011_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0011: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0012
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0012
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0012
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0012
+Accepted cases           : 250
+Library IDs              : synthetic_002751 to synthetic_003000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0012
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0012_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0012: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0013
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0013
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0013
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0013
+Accepted cases           : 250
+Library IDs              : synthetic_003001 to synthetic_003250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0013
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0013_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0013: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0014
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0014
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0014
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0014
+Accepted cases           : 250
+Library IDs              : synthetic_003251 to synthetic_003500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0014
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0014_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0014: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0015
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0015
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0015
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0015
+Accepted cases           : 250
+Library IDs              : synthetic_003501 to synthetic_003750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0015
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0015_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0015: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0016
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0016
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0016
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0016
+Accepted cases           : 250
+Library IDs              : synthetic_003751 to synthetic_004000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0016
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0016_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0016: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0017
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0017
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0017
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0017
+Accepted cases           : 250
+Library IDs              : synthetic_004001 to synthetic_004250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0017
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0017_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0017: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0018
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0018
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0018
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0018
+Accepted cases           : 250
+Library IDs              : synthetic_004251 to synthetic_004500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0018
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0018_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0018: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0019
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0019
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0019
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0019
+Accepted cases           : 250
+Library IDs              : synthetic_004501 to synthetic_004750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0019
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0019_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0019: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0020
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0020
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0020
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0020
+Accepted cases           : 250
+Library IDs              : synthetic_004751 to synthetic_005000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0020
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0020_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0020: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0021
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0021
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0021
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0021
+Accepted cases           : 250
+Library IDs              : synthetic_005001 to synthetic_005250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0021
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0021_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0021: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0022
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0022
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0022
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0022
+Accepted cases           : 250
+Library IDs              : synthetic_005251 to synthetic_005500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0022
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0022_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0022: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0023
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0023
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0023
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0023
+Accepted cases           : 250
+Library IDs              : synthetic_005501 to synthetic_005750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0023
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0023_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0023: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0024
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0024
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0024
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0024
+Accepted cases           : 250
+Library IDs              : synthetic_005751 to synthetic_006000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0024
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0024_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0024: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0025
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0025
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0025
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0025
+Accepted cases           : 250
+Library IDs              : synthetic_006001 to synthetic_006250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0025
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0025_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0025: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0026
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0026
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0026
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0026
+Accepted cases           : 250
+Library IDs              : synthetic_006251 to synthetic_006500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0026
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0026_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0026: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0027
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0027
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0027
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0027
+Accepted cases           : 250
+Library IDs              : synthetic_006501 to synthetic_006750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0027
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0027_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0027: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0028
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0028
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0028
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0028
+Accepted cases           : 250
+Library IDs              : synthetic_006751 to synthetic_007000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0028
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0028_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0028: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0029
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0029
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0029
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0029
+Accepted cases           : 250
+Library IDs              : synthetic_007001 to synthetic_007250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0029
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0029_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0029: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0030
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0030
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0030
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0030
+Accepted cases           : 250
+Library IDs              : synthetic_007251 to synthetic_007500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0030
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0030_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0030: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0031
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0031
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0031
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0031
+Accepted cases           : 250
+Library IDs              : synthetic_007501 to synthetic_007750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0031
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0031_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0031: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0032
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0032
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0032
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0032
+Accepted cases           : 250
+Library IDs              : synthetic_007751 to synthetic_008000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0032
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0032_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0032: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0033
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0033
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0033
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0033
+Accepted cases           : 250
+Library IDs              : synthetic_008001 to synthetic_008250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0033
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0033_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0033: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0034
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0034
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0034
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0034
+Accepted cases           : 250
+Library IDs              : synthetic_008251 to synthetic_008500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0034
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0034_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0034: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0035
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0035
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0035
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0035
+Accepted cases           : 250
+Library IDs              : synthetic_008501 to synthetic_008750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0035
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0035_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0035: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0036
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0036
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0036
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0036
+Accepted cases           : 250
+Library IDs              : synthetic_008751 to synthetic_009000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0036
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0036_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0036: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0037
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0037
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0037
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0037
+Accepted cases           : 250
+Library IDs              : synthetic_009001 to synthetic_009250
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0037
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0037_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0037: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0038
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0038
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0038
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0038
+Accepted cases           : 250
+Library IDs              : synthetic_009251 to synthetic_009500
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0038
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0038_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0038: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0039
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0039
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0039
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0039
+Accepted cases           : 250
+Library IDs              : synthetic_009501 to synthetic_009750
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0039
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0039_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0039: ACCEPTED
+
+----------------------------------------------------------------------
+bitfit / batch_0040
+----------------------------------------------------------------------
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE
+==============================================================================
+
+Method                   : bitfit
+Batch                    : batch_0040
+Staging batch            : /scratch/bhanug/bitfit_staging/batch_0040
+Library root             : /scratch/bhanug/bitfit_library
+
+==============================================================================
+DETERMINISTIC PEFT BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Method                   : bitfit
+Accepted batch           : batch_0040
+Accepted cases           : 250
+Library IDs              : synthetic_009751 to synthetic_010000
+Files checksummed        : 751
+Accepted batch root      : /scratch/bhanug/bitfit_library/batch_0040
+Acceptance audit         : /scratch/bhanug/bitfit_library/_provenance/bitfit_batch_0040_acceptance.json
+
+Staging data were preserved and were not deleted.
+bitfit / batch_0040: ACCEPTED
+
+======================================================================
+ALL DETERMINISTIC PEFT BATCHES ACCOUNTED FOR
+======================================================================
+
+regional_lora
+-------------
+accepted batches : 40
+accepted cases   : 10000
+unique case IDs  : 10000
+acceptance audits: 40
+verdict          : PASS
+
+dora
+----
+accepted batches : 40
+accepted cases   : 10000
+unique case IDs  : 10000
+acceptance audits: 40
+verdict          : PASS
+
+lokr
+----
+accepted batches : 40
+accepted cases   : 10000
+unique case IDs  : 10000
+acceptance audits: 40
+verdict          : PASS
+
+bitfit
+------
+accepted batches : 40
+accepted cases   : 10000
+unique case IDs  : 10000
+acceptance audits: 40
+verdict          : PASS
+
+======================================================================
+OVERALL VERDICT: PASS
+======================================================================
+
+Finished: Thu Sep 24 02:05:40 PM EDT 2026

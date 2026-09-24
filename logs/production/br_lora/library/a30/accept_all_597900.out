@@ -1,0 +1,1859 @@
+======================================================================
+BR-LoRA A30 LIBRARY ACCEPTANCE
+======================================================================
+Host             : fal031
+Date             : Thu Sep 24 10:26:57 AM EDT 2026
+Git commit       : d95a050b2ab903372018a40098c40a696704fd9a
+SLURM_JOB_ID     : 597900
+Python           : /home/bhanug/.conda/envs/brats-nnunet/bin/python
+Staging root     : /scratch/bhanug/br_lora_a30_staging
+Library root     : /scratch/bhanug/br_lora_a30_library
+
+
+======================================================================
+CHECKING batch_0001
+======================================================================
+batch_0001: already represented in master.
+Current master rows: 750
+batch_0001: SKIP
+
+======================================================================
+CHECKING batch_0002
+======================================================================
+batch_0002: already represented in master.
+Current master rows: 750
+batch_0002: SKIP
+
+======================================================================
+CHECKING batch_0003
+======================================================================
+batch_0003: already represented in master.
+Current master rows: 750
+batch_0003: SKIP
+
+======================================================================
+CHECKING batch_0004
+======================================================================
+Master rows before: 750
+Accepting batch_0004...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0004
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0004
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 750
+Library IDs              : synthetic_000001 to synthetic_000750
+Current master SHA-256   : 9981d1845e5eb878e7f1603ce31c026b86d3bad989c383dd665aee92e2241019
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0004
+Accepted cases           : 250
+Master rows before       : 750
+Master rows after        : 1000
+Library IDs              : synthetic_000001 to synthetic_001000
+Unique pair keys         : 1000
+Unique donor slices      : 1000
+Unique external bases    : 853
+Master SHA-256           : 289a80b7244a712a2eade9be9127dca270966eb69a8930b6808e45592276a6cb
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0004_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_00750_pre_batch_0004.csv
+
+Staging batch was preserved after acceptance.
+batch_0004: ACCEPTED
+
+======================================================================
+CHECKING batch_0005
+======================================================================
+Master rows before: 1000
+Accepting batch_0005...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0005
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0005
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 1000
+Library IDs              : synthetic_000001 to synthetic_001000
+Current master SHA-256   : 289a80b7244a712a2eade9be9127dca270966eb69a8930b6808e45592276a6cb
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0005
+Accepted cases           : 250
+Master rows before       : 1000
+Master rows after        : 1250
+Library IDs              : synthetic_000001 to synthetic_001250
+Unique pair keys         : 1250
+Unique donor slices      : 1250
+Unique external bases    : 1071
+Master SHA-256           : 1423fe12428a3840cef012f0e40e59ba815638264ee8f1cde5fabac6d78fd3c7
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0005_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_01000_pre_batch_0005.csv
+
+Staging batch was preserved after acceptance.
+batch_0005: ACCEPTED
+
+======================================================================
+CHECKING batch_0006
+======================================================================
+Master rows before: 1250
+Accepting batch_0006...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0006
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0006
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 1250
+Library IDs              : synthetic_000001 to synthetic_001250
+Current master SHA-256   : 1423fe12428a3840cef012f0e40e59ba815638264ee8f1cde5fabac6d78fd3c7
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0006
+Accepted cases           : 250
+Master rows before       : 1250
+Master rows after        : 1500
+Library IDs              : synthetic_000001 to synthetic_001500
+Unique pair keys         : 1500
+Unique donor slices      : 1500
+Unique external bases    : 1295
+Master SHA-256           : 212746f9df784322421925da2e3c93dd36dc5714f1d46f1eb8543fb60196f228
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0006_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_01250_pre_batch_0006.csv
+
+Staging batch was preserved after acceptance.
+batch_0006: ACCEPTED
+
+======================================================================
+CHECKING batch_0007
+======================================================================
+Master rows before: 1500
+Accepting batch_0007...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0007
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0007
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 1500
+Library IDs              : synthetic_000001 to synthetic_001500
+Current master SHA-256   : 212746f9df784322421925da2e3c93dd36dc5714f1d46f1eb8543fb60196f228
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0007
+Accepted cases           : 250
+Master rows before       : 1500
+Master rows after        : 1750
+Library IDs              : synthetic_000001 to synthetic_001750
+Unique pair keys         : 1750
+Unique donor slices      : 1750
+Unique external bases    : 1513
+Master SHA-256           : 309f9b708251a0b1a4f44644621436e31245793975f52de55acd40229ddebc2a
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0007_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_01500_pre_batch_0007.csv
+
+Staging batch was preserved after acceptance.
+batch_0007: ACCEPTED
+
+======================================================================
+CHECKING batch_0008
+======================================================================
+Master rows before: 1750
+Accepting batch_0008...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0008
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0008
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 1750
+Library IDs              : synthetic_000001 to synthetic_001750
+Current master SHA-256   : 309f9b708251a0b1a4f44644621436e31245793975f52de55acd40229ddebc2a
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0008
+Accepted cases           : 250
+Master rows before       : 1750
+Master rows after        : 2000
+Library IDs              : synthetic_000001 to synthetic_002000
+Unique pair keys         : 2000
+Unique donor slices      : 2000
+Unique external bases    : 1710
+Master SHA-256           : f5b989f326078cbc000071715095f1a2764f7aef8fb1313f0d7cef18fb26f8b6
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0008_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_01750_pre_batch_0008.csv
+
+Staging batch was preserved after acceptance.
+batch_0008: ACCEPTED
+
+======================================================================
+CHECKING batch_0009
+======================================================================
+Master rows before: 2000
+Accepting batch_0009...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0009
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0009
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 2000
+Library IDs              : synthetic_000001 to synthetic_002000
+Current master SHA-256   : f5b989f326078cbc000071715095f1a2764f7aef8fb1313f0d7cef18fb26f8b6
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0009
+Accepted cases           : 250
+Master rows before       : 2000
+Master rows after        : 2250
+Library IDs              : synthetic_000001 to synthetic_002250
+Unique pair keys         : 2250
+Unique donor slices      : 2250
+Unique external bases    : 1918
+Master SHA-256           : 20c959aca314704e992919c555bb4f747b0f5614854c4d3ce5da44117ed81566
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0009_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_02000_pre_batch_0009.csv
+
+Staging batch was preserved after acceptance.
+batch_0009: ACCEPTED
+
+======================================================================
+CHECKING batch_0010
+======================================================================
+Master rows before: 2250
+Accepting batch_0010...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0010
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0010
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 2250
+Library IDs              : synthetic_000001 to synthetic_002250
+Current master SHA-256   : 20c959aca314704e992919c555bb4f747b0f5614854c4d3ce5da44117ed81566
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0010
+Accepted cases           : 250
+Master rows before       : 2250
+Master rows after        : 2500
+Library IDs              : synthetic_000001 to synthetic_002500
+Unique pair keys         : 2500
+Unique donor slices      : 2500
+Unique external bases    : 2152
+Master SHA-256           : 0521805f969e06aab6e49c959bbb6bbd71ee0a4c8381757f737dcc1d030efb27
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0010_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_02250_pre_batch_0010.csv
+
+Staging batch was preserved after acceptance.
+batch_0010: ACCEPTED
+
+======================================================================
+CHECKING batch_0011
+======================================================================
+Master rows before: 2500
+Accepting batch_0011...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0011
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0011
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 2500
+Library IDs              : synthetic_000001 to synthetic_002500
+Current master SHA-256   : 0521805f969e06aab6e49c959bbb6bbd71ee0a4c8381757f737dcc1d030efb27
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0011
+Accepted cases           : 250
+Master rows before       : 2500
+Master rows after        : 2750
+Library IDs              : synthetic_000001 to synthetic_002750
+Unique pair keys         : 2750
+Unique donor slices      : 2750
+Unique external bases    : 2379
+Master SHA-256           : 8287555d747485583507644adb17a0596658858d81b12760e53b0914f33e3460
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0011_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_02500_pre_batch_0011.csv
+
+Staging batch was preserved after acceptance.
+batch_0011: ACCEPTED
+
+======================================================================
+CHECKING batch_0012
+======================================================================
+Master rows before: 2750
+Accepting batch_0012...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0012
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0012
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 2750
+Library IDs              : synthetic_000001 to synthetic_002750
+Current master SHA-256   : 8287555d747485583507644adb17a0596658858d81b12760e53b0914f33e3460
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0012
+Accepted cases           : 250
+Master rows before       : 2750
+Master rows after        : 3000
+Library IDs              : synthetic_000001 to synthetic_003000
+Unique pair keys         : 3000
+Unique donor slices      : 3000
+Unique external bases    : 2564
+Master SHA-256           : e4346e5d36fcf9fd561f232980031329aa29242606ccaf57e4f7172e9ff9f2c0
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0012_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_02750_pre_batch_0012.csv
+
+Staging batch was preserved after acceptance.
+batch_0012: ACCEPTED
+
+======================================================================
+CHECKING batch_0013
+======================================================================
+Master rows before: 3000
+Accepting batch_0013...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0013
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0013
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 3000
+Library IDs              : synthetic_000001 to synthetic_003000
+Current master SHA-256   : e4346e5d36fcf9fd561f232980031329aa29242606ccaf57e4f7172e9ff9f2c0
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0013
+Accepted cases           : 250
+Master rows before       : 3000
+Master rows after        : 3250
+Library IDs              : synthetic_000001 to synthetic_003250
+Unique pair keys         : 3250
+Unique donor slices      : 3250
+Unique external bases    : 2785
+Master SHA-256           : 2fe1e692532037dab27418642e799be16118bbf745712d1aecdec427a00dc43c
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0013_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_03000_pre_batch_0013.csv
+
+Staging batch was preserved after acceptance.
+batch_0013: ACCEPTED
+
+======================================================================
+CHECKING batch_0014
+======================================================================
+Master rows before: 3250
+Accepting batch_0014...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0014
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0014
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 3250
+Library IDs              : synthetic_000001 to synthetic_003250
+Current master SHA-256   : 2fe1e692532037dab27418642e799be16118bbf745712d1aecdec427a00dc43c
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0014
+Accepted cases           : 250
+Master rows before       : 3250
+Master rows after        : 3500
+Library IDs              : synthetic_000001 to synthetic_003500
+Unique pair keys         : 3500
+Unique donor slices      : 3500
+Unique external bases    : 2966
+Master SHA-256           : f4001c254c722444c3c9fbdbdcd4f28848a61f8415a76f2f66fedd39c0cc6b60
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0014_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_03250_pre_batch_0014.csv
+
+Staging batch was preserved after acceptance.
+batch_0014: ACCEPTED
+
+======================================================================
+CHECKING batch_0015
+======================================================================
+Master rows before: 3500
+Accepting batch_0015...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0015
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0015
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 3500
+Library IDs              : synthetic_000001 to synthetic_003500
+Current master SHA-256   : f4001c254c722444c3c9fbdbdcd4f28848a61f8415a76f2f66fedd39c0cc6b60
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0015
+Accepted cases           : 250
+Master rows before       : 3500
+Master rows after        : 3750
+Library IDs              : synthetic_000001 to synthetic_003750
+Unique pair keys         : 3750
+Unique donor slices      : 3750
+Unique external bases    : 3122
+Master SHA-256           : d96504f78d73cfb29352d6708e00c1bb024c5f0e44666562faf3126e8aeb0875
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0015_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_03500_pre_batch_0015.csv
+
+Staging batch was preserved after acceptance.
+batch_0015: ACCEPTED
+
+======================================================================
+CHECKING batch_0016
+======================================================================
+Master rows before: 3750
+Accepting batch_0016...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0016
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0016
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 3750
+Library IDs              : synthetic_000001 to synthetic_003750
+Current master SHA-256   : d96504f78d73cfb29352d6708e00c1bb024c5f0e44666562faf3126e8aeb0875
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0016
+Accepted cases           : 250
+Master rows before       : 3750
+Master rows after        : 4000
+Library IDs              : synthetic_000001 to synthetic_004000
+Unique pair keys         : 4000
+Unique donor slices      : 4000
+Unique external bases    : 3312
+Master SHA-256           : 42a780302be7108ee6d3992801191c3ceb622d7bafb5146bcd67a9c8b074f501
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0016_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_03750_pre_batch_0016.csv
+
+Staging batch was preserved after acceptance.
+batch_0016: ACCEPTED
+
+======================================================================
+CHECKING batch_0017
+======================================================================
+Master rows before: 4000
+Accepting batch_0017...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0017
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0017
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 4000
+Library IDs              : synthetic_000001 to synthetic_004000
+Current master SHA-256   : 42a780302be7108ee6d3992801191c3ceb622d7bafb5146bcd67a9c8b074f501
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0017
+Accepted cases           : 250
+Master rows before       : 4000
+Master rows after        : 4250
+Library IDs              : synthetic_000001 to synthetic_004250
+Unique pair keys         : 4250
+Unique donor slices      : 4250
+Unique external bases    : 3528
+Master SHA-256           : f686534291e07bd7e6cb9f7ab55cea90326a3d7c31aa8c43595d999771c296d4
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0017_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_04000_pre_batch_0017.csv
+
+Staging batch was preserved after acceptance.
+batch_0017: ACCEPTED
+
+======================================================================
+CHECKING batch_0018
+======================================================================
+Master rows before: 4250
+Accepting batch_0018...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0018
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0018
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 4250
+Library IDs              : synthetic_000001 to synthetic_004250
+Current master SHA-256   : f686534291e07bd7e6cb9f7ab55cea90326a3d7c31aa8c43595d999771c296d4
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0018
+Accepted cases           : 250
+Master rows before       : 4250
+Master rows after        : 4500
+Library IDs              : synthetic_000001 to synthetic_004500
+Unique pair keys         : 4500
+Unique donor slices      : 4500
+Unique external bases    : 3673
+Master SHA-256           : 7675317118a4b41a0adc3507b7bf49c5b66c22f7c644c7ff257f432ee3beef63
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0018_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_04250_pre_batch_0018.csv
+
+Staging batch was preserved after acceptance.
+batch_0018: ACCEPTED
+
+======================================================================
+CHECKING batch_0019
+======================================================================
+Master rows before: 4500
+Accepting batch_0019...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0019
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0019
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 4500
+Library IDs              : synthetic_000001 to synthetic_004500
+Current master SHA-256   : 7675317118a4b41a0adc3507b7bf49c5b66c22f7c644c7ff257f432ee3beef63
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0019
+Accepted cases           : 250
+Master rows before       : 4500
+Master rows after        : 4750
+Library IDs              : synthetic_000001 to synthetic_004750
+Unique pair keys         : 4750
+Unique donor slices      : 4750
+Unique external bases    : 3894
+Master SHA-256           : 4eddfcd60348620a61dab85d53e3eb95062a8bf27e6f2e03e7c395f12891f124
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0019_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_04500_pre_batch_0019.csv
+
+Staging batch was preserved after acceptance.
+batch_0019: ACCEPTED
+
+======================================================================
+CHECKING batch_0020
+======================================================================
+Master rows before: 4750
+Accepting batch_0020...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0020
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0020
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 4750
+Library IDs              : synthetic_000001 to synthetic_004750
+Current master SHA-256   : 4eddfcd60348620a61dab85d53e3eb95062a8bf27e6f2e03e7c395f12891f124
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0020
+Accepted cases           : 250
+Master rows before       : 4750
+Master rows after        : 5000
+Library IDs              : synthetic_000001 to synthetic_005000
+Unique pair keys         : 5000
+Unique donor slices      : 5000
+Unique external bases    : 4078
+Master SHA-256           : 474ce13a5518401c6a66f1a1039c19964f31909a4d8f624c271d934ad99763ab
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0020_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_04750_pre_batch_0020.csv
+
+Staging batch was preserved after acceptance.
+batch_0020: ACCEPTED
+
+======================================================================
+CHECKING batch_0021
+======================================================================
+Master rows before: 5000
+Accepting batch_0021...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0021
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0021
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 5000
+Library IDs              : synthetic_000001 to synthetic_005000
+Current master SHA-256   : 474ce13a5518401c6a66f1a1039c19964f31909a4d8f624c271d934ad99763ab
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0021
+Accepted cases           : 250
+Master rows before       : 5000
+Master rows after        : 5250
+Library IDs              : synthetic_000001 to synthetic_005250
+Unique pair keys         : 5250
+Unique donor slices      : 5250
+Unique external bases    : 4300
+Master SHA-256           : 29bf7e3b25348991e171bd4fd74e9311c03e77317c8f362a2c9dcc93a4064c5f
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0021_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_05000_pre_batch_0021.csv
+
+Staging batch was preserved after acceptance.
+batch_0021: ACCEPTED
+
+======================================================================
+CHECKING batch_0022
+======================================================================
+Master rows before: 5250
+Accepting batch_0022...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0022
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0022
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 5250
+Library IDs              : synthetic_000001 to synthetic_005250
+Current master SHA-256   : 29bf7e3b25348991e171bd4fd74e9311c03e77317c8f362a2c9dcc93a4064c5f
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0022
+Accepted cases           : 250
+Master rows before       : 5250
+Master rows after        : 5500
+Library IDs              : synthetic_000001 to synthetic_005500
+Unique pair keys         : 5500
+Unique donor slices      : 5500
+Unique external bases    : 4480
+Master SHA-256           : 7dc1cb9162d3160bb6eb1dfbb3f8033a8f59e0dbc13cfda415b7f1e3904e71cf
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0022_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_05250_pre_batch_0022.csv
+
+Staging batch was preserved after acceptance.
+batch_0022: ACCEPTED
+
+======================================================================
+CHECKING batch_0023
+======================================================================
+Master rows before: 5500
+Accepting batch_0023...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0023
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0023
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 5500
+Library IDs              : synthetic_000001 to synthetic_005500
+Current master SHA-256   : 7dc1cb9162d3160bb6eb1dfbb3f8033a8f59e0dbc13cfda415b7f1e3904e71cf
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0023
+Accepted cases           : 250
+Master rows before       : 5500
+Master rows after        : 5750
+Library IDs              : synthetic_000001 to synthetic_005750
+Unique pair keys         : 5750
+Unique donor slices      : 5750
+Unique external bases    : 4706
+Master SHA-256           : 348db0d3cc70d94aff3af7cf100cd023d04f2fec14477c99732263bd8471a2f4
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0023_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_05500_pre_batch_0023.csv
+
+Staging batch was preserved after acceptance.
+batch_0023: ACCEPTED
+
+======================================================================
+CHECKING batch_0024
+======================================================================
+Master rows before: 5750
+Accepting batch_0024...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0024
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0024
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 5750
+Library IDs              : synthetic_000001 to synthetic_005750
+Current master SHA-256   : 348db0d3cc70d94aff3af7cf100cd023d04f2fec14477c99732263bd8471a2f4
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0024
+Accepted cases           : 250
+Master rows before       : 5750
+Master rows after        : 6000
+Library IDs              : synthetic_000001 to synthetic_006000
+Unique pair keys         : 6000
+Unique donor slices      : 6000
+Unique external bases    : 4904
+Master SHA-256           : d976ec0ec8c92c1cc912d4219b382db7f61efa50f88b7af444de689f54272f02
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0024_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_05750_pre_batch_0024.csv
+
+Staging batch was preserved after acceptance.
+batch_0024: ACCEPTED
+
+======================================================================
+CHECKING batch_0025
+======================================================================
+Master rows before: 6000
+Accepting batch_0025...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0025
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0025
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 6000
+Library IDs              : synthetic_000001 to synthetic_006000
+Current master SHA-256   : d976ec0ec8c92c1cc912d4219b382db7f61efa50f88b7af444de689f54272f02
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0025
+Accepted cases           : 250
+Master rows before       : 6000
+Master rows after        : 6250
+Library IDs              : synthetic_000001 to synthetic_006250
+Unique pair keys         : 6250
+Unique donor slices      : 6250
+Unique external bases    : 5098
+Master SHA-256           : 2c760df238101d81c084310c6084280c2d36d6f503b9951695b1a2a596d80473
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0025_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_06000_pre_batch_0025.csv
+
+Staging batch was preserved after acceptance.
+batch_0025: ACCEPTED
+
+======================================================================
+CHECKING batch_0026
+======================================================================
+Master rows before: 6250
+Accepting batch_0026...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0026
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0026
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 6250
+Library IDs              : synthetic_000001 to synthetic_006250
+Current master SHA-256   : 2c760df238101d81c084310c6084280c2d36d6f503b9951695b1a2a596d80473
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0026
+Accepted cases           : 250
+Master rows before       : 6250
+Master rows after        : 6500
+Library IDs              : synthetic_000001 to synthetic_006500
+Unique pair keys         : 6500
+Unique donor slices      : 6500
+Unique external bases    : 5308
+Master SHA-256           : 1a6375de9bb62536c0fd59bd388549e8eee58f659ee8afb59710b66c212ac78a
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0026_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_06250_pre_batch_0026.csv
+
+Staging batch was preserved after acceptance.
+batch_0026: ACCEPTED
+
+======================================================================
+CHECKING batch_0027
+======================================================================
+Master rows before: 6500
+Accepting batch_0027...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0027
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0027
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 6500
+Library IDs              : synthetic_000001 to synthetic_006500
+Current master SHA-256   : 1a6375de9bb62536c0fd59bd388549e8eee58f659ee8afb59710b66c212ac78a
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0027
+Accepted cases           : 250
+Master rows before       : 6500
+Master rows after        : 6750
+Library IDs              : synthetic_000001 to synthetic_006750
+Unique pair keys         : 6750
+Unique donor slices      : 6750
+Unique external bases    : 5558
+Master SHA-256           : 19bf7429347e7740e8749c268a4c8d676cd8c7e2dd9a62e600adc1c148c2eb7f
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0027_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_06500_pre_batch_0027.csv
+
+Staging batch was preserved after acceptance.
+batch_0027: ACCEPTED
+
+======================================================================
+CHECKING batch_0028
+======================================================================
+Master rows before: 6750
+Accepting batch_0028...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0028
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0028
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 6750
+Library IDs              : synthetic_000001 to synthetic_006750
+Current master SHA-256   : 19bf7429347e7740e8749c268a4c8d676cd8c7e2dd9a62e600adc1c148c2eb7f
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0028
+Accepted cases           : 250
+Master rows before       : 6750
+Master rows after        : 7000
+Library IDs              : synthetic_000001 to synthetic_007000
+Unique pair keys         : 7000
+Unique donor slices      : 7000
+Unique external bases    : 5775
+Master SHA-256           : 4b872d204a2df10b0a8169c21fa37c0f38b2cddc0ca84bc48a7594a8c0e62adc
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0028_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_06750_pre_batch_0028.csv
+
+Staging batch was preserved after acceptance.
+batch_0028: ACCEPTED
+
+======================================================================
+CHECKING batch_0029
+======================================================================
+Master rows before: 7000
+Accepting batch_0029...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0029
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0029
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 7000
+Library IDs              : synthetic_000001 to synthetic_007000
+Current master SHA-256   : 4b872d204a2df10b0a8169c21fa37c0f38b2cddc0ca84bc48a7594a8c0e62adc
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0029
+Accepted cases           : 250
+Master rows before       : 7000
+Master rows after        : 7250
+Library IDs              : synthetic_000001 to synthetic_007250
+Unique pair keys         : 7250
+Unique donor slices      : 7250
+Unique external bases    : 6001
+Master SHA-256           : c8485c7a9aaa932cbe7fae428db8d6163e069b4a719f7bcd057631839a26dab9
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0029_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_07000_pre_batch_0029.csv
+
+Staging batch was preserved after acceptance.
+batch_0029: ACCEPTED
+
+======================================================================
+CHECKING batch_0030
+======================================================================
+Master rows before: 7250
+Accepting batch_0030...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0030
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0030
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 7250
+Library IDs              : synthetic_000001 to synthetic_007250
+Current master SHA-256   : c8485c7a9aaa932cbe7fae428db8d6163e069b4a719f7bcd057631839a26dab9
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0030
+Accepted cases           : 250
+Master rows before       : 7250
+Master rows after        : 7500
+Library IDs              : synthetic_000001 to synthetic_007500
+Unique pair keys         : 7500
+Unique donor slices      : 7500
+Unique external bases    : 6235
+Master SHA-256           : 3e212c2ca37cde01d30e34136a5f3c2e138293bcd7322c6baeb64942140c97a2
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0030_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_07250_pre_batch_0030.csv
+
+Staging batch was preserved after acceptance.
+batch_0030: ACCEPTED
+
+======================================================================
+CHECKING batch_0031
+======================================================================
+Master rows before: 7500
+Accepting batch_0031...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0031
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0031
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 7500
+Library IDs              : synthetic_000001 to synthetic_007500
+Current master SHA-256   : 3e212c2ca37cde01d30e34136a5f3c2e138293bcd7322c6baeb64942140c97a2
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0031
+Accepted cases           : 250
+Master rows before       : 7500
+Master rows after        : 7750
+Library IDs              : synthetic_000001 to synthetic_007750
+Unique pair keys         : 7750
+Unique donor slices      : 7750
+Unique external bases    : 6426
+Master SHA-256           : 3052e6c22931a6867c89560e5709e7bf9b3695b1fa218110f7592364682b3c2d
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0031_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_07500_pre_batch_0031.csv
+
+Staging batch was preserved after acceptance.
+batch_0031: ACCEPTED
+
+======================================================================
+CHECKING batch_0032
+======================================================================
+Master rows before: 7750
+Accepting batch_0032...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0032
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0032
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 7750
+Library IDs              : synthetic_000001 to synthetic_007750
+Current master SHA-256   : 3052e6c22931a6867c89560e5709e7bf9b3695b1fa218110f7592364682b3c2d
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0032
+Accepted cases           : 250
+Master rows before       : 7750
+Master rows after        : 8000
+Library IDs              : synthetic_000001 to synthetic_008000
+Unique pair keys         : 8000
+Unique donor slices      : 8000
+Unique external bases    : 6618
+Master SHA-256           : eddd7c491b73f04976d650496056d980d3d2731eaa7cb0932ea3c930cf21a16c
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0032_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_07750_pre_batch_0032.csv
+
+Staging batch was preserved after acceptance.
+batch_0032: ACCEPTED
+
+======================================================================
+CHECKING batch_0033
+======================================================================
+Master rows before: 8000
+Accepting batch_0033...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0033
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0033
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 8000
+Library IDs              : synthetic_000001 to synthetic_008000
+Current master SHA-256   : eddd7c491b73f04976d650496056d980d3d2731eaa7cb0932ea3c930cf21a16c
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0033
+Accepted cases           : 250
+Master rows before       : 8000
+Master rows after        : 8250
+Library IDs              : synthetic_000001 to synthetic_008250
+Unique pair keys         : 8250
+Unique donor slices      : 8250
+Unique external bases    : 6786
+Master SHA-256           : bfdadddb17bcf43b06fbbf2042debf6e02daecec3b629f93b7e6ed95e0f74ec1
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0033_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_08000_pre_batch_0033.csv
+
+Staging batch was preserved after acceptance.
+batch_0033: ACCEPTED
+
+======================================================================
+CHECKING batch_0034
+======================================================================
+Master rows before: 8250
+Accepting batch_0034...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0034
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0034
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 8250
+Library IDs              : synthetic_000001 to synthetic_008250
+Current master SHA-256   : bfdadddb17bcf43b06fbbf2042debf6e02daecec3b629f93b7e6ed95e0f74ec1
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0034
+Accepted cases           : 250
+Master rows before       : 8250
+Master rows after        : 8500
+Library IDs              : synthetic_000001 to synthetic_008500
+Unique pair keys         : 8500
+Unique donor slices      : 8500
+Unique external bases    : 6968
+Master SHA-256           : 9ed2430402a1bb596051b4e4e1656f93fc98b6518b3df6c43f54d909a353a368
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0034_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_08250_pre_batch_0034.csv
+
+Staging batch was preserved after acceptance.
+batch_0034: ACCEPTED
+
+======================================================================
+CHECKING batch_0035
+======================================================================
+Master rows before: 8500
+Accepting batch_0035...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0035
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0035
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 8500
+Library IDs              : synthetic_000001 to synthetic_008500
+Current master SHA-256   : 9ed2430402a1bb596051b4e4e1656f93fc98b6518b3df6c43f54d909a353a368
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0035
+Accepted cases           : 250
+Master rows before       : 8500
+Master rows after        : 8750
+Library IDs              : synthetic_000001 to synthetic_008750
+Unique pair keys         : 8750
+Unique donor slices      : 8750
+Unique external bases    : 7148
+Master SHA-256           : c2e123b8543a218528c0f4f750c3cae1c53ca257fbc790bf587b97ed58ade110
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0035_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_08500_pre_batch_0035.csv
+
+Staging batch was preserved after acceptance.
+batch_0035: ACCEPTED
+
+======================================================================
+CHECKING batch_0036
+======================================================================
+Master rows before: 8750
+Accepting batch_0036...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0036
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0036
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 8750
+Library IDs              : synthetic_000001 to synthetic_008750
+Current master SHA-256   : c2e123b8543a218528c0f4f750c3cae1c53ca257fbc790bf587b97ed58ade110
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0036
+Accepted cases           : 250
+Master rows before       : 8750
+Master rows after        : 9000
+Library IDs              : synthetic_000001 to synthetic_009000
+Unique pair keys         : 9000
+Unique donor slices      : 9000
+Unique external bases    : 7357
+Master SHA-256           : 46274533f678fdc54161af05f4b9c23c9432bf63f48618437a5ee8d6fb677c4f
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0036_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_08750_pre_batch_0036.csv
+
+Staging batch was preserved after acceptance.
+batch_0036: ACCEPTED
+
+======================================================================
+CHECKING batch_0037
+======================================================================
+Master rows before: 9000
+Accepting batch_0037...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0037
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0037
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 9000
+Library IDs              : synthetic_000001 to synthetic_009000
+Current master SHA-256   : 46274533f678fdc54161af05f4b9c23c9432bf63f48618437a5ee8d6fb677c4f
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0037
+Accepted cases           : 250
+Master rows before       : 9000
+Master rows after        : 9250
+Library IDs              : synthetic_000001 to synthetic_009250
+Unique pair keys         : 9250
+Unique donor slices      : 9250
+Unique external bases    : 7546
+Master SHA-256           : 041b4e8584008cd78c52966198e8b19691cbb1c737dd97671c4607ebb9ffe091
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0037_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_09000_pre_batch_0037.csv
+
+Staging batch was preserved after acceptance.
+batch_0037: ACCEPTED
+
+======================================================================
+CHECKING batch_0038
+======================================================================
+Master rows before: 9250
+Accepting batch_0038...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0038
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0038
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 9250
+Library IDs              : synthetic_000001 to synthetic_009250
+Current master SHA-256   : 041b4e8584008cd78c52966198e8b19691cbb1c737dd97671c4607ebb9ffe091
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0038
+Accepted cases           : 250
+Master rows before       : 9250
+Master rows after        : 9500
+Library IDs              : synthetic_000001 to synthetic_009500
+Unique pair keys         : 9500
+Unique donor slices      : 9500
+Unique external bases    : 7724
+Master SHA-256           : 5038846588a1aabd8474eea41f090ec2a4d4f95f34cd1eade08b4d7b286af9e2
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0038_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_09250_pre_batch_0038.csv
+
+Staging batch was preserved after acceptance.
+batch_0038: ACCEPTED
+
+======================================================================
+CHECKING batch_0039
+======================================================================
+Master rows before: 9500
+Accepting batch_0039...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0039
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0039
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 9500
+Library IDs              : synthetic_000001 to synthetic_009500
+Current master SHA-256   : 5038846588a1aabd8474eea41f090ec2a4d4f95f34cd1eade08b4d7b286af9e2
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0039
+Accepted cases           : 250
+Master rows before       : 9500
+Master rows after        : 9750
+Library IDs              : synthetic_000001 to synthetic_009750
+Unique pair keys         : 9750
+Unique donor slices      : 9750
+Unique external bases    : 7916
+Master SHA-256           : f6838ebe4b8b459265fb55af59bd5da309dce42f35e755e0d5c569a5fa65e337
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0039_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_09500_pre_batch_0039.csv
+
+Staging batch was preserved after acceptance.
+batch_0039: ACCEPTED
+
+======================================================================
+CHECKING batch_0040
+======================================================================
+Master rows before: 9750
+Accepting batch_0040...
+
+==============================================================================
+BR-LoRA BATCH ACCEPTANCE
+==============================================================================
+
+Batch                    : batch_0040
+Staging batch            : /scratch/bhanug/br_lora_a30_staging/batch_0040
+Current master           : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest.csv
+
+===== BATCH INTEGRITY CHECK =====
+Files                    : 1501
+Production SHA-256       : MATCH
+
+===== PRODUCTION AUDIT =====
+Status                   : PASS
+Cases                    : 250
+Posterior samples        : 100
+Evaluation seed          : 42
+Execution manifest hash  : MATCH
+
+===== MASTER PRE-STATE =====
+Rows                     : 9750
+Library IDs              : synthetic_000001 to synthetic_009750
+Current master SHA-256   : f6838ebe4b8b459265fb55af59bd5da309dce42f35e755e0d5c569a5fa65e337
+
+==============================================================================
+BATCH ACCEPTANCE: PASS
+==============================================================================
+
+Accepted batch           : batch_0040
+Accepted cases           : 250
+Master rows before       : 9750
+Master rows after        : 10000
+Library IDs              : synthetic_000001 to synthetic_010000
+Unique pair keys         : 10000
+Unique donor slices      : 10000
+Unique external bases    : 8145
+Master SHA-256           : 5d034c4a7151409b109d8ab688a8498be8e7d2985b19f8568669cc0495863c72
+Acceptance audit         : /scratch/bhanug/br_lora_a30_library/audits/br_lora_batch_0040_acceptance.json
+Pre-promotion snapshot   : /scratch/bhanug/br_lora_a30_library/manifests/br_lora_library_manifest_09750_pre_batch_0040.csv
+
+Staging batch was preserved after acceptance.
+batch_0040: ACCEPTED
+
+======================================================================
+ALL BR-LoRA BATCHES ACCOUNTED FOR
+======================================================================
+Master rows        : 10000
+First library ID   : synthetic_000001
+Last library ID    : synthetic_010000
+Unique IDs         : 10000
+Unique pair keys   : 10000
+Unique donor slices: 10000
+
+FINAL MASTER SIZE CHECK: PASS
+
+Finished: Thu Sep 24 11:12:40 AM EDT 2026

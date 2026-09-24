@@ -7,8 +7,8 @@ The same frozen 10,000-case conditioning design used by the accepted BR-LoRA
 library is reused unchanged. For each deterministic PEFT method, batches
 0001-0040 contain exactly 250 cases.
 
-Batch 0001 preserves the accepted legacy source_case_id directory names.
-Batches 0002-0040 use library_case_id.
+All production case directories use library_case_id.
+For batch 0001, source_case_id is retained only as frozen-design provenance.
 
 This wrapper:
 
@@ -165,10 +165,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--staging-root",
         type=Path,
-        required=True,
+        default=None,
         help=(
-            "Method-specific deterministic library batches root, for "
-            "example /scratch/.../regional_lora/batches."
+            "Method-specific deterministic production staging root. "
+            "Overrides the method-specific *_staging_root value "
+            "in --folders-file."
         ),
     )
 
@@ -254,6 +255,7 @@ def resolve_production_paths(
     Path,
     Path,
     Path,
+    Path,
 ]:
     config = load_folders_config(
         args.folders_file
@@ -280,6 +282,13 @@ def resolve_production_paths(
         selector=None,
     )
 
+    staging_root = resolve_path(
+        key=f"{args.method}_staging_root",
+        cli_value=args.staging_root,
+        config=config,
+        selector=None,
+    )
+
     save_folders_config(
         args.folders_file,
         config,
@@ -294,6 +303,9 @@ def resolve_production_paths(
         ),
         Path(
             reference_root
+        ),
+        Path(
+            staging_root
         ),
     )
 
@@ -402,27 +414,6 @@ def validate_checkpoint_method(
             f"Requested:  {method!r}\n"
             f"Checkpoint: {observed!r}"
         )
-
-
-def case_directory_name(
-    row: pd.Series,
-) -> str:
-    source_case_id = row[
-        "source_case_id"
-    ]
-
-    if pd.notna(
-        source_case_id
-    ):
-        return str(
-            source_case_id
-        )
-
-    return str(
-        row[
-            "library_case_id"
-        ]
-    )
 
 
 def prepare_execution_manifest(
@@ -561,13 +552,15 @@ def prepare_execution_manifest(
                 f"{batch_id} unexpectedly contains source_case_id values."
             )
 
-    case_ids = [
-        case_directory_name(
-            row
+    case_ids = (
+        table[
+            "library_case_id"
+        ]
+        .astype(
+            str
         )
-        for _,
-        row in table.iterrows()
-    ]
+        .tolist()
+    )
 
     if len(
         set(
@@ -1169,6 +1162,7 @@ def main() -> None:
         h5_root,
         validation_dataset,
         reference_library_root,
+        staging_root,
     ) = resolve_production_paths(
         args
     )
@@ -1210,7 +1204,7 @@ def main() -> None:
     )
 
     staging_root = (
-        args.staging_root
+        staging_root
         .expanduser()
         .resolve()
     )

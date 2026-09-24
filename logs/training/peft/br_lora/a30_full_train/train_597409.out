@@ -1,0 +1,422 @@
+BR-LoRA A30 full-training run
+=============================
+Host                     : fal020
+Date                     : Wed Sep 23 02:26:10 PM EDT 2026
+Git commit               : 8d572f783be1cecc40082f58c5d61643f489d60f
+SLURM_JOB_ID             : 597409
+SLURM_JOB_PARTITION      : a30_normal_q
+Conda environment        : brats-nnunet
+Baseline config          : configs/baseline_patch_x0_full_train.yaml
+BR-LoRA config           : configs/br_lora.yaml
+Base checkpoint          : checkpoints/baseline/full_train/final_patch_x0_diffusion_full_train.pt
+H5 root                  : /scratch/bhanug/archive/BraTS2020_H5_Rebuilt
+Manifest                 : /scratch/bhanug/tumor_inpainting_doc/data/BraTS/BraTS20 Training Metadata.csv
+Checkpoint directory     : checkpoints/peft/br_lora/a30_full_train
+Epoch target             : 50
+
+Wed Sep 23 14:26:10 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A30                     On  |   00000000:61:00.0 Off |                    0 |
+| N/A   39C    P0             34W /  165W |       0MiB /  24576MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+Found 19941 tumor-containing H5 slices.
+
+==============================================================================
+BR-LoRA TRAINING STACK CONSTRUCTION
+==============================================================================
+
+Paths
+------------------------------------------------------------------------------
+Baseline config          : /home/bhanug/localized-medical-image-synthesis/configs/baseline_patch_x0_full_train.yaml
+BR-LoRA config           : /home/bhanug/localized-medical-image-synthesis/configs/br_lora.yaml
+Base checkpoint          : /home/bhanug/localized-medical-image-synthesis/checkpoints/baseline/full_train/final_patch_x0_diffusion_full_train.pt
+Resume checkpoint        : none
+H5 root                  : /scratch/bhanug/archive/BraTS2020_H5_Rebuilt
+Manifest                 : /scratch/bhanug/tumor_inpainting_doc/data/BraTS/BraTS20 Training Metadata.csv
+Future checkpoint dir    : /home/bhanug/localized-medical-image-synthesis/checkpoints/peft/br_lora/a30_full_train
+
+Data
+------------------------------------------------------------------------------
+Split mode               : full_train
+Eligible samples         : 19,941
+Training samples         : 19,941
+Validation samples       : none (full_train mode)
+Training batches         : 2,493
+Validation batches       : none (full_train mode)
+Batch size               : 8
+
+Backbone
+------------------------------------------------------------------------------
+Device                   : cuda
+Strict checkpoint load   : True
+Checkpoint epoch         : 30
+
+BR-LoRA
+------------------------------------------------------------------------------
+Injected adapters        : 7
+Converted adapters       : 7
+Target layers exact      : True
+Variational parameters   : 36,104
+Trainable parameters     : 36,104
+Posterior count exact    : True
+Trainable tensors        : 28
+Expected tensors         : 28
+Trainable tensors exact  : True
+
+Optimizer
+------------------------------------------------------------------------------
+Type                     : AdamW
+Learning rate            : 0.0001
+Weight decay             : 0.0
+
+Diffusion
+------------------------------------------------------------------------------
+Timesteps                : 200
+Beta start               : 0.0001
+Beta end                 : 0.02
+
+==============================================================================
+CONSTRUCTION VERDICT: PASS
+The trained baseline backbone was restored strictly and converted to the expected BR-LoRA training stack.
+==============================================================================
+
+Resume mode              : False
+
+==============================================================================
+BR-LoRA FIT
+==============================================================================
+Split mode               : full_train
+Epoch target             : 50
+Starting completed epochs: 0
+Starting global step     : 0
+Training samples         : 19,941
+Validation samples       : none (full_train mode)
+Training posterior draws : True
+Validation posterior draws: not applicable
+
+Epoch 1/50
+Global step              : 2493
+Training loss            : 0.00157626
+Training reconstruction  : 0.00157462
+Validation               : not performed (full_train mode)
+
+Epoch 2/50
+Global step              : 4986
+Training loss            : 0.00099996
+Training reconstruction  : 0.00099791
+Validation               : not performed (full_train mode)
+
+Epoch 3/50
+Global step              : 7479
+Training loss            : 0.00089634
+Training reconstruction  : 0.00089429
+Validation               : not performed (full_train mode)
+
+Epoch 4/50
+Global step              : 9972
+Training loss            : 0.00084716
+Training reconstruction  : 0.00084510
+Validation               : not performed (full_train mode)
+
+Epoch 5/50
+Global step              : 12465
+Training loss            : 0.00081271
+Training reconstruction  : 0.00081065
+Validation               : not performed (full_train mode)
+
+Epoch 6/50
+Global step              : 14958
+Training loss            : 0.00079388
+Training reconstruction  : 0.00079182
+Validation               : not performed (full_train mode)
+
+Epoch 7/50
+Global step              : 17451
+Training loss            : 0.00076744
+Training reconstruction  : 0.00076538
+Validation               : not performed (full_train mode)
+
+Epoch 8/50
+Global step              : 19944
+Training loss            : 0.00075725
+Training reconstruction  : 0.00075519
+Validation               : not performed (full_train mode)
+
+Epoch 9/50
+Global step              : 22437
+Training loss            : 0.00074338
+Training reconstruction  : 0.00074132
+Validation               : not performed (full_train mode)
+
+Epoch 10/50
+Global step              : 24930
+Training loss            : 0.00073315
+Training reconstruction  : 0.00073108
+Validation               : not performed (full_train mode)
+
+Epoch 11/50
+Global step              : 27423
+Training loss            : 0.00072207
+Training reconstruction  : 0.00072000
+Validation               : not performed (full_train mode)
+
+Epoch 12/50
+Global step              : 29916
+Training loss            : 0.00071652
+Training reconstruction  : 0.00071445
+Validation               : not performed (full_train mode)
+
+Epoch 13/50
+Global step              : 32409
+Training loss            : 0.00070520
+Training reconstruction  : 0.00070313
+Validation               : not performed (full_train mode)
+
+Epoch 14/50
+Global step              : 34902
+Training loss            : 0.00070009
+Training reconstruction  : 0.00069801
+Validation               : not performed (full_train mode)
+
+Epoch 15/50
+Global step              : 37395
+Training loss            : 0.00069371
+Training reconstruction  : 0.00069164
+Validation               : not performed (full_train mode)
+
+Epoch 16/50
+Global step              : 39888
+Training loss            : 0.00068502
+Training reconstruction  : 0.00068294
+Validation               : not performed (full_train mode)
+
+Epoch 17/50
+Global step              : 42381
+Training loss            : 0.00068145
+Training reconstruction  : 0.00067938
+Validation               : not performed (full_train mode)
+
+Epoch 18/50
+Global step              : 44874
+Training loss            : 0.00067333
+Training reconstruction  : 0.00067125
+Validation               : not performed (full_train mode)
+
+Epoch 19/50
+Global step              : 47367
+Training loss            : 0.00067105
+Training reconstruction  : 0.00066897
+Validation               : not performed (full_train mode)
+
+Epoch 20/50
+Global step              : 49860
+Training loss            : 0.00066536
+Training reconstruction  : 0.00066328
+Validation               : not performed (full_train mode)
+
+Epoch 21/50
+Global step              : 52353
+Training loss            : 0.00066196
+Training reconstruction  : 0.00065987
+Validation               : not performed (full_train mode)
+
+Epoch 22/50
+Global step              : 54846
+Training loss            : 0.00065918
+Training reconstruction  : 0.00065709
+Validation               : not performed (full_train mode)
+
+Epoch 23/50
+Global step              : 57339
+Training loss            : 0.00065545
+Training reconstruction  : 0.00065336
+Validation               : not performed (full_train mode)
+
+Epoch 24/50
+Global step              : 59832
+Training loss            : 0.00065007
+Training reconstruction  : 0.00064798
+Validation               : not performed (full_train mode)
+
+Epoch 25/50
+Global step              : 62325
+Training loss            : 0.00064808
+Training reconstruction  : 0.00064599
+Validation               : not performed (full_train mode)
+
+Epoch 26/50
+Global step              : 64818
+Training loss            : 0.00064377
+Training reconstruction  : 0.00064168
+Validation               : not performed (full_train mode)
+
+Epoch 27/50
+Global step              : 67311
+Training loss            : 0.00064157
+Training reconstruction  : 0.00063948
+Validation               : not performed (full_train mode)
+
+Epoch 28/50
+Global step              : 69804
+Training loss            : 0.00063906
+Training reconstruction  : 0.00063696
+Validation               : not performed (full_train mode)
+
+Epoch 29/50
+Global step              : 72297
+Training loss            : 0.00063527
+Training reconstruction  : 0.00063317
+Validation               : not performed (full_train mode)
+
+Epoch 30/50
+Global step              : 74790
+Training loss            : 0.00063179
+Training reconstruction  : 0.00062969
+Validation               : not performed (full_train mode)
+
+Epoch 31/50
+Global step              : 77283
+Training loss            : 0.00062961
+Training reconstruction  : 0.00062751
+Validation               : not performed (full_train mode)
+
+Epoch 32/50
+Global step              : 79776
+Training loss            : 0.00062705
+Training reconstruction  : 0.00062495
+Validation               : not performed (full_train mode)
+
+Epoch 33/50
+Global step              : 82269
+Training loss            : 0.00062537
+Training reconstruction  : 0.00062327
+Validation               : not performed (full_train mode)
+
+Epoch 34/50
+Global step              : 84762
+Training loss            : 0.00062282
+Training reconstruction  : 0.00062072
+Validation               : not performed (full_train mode)
+
+Epoch 35/50
+Global step              : 87255
+Training loss            : 0.00062024
+Training reconstruction  : 0.00061813
+Validation               : not performed (full_train mode)
+
+Epoch 36/50
+Global step              : 89748
+Training loss            : 0.00061857
+Training reconstruction  : 0.00061646
+Validation               : not performed (full_train mode)
+
+Epoch 37/50
+Global step              : 92241
+Training loss            : 0.00061669
+Training reconstruction  : 0.00061458
+Validation               : not performed (full_train mode)
+
+Epoch 38/50
+Global step              : 94734
+Training loss            : 0.00061391
+Training reconstruction  : 0.00061180
+Validation               : not performed (full_train mode)
+
+Epoch 39/50
+Global step              : 97227
+Training loss            : 0.00061139
+Training reconstruction  : 0.00060927
+Validation               : not performed (full_train mode)
+
+Epoch 40/50
+Global step              : 99720
+Training loss            : 0.00061111
+Training reconstruction  : 0.00060899
+Validation               : not performed (full_train mode)
+
+Epoch 41/50
+Global step              : 102213
+Training loss            : 0.00060811
+Training reconstruction  : 0.00060599
+Validation               : not performed (full_train mode)
+
+Epoch 42/50
+Global step              : 104706
+Training loss            : 0.00060590
+Training reconstruction  : 0.00060379
+Validation               : not performed (full_train mode)
+
+Epoch 43/50
+Global step              : 107199
+Training loss            : 0.00060586
+Training reconstruction  : 0.00060374
+Validation               : not performed (full_train mode)
+
+Epoch 44/50
+Global step              : 109692
+Training loss            : 0.00060315
+Training reconstruction  : 0.00060103
+Validation               : not performed (full_train mode)
+
+Epoch 45/50
+Global step              : 112185
+Training loss            : 0.00060102
+Training reconstruction  : 0.00059890
+Validation               : not performed (full_train mode)
+
+Epoch 46/50
+Global step              : 114678
+Training loss            : 0.00060000
+Training reconstruction  : 0.00059788
+Validation               : not performed (full_train mode)
+
+Epoch 47/50
+Global step              : 117171
+Training loss            : 0.00059944
+Training reconstruction  : 0.00059731
+Validation               : not performed (full_train mode)
+
+Epoch 48/50
+Global step              : 119664
+Training loss            : 0.00059666
+Training reconstruction  : 0.00059453
+Validation               : not performed (full_train mode)
+
+Epoch 49/50
+Global step              : 122157
+Training loss            : 0.00059460
+Training reconstruction  : 0.00059247
+Validation               : not performed (full_train mode)
+
+Epoch 50/50
+Global step              : 124650
+Training loss            : 0.00059237
+Training reconstruction  : 0.00059023
+Validation               : not performed (full_train mode)
+
+==============================================================================
+BR-LoRA TRAINING COMPLETE
+==============================================================================
+Split mode               : full_train
+Completed epochs         : 50
+Global step              : 124650
+Validation               : not performed
+Latest checkpoint        : /home/bhanug/localized-medical-image-synthesis/checkpoints/peft/br_lora/a30_full_train/latest.pt
+Final checkpoint         : /home/bhanug/localized-medical-image-synthesis/checkpoints/peft/br_lora/a30_full_train/final.pt
+==============================================================================
