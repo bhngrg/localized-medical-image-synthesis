@@ -696,7 +696,8 @@ def build_run_metadata(
     seed: int,
     device: torch.device,
     reproducibility_cfg: dict,
-    feather_width: int,
+    composition_method: str,
+    feather_width: int | None,
 ) -> dict:
     manifest_hashes = {}
 
@@ -760,15 +761,21 @@ def build_run_metadata(
         "synthetic_composition": (
             None
             if args.regime == "real_only"
-            else {
-                "method": "inner_only_distance_feather",
-                "feather_width_pixels": (
-                    feather_width
-                ),
-                "distance_metric": "euclidean",
-                "outside_mask": "exact_base_image",
-                "full_weight_pixels": "exact_prediction",
-            }
+            else (
+                {
+                    "method": "direct_prediction",
+                }
+                if composition_method == "direct_prediction"
+                else {
+                    "method": "inner_only_distance_feather",
+                    "feather_width_pixels": (
+                        feather_width
+                    ),
+                    "distance_metric": "euclidean",
+                    "outside_mask": "exact_base_image",
+                    "full_weight_pixels": "exact_prediction",
+                }
+            )
         ),
         "paths": {
             key: (
@@ -967,29 +974,40 @@ def main() -> None:
             "composition.method must be configured."
         )
 
-    if "feather_width_pixels" not in composition_cfg:
-        raise ValueError(
-            "composition.feather_width_pixels must be configured."
-        )
-
     composition_method = str(
         composition_cfg["method"]
     )
 
-    if composition_method != "inner_only_distance_feather":
+    if composition_method not in (
+        "direct_prediction",
+        "inner_only_distance_feather",
+    ):
         raise ValueError(
-            "composition.method must be "
+            "composition.method must be either "
+            "'direct_prediction' or "
             "'inner_only_distance_feather'."
         )
 
-    feather_width = int(
-        composition_cfg["feather_width_pixels"]
-    )
+    if (
+        composition_method
+        == "inner_only_distance_feather"
+    ):
+        if "feather_width_pixels" not in composition_cfg:
+            raise ValueError(
+                "composition.feather_width_pixels must be "
+                "configured for inner_only_distance_feather."
+            )
 
-    if feather_width <= 0:
-        raise ValueError(
-            "composition.feather_width_pixels must be positive."
+        feather_width = int(
+            composition_cfg["feather_width_pixels"]
         )
+
+        if feather_width <= 0:
+            raise ValueError(
+                "composition.feather_width_pixels must be positive."
+            )
+    else:
+        feather_width = None
 
     image_channel = int(
         data_cfg.get(
@@ -1182,6 +1200,13 @@ def main() -> None:
         collate_fn = None
 
     elif synthetic_mode == "posterior_mean":
+        if composition_method != "inner_only_distance_feather":
+            raise ValueError(
+                "BR-LoRA posterior-mean training in the current "
+                "pipeline requires inner_only_distance_feather. "
+                "Use the archived historical checkpoint for the "
+                "pre-feathering BR-LoRA comparison."
+            )
         synthetic_transform = build_train_transform()
 
         if hasattr(
@@ -1242,6 +1267,7 @@ def main() -> None:
                 ],
                 h5_root=paths["h5_root"],
                 adaptation_method=adaptation_method,
+                composition_method=composition_method,
                 feather_width=feather_width,
                 transform=synthetic_transform,
             )
@@ -1257,6 +1283,14 @@ def main() -> None:
         collate_fn = segmentation_collate
 
     elif synthetic_mode == "posterior_sample":
+        if composition_method != "inner_only_distance_feather":
+            raise ValueError(
+                "BR-LoRA posterior-sample training in the current "
+                "pipeline requires inner_only_distance_feather. "
+                "Use the archived historical checkpoint for the "
+                "pre-feathering BR-LoRA comparison."
+            )
+
         synthetic_transform = build_train_transform()
 
         if hasattr(
@@ -1453,6 +1487,7 @@ def main() -> None:
         seed=seed,
         device=device,
         reproducibility_cfg=reproducibility_cfg,
+        composition_method=composition_method,
         feather_width=feather_width,
     )
 
@@ -1661,19 +1696,26 @@ def main() -> None:
                         "combined_training_slices": len(
                             train_dataset
                         ),
-                        "synthetic_composition": {
-                            "method": (
-                                "inner_only_distance_feather"
-                            ),
-                            "feather_width_pixels": (
-                                feather_width
-                            ),
-                            "distance_metric": "euclidean",
-                            "outside_mask": "exact_base_image",
-                            "full_weight_pixels": (
-                                "exact_prediction"
-                            ),
-                        },
+                        "synthetic_composition": (
+                            {
+                                "method": "direct_prediction",
+                            }
+                            if composition_method
+                            == "direct_prediction"
+                            else {
+                                "method": (
+                                    "inner_only_distance_feather"
+                                ),
+                                "feather_width_pixels": (
+                                    feather_width
+                                ),
+                                "distance_metric": "euclidean",
+                                "outside_mask": "exact_base_image",
+                                "full_weight_pixels": (
+                                    "exact_prediction"
+                                ),
+                            }
+                        ),
                     }
                 )
 

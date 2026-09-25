@@ -1,0 +1,38 @@
+seed: 42
+data:
+  image_channel: 0
+  batch_size: 26
+  num_workers: 4
+  pin_memory: null
+training:
+  epochs: 20
+  learning_rate: 0.001
+  threshold: 0.5
+composition:
+  method: direct_prediction
+reproducibility:
+  deterministic_algorithms: true
+  cudnn_deterministic: true
+  cudnn_benchmark: false
+  cublas_workspace_config: :4096:8
+expected_counts:
+  real_training_slices: 41460
+  synthetic_training_cases: 10000
+  combined_training_slices: 51460
+  validation_slices: 5735
+regimes:
+  real_only:
+    synthetic_mode: none
+  real_plus_br_lora_mean:
+    synthetic_mode: posterior_mean
+  real_plus_br_lora_posterior:
+    synthetic_mode: posterior_sample
+    posterior_samples_available: 100
+  real_plus_regional_lora:
+    synthetic_mode: deterministic_adaptation
+  real_plus_dora:
+    synthetic_mode: deterministic_adaptation
+  real_plus_lokr:
+    synthetic_mode: deterministic_adaptation
+  real_plus_bitfit:
+    synthetic_mode: deterministic_adaptation

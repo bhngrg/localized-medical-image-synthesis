@@ -26,9 +26,9 @@ class DeterministicAdaptationSegmentationDataset(Dataset):
     Each deterministic synthetic case contains one model prediction together
     with the exact base image and transferred lesion mask used for synthesis.
 
-    The final downstream-training image is reconstructed with the same
-    inner-only distance feathering used by the BR-LoRA posterior-mean
-    downstream regime.
+    The downstream-training image can use either the deterministic model
+    prediction directly or inner-only distance feathering with the stored
+    base image and transferred lesion mask.
     """
 
     REQUIRED_COLUMNS = (
@@ -55,7 +55,8 @@ class DeterministicAdaptationSegmentationDataset(Dataset):
         library_root: str | Path,
         h5_root: str | Path,
         adaptation_method: str,
-        feather_width: int,
+        composition_method: str,
+        feather_width: int | None,
         transform=None,
     ) -> None:
         self.manifest_path = Path(
@@ -70,8 +71,13 @@ class DeterministicAdaptationSegmentationDataset(Dataset):
         self.adaptation_method = str(
             adaptation_method
         )
-        self.feather_width = int(
-            feather_width
+        self.composition_method = str(
+            composition_method
+        )
+        self.feather_width = (
+            None
+            if feather_width is None
+            else int(feather_width)
         )
         self.transform = transform
 
@@ -84,10 +90,27 @@ class DeterministicAdaptationSegmentationDataset(Dataset):
                 f"{self.adaptation_method!r}"
             )
 
-        if self.feather_width <= 0:
+        if self.composition_method not in (
+            "direct_prediction",
+            "inner_only_distance_feather",
+        ):
             raise ValueError(
-                "feather_width must be positive."
+                "Unsupported composition method: "
+                f"{self.composition_method!r}"
             )
+
+        if (
+            self.composition_method
+            == "inner_only_distance_feather"
+        ):
+            if (
+                self.feather_width is None
+                or self.feather_width <= 0
+            ):
+                raise ValueError(
+                    "feather_width must be positive for "
+                    "inner_only_distance_feather."
+                )
 
         if not self.manifest_path.is_file():
             raise FileNotFoundError(
@@ -398,12 +421,15 @@ class DeterministicAdaptationSegmentationDataset(Dataset):
             path=payload_path,
         )
 
-        image = inner_feather_composite(
-            prediction=prediction,
-            base_image=base_image,
-            transferred_mask=transferred_mask,
-            width=self.feather_width,
-        )
+        if self.composition_method == "direct_prediction":
+            image = prediction
+        else:
+            image = inner_feather_composite(
+                prediction=prediction,
+                base_image=base_image,
+                transferred_mask=transferred_mask,
+                width=self.feather_width,
+            )
 
         donor_h5_path = self._donor_h5_path(
             row
