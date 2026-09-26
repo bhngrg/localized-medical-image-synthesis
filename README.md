@@ -73,11 +73,10 @@ PEFT training                   validation slice screening
               UCSF-PDGM evaluation
 ```
 
-The BR-LoRA posterior-sampling downstream regime remains supported for the
-earlier uncertainty experiment. The current UCSF-PDGM evaluator is still wired
-to the original real-only, BR-LoRA posterior-mean, and BR-LoRA posterior-
-sampling checkpoints; deterministic-comparator external evaluation is the next
-extension of that evaluator.
+The downstream workflow supports real-only training together with BR-LoRA
+posterior-mean, BR-LoRA posterior-sampling, Regional LoRA, DoRA, LoKr, and
+BitFit synthetic-augmentation regimes. All seven trained models can be
+evaluated on the same frozen UCSF-PDGM external cohort.
 
 BraTS training and validation registration are independent and can be run in
 parallel. The baseline/BR-LoRA training branch can proceed once the registered
@@ -88,8 +87,7 @@ Once their prerequisites are available, downstream segmentation regimes are
 independent. The real-only regime does not require a synthetic library and can
 therefore start earlier. BR-LoRA posterior mean, BR-LoRA posterior sampling,
 Regional LoRA, DoRA, LoKr, and BitFit augmentation are implemented as separate
-training regimes. The current UCSF-PDGM evaluator still consumes the original
-three BR-LoRA-era downstream checkpoints.
+training regimes.
 
 ---
 
