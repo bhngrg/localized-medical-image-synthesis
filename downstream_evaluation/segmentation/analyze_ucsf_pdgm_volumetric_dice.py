@@ -24,40 +24,10 @@ import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-import shutil
 
 import numpy as np
 import pandas as pd
 
-
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-
-DEFAULT_OUTPUT_DIR = (
-    PROJECT_ROOT
-    / "results"
-    / "downstream_segmentation"
-    / "external_validation"
-    / "ucsf_pdgm"
-    / "br_lora"
-    / "seed_42"
-)
-
-HISTORICAL_OUTPUT_ROOT = (
-    PROJECT_ROOT
-    / "results"
-    / "historical"
-    / "downstream_segmentation"
-    / "external_validation"
-    / "ucsf_pdgm"
-    / "br_lora"
-    / "seed_42"
-)
-
-ANALYSIS_ARTIFACT_NAMES = (
-    "ucsf_pdgm_volumetric_dice_table.csv",
-    "ucsf_pdgm_volumetric_dice_table.md",
-    "ucsf_pdgm_volumetric_dice_analysis.json",
-)
 
 EXPECTED_SUBJECTS = 202
 METRIC = "volumetric_dice"
@@ -73,17 +43,56 @@ REGIMES = {
     },
     "posterior_mean": {
         "label": "Real + BR-LoRA posterior mean",
-        "relative_path": Path("real_plus_br_lora_posterior_mean") / "subject_metrics.csv",
+        "relative_path": (
+            Path("real_plus_br_lora_posterior_mean")
+            / "subject_metrics.csv"
+        ),
     },
     "posterior_sampling": {
         "label": "Real + BR-LoRA posterior sampling",
-        "relative_path": Path("real_plus_br_lora_posterior_sampling") / "subject_metrics.csv",
+        "relative_path": (
+            Path("real_plus_br_lora_posterior_sampling")
+            / "subject_metrics.csv"
+        ),
+    },
+    "regional_lora": {
+        "label": "Real + Regional LoRA",
+        "relative_path": (
+            Path("real_plus_regional_lora")
+            / "subject_metrics.csv"
+        ),
+    },
+    "dora": {
+        "label": "Real + DoRA",
+        "relative_path": (
+            Path("real_plus_dora")
+            / "subject_metrics.csv"
+        ),
+    },
+    "lokr": {
+        "label": "Real + LoKr",
+        "relative_path": (
+            Path("real_plus_lokr")
+            / "subject_metrics.csv"
+        ),
+    },
+    "bitfit": {
+        "label": "Real + BitFit",
+        "relative_path": (
+            Path("real_plus_bitfit")
+            / "subject_metrics.csv"
+        ),
     },
 }
 
+TABLE_REGIMES = tuple(REGIMES)
+
 PAIRED_COMPARISONS = [
-    ("posterior_mean", "real_only"),
-    ("posterior_sampling", "real_only"),
+    *[
+        (regime, "real_only")
+        for regime in TABLE_REGIMES
+        if regime != "real_only"
+    ],
     ("posterior_sampling", "posterior_mean"),
 ]
 
@@ -100,18 +109,18 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         required=True,
         help=(
-            "Evaluation directory containing the three regime subdirectories "
+            "Evaluation directory containing the seven regime subdirectories "
             "and subject_metrics.csv files."
         ),
     )
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=None,
+        required=True,
         help=(
-            "Directory for curated analysis outputs. If omitted, the "
-            "canonical UCSF-PDGM BR-LoRA result directory under results/ "
-            "is used."
+            "Explicit directory for curated analysis outputs. Use separate "
+            "directories for scientifically distinct composition conditions, "
+            "such as feathered and non-feathered evaluations."
         ),
     )
     return parser.parse_args()
@@ -133,70 +142,6 @@ def refuse_overwrite(paths: list[Path]) -> None:
             "Refusing to overwrite existing analysis artifact(s):\n"
             f"{formatted}"
         )
-
-
-def archive_existing_analysis_artifacts(
-    output_dir: Path,
-) -> Path | None:
-    """
-    Archive only artifacts owned by this analysis script.
-
-    Other curated files that share the canonical result directory, including
-    subject-level metrics, summaries, and run metadata, are left untouched.
-    """
-    existing = [
-        output_dir / name
-        for name in ANALYSIS_ARTIFACT_NAMES
-        if (output_dir / name).exists()
-    ]
-
-    if not existing:
-        return None
-
-    timestamp = datetime.now(
-        timezone.utc
-    ).strftime("%Y%m%dT%H%M%S%fZ")
-
-    archive_dir = (
-        HISTORICAL_OUTPUT_ROOT
-        / timestamp
-    )
-
-    if archive_dir.exists():
-        raise RuntimeError(
-            "Historical analysis archive already exists:\n"
-            f"{archive_dir}"
-        )
-
-    archive_dir.mkdir(
-        parents=True,
-        exist_ok=False,
-    )
-
-    print(
-        "Archiving existing canonical analysis artifacts:"
-    )
-    print(
-        "Historical destination:",
-        archive_dir,
-    )
-
-    for source in existing:
-        destination = archive_dir / source.name
-
-        print(
-            "  ",
-            source,
-            "->",
-            destination,
-        )
-
-        shutil.move(
-            str(source),
-            str(destination),
-        )
-
-    return archive_dir
 
 
 def load_subject_metric(path: Path) -> pd.DataFrame:
@@ -242,14 +187,10 @@ def main() -> None:
         .resolve()
     )
 
-    using_default_output_dir = (
-        args.output_dir is None
-    )
-
     output_dir = (
-        DEFAULT_OUTPUT_DIR
-        if using_default_output_dir
-        else args.output_dir.expanduser().resolve()
+        args.output_dir
+        .expanduser()
+        .resolve()
     )
 
     output_dir.mkdir(
@@ -336,13 +277,20 @@ def main() -> None:
         }
 
     table_rows = []
-    for regime in ("real_only", "posterior_mean", "posterior_sampling"):
+    for regime in TABLE_REGIMES:
         stats = regime_results[regime]
+
         if regime == "real_only":
-            delta = delta_low = delta_high = None
+            delta = None
+            delta_se = None
+            delta_low = None
+            delta_high = None
         else:
-            comparison = comparison_results[f"{regime}_minus_real_only"]
+            comparison = comparison_results[
+                f"{regime}_minus_real_only"
+            ]
             delta = comparison["mean_difference"]
+            delta_se = comparison["bootstrap_se"]
             delta_low = comparison["ci_95_low"]
             delta_high = comparison["ci_95_high"]
 
@@ -355,9 +303,7 @@ def main() -> None:
                 "ci_95_low": stats["ci_95_low"],
                 "ci_95_high": stats["ci_95_high"],
                 "paired_delta_vs_real_only": delta,
-                "paired_delta_bootstrap_se_vs_real_only": (
-                    None if regime == "real_only" else comparison["bootstrap_se"]
-                ),
+                "paired_delta_bootstrap_se_vs_real_only": delta_se,
                 "paired_delta_ci_95_low": delta_low,
                 "paired_delta_ci_95_high": delta_high,
             }
@@ -428,10 +374,13 @@ def main() -> None:
             "slice_level_resampling": False,
         },
         "table_primary_comparisons": [
-            "posterior_mean_minus_real_only",
-            "posterior_sampling_minus_real_only",
+            f"{regime}_minus_real_only"
+            for regime in TABLE_REGIMES
+            if regime != "real_only"
         ],
-        "additional_paired_comparison": "posterior_sampling_minus_posterior_mean",
+        "additional_paired_comparison": (
+            "posterior_sampling_minus_posterior_mean"
+        ),
         "regimes": {
             key: {
                 "label": value["label"],
@@ -457,18 +406,13 @@ def main() -> None:
         },
     }
 
-    if using_default_output_dir:
-        archive_existing_analysis_artifacts(
-            output_dir
-        )
-    else:
-        refuse_overwrite(
-            [
-                csv_path,
-                md_path,
-                json_path,
-            ]
-        )
+    refuse_overwrite(
+        [
+            csv_path,
+            md_path,
+            json_path,
+        ]
+    )
 
     table.to_csv(
         csv_path,

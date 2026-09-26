@@ -1,0 +1,51 @@
+Downstream segmentation
+Host: fal015
+Date: Thu Sep 24 08:36:00 PM EDT 2026
+SLURM_JOB_ID=598871
+SLURM_JOB_PARTITION=a30_normal_q
+Regime=real_plus_regional_lora
+
+Downstream segmentation training
+==============================================================================
+Regime: real_plus_regional_lora
+Device: cuda
+Seed: 42
+Output directory: /home/bhanug/localized-medical-image-synthesis/checkpoints/downstream_segmentation/regional_lora/seed_42
+Strict deterministic algorithms: True
+CUBLAS_WORKSPACE_CONFIG: :4096:8
+cuDNN deterministic: True
+cuDNN benchmark: False
+Real training slices: 41,460
+Synthetic training cases: 10,000
+Total training samples: 51,460
+Validation slices: 5,735
+Epochs: 20
+Batch size: 26
+Learning rate: 0.001
+Threshold: 0.5
+
+Epoch 01/20 | train loss 0.476395 | train Dice 0.694546 | val loss 0.597523 | val Dice 0.783142 | val IoU 0.742616 | val+ Dice 0.655627 | val+ IoU 0.560647
+Epoch 02/20 | train loss 0.342092 | train Dice 0.751826 | val loss 0.602030 | val Dice 0.813650 | val IoU 0.774498 | val+ Dice 0.647847 | val+ IoU 0.556088
+Epoch 03/20 | train loss 0.285790 | train Dice 0.780692 | val loss 0.544013 | val Dice 0.821175 | val IoU 0.784877 | val+ Dice 0.688778 | val+ IoU 0.603706
+Epoch 04/20 | train loss 0.254597 | train Dice 0.793432 | val loss 0.588940 | val Dice 0.781963 | val IoU 0.744556 | val+ Dice 0.661447 | val+ IoU 0.573775
+Epoch 05/20 | train loss 0.225580 | train Dice 0.810916 | val loss 0.537728 | val Dice 0.804173 | val IoU 0.766872 | val+ Dice 0.706960 | val+ IoU 0.619539
+Epoch 06/20 | train loss 0.210760 | train Dice 0.821199 | val loss 0.534279 | val Dice 0.828101 | val IoU 0.793019 | val+ Dice 0.681308 | val+ IoU 0.599086
+Epoch 07/20 | train loss 0.195653 | train Dice 0.827162 | val loss 0.483215 | val Dice 0.834988 | val IoU 0.801709 | val+ Dice 0.694180 | val+ IoU 0.616185
+Epoch 08/20 | train loss 0.186289 | train Dice 0.832805 | val loss 0.497571 | val Dice 0.841833 | val IoU 0.810421 | val+ Dice 0.682840 | val+ IoU 0.609221
+Epoch 09/20 | train loss 0.178171 | train Dice 0.837292 | val loss 0.484217 | val Dice 0.827737 | val IoU 0.798112 | val+ Dice 0.644901 | val+ IoU 0.575468
+Epoch 10/20 | train loss 0.168710 | train Dice 0.843952 | val loss 0.515078 | val Dice 0.836541 | val IoU 0.803271 | val+ Dice 0.685968 | val+ IoU 0.607992
+Epoch 11/20 | train loss 0.160826 | train Dice 0.847454 | val loss 0.532690 | val Dice 0.836916 | val IoU 0.803175 | val+ Dice 0.708506 | val+ IoU 0.629427
+Epoch 12/20 | train loss 0.155132 | train Dice 0.848659 | val loss 0.544928 | val Dice 0.814042 | val IoU 0.777856 | val+ Dice 0.713334 | val+ IoU 0.628526
+Epoch 13/20 | train loss 0.150106 | train Dice 0.853567 | val loss 0.476917 | val Dice 0.843215 | val IoU 0.810264 | val+ Dice 0.684038 | val+ IoU 0.606809
+Epoch 14/20 | train loss 0.146461 | train Dice 0.854133 | val loss 0.493198 | val Dice 0.847973 | val IoU 0.817176 | val+ Dice 0.681293 | val+ IoU 0.609116
+Epoch 15/20 | train loss 0.140219 | train Dice 0.860475 | val loss 0.469522 | val Dice 0.840622 | val IoU 0.809580 | val+ Dice 0.691854 | val+ IoU 0.619101
+Epoch 16/20 | train loss 0.135714 | train Dice 0.863153 | val loss 0.448155 | val Dice 0.848416 | val IoU 0.814555 | val+ Dice 0.740770 | val+ IoU 0.661410
+Epoch 17/20 | train loss 0.133119 | train Dice 0.864809 | val loss 0.499182 | val Dice 0.838804 | val IoU 0.808093 | val+ Dice 0.684323 | val+ IoU 0.612347
+Epoch 18/20 | train loss 0.127400 | train Dice 0.868054 | val loss 0.486561 | val Dice 0.841212 | val IoU 0.807717 | val+ Dice 0.720618 | val+ IoU 0.642115
+Epoch 19/20 | train loss 0.124802 | train Dice 0.869515 | val loss 0.409536 | val Dice 0.850213 | val IoU 0.821014 | val+ Dice 0.674693 | val+ IoU 0.606260
+Epoch 20/20 | train loss 0.120898 | train Dice 0.872784 | val loss 0.467264 | val Dice 0.845252 | val IoU 0.811017 | val+ Dice 0.723955 | val+ IoU 0.643720
+
+==============================================================================
+Training complete.
+Best validation positive-slice Dice: 0.740770111339
+Best checkpoint: /home/bhanug/localized-medical-image-synthesis/checkpoints/downstream_segmentation/regional_lora/seed_42/best_model.pt

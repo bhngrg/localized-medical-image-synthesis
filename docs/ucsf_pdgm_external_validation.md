@@ -19,12 +19,11 @@ primary analysis where appropriate.
 For instructions for training the downstream segmentation models, see
 [`../downstream_evaluation/README.md`](../downstream_evaluation/README.md).
 
-The downstream trainer also implements deterministic Regional LoRA, DoRA,
-LoKr, and BitFit augmentation regimes. The UCSF-PDGM evaluator documented
-here, however, currently retains the original three-checkpoint interface and
-has not yet been generalized to accept those four comparator checkpoints.
-Accordingly, this document describes the implemented BR-LoRA external
-evaluation rather than claiming deterministic-comparator external results.
+The downstream trainer and UCSF-PDGM evaluator also support deterministic
+Regional LoRA, DoRA, LoKr, and BitFit augmentation regimes. Together with real
+only, BR-LoRA posterior mean, and BR-LoRA posterior sampling, the external
+PEFT comparison therefore contains seven evaluated downstream regimes on the
+same frozen cohort.
 
 ## Dataset Acquisition
 
@@ -254,16 +253,28 @@ The hardened evaluator is:
 downstream_evaluation/segmentation/evaluate_ucsf_pdgm.py
 ```
 
-It requires the three downstream segmentation checkpoints explicitly.
+By default, it resolves the canonical seed-42 production checkpoints for all
+seven downstream regimes from `checkpoints/downstream_segmentation/`.
+Checkpoint-specific command-line options can override those defaults for
+reruns, historical checkpoints, or diagnostics.
 
-A safe validation-only call is:
+A safe validation-only call using the canonical checkpoints is:
 
 ```bash
 python -m downstream_evaluation.segmentation.evaluate_ucsf_pdgm \
-  --real-only-checkpoint /path/to/real_only/best_model.pt \
-  --posterior-mean-checkpoint /path/to/real_plus_br_lora_mean/best_model.pt \
-  --posterior-sampling-checkpoint /path/to/real_plus_br_lora_posterior/best_model.pt \
   --validate-only
+```
+
+The available checkpoint overrides are:
+
+```text
+--real-only-checkpoint
+--posterior-mean-checkpoint
+--posterior-sampling-checkpoint
+--regional-lora-checkpoint
+--dora-checkpoint
+--lokr-checkpoint
+--bitfit-checkpoint
 ```
 
 Validation checks the configured UCSF-PDGM root, frozen cohort manifest,
@@ -278,11 +289,11 @@ Run the evaluator without `--validate-only` after all paths and checkpoints
 have passed validation:
 
 ```bash
-python -m downstream_evaluation.segmentation.evaluate_ucsf_pdgm \
-  --real-only-checkpoint /path/to/real_only/best_model.pt \
-  --posterior-mean-checkpoint /path/to/real_plus_br_lora_mean/best_model.pt \
-  --posterior-sampling-checkpoint /path/to/real_plus_br_lora_posterior/best_model.pt
+python -m downstream_evaluation.segmentation.evaluate_ucsf_pdgm
 ```
+
+For a historical or diagnostic evaluation, supply only the checkpoint
+overrides that should replace the canonical defaults.
 
 The default batch size is 26 and can be changed with `--batch-size`.
 
@@ -305,17 +316,15 @@ downstream_evaluation/segmentation/evaluate_ucsf_pdgm_a30.slurm
 
 It uses the `fdtbiotech` account and `a30_normal_q` partition.
 
-Example:
+Example using the canonical checkpoints:
 
 ```bash
-sbatch downstream_evaluation/segmentation/evaluate_ucsf_pdgm_a30.slurm \
-  --real-only-checkpoint /path/to/real_only/best_model.pt \
-  --posterior-mean-checkpoint /path/to/real_plus_br_lora_mean/best_model.pt \
-  --posterior-sampling-checkpoint /path/to/real_plus_br_lora_posterior/best_model.pt
+sbatch downstream_evaluation/segmentation/evaluate_ucsf_pdgm_a30.slurm
 ```
 
-The same launcher can be used with `--validate-only` before production
-evaluation.
+Checkpoint overrides are forwarded to the evaluator, so the same launcher can
+also reproduce historical or diagnostic checkpoint combinations. It can be
+used with `--validate-only` before production evaluation.
 
 ## Metrics
 
@@ -383,9 +392,32 @@ Curated reproducibility-verified UCSF-PDGM results are preserved under:
 results/downstream_segmentation/external_validation/ucsf_pdgm/
 ```
 
-The curated volumetric-Dice results report the three primary conditions
-together with the earlier non-feathered posterior-mean and posterior-sampling
-comparators for development and provenance context.
+The curated seven-regime PEFT-comparison results are organized as:
+
+```text
+results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/
+    feathered/seed_42/
+    non_feathered/seed_42/
+    combined/seed_42/
+```
+
+`feathered/` preserves the locked external evaluation of downstream models
+trained using the established feathered synthetic-composition workflow, while
+`non_feathered/` preserves the corresponding evaluation of models trained using
+non-feathered synthetic composition. Feathering is applied when constructing
+synthetic augmentation for downstream training; UCSF-PDGM inference itself does
+not apply feathering. Each locked analysis reports subject-level mean
+volumetric Dice, bootstrap standard error, a 95% percentile bootstrap interval,
+and the paired difference from real only.
+
+The analysis uses all 202 matched subjects, 10,000 nonparametric subject-level
+bootstrap resamples, seed 2026, and shared paired bootstrap draws across
+regimes.
+
+`combined/` is reporting-only. It places the two locked external-evaluation
+result sets side by side and does not recompute statistical estimates or
+perform a hypothesis test comparing the feathered and non-feathered
+synthetic-composition training conditions.
 
 Persistent downstream model checkpoints are organized separately under:
 

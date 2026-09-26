@@ -411,10 +411,10 @@ separately under:
 results/
 ```
 
-For the hardened UCSF-PDGM analysis, rerunning the default locked analysis
-archives only the analysis artifacts owned by that script under
-`results/historical/` before regenerating them. Other curated files sharing
-the result directory are left untouched.
+The locked UCSF-PDGM volumetric-Dice analysis requires an explicit
+`--output-dir`. Scientifically distinct evaluation conditions must therefore
+be written to separate result directories. Existing analysis artifacts are
+never silently overwritten.
 
 ## External Evaluation
 

@@ -1,0 +1,53 @@
+Downstream segmentation
+Host: fal010
+Date: Fri Sep 25 03:10:17 PM EDT 2026
+SLURM_JOB_ID=599560
+SLURM_JOB_PARTITION=a30_normal_q
+Regime=real_plus_dora
+
+Downstream segmentation training
+==============================================================================
+Regime: real_plus_dora
+Device: cuda
+Seed: 42
+Output directory: /home/bhanug/localized-medical-image-synthesis/checkpoints/downstream_segmentation/dora/seed_42
+Strict deterministic algorithms: True
+CUBLAS_WORKSPACE_CONFIG: :4096:8
+cuDNN deterministic: True
+cuDNN benchmark: False
+Real training slices: 41,460
+Synthetic training cases: 10,000
+Total training samples: 51,460
+Validation slices: 5,735
+Archiving existing checkpoint bundle: /home/bhanug/localized-medical-image-synthesis/checkpoints/downstream_segmentation/dora/seed_42
+Historical destination: /home/bhanug/localized-medical-image-synthesis/checkpoints/historical/downstream_segmentation/dora/seed_42/20260925T191029Z_a30_normal_q_before_job_599560
+Epochs: 20
+Batch size: 26
+Learning rate: 0.001
+Threshold: 0.5
+
+Epoch 01/20 | train loss 0.523581 | train Dice 0.637425 | val loss 0.640543 | val Dice 0.752770 | val IoU 0.709142 | val+ Dice 0.634302 | val+ IoU 0.532051
+Epoch 02/20 | train loss 0.327378 | train Dice 0.761473 | val loss 0.623698 | val Dice 0.762739 | val IoU 0.722930 | val+ Dice 0.676464 | val+ IoU 0.583166
+Epoch 03/20 | train loss 0.229171 | train Dice 0.817849 | val loss 0.518919 | val Dice 0.801265 | val IoU 0.765744 | val+ Dice 0.640480 | val+ IoU 0.557229
+Epoch 04/20 | train loss 0.165848 | train Dice 0.848620 | val loss 0.419243 | val Dice 0.834753 | val IoU 0.801999 | val+ Dice 0.655624 | val+ IoU 0.578857
+Epoch 05/20 | train loss 0.133131 | train Dice 0.865100 | val loss 0.508336 | val Dice 0.822196 | val IoU 0.788996 | val+ Dice 0.711604 | val+ IoU 0.633793
+Epoch 06/20 | train loss 0.116154 | train Dice 0.876447 | val loss 0.535217 | val Dice 0.832835 | val IoU 0.804031 | val+ Dice 0.641320 | val+ IoU 0.573812
+Epoch 07/20 | train loss 0.105161 | train Dice 0.882415 | val loss 0.468785 | val Dice 0.839378 | val IoU 0.810450 | val+ Dice 0.672592 | val+ IoU 0.604793
+Epoch 08/20 | train loss 0.098674 | train Dice 0.886544 | val loss 0.466420 | val Dice 0.851195 | val IoU 0.821733 | val+ Dice 0.692932 | val+ IoU 0.623882
+Epoch 09/20 | train loss 0.093426 | train Dice 0.888829 | val loss 0.366394 | val Dice 0.828728 | val IoU 0.799019 | val+ Dice 0.619843 | val+ IoU 0.550213
+Epoch 10/20 | train loss 0.086279 | train Dice 0.893756 | val loss 0.424965 | val Dice 0.848546 | val IoU 0.818817 | val+ Dice 0.690810 | val+ IoU 0.621134
+Epoch 11/20 | train loss 0.082974 | train Dice 0.895289 | val loss 0.387630 | val Dice 0.843750 | val IoU 0.815925 | val+ Dice 0.654233 | val+ IoU 0.589020
+Epoch 12/20 | train loss 0.081337 | train Dice 0.895509 | val loss 0.420069 | val Dice 0.844618 | val IoU 0.815859 | val+ Dice 0.668526 | val+ IoU 0.601123
+Epoch 13/20 | train loss 0.076707 | train Dice 0.899543 | val loss 0.476887 | val Dice 0.842345 | val IoU 0.810795 | val+ Dice 0.708152 | val+ IoU 0.634209
+Epoch 14/20 | train loss 0.076788 | train Dice 0.900220 | val loss 0.438022 | val Dice 0.847629 | val IoU 0.815646 | val+ Dice 0.702556 | val+ IoU 0.627598
+Epoch 15/20 | train loss 0.072832 | train Dice 0.902197 | val loss 0.440840 | val Dice 0.849065 | val IoU 0.819855 | val+ Dice 0.676088 | val+ IoU 0.607630
+Epoch 16/20 | train loss 0.071832 | train Dice 0.902718 | val loss 0.494289 | val Dice 0.847404 | val IoU 0.816012 | val+ Dice 0.705705 | val+ IoU 0.632133
+Epoch 17/20 | train loss 0.070134 | train Dice 0.903815 | val loss 0.469310 | val Dice 0.843043 | val IoU 0.815051 | val+ Dice 0.658296 | val+ IoU 0.592693
+Epoch 18/20 | train loss 0.068094 | train Dice 0.906515 | val loss 0.504960 | val Dice 0.837697 | val IoU 0.807255 | val+ Dice 0.710744 | val+ IoU 0.639398
+Epoch 19/20 | train loss 0.066473 | train Dice 0.906057 | val loss 0.445042 | val Dice 0.852787 | val IoU 0.821997 | val+ Dice 0.713419 | val+ IoU 0.641255
+Epoch 20/20 | train loss 0.064923 | train Dice 0.908209 | val loss 0.408955 | val Dice 0.841532 | val IoU 0.812132 | val+ Dice 0.687449 | val+ IoU 0.618544
+
+==============================================================================
+Training complete.
+Best validation positive-slice Dice: 0.713418817052
+Best checkpoint: /home/bhanug/localized-medical-image-synthesis/checkpoints/downstream_segmentation/dora/seed_42/best_model.pt

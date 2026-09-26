@@ -1,0 +1,51 @@
+Downstream segmentation
+Host: fal007
+Date: Thu Sep 24 08:51:32 PM EDT 2026
+SLURM_JOB_ID=598872
+SLURM_JOB_PARTITION=a30_normal_q
+Regime=real_plus_dora
+
+Downstream segmentation training
+==============================================================================
+Regime: real_plus_dora
+Device: cuda
+Seed: 42
+Output directory: /home/bhanug/localized-medical-image-synthesis/checkpoints/downstream_segmentation/dora/seed_42
+Strict deterministic algorithms: True
+CUBLAS_WORKSPACE_CONFIG: :4096:8
+cuDNN deterministic: True
+cuDNN benchmark: False
+Real training slices: 41,460
+Synthetic training cases: 10,000
+Total training samples: 51,460
+Validation slices: 5,735
+Epochs: 20
+Batch size: 26
+Learning rate: 0.001
+Threshold: 0.5
+
+Epoch 01/20 | train loss 0.455530 | train Dice 0.700257 | val loss 0.652041 | val Dice 0.701125 | val IoU 0.658397 | val+ Dice 0.677953 | val+ IoU 0.577812
+Epoch 02/20 | train loss 0.329328 | train Dice 0.759371 | val loss 0.611248 | val Dice 0.769189 | val IoU 0.728191 | val+ Dice 0.690355 | val+ IoU 0.594268
+Epoch 03/20 | train loss 0.274883 | train Dice 0.785219 | val loss 0.576646 | val Dice 0.791373 | val IoU 0.755931 | val+ Dice 0.667152 | val+ IoU 0.584089
+Epoch 04/20 | train loss 0.241103 | train Dice 0.803632 | val loss 0.576529 | val Dice 0.806486 | val IoU 0.767117 | val+ Dice 0.681323 | val+ IoU 0.589054
+Epoch 05/20 | train loss 0.218886 | train Dice 0.815110 | val loss 0.538849 | val Dice 0.821720 | val IoU 0.785326 | val+ Dice 0.690871 | val+ IoU 0.605576
+Epoch 06/20 | train loss 0.204034 | train Dice 0.823579 | val loss 0.563874 | val Dice 0.818011 | val IoU 0.785166 | val+ Dice 0.632732 | val+ IoU 0.555754
+Epoch 07/20 | train loss 0.191499 | train Dice 0.829616 | val loss 0.553494 | val Dice 0.804560 | val IoU 0.771225 | val+ Dice 0.670271 | val+ IoU 0.592144
+Epoch 08/20 | train loss 0.182239 | train Dice 0.834980 | val loss 0.500041 | val Dice 0.840091 | val IoU 0.807445 | val+ Dice 0.691428 | val+ IoU 0.614915
+Epoch 09/20 | train loss 0.172644 | train Dice 0.841431 | val loss 0.520296 | val Dice 0.830199 | val IoU 0.795928 | val+ Dice 0.707476 | val+ IoU 0.627155
+Epoch 10/20 | train loss 0.163176 | train Dice 0.847048 | val loss 0.500037 | val Dice 0.833326 | val IoU 0.797788 | val+ Dice 0.734419 | val+ IoU 0.651131
+Epoch 11/20 | train loss 0.157907 | train Dice 0.849438 | val loss 0.494295 | val Dice 0.831799 | val IoU 0.798623 | val+ Dice 0.714495 | val+ IoU 0.636739
+Epoch 12/20 | train loss 0.149203 | train Dice 0.853593 | val loss 0.480708 | val Dice 0.842634 | val IoU 0.808797 | val+ Dice 0.690847 | val+ IoU 0.611545
+Epoch 13/20 | train loss 0.144592 | train Dice 0.857513 | val loss 0.466682 | val Dice 0.843402 | val IoU 0.810591 | val+ Dice 0.708587 | val+ IoU 0.631687
+Epoch 14/20 | train loss 0.139483 | train Dice 0.860037 | val loss 0.436799 | val Dice 0.850069 | val IoU 0.818553 | val+ Dice 0.686615 | val+ IoU 0.612751
+Epoch 15/20 | train loss 0.135524 | train Dice 0.862551 | val loss 0.497824 | val Dice 0.838754 | val IoU 0.807698 | val+ Dice 0.685025 | val+ IoU 0.612240
+Epoch 16/20 | train loss 0.131477 | train Dice 0.866162 | val loss 0.499047 | val Dice 0.827392 | val IoU 0.794772 | val+ Dice 0.736041 | val+ IoU 0.659590
+Epoch 17/20 | train loss 0.127074 | train Dice 0.868790 | val loss 0.476953 | val Dice 0.842842 | val IoU 0.811424 | val+ Dice 0.706457 | val+ IoU 0.632823
+Epoch 18/20 | train loss 0.124391 | train Dice 0.869877 | val loss 0.534038 | val Dice 0.833565 | val IoU 0.803026 | val+ Dice 0.684304 | val+ IoU 0.612732
+Epoch 19/20 | train loss 0.120436 | train Dice 0.872219 | val loss 0.411164 | val Dice 0.853344 | val IoU 0.822832 | val+ Dice 0.695925 | val+ IoU 0.624415
+Epoch 20/20 | train loss 0.117812 | train Dice 0.875598 | val loss 0.475639 | val Dice 0.851313 | val IoU 0.818991 | val+ Dice 0.719362 | val+ IoU 0.643609
+
+==============================================================================
+Training complete.
+Best validation positive-slice Dice: 0.736041087832
+Best checkpoint: /home/bhanug/localized-medical-image-synthesis/checkpoints/downstream_segmentation/dora/seed_42/best_model.pt

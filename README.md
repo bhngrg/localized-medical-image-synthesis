@@ -476,11 +476,18 @@ See [`downstream_evaluation/README.md`](downstream_evaluation/README.md) and
 
 The frozen external evaluation cohort contains 202 UCSF-PDGM baseline subjects.
 
-The current evaluator interface accepts the original three downstream
-checkpoints: real only, BR-LoRA posterior mean, and BR-LoRA posterior sampling.
-The deterministic PEFT downstream training regimes are implemented, but their
-UCSF-PDGM evaluator integration has not yet been added to the current
-three-checkpoint interface.
+The UCSF-PDGM evaluator supports all seven downstream regimes: real only,
+BR-LoRA posterior mean, BR-LoRA posterior sampling, Regional LoRA, DoRA, LoKr,
+and BitFit. All regimes are evaluated on the same frozen 202-subject external
+cohort.
+
+Curated PEFT-comparison results separately preserve external evaluations of
+downstream models trained using the established feathered synthetic-composition
+condition and the corresponding non-feathered synthetic-composition comparator.
+Feathering is applied during construction of the synthetic augmentation used for
+downstream training; it is not applied to UCSF-PDGM images during external
+inference. A combined reporting artifact places the two locked result sets side
+by side without recomputing statistical estimates.
 
 Official dataset source:
 

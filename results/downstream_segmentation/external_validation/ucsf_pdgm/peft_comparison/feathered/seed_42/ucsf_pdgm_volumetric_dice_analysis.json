@@ -1,0 +1,231 @@
+{
+  "artifacts": {
+    "analysis_json": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/seed_42/ucsf_pdgm_volumetric_dice_analysis.json",
+    "table_csv": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/seed_42/ucsf_pdgm_volumetric_dice_table.csv",
+    "table_markdown": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/seed_42/ucsf_pdgm_volumetric_dice_table.md"
+  },
+  "created_utc": "2026-09-25T15:41:34.709352+00:00",
+  "evaluation_root": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488",
+  "input_files": {
+    "bitfit": {
+      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_bitfit/subject_metrics.csv",
+      "sha256": "bd197c2dd4ddb7b90f25a71d27d50b9fb9bd58977c7fc4726f0f7762dfd97f7d"
+    },
+    "dora": {
+      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_dora/subject_metrics.csv",
+      "sha256": "93888ddf3ed7bbb938e7384ede564158068ba93255691b5138fdf8c50174557c"
+    },
+    "lokr": {
+      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_lokr/subject_metrics.csv",
+      "sha256": "b82a859ec965756f612db0ed3b686f4ad5263d74f71cb2099b994c3b84ebd8e9"
+    },
+    "posterior_mean": {
+      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_br_lora_posterior_mean/subject_metrics.csv",
+      "sha256": "72acf5c150adf181d0df32fe7f26ed1b6a862284d26a9fb5f75880c8b1ca835d"
+    },
+    "posterior_sampling": {
+      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_br_lora_posterior_sampling/subject_metrics.csv",
+      "sha256": "2df5fbc676f51d8d47bef76918276b0a90d49743a042bd6803c5c2b2012957b6"
+    },
+    "real_only": {
+      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_only/subject_metrics.csv",
+      "sha256": "1f4b24e12546a2561ee42c232362205575c1a7c85d06a01dc4957fd16172ed36"
+    },
+    "regional_lora": {
+      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_regional_lora/subject_metrics.csv",
+      "sha256": "dbb9b95182f517820bc9761ab06f2ce107fef2a66d22b33b045c0f700634780c"
+    }
+  },
+  "results": {
+    "paired_comparisons": {
+      "bitfit_minus_real_only": {
+        "bootstrap_se": 0.007813014642954553,
+        "ci_95_high": 0.1279609672625828,
+        "ci_95_low": 0.0974422131013174,
+        "denominator": "real_only",
+        "mean_difference": 0.11249662330819646,
+        "n_subjects": 202,
+        "numerator": "bitfit"
+      },
+      "dora_minus_real_only": {
+        "bootstrap_se": 0.006996220610363431,
+        "ci_95_high": 0.10013314139759665,
+        "ci_95_low": 0.07263914190651165,
+        "denominator": "real_only",
+        "mean_difference": 0.08608373990623086,
+        "n_subjects": 202,
+        "numerator": "dora"
+      },
+      "lokr_minus_real_only": {
+        "bootstrap_se": 0.010358933490974635,
+        "ci_95_high": 0.15253367221252567,
+        "ci_95_low": 0.11197252489178562,
+        "denominator": "real_only",
+        "mean_difference": 0.13205791664315852,
+        "n_subjects": 202,
+        "numerator": "lokr"
+      },
+      "posterior_mean_minus_real_only": {
+        "bootstrap_se": 0.009292803585751073,
+        "ci_95_high": 0.12948338996698375,
+        "ci_95_low": 0.0932467015928332,
+        "denominator": "real_only",
+        "mean_difference": 0.11115043439203297,
+        "n_subjects": 202,
+        "numerator": "posterior_mean"
+      },
+      "posterior_sampling_minus_posterior_mean": {
+        "bootstrap_se": 0.003639510439940937,
+        "ci_95_high": 0.04753768361873149,
+        "ci_95_low": 0.03320306626747781,
+        "denominator": "posterior_mean",
+        "mean_difference": 0.04031661344936989,
+        "n_subjects": 202,
+        "numerator": "posterior_sampling"
+      },
+      "posterior_sampling_minus_real_only": {
+        "bootstrap_se": 0.01051663914324077,
+        "ci_95_high": 0.17229836047419247,
+        "ci_95_low": 0.13104964069453995,
+        "denominator": "real_only",
+        "mean_difference": 0.15146704784140289,
+        "n_subjects": 202,
+        "numerator": "posterior_sampling"
+      },
+      "regional_lora_minus_real_only": {
+        "bootstrap_se": 0.008895670125305255,
+        "ci_95_high": 0.15384608559348956,
+        "ci_95_low": 0.1187097099586828,
+        "denominator": "real_only",
+        "mean_difference": 0.1359923875800981,
+        "n_subjects": 202,
+        "numerator": "regional_lora"
+      }
+    },
+    "regimes": {
+      "bitfit": {
+        "bootstrap_se": 0.01173326794566136,
+        "ci_95_high": 0.7988800636494038,
+        "ci_95_low": 0.7531333641055833,
+        "label": "Real + BitFit",
+        "mean": 0.7769322921890585,
+        "n_subjects": 202
+      },
+      "dora": {
+        "bootstrap_se": 0.012746004751549094,
+        "ci_95_high": 0.7747738664476534,
+        "ci_95_low": 0.7252404982258379,
+        "label": "Real + DoRA",
+        "mean": 0.750519408787093,
+        "n_subjects": 202
+      },
+      "lokr": {
+        "bootstrap_se": 0.011994029895978094,
+        "ci_95_high": 0.818988693667452,
+        "ci_95_low": 0.7723216133929014,
+        "label": "Real + LoKr",
+        "mean": 0.7964935855240206,
+        "n_subjects": 202
+      },
+      "posterior_mean": {
+        "bootstrap_se": 0.011842252910865873,
+        "ci_95_high": 0.7979036209143852,
+        "ci_95_low": 0.7518133427209188,
+        "label": "Real + BR-LoRA posterior mean",
+        "mean": 0.775586103272895,
+        "n_subjects": 202
+      },
+      "posterior_sampling": {
+        "bootstrap_se": 0.011427317397215173,
+        "ci_95_high": 0.837376905113726,
+        "ci_95_low": 0.792997692590276,
+        "label": "Real + BR-LoRA posterior sampling",
+        "mean": 0.8159027167222649,
+        "n_subjects": 202
+      },
+      "real_only": {
+        "bootstrap_se": 0.014595717386915959,
+        "ci_95_high": 0.6925923035440766,
+        "ci_95_low": 0.6354341905780384,
+        "label": "Real only",
+        "mean": 0.6644356688808619,
+        "n_subjects": 202
+      },
+      "regional_lora": {
+        "bootstrap_se": 0.01154685539918332,
+        "ci_95_high": 0.8224948546971074,
+        "ci_95_low": 0.7768266042578097,
+        "label": "Real + Regional LoRA",
+        "mean": 0.8004280564609602,
+        "n_subjects": 202
+      }
+    }
+  },
+  "settings": {
+    "additional_paired_comparison": "posterior_sampling_minus_posterior_mean",
+    "analysis_name": "UCSF-PDGM external volumetric Dice bootstrap",
+    "analysis_unit": "subject",
+    "bootstrap": {
+      "confidence_level": 0.95,
+      "interval_method": "percentile",
+      "paired_comparisons": true,
+      "pairing_unit": "subject_id",
+      "quantiles": [
+        0.025,
+        0.975
+      ],
+      "replicates": 10000,
+      "same_resample_indices_for_all_regimes_and_comparisons": true,
+      "seed": 2026,
+      "slice_level_resampling": false,
+      "type": "nonparametric subject-level bootstrap with replacement"
+    },
+    "expected_subject_count": 202,
+    "observed_subject_count": 202,
+    "point_estimate": "arithmetic mean across subjects",
+    "primary_metric": "volumetric_dice",
+    "regimes": {
+      "bitfit": {
+        "label": "Real + BitFit",
+        "relative_subject_metrics_path": "real_plus_bitfit/subject_metrics.csv"
+      },
+      "dora": {
+        "label": "Real + DoRA",
+        "relative_subject_metrics_path": "real_plus_dora/subject_metrics.csv"
+      },
+      "lokr": {
+        "label": "Real + LoKr",
+        "relative_subject_metrics_path": "real_plus_lokr/subject_metrics.csv"
+      },
+      "posterior_mean": {
+        "label": "Real + BR-LoRA posterior mean",
+        "relative_subject_metrics_path": "real_plus_br_lora_posterior_mean/subject_metrics.csv"
+      },
+      "posterior_sampling": {
+        "label": "Real + BR-LoRA posterior sampling",
+        "relative_subject_metrics_path": "real_plus_br_lora_posterior_sampling/subject_metrics.csv"
+      },
+      "real_only": {
+        "label": "Real only",
+        "relative_subject_metrics_path": "real_only/subject_metrics.csv"
+      },
+      "regional_lora": {
+        "label": "Real + Regional LoRA",
+        "relative_subject_metrics_path": "real_plus_regional_lora/subject_metrics.csv"
+      }
+    },
+    "table_primary_comparisons": [
+      "posterior_mean_minus_real_only",
+      "posterior_sampling_minus_real_only",
+      "regional_lora_minus_real_only",
+      "dora_minus_real_only",
+      "lokr_minus_real_only",
+      "bitfit_minus_real_only"
+    ],
+    "variability": {
+      "ddof": 1,
+      "definition": "sample standard deviation of the bootstrap mean estimates",
+      "statistic": "bootstrap standard error of the arithmetic mean"
+    }
+  }
+}

@@ -15,8 +15,10 @@ UCSF-PDGM data root:
 Frozen UCSF-PDGM manifest:
     CLI > data/folders.yaml > tracked repository default
 
-Checkpoint paths are deliberately run-specific. They must be supplied
-explicitly on the command line and are not written to folders.yaml.
+Canonical downstream checkpoints are resolved from the repository's
+seed-42 production checkpoint locations. Explicit command-line checkpoint
+paths may be supplied to override those defaults for reruns or diagnostics.
+Checkpoint paths are not written to folders.yaml.
 
 Scientific behavior
 -------------------
@@ -90,11 +92,94 @@ DEFAULT_MANIFEST = (
     / "ucsf_pdgm_external_202_subjects.csv"
 )
 
-EXPERIMENT_NAMES = (
-    "real_only",
-    "real_plus_br_lora_posterior_mean",
-    "real_plus_br_lora_posterior_sampling",
-)
+EXPERIMENTS = {
+    "real_only": {
+        "expected_checkpoint_regime": "real_only",
+        "checkpoint_arg": "real_only_checkpoint",
+        "checkpoint_path": (
+            PROJECT_ROOT
+            / "checkpoints"
+            / "downstream_segmentation"
+            / "real_only"
+            / "seed_42"
+            / "best_model.pt"
+        ),
+    },
+    "real_plus_br_lora_posterior_mean": {
+        "expected_checkpoint_regime": "real_plus_br_lora_mean",
+        "checkpoint_arg": "posterior_mean_checkpoint",
+        "checkpoint_path": (
+            PROJECT_ROOT
+            / "checkpoints"
+            / "downstream_segmentation"
+            / "br_lora_mean"
+            / "seed_42"
+            / "best_model.pt"
+        ),
+    },
+    "real_plus_br_lora_posterior_sampling": {
+        "expected_checkpoint_regime": "real_plus_br_lora_posterior",
+        "checkpoint_arg": "posterior_sampling_checkpoint",
+        "checkpoint_path": (
+            PROJECT_ROOT
+            / "checkpoints"
+            / "downstream_segmentation"
+            / "br_lora_posterior"
+            / "seed_42"
+            / "best_model.pt"
+        ),
+    },
+    "real_plus_regional_lora": {
+        "expected_checkpoint_regime": "real_plus_regional_lora",
+        "checkpoint_arg": "regional_lora_checkpoint",
+        "checkpoint_path": (
+            PROJECT_ROOT
+            / "checkpoints"
+            / "downstream_segmentation"
+            / "regional_lora"
+            / "seed_42"
+            / "best_model.pt"
+        ),
+    },
+    "real_plus_dora": {
+        "expected_checkpoint_regime": "real_plus_dora",
+        "checkpoint_arg": "dora_checkpoint",
+        "checkpoint_path": (
+            PROJECT_ROOT
+            / "checkpoints"
+            / "downstream_segmentation"
+            / "dora"
+            / "seed_42"
+            / "best_model.pt"
+        ),
+    },
+    "real_plus_lokr": {
+        "expected_checkpoint_regime": "real_plus_lokr",
+        "checkpoint_arg": "lokr_checkpoint",
+        "checkpoint_path": (
+            PROJECT_ROOT
+            / "checkpoints"
+            / "downstream_segmentation"
+            / "lokr"
+            / "seed_42"
+            / "best_model.pt"
+        ),
+    },
+    "real_plus_bitfit": {
+        "expected_checkpoint_regime": "real_plus_bitfit",
+        "checkpoint_arg": "bitfit_checkpoint",
+        "checkpoint_path": (
+            PROJECT_ROOT
+            / "checkpoints"
+            / "downstream_segmentation"
+            / "bitfit"
+            / "seed_42"
+            / "best_model.pt"
+        ),
+    },
+}
+
+EXPERIMENT_NAMES = tuple(EXPERIMENTS)
 
 # Fixed UCSF-PDGM/BraTS-compatible data contract, not a tunable experiment
 # parameter.
@@ -143,27 +228,66 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--real-only-checkpoint",
         type=Path,
-        required=True,
-        help="Checkpoint trained using real BraTS data only.",
+        default=None,
+        help=(
+            "Override the canonical real-only downstream checkpoint."
+        ),
     )
 
     parser.add_argument(
         "--posterior-mean-checkpoint",
         type=Path,
-        required=True,
+        default=None,
         help=(
-            "Checkpoint trained using real BraTS data plus BR-LoRA "
-            "posterior-mean synthetic images."
+            "Override the canonical real + BR-LoRA posterior-mean "
+            "downstream checkpoint."
         ),
     )
 
     parser.add_argument(
         "--posterior-sampling-checkpoint",
         type=Path,
-        required=True,
+        default=None,
         help=(
-            "Checkpoint trained using real BraTS data plus BR-LoRA "
-            "posterior-sampled synthetic images."
+            "Override the canonical real + BR-LoRA posterior-sampling "
+            "downstream checkpoint."
+        ),
+    )
+
+    parser.add_argument(
+        "--regional-lora-checkpoint",
+        type=Path,
+        default=None,
+        help=(
+            "Override the canonical real + Regional LoRA "
+            "downstream checkpoint."
+        ),
+    )
+
+    parser.add_argument(
+        "--dora-checkpoint",
+        type=Path,
+        default=None,
+        help=(
+            "Override the canonical real + DoRA downstream checkpoint."
+        ),
+    )
+
+    parser.add_argument(
+        "--lokr-checkpoint",
+        type=Path,
+        default=None,
+        help=(
+            "Override the canonical real + LoKr downstream checkpoint."
+        ),
+    )
+
+    parser.add_argument(
+        "--bitfit-checkpoint",
+        type=Path,
+        default=None,
+        help=(
+            "Override the canonical real + BitFit downstream checkpoint."
         ),
     )
 
@@ -306,15 +430,27 @@ def resolve_paths(
 def resolve_checkpoints(
     args: argparse.Namespace,
 ) -> dict[str, Path]:
-    return {
-        "real_only": args.real_only_checkpoint.expanduser().resolve(),
-        "real_plus_br_lora_posterior_mean": (
-            args.posterior_mean_checkpoint.expanduser().resolve()
-        ),
-        "real_plus_br_lora_posterior_sampling": (
-            args.posterior_sampling_checkpoint.expanduser().resolve()
-        ),
-    }
+    checkpoints = {}
+
+    for experiment_name, spec in EXPERIMENTS.items():
+        override = getattr(
+            args,
+            spec["checkpoint_arg"],
+        )
+
+        checkpoint_path = (
+            override
+            if override is not None
+            else spec["checkpoint_path"]
+        )
+
+        checkpoints[experiment_name] = (
+            checkpoint_path
+            .expanduser()
+            .resolve()
+        )
+
+    return checkpoints
 
 
 def sha256_file(
@@ -560,6 +696,7 @@ def validate_checkpoint(
     required_keys = {
         "model_state_dict",
         "epoch",
+        "regime",
     }
 
     missing = (
@@ -573,6 +710,21 @@ def validate_checkpoint(
             + ", ".join(
                 sorted(missing)
             )
+        )
+
+    expected_regime = EXPERIMENTS[
+        experiment_name
+    ]["expected_checkpoint_regime"]
+
+    observed_regime = checkpoint[
+        "regime"
+    ]
+
+    if observed_regime != expected_regime:
+        raise RuntimeError(
+            f"{experiment_name} checkpoint regime mismatch: "
+            f"expected {expected_regime!r}, "
+            f"found {observed_regime!r}."
         )
 
     threshold = float(
@@ -1375,8 +1527,8 @@ def build_run_metadata(
             "note": (
                 "Downstream segmentation idea and vanilla U-Net structure "
                 "adapted in part from the reference repository; the current "
-                "implementation was rewritten for the BraTS/UCSF-PDGM and "
-                "BR-LoRA workflow."
+                "implementation was rewritten for the BraTS/UCSF-PDGM "
+                "downstream PEFT-comparison workflow."
             ),
         },
     }

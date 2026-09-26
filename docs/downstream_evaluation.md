@@ -330,15 +330,37 @@ For additional provenance and reproducibility details, see
 
 ## External Validation
 
-The established UCSF-PDGM evaluator currently exposes the original
-three-checkpoint BR-LoRA analysis interface: real only, BR-LoRA posterior mean,
-and BR-LoRA posterior sampling. Those trained models are evaluated on the same
-frozen independent UCSF-PDGM cohort.
+The UCSF-PDGM evaluator supports all seven downstream regimes:
 
-The deterministic PEFT downstream regimes are implemented for training, but
-the current UCSF-PDGM evaluator interface has not yet been generalized to
-accept the four deterministic comparator checkpoints. Documentation therefore
-does not treat comparator external-evaluation results as already implemented.
+```text
+real_only
+real_plus_br_lora_posterior_mean
+real_plus_br_lora_posterior_sampling
+real_plus_regional_lora
+real_plus_dora
+real_plus_lokr
+real_plus_bitfit
+```
+
+All seven trained models are evaluated on the same frozen independent
+UCSF-PDGM cohort.
+
+The locked external analysis uses subject-level volumetric Dice as the primary
+metric. Point estimates are arithmetic means across the 202 matched subjects.
+Uncertainty is quantified with 10,000 nonparametric subject-level bootstrap
+resamples using seed 2026 and 95% percentile intervals. Comparisons with the
+real-only condition use paired subject-level resampling with the same bootstrap
+draws across regimes.
+
+Curated PEFT-comparison results are maintained separately for external
+evaluations of downstream models trained using the established feathered
+synthetic-composition condition and the corresponding non-feathered
+synthetic-composition comparator. Feathering is part of synthetic augmentation
+construction during downstream training and is not applied to UCSF-PDGM images
+during external inference. The combined result is a reporting-only side-by-side
+consolidation of those locked analyses; it does not recompute Dice, bootstrap
+estimates, confidence intervals, or perform a hypothesis test comparing the two
+training-composition conditions.
 
 The external cohort contains:
 
