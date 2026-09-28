@@ -431,6 +431,17 @@ existing canonical artifact, prior artifacts that must be retained are moved
 to the corresponding top-level `historical/` tree rather than silently
 overwritten.
 
+Historical run metadata is retained unchanged as execution provenance. If a
+required large artifact is subsequently relocated for storage organization,
+its recorded SHA-256 hash is the authoritative artifact identity. In
+particular, the retained non-feathered BR-LoRA posterior checkpoint records
+posterior shard-cache manifest SHA-256
+`25bc5966dff7b5f80e3f2636408a6828f794a8bd2146a26d990855a21f5a88d1`.
+That preserved cache is currently stored at
+`/scratch/bhanug/br_lora_library/downstream_seed42_epoch20_shards_pre_inner_feathering_20260830/`;
+the original path recorded in the historical run metadata is intentionally
+left unchanged.
+
 ## Reproducibility Boundary
 
 The version-controlled frozen subject manifest is the evaluation contract.
