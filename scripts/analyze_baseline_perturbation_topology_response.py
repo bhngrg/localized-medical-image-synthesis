@@ -160,6 +160,15 @@ def resolve_output_dir(path: Path) -> Path:
     return resolved.resolve()
 
 
+def repository_display_path(path: Path) -> str:
+    resolved = path.expanduser().resolve()
+
+    try:
+        return resolved.relative_to(PROJECT_ROOT).as_posix()
+    except ValueError:
+        return str(resolved)
+
+
 def validate_columns(
     df: pd.DataFrame,
 ) -> None:
@@ -741,7 +750,7 @@ def write_summary(
         "=" * 64,
         "",
         "INPUT",
-        f"Stage-7 response catalog: {catalog_path}",
+        f"Stage-7 response catalog: {repository_display_path(catalog_path)}",
         "",
         "CATALOG CONTRACT",
         f"Rows:                      {len(df):,}",

@@ -1,38 +1,38 @@
 {
   "artifacts": {
-    "analysis_json": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/seed_42/ucsf_pdgm_volumetric_dice_analysis.json",
-    "table_csv": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/seed_42/ucsf_pdgm_volumetric_dice_table.csv",
-    "table_markdown": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/seed_42/ucsf_pdgm_volumetric_dice_table.md"
+    "analysis_json": "results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/feathered/seed_42/ucsf_pdgm_volumetric_dice_analysis.json",
+    "table_csv": "results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/feathered/seed_42/ucsf_pdgm_volumetric_dice_table.csv",
+    "table_markdown": "results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/feathered/seed_42/ucsf_pdgm_volumetric_dice_table.md"
   },
   "created_utc": "2026-09-25T15:41:34.709352+00:00",
-  "evaluation_root": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488",
+  "evaluation_root": "outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488",
   "input_files": {
     "bitfit": {
-      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_bitfit/subject_metrics.csv",
+      "path": "outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_bitfit/subject_metrics.csv",
       "sha256": "bd197c2dd4ddb7b90f25a71d27d50b9fb9bd58977c7fc4726f0f7762dfd97f7d"
     },
     "dora": {
-      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_dora/subject_metrics.csv",
+      "path": "outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_dora/subject_metrics.csv",
       "sha256": "93888ddf3ed7bbb938e7384ede564158068ba93255691b5138fdf8c50174557c"
     },
     "lokr": {
-      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_lokr/subject_metrics.csv",
+      "path": "outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_lokr/subject_metrics.csv",
       "sha256": "b82a859ec965756f612db0ed3b686f4ad5263d74f71cb2099b994c3b84ebd8e9"
     },
     "posterior_mean": {
-      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_br_lora_posterior_mean/subject_metrics.csv",
+      "path": "outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_br_lora_posterior_mean/subject_metrics.csv",
       "sha256": "72acf5c150adf181d0df32fe7f26ed1b6a862284d26a9fb5f75880c8b1ca835d"
     },
     "posterior_sampling": {
-      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_br_lora_posterior_sampling/subject_metrics.csv",
+      "path": "outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_br_lora_posterior_sampling/subject_metrics.csv",
       "sha256": "2df5fbc676f51d8d47bef76918276b0a90d49743a042bd6803c5c2b2012957b6"
     },
     "real_only": {
-      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_only/subject_metrics.csv",
+      "path": "outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_only/subject_metrics.csv",
       "sha256": "1f4b24e12546a2561ee42c232362205575c1a7c85d06a01dc4957fd16172ed36"
     },
     "regional_lora": {
-      "path": "/home/bhanug/localized-medical-image-synthesis/outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_regional_lora/subject_metrics.csv",
+      "path": "outputs/downstream_segmentation/evaluations/ucsf_pdgm_external_202/a30_normal_q_job_599488/real_plus_regional_lora/subject_metrics.csv",
       "sha256": "dbb9b95182f517820bc9761ab06f2ce107fef2a66d22b33b045c0f700634780c"
     }
   },

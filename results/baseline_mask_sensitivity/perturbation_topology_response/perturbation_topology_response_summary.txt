@@ -2,7 +2,7 @@ BASELINE PERTURBATION / TOPOLOGY RESPONSE ANALYSIS
 ================================================================
 
 INPUT
-Stage-7 response catalog: /home/bhanug/localized-medical-image-synthesis/outputs/baseline_mask_sensitivity/perturbation_response/baseline_perturbation_response_catalog.csv
+Stage-7 response catalog: outputs/baseline_mask_sensitivity/perturbation_response/baseline_perturbation_response_catalog.csv
 
 CATALOG CONTRACT
 Rows:                      139,587

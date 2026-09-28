@@ -197,6 +197,15 @@ def resolve_output_dir(path: Path) -> Path:
     return resolved.resolve()
 
 
+def repository_display_path(path: Path) -> str:
+    resolved = path.expanduser().resolve()
+
+    try:
+        return resolved.relative_to(PROJECT_ROOT).as_posix()
+    except ValueError:
+        return str(resolved)
+
+
 def validate_columns(
     df: pd.DataFrame,
     required: set[str],
@@ -655,8 +664,8 @@ def write_summary(
         "=" * 64,
         "",
         "INPUTS",
-        f"Geometry catalog: {geometry_path}",
-        f"Response catalog: {response_path}",
+        f"Geometry catalog: {repository_display_path(geometry_path)}",
+        f"Response catalog: {repository_display_path(response_path)}",
         "",
         "JOIN CONTRACT",
         f"Joined slices:              {len(joined):,}",

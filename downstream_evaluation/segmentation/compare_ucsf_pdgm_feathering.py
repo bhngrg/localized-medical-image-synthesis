@@ -102,6 +102,15 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def repository_display_path(path: Path) -> str:
+    resolved = path.expanduser().resolve()
+
+    try:
+        return resolved.relative_to(PROJECT_ROOT).as_posix()
+    except ValueError:
+        return str(resolved)
+
+
 def load_table(path: Path, label: str) -> pd.DataFrame:
     if not path.is_file():
         raise FileNotFoundError(f"Missing {label} table: {path}")
@@ -271,11 +280,11 @@ def main() -> None:
         ),
         "inputs": {
             "feathered": {
-                "path": str(feathered_path),
+                "path": repository_display_path(feathered_path),
                 "sha256": sha256_file(feathered_path),
             },
             "non_feathered": {
-                "path": str(non_feathered_path),
+                "path": repository_display_path(non_feathered_path),
                 "sha256": sha256_file(non_feathered_path),
             },
         },
@@ -290,9 +299,9 @@ def main() -> None:
             ],
         },
         "artifacts": {
-            "table_csv": str(csv_path),
-            "table_markdown": str(md_path),
-            "provenance_json": str(json_path),
+            "table_csv": repository_display_path(csv_path),
+            "table_markdown": repository_display_path(md_path),
+            "provenance_json": repository_display_path(json_path),
         },
     }
 

@@ -1,18 +1,18 @@
 {
   "analysis": "Side-by-side consolidation of locked feathered and non-feathered UCSF-PDGM PEFT results",
   "artifacts": {
-    "provenance_json": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/combined/seed_42/ucsf_pdgm_feathering_comparison.json",
-    "table_csv": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/combined/seed_42/ucsf_pdgm_feathering_comparison_table.csv",
-    "table_markdown": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/combined/seed_42/ucsf_pdgm_feathering_comparison_table.md"
+    "provenance_json": "results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/combined/seed_42/ucsf_pdgm_feathering_comparison.json",
+    "table_csv": "results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/combined/seed_42/ucsf_pdgm_feathering_comparison_table.csv",
+    "table_markdown": "results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/combined/seed_42/ucsf_pdgm_feathering_comparison_table.md"
   },
   "created_utc": "2026-09-26T14:00:29.138323+00:00",
   "inputs": {
     "feathered": {
-      "path": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/feathered/seed_42/ucsf_pdgm_volumetric_dice_table.csv",
+      "path": "results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/feathered/seed_42/ucsf_pdgm_volumetric_dice_table.csv",
       "sha256": "eee299422171a5993c8ade3e687275f7eb30bbdefac397532062f623befaf3bb"
     },
     "non_feathered": {
-      "path": "/home/bhanug/localized-medical-image-synthesis/results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/non_feathered/seed_42/ucsf_pdgm_volumetric_dice_table.csv",
+      "path": "results/downstream_segmentation/external_validation/ucsf_pdgm/peft_comparison/non_feathered/seed_42/ucsf_pdgm_volumetric_dice_table.csv",
       "sha256": "4c94710d2f71013d5fb97023135e4f15627676a541c3093c0fcdfaea68a15308"
     }
   },

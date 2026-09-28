@@ -1,7 +1,7 @@
 CONTROLLED GEOMETRIC PERTURBATION TOPOLOGY AUDIT
 ================================================================
 
-Input catalog: /home/bhanug/localized-medical-image-synthesis/outputs/baseline_mask_sensitivity/signed_distance/signed_distance_perturbation_catalog.csv
+Input catalog: outputs/baseline_mask_sensitivity/signed_distance/signed_distance_perturbation_catalog.csv
 Audited rows:  338,997
 Unique slices: 19,941
 Unique volumes: 369

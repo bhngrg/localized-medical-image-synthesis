@@ -29,6 +29,9 @@ import numpy as np
 import pandas as pd
 
 
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+
 EXPECTED_SUBJECTS = 202
 METRIC = "volumetric_dice"
 BOOTSTRAP_REPLICATES = 10_000
@@ -134,6 +137,15 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def repository_display_path(path: Path) -> str:
+    resolved = path.expanduser().resolve()
+
+    try:
+        return resolved.relative_to(PROJECT_ROOT).as_posix()
+    except ValueError:
+        return str(resolved)
+
+
 def refuse_overwrite(paths: list[Path]) -> None:
     existing = [path for path in paths if path.exists()]
     if existing:
@@ -210,7 +222,7 @@ def main() -> None:
         df = load_subject_metric(path)
         dataframes[regime] = df
         input_files[regime] = {
-            "path": str(path),
+            "path": repository_display_path(path),
             "sha256": sha256_file(path),
         }
 
@@ -392,7 +404,7 @@ def main() -> None:
 
     payload = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
-        "evaluation_root": str(evaluation_root),
+        "evaluation_root": repository_display_path(evaluation_root),
         "settings": settings,
         "input_files": input_files,
         "results": {
@@ -400,9 +412,9 @@ def main() -> None:
             "paired_comparisons": comparison_results,
         },
         "artifacts": {
-            "table_csv": str(csv_path),
-            "table_markdown": str(md_path),
-            "analysis_json": str(json_path),
+            "table_csv": repository_display_path(csv_path),
+            "table_markdown": repository_display_path(md_path),
+            "analysis_json": repository_display_path(json_path),
         },
     }
 

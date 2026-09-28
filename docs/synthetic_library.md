@@ -215,7 +215,6 @@ Production and acceptance are deliberately separate. If either stage fails:
 
 Acceptance preserves the staging copy after successful promotion; staging cleanup is an explicit user-controlled operation.
 
-Infrastructure-specific Mac-to-Falcon orchestration used for the original library build is retained under `scripts/historical/` for provenance only and is not part of the supported public workflow.
 
 ## Downstream Posterior Shard Cache
 

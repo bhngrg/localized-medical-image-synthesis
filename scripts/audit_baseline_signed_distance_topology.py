@@ -173,6 +173,15 @@ def resolve_project_path(path: Path) -> Path:
     return path.resolve()
 
 
+def repository_display_path(path: Path) -> str:
+    resolved = path.expanduser().resolve()
+
+    try:
+        return resolved.relative_to(PROJECT_ROOT).as_posix()
+    except ValueError:
+        return str(resolved)
+
+
 def parse_case(value: str | None) -> tuple[int, int] | None:
     if value is None:
         return None
@@ -865,7 +874,7 @@ def main() -> None:
         "CONTROLLED GEOMETRIC PERTURBATION TOPOLOGY AUDIT",
         "=" * 64,
         "",
-        f"Input catalog: {input_catalog}",
+        f"Input catalog: {repository_display_path(input_catalog)}",
         f"Audited rows:  {len(audit):,}",
         (
             "Unique slices: "

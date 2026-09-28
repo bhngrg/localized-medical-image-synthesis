@@ -2,8 +2,8 @@ BASELINE MASK GEOMETRY / BOUNDARY RESPONSE ASSOCIATIONS
 ================================================================
 
 INPUTS
-Geometry catalog: /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/mask_geometry_topology/mask_geometry_topology_catalog.csv
-Response catalog: /home/bhanug/localized-medical-image-synthesis/outputs/baseline_mask_sensitivity/boundary_response/baseline_boundary_response_catalog.csv
+Geometry catalog: results/baseline_mask_sensitivity/mask_geometry_topology/mask_geometry_topology_catalog.csv
+Response catalog: outputs/baseline_mask_sensitivity/boundary_response/baseline_boundary_response_catalog.csv
 
 JOIN CONTRACT
 Joined slices:              19,941
