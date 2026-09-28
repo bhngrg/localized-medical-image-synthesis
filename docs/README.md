@@ -17,6 +17,9 @@ provide details for individual parts of that workflow.
   synthesis and downstream evaluation.
 - [`br_lora_pipeline.md`](br_lora_pipeline.md) — BR-LoRA training, inference,
   posterior artifacts, and regional composition.
+- [`baseline_mask_sensitivity.md`](baseline_mask_sensitivity.md) —
+  baseline-generator sensitivity to mask geometry, topological characteristics, boundary structure,
+  and controlled signed-distance perturbations.
 - [`synthetic_library.md`](synthetic_library.md) — shared frozen 10,000-case
   design, BR-LoRA library production/acceptance, and deterministic PEFT
   comparator-library production.

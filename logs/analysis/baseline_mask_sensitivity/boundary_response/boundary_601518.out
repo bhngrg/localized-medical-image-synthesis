@@ -1,0 +1,75 @@
+Baseline boundary-response analysis
+===================================
+Host                : fal004
+Date                : Sun Sep 27 03:47:26 PM EDT 2026
+Git commit          : ae33a3610a1c8b3ebd62132124a5012294ff89d8
+SLURM_JOB_ID        : 601518
+SLURM_JOB_PARTITION : a30_normal_q
+Conda environment   : brats-nnunet
+
+Sun Sep 27 15:47:26 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A30                     On  |   00000000:61:00.0 Off |                    0 |
+| N/A   29C    P0             50W /  165W |       0MiB /  24576MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+Found 19941 tumor-containing H5 slices.
+============================================================
+BASELINE BOUNDARY-RESPONSE ANALYSIS
+============================================================
+H5 root:             /scratch/bhanug/archive/BraTS2020_H5_Rebuilt
+Manifest:            /scratch/bhanug/tumor_inpainting_doc/data/BraTS/BraTS20 Training Metadata.csv
+Checkpoint:          /home/bhanug/localized-medical-image-synthesis/checkpoints/baseline/full_train/final_patch_x0_diffusion_full_train.pt
+Checkpoint SHA-256:  d633cdce1184bcf1b0a985244fac9ca25e9edcdf9c5bca227d421ef9a553790e
+Dataset slices:      19,941
+Slices analyzed:     19,941
+Run type:            full scientific cohort
+Device:              cuda
+Diffusion timesteps: 200
+Inference timestep:  150
+Noise seed base:     2026
+Distance profile:    -8..-1, +1..8
+FLAIR scale:         notebook-normalized per slice
+Mask perturbation:   none
+
+Processed 1,000 / 19,941
+Processed 2,000 / 19,941
+Processed 3,000 / 19,941
+Processed 4,000 / 19,941
+Processed 5,000 / 19,941
+Processed 6,000 / 19,941
+Processed 7,000 / 19,941
+Processed 8,000 / 19,941
+Processed 9,000 / 19,941
+Processed 10,000 / 19,941
+Processed 11,000 / 19,941
+Processed 12,000 / 19,941
+Processed 13,000 / 19,941
+Processed 14,000 / 19,941
+Processed 15,000 / 19,941
+Processed 16,000 / 19,941
+Processed 17,000 / 19,941
+Processed 18,000 / 19,941
+Processed 19,000 / 19,941
+Processed 19,941 / 19,941
+
+Wrote 19,941 slice rows:
+/home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/boundary_response/baseline_boundary_response_catalog.csv
+
+Wrote 319,056 signed-distance profile rows:
+/home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/boundary_response/baseline_boundary_distance_profiles.csv

@@ -263,7 +263,10 @@ the frozen diffusion backbone. The deterministic comparators produce one fitted
 adaptation state per method.
 
 For BR-LoRA implementation and training details, see
-[`docs/br_lora_pipeline.md`](docs/br_lora_pipeline.md).
+[`docs/br_lora_pipeline.md`](docs/br_lora_pipeline.md). Baseline-generator
+sensitivity to mask geometry, topological characteristics, boundary structure, and controlled
+signed-distance perturbations is documented in
+[`docs/baseline_mask_sensitivity.md`](docs/baseline_mask_sensitivity.md).
 
 Posterior products can be generated and audited with:
 

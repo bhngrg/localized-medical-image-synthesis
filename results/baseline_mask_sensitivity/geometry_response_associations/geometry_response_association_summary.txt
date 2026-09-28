@@ -1,0 +1,163 @@
+BASELINE MASK GEOMETRY / BOUNDARY RESPONSE ASSOCIATIONS
+================================================================
+
+INPUTS
+Geometry catalog: /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/mask_geometry_topology/mask_geometry_topology_catalog.csv
+Response catalog: /home/bhanug/localized-medical-image-synthesis/outputs/baseline_mask_sensitivity/boundary_response/baseline_boundary_response_catalog.csv
+
+JOIN CONTRACT
+Joined slices:              19,941
+Unique volumes:             369
+Join key:                   (volume, slice)
+H5 identity:                basename equality
+Geometry/response masks:   exact mask_pixels equality
+
+PRIMARY ANALYSIS
+Associations:              48
+Predictors:                12
+Responses:                 4
+Effect size:                Spearman rho
+Uncertainty:              subject/volume-cluster bootstrap percentile CI
+Bootstrap replicates:      10,000
+Bootstrap seed:            2026
+Inference:                cluster-bootstrap 95% CI; slice-level p-values not used
+
+SECONDARY MAE ANALYSIS
+Associations:              24
+Responses:                 pred_mae_inside_1_4, pred_mae_inside_deep
+Deep-interior missing:     202 (1.013%)
+Inference:                cluster-bootstrap 95% CI; slice-level p-values not used
+
+VOLUME-MEDIAN SENSITIVITY ANALYSIS
+Associations:              48
+Volumes:                   369
+Aggregation:               median within volume before Spearman correlation
+
+PRIMARY ASSOCIATIONS
+               predictor                           response  n_slices  n_volumes  spearman_rho  cluster_bootstrap_ci_lower  cluster_bootstrap_ci_upper  bootstrap_replicates_requested  bootstrap_replicates_valid
+             mask_pixels            pred_excess_jump_signed     19941        369     -0.346205                   -0.394441                   -0.296952                           10000                       10000
+             mask_pixels       composite_excess_jump_signed     19941        369      0.250835                    0.202911                    0.296565                           10000                       10000
+             mask_pixels      pred_excess_boundary_gradient     19941        369     -0.238490                   -0.290990                   -0.184620                           10000                       10000
+             mask_pixels composite_excess_boundary_gradient     19941        369      0.303756                    0.252745                    0.354511                           10000                       10000
+    perimeter_area_ratio            pred_excess_jump_signed     19941        369      0.388836                    0.340555                    0.436429                           10000                       10000
+    perimeter_area_ratio       composite_excess_jump_signed     19941        369     -0.321224                   -0.367869                   -0.272076                           10000                       10000
+    perimeter_area_ratio      pred_excess_boundary_gradient     19941        369      0.309097                    0.256136                    0.360388                           10000                       10000
+    perimeter_area_ratio composite_excess_boundary_gradient     19941        369     -0.344327                   -0.393925                   -0.292443                           10000                       10000
+             compactness            pred_excess_jump_signed     19941        369     -0.219703                   -0.278581                   -0.159895                           10000                       10000
+             compactness       composite_excess_jump_signed     19941        369      0.225728                    0.169959                    0.278757                           10000                       10000
+             compactness      pred_excess_boundary_gradient     19941        369     -0.218743                   -0.277720                   -0.158213                           10000                       10000
+             compactness composite_excess_boundary_gradient     19941        369      0.193520                    0.135035                    0.250747                           10000                       10000
+                  beta_0            pred_excess_jump_signed     19941        369      0.095480                    0.044013                    0.146242                           10000                       10000
+                  beta_0       composite_excess_jump_signed     19941        369     -0.099664                   -0.146568                   -0.051427                           10000                       10000
+                  beta_0      pred_excess_boundary_gradient     19941        369      0.082751                    0.031221                    0.134182                           10000                       10000
+                  beta_0 composite_excess_boundary_gradient     19941        369     -0.078537                   -0.130325                   -0.026980                           10000                       10000
+                  beta_1            pred_excess_jump_signed     19941        369     -0.038838                   -0.088418                    0.011885                           10000                       10000
+                  beta_1       composite_excess_jump_signed     19941        369     -0.038965                   -0.088324                    0.009325                           10000                       10000
+                  beta_1      pred_excess_boundary_gradient     19941        369     -0.042736                   -0.093993                    0.007227                           10000                       10000
+                  beta_1 composite_excess_boundary_gradient     19941        369     -0.022475                   -0.070716                    0.025310                           10000                       10000
+                 max_edt            pred_excess_jump_signed     19941        369     -0.397794                   -0.442907                   -0.352151                           10000                       10000
+                 max_edt       composite_excess_jump_signed     19941        369      0.314683                    0.268122                    0.361178                           10000                       10000
+                 max_edt      pred_excess_boundary_gradient     19941        369     -0.309018                   -0.357853                   -0.259719                           10000                       10000
+                 max_edt composite_excess_boundary_gradient     19941        369      0.354071                    0.303582                    0.402578                           10000                       10000
+h0_positive_finite_count            pred_excess_jump_signed     19941        369      0.035968                   -0.023784                    0.093926                           10000                       10000
+h0_positive_finite_count       composite_excess_jump_signed     19941        369     -0.096056                   -0.149779                   -0.042458                           10000                       10000
+h0_positive_finite_count      pred_excess_boundary_gradient     19941        369      0.073394                    0.013793                    0.130674                           10000                       10000
+h0_positive_finite_count composite_excess_boundary_gradient     19941        369     -0.048160                   -0.104666                    0.009776                           10000                       10000
+      h0_max_persistence            pred_excess_jump_signed     19941        369      0.134587                    0.080874                    0.187242                           10000                       10000
+      h0_max_persistence       composite_excess_jump_signed     19941        369     -0.153105                   -0.202154                   -0.104590                           10000                       10000
+      h0_max_persistence      pred_excess_boundary_gradient     19941        369      0.152703                    0.097265                    0.206522                           10000                       10000
+      h0_max_persistence composite_excess_boundary_gradient     19941        369     -0.122861                   -0.173267                   -0.071962                           10000                       10000
+    h0_total_persistence            pred_excess_jump_signed     19941        369      0.114839                    0.054450                    0.174737                           10000                       10000
+    h0_total_persistence       composite_excess_jump_signed     19941        369     -0.153965                   -0.207288                   -0.100004                           10000                       10000
+    h0_total_persistence      pred_excess_boundary_gradient     19941        369      0.134904                    0.073196                    0.193222                           10000                       10000
+    h0_total_persistence composite_excess_boundary_gradient     19941        369     -0.113900                   -0.171696                   -0.055152                           10000                       10000
+h1_positive_finite_count            pred_excess_jump_signed     19941        369     -0.039678                   -0.086830                    0.007276                           10000                       10000
+h1_positive_finite_count       composite_excess_jump_signed     19941        369     -0.033135                   -0.078167                    0.011366                           10000                       10000
+h1_positive_finite_count      pred_excess_boundary_gradient     19941        369     -0.037209                   -0.083765                    0.009818                           10000                       10000
+h1_positive_finite_count composite_excess_boundary_gradient     19941        369     -0.012007                   -0.058003                    0.034088                           10000                       10000
+      h1_max_persistence            pred_excess_jump_signed     19941        369     -0.050154                   -0.093466                   -0.007625                           10000                       10000
+      h1_max_persistence       composite_excess_jump_signed     19941        369     -0.025477                   -0.067078                    0.016226                           10000                       10000
+      h1_max_persistence      pred_excess_boundary_gradient     19941        369     -0.039850                   -0.083097                    0.003039                           10000                       10000
+      h1_max_persistence composite_excess_boundary_gradient     19941        369      0.000481                   -0.041510                    0.043130                           10000                       10000
+    h1_total_persistence            pred_excess_jump_signed     19941        369     -0.045203                   -0.091689                    0.001143                           10000                       10000
+    h1_total_persistence       composite_excess_jump_signed     19941        369     -0.029839                   -0.073552                    0.014506                           10000                       10000
+    h1_total_persistence      pred_excess_boundary_gradient     19941        369     -0.038636                   -0.085924                    0.006745                           10000                       10000
+    h1_total_persistence composite_excess_boundary_gradient     19941        369     -0.005272                   -0.050789                    0.039536                           10000                       10000
+
+SECONDARY MAE ASSOCIATIONS
+               predictor             response  n_slices  n_volumes  spearman_rho  cluster_bootstrap_ci_lower  cluster_bootstrap_ci_upper  bootstrap_replicates_requested  bootstrap_replicates_valid
+             mask_pixels  pred_mae_inside_1_4     19941        369     -0.302558                   -0.357732                   -0.246984                           10000                       10000
+             mask_pixels pred_mae_inside_deep     19739        369     -0.032758                   -0.078471                    0.014646                           10000                       10000
+    perimeter_area_ratio  pred_mae_inside_1_4     19941        369      0.274590                    0.215381                    0.330258                           10000                       10000
+    perimeter_area_ratio pred_mae_inside_deep     19739        369      0.089702                    0.039525                    0.136990                           10000                       10000
+             compactness  pred_mae_inside_1_4     19941        369     -0.078856                   -0.137984                   -0.020173                           10000                       10000
+             compactness pred_mae_inside_deep     19739        369     -0.094792                   -0.148356                   -0.041427                           10000                       10000
+                  beta_0  pred_mae_inside_1_4     19941        369      0.066612                    0.015854                    0.116876                           10000                       10000
+                  beta_0 pred_mae_inside_deep     19739        369      0.046797                    0.001819                    0.091525                           10000                       10000
+                  beta_1  pred_mae_inside_1_4     19941        369      0.016460                   -0.035617                    0.068613                           10000                       10000
+                  beta_1 pred_mae_inside_deep     19739        369      0.068813                    0.028649                    0.108335                           10000                       10000
+                 max_edt  pred_mae_inside_1_4     19941        369     -0.276088                   -0.330242                   -0.220005                           10000                       10000
+                 max_edt pred_mae_inside_deep     19739        369     -0.071365                   -0.117568                   -0.022215                           10000                       10000
+h0_positive_finite_count  pred_mae_inside_1_4     19941        369     -0.065237                   -0.122941                   -0.005740                           10000                       10000
+h0_positive_finite_count pred_mae_inside_deep     19739        369      0.094880                    0.045090                    0.144053                           10000                       10000
+      h0_max_persistence  pred_mae_inside_1_4     19941        369      0.022667                   -0.029447                    0.074512                           10000                       10000
+      h0_max_persistence pred_mae_inside_deep     19739        369      0.049767                    0.001758                    0.097420                           10000                       10000
+    h0_total_persistence  pred_mae_inside_1_4     19941        369      0.006839                   -0.051003                    0.063649                           10000                       10000
+    h0_total_persistence pred_mae_inside_deep     19739        369      0.079783                    0.028755                    0.131271                           10000                       10000
+h1_positive_finite_count  pred_mae_inside_1_4     19941        369     -0.003200                   -0.052948                    0.046327                           10000                       10000
+h1_positive_finite_count pred_mae_inside_deep     19739        369      0.060755                    0.022153                    0.099846                           10000                       10000
+      h1_max_persistence  pred_mae_inside_1_4     19941        369     -0.032152                   -0.078961                    0.014471                           10000                       10000
+      h1_max_persistence pred_mae_inside_deep     19739        369      0.041157                    0.003976                    0.078205                           10000                       10000
+    h1_total_persistence  pred_mae_inside_1_4     19941        369     -0.019868                   -0.068568                    0.029276                           10000                       10000
+    h1_total_persistence pred_mae_inside_deep     19739        369      0.052526                    0.013261                    0.091482                           10000                       10000
+
+VOLUME-MEDIAN PRIMARY SENSITIVITY
+               predictor                           response  n_volumes  spearman_rho
+             mask_pixels            pred_excess_jump_signed        369     -0.176462
+             mask_pixels       composite_excess_jump_signed        369      0.246726
+             mask_pixels      pred_excess_boundary_gradient        369     -0.075284
+             mask_pixels composite_excess_boundary_gradient        369      0.303612
+    perimeter_area_ratio            pred_excess_jump_signed        369      0.227936
+    perimeter_area_ratio       composite_excess_jump_signed        369     -0.352097
+    perimeter_area_ratio      pred_excess_boundary_gradient        369      0.158196
+    perimeter_area_ratio composite_excess_boundary_gradient        369     -0.339883
+             compactness            pred_excess_jump_signed        369     -0.137622
+             compactness       composite_excess_jump_signed        369      0.250462
+             compactness      pred_excess_boundary_gradient        369     -0.132703
+             compactness composite_excess_boundary_gradient        369      0.175754
+                  beta_0            pred_excess_jump_signed        369      0.051058
+                  beta_0       composite_excess_jump_signed        369     -0.102913
+                  beta_0      pred_excess_boundary_gradient        369      0.047114
+                  beta_0 composite_excess_boundary_gradient        369     -0.045147
+                  beta_1            pred_excess_jump_signed        369      0.023909
+                  beta_1       composite_excess_jump_signed        369     -0.138822
+                  beta_1      pred_excess_boundary_gradient        369     -0.016501
+                  beta_1 composite_excess_boundary_gradient        369     -0.099373
+                 max_edt            pred_excess_jump_signed        369     -0.243880
+                 max_edt       composite_excess_jump_signed        369      0.368183
+                 max_edt      pred_excess_boundary_gradient        369     -0.159751
+                 max_edt composite_excess_boundary_gradient        369      0.383392
+h0_positive_finite_count            pred_excess_jump_signed        369      0.093669
+h0_positive_finite_count       composite_excess_jump_signed        369     -0.185922
+h0_positive_finite_count      pred_excess_boundary_gradient        369      0.112498
+h0_positive_finite_count composite_excess_boundary_gradient        369     -0.095173
+      h0_max_persistence            pred_excess_jump_signed        369      0.130125
+      h0_max_persistence       composite_excess_jump_signed        369     -0.219405
+      h0_max_persistence      pred_excess_boundary_gradient        369      0.143090
+      h0_max_persistence composite_excess_boundary_gradient        369     -0.134742
+    h0_total_persistence            pred_excess_jump_signed        369      0.112005
+    h0_total_persistence       composite_excess_jump_signed        369     -0.211965
+    h0_total_persistence      pred_excess_boundary_gradient        369      0.120528
+    h0_total_persistence composite_excess_boundary_gradient        369     -0.127083
+h1_positive_finite_count            pred_excess_jump_signed        369      0.042369
+h1_positive_finite_count       composite_excess_jump_signed        369     -0.093498
+h1_positive_finite_count      pred_excess_boundary_gradient        369      0.007110
+h1_positive_finite_count composite_excess_boundary_gradient        369     -0.054867
+      h1_max_persistence            pred_excess_jump_signed        369      0.038991
+      h1_max_persistence       composite_excess_jump_signed        369     -0.086715
+      h1_max_persistence      pred_excess_boundary_gradient        369      0.010013
+      h1_max_persistence composite_excess_boundary_gradient        369     -0.040991
+    h1_total_persistence            pred_excess_jump_signed        369      0.039753
+    h1_total_persistence       composite_excess_jump_signed        369     -0.093160
+    h1_total_persistence      pred_excess_boundary_gradient        369      0.006965
+    h1_total_persistence composite_excess_boundary_gradient        369     -0.049743

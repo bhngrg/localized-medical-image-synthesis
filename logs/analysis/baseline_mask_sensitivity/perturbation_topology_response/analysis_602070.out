@@ -1,0 +1,55 @@
+Stage 8: perturbation / topology response analysis
+==================================================
+Host                     : fal007
+Date                     : Mon Sep 28 05:24:16 AM EDT 2026
+Git commit               : ae33a3610a1c8b3ebd62132124a5012294ff89d8
+SLURM_JOB_ID             : 602070
+SLURM_JOB_PARTITION      : a30_normal_q
+CPUs                     : 4
+Python                   : /home/bhanug/.conda/envs/brats-nnunet/bin/python
+Expected response rows   : 139,587
+Expected baseline slices : 19,941
+Expected volumes         : 369
+Analysis radii           : -4, -2, -1, +1, +2, +4
+Responses                : 4
+Topology comparisons     : 24
+Bootstrap replicates     : 10,000
+Bootstrap seed           : 2026
+Training                 : none
+Model inference          : none
+GPU computation          : none
+
+================================================================
+STAGE 8: PERTURBATION / TOPOLOGY RESPONSE ANALYSIS
+================================================================
+Response catalog: /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/perturbation_response/baseline_perturbation_response_catalog.csv
+Rows:             139,587
+Unique slices:    19,941
+Unique volumes:   369
+Analysis radii:   -4, -2, -1, +1, +2, +4
+Responses:        4
+Comparisons:      24
+Bootstrap:        10,000 volume-cluster replicates
+Seed:             2026
+Training:         none
+Model inference:  none
+
+Computing radius-level descriptive summary...
+Computing topology-stratified response comparisons...
+
+===== VALIDATION =====
+Radius summary rows:       7
+Topology comparisons:      24
+Skipped Stage-7 conditions: 59
+
+===== OUTPUTS =====
+Radius summary: /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/perturbation_topology_response/perturbation_response_by_radius.csv
+Topology:       /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/perturbation_topology_response/topology_stratified_perturbation_response.csv
+Summary:        /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/perturbation_topology_response/perturbation_topology_response_summary.txt
+
+PASS: Stage-8 perturbation/topology response analysis completed.
+
+==================================================
+STAGE 8 COMPLETE
+==================================================
+End time: Mon Sep 28 05:25:49 AM EDT 2026

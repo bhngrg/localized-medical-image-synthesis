@@ -1,0 +1,36 @@
+CONTROLLED GEOMETRIC PERTURBATION TOPOLOGY AUDIT
+================================================================
+
+Input catalog: /home/bhanug/localized-medical-image-synthesis/outputs/baseline_mask_sensitivity/signed_distance/signed_distance_perturbation_catalog.csv
+Audited rows:  338,997
+Unique slices: 19,941
+Unique volumes: 369
+Connectivity:   2 (same as Stage 1)
+
+RADIUS-LEVEL TOPOLOGY CHANGES
+
+ radius_pixels perturbation  n_slices  beta_0_changed_n  beta_0_changed_fraction  beta_1_changed_n  beta_1_changed_fraction  topology_changed_n  topology_changed_fraction  empty_n  empty_fraction  median_delta_beta_0  median_delta_beta_1
+            -8      erosion     19941             12840                 0.643900             11197                 0.561506               15981                   0.801414     2605        0.130635                 -1.0                 -1.0
+            -7      erosion     19941             12545                 0.629106             11183                 0.560804               15779                   0.791284     1560        0.078231                 -1.0                 -1.0
+            -6      erosion     19941             12303                 0.616970             11159                 0.559601               15647                   0.784665      898        0.045033                 -1.0                 -1.0
+            -5      erosion     19941             12246                 0.614112             11126                 0.557946               15551                   0.779851      399        0.020009                 -1.0                 -1.0
+            -4      erosion     19941             12015                 0.602527             11043                 0.553784               15372                   0.770874       59        0.002959                  0.0                 -1.0
+            -3      erosion     19941             11896                 0.596560             10895                 0.546362               15184                   0.761446        7        0.000351                  0.0                 -1.0
+            -2      erosion     19941             11099                 0.556592             10519                 0.527506               14620                   0.733163        0        0.000000                  0.0                 -1.0
+            -1      erosion     19941              9814                 0.492152              9671                 0.484981               13429                   0.673437        0        0.000000                  0.0                  0.0
+             0     original     19941                 0                 0.000000                 0                 0.000000                   0                   0.000000        0        0.000000                  0.0                  0.0
+             1     dilation     19941              8702                 0.436387             11693                 0.586380               13986                   0.701369        0        0.000000                  0.0                  0.0
+             2     dilation     19941             10159                 0.509453             12263                 0.614964               14896                   0.747004        0        0.000000                 -1.0                  0.0
+             3     dilation     19941             10903                 0.546763             12056                 0.604584               15191                   0.761797        0        0.000000                 -1.0                  0.0
+             4     dilation     19941             11226                 0.562961             11883                 0.595908               15211                   0.762800        0        0.000000                 -1.0                  0.0
+             5     dilation     19941             11414                 0.572389             11628                 0.583120               15268                   0.765659        0        0.000000                 -1.0                 -1.0
+             6     dilation     19941             11494                 0.576400             11490                 0.576200               15292                   0.766862        0        0.000000                 -1.0                 -1.0
+             7     dilation     19941             11547                 0.579058             11444                 0.573893               15315                   0.768016        0        0.000000                 -1.0                 -1.0
+             8     dilation     19941             11602                 0.581816             11389                 0.571135               15335                   0.769019        0        0.000000                 -1.0                 -1.0
+
+NOTES
+- beta_0 and beta_1 use the exact ordinary-topology definition from Stage 1.
+- Empty perturbed masks are assigned beta_0=0, beta_1=0, Euler characteristic=0.
+- Empty-mask destruction is reported separately from the general topology-changed indicator.
+- Every reconstructed perturbation was required to match the existing signed-distance catalog area exactly.
+- This is a geometric perturbation audit; topology changes here are consequences of erosion/dilation, not deliberately targeted topology interventions.

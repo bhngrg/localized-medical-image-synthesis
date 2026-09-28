@@ -1,0 +1,36 @@
+================================================================
+STAGE 5: GEOMETRY / BOUNDARY RESPONSE ASSOCIATIONS
+================================================================
+Job ID:       602123
+Node:         fal007
+Start time:   Mon Sep 28 07:06:00 AM EDT 2026
+CPUs:         4
+Conda env:    brats-nnunet
+
+================================================================
+STAGE 5: GEOMETRY / BOUNDARY RESPONSE ASSOCIATIONS
+================================================================
+Geometry catalog: /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/mask_geometry_topology/mask_geometry_topology_catalog.csv
+Response catalog: /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/boundary_response/baseline_boundary_response_catalog.csv
+Joined slices:    19,941
+Unique volumes:   369
+H5 identity:      exact (volume, slice) + basename match
+Bootstrap:        10,000 volume-cluster replicates
+Seed:             2026
+
+Computing 48 primary associations...
+Computing 24 secondary MAE associations...
+Computing volume-median primary sensitivity analysis...
+
+===== OUTPUTS =====
+Primary:     /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/geometry_response_associations/primary_geometry_boundary_associations.csv
+Secondary:   /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/geometry_response_associations/secondary_geometry_mae_associations.csv
+Sensitivity: /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/geometry_response_associations/volume_median_primary_associations.csv
+Summary:     /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/geometry_response_associations/geometry_response_association_summary.txt
+
+PASS: Stage-5 geometry/response association analysis completed.
+
+================================================================
+STAGE 5 COMPLETE
+================================================================
+End time: Mon Sep 28 07:51:08 AM EDT 2026

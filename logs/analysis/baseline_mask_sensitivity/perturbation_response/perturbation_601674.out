@@ -1,0 +1,278 @@
+Stage 7: baseline perturbation-response analysis
+================================================
+Host                     : fal002
+Date                     : Sun Sep 27 08:48:29 PM EDT 2026
+Git commit               : ae33a3610a1c8b3ebd62132124a5012294ff89d8
+SLURM_JOB_ID             : 601674
+SLURM_JOB_PARTITION      : a30_normal_q
+CPUs                     : 8
+Conda environment        : brats-nnunet
+Expected baseline slices : 19,941
+Selected radii           : -4, -2, -1, 0, +1, +2, +4
+Conditions per slice     : 7
+Full-cohort conditions   : 139,587
+Inference timestep       : 150
+Noise seed base          : 2026
+Noise pairing            : fixed within slice
+Appearance conditioning  : fixed from original mask
+Training                 : none
+
+Sun Sep 27 20:48:29 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A30                     On  |   00000000:E1:00.0 Off |                    0 |
+| N/A   25C    P0             31W /  165W |       0MiB /  24576MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+Found 19941 tumor-containing H5 slices.
+====================================================================
+STAGE 7: BASELINE PERTURBATION RESPONSE
+====================================================================
+H5 root:                /scratch/bhanug/archive/BraTS2020_H5_Rebuilt
+Manifest:               /scratch/bhanug/tumor_inpainting_doc/data/BraTS/BraTS20 Training Metadata.csv
+Checkpoint:             /home/bhanug/localized-medical-image-synthesis/checkpoints/baseline/full_train/final_patch_x0_diffusion_full_train.pt
+Checkpoint SHA-256:     d633cdce1184bcf1b0a985244fac9ca25e9edcdf9c5bca227d421ef9a553790e
+Perturbation catalog:   /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/signed_distance/signed_distance_perturbation_catalog.csv
+Topology audit:         /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/signed_distance/signed_distance_topology_audit.csv
+Dataset slices:         19,941
+Slices analyzed:        19,941
+Selected radii:         -4, -2, -1, +0, +1, +2, +4
+Device:                 cuda
+Inference timestep:     150
+Noise seed base:        2026
+Noise pairing:          fixed within slice
+Appearance cond:        fixed from original mask
+Reference generation:   radius 0
+Training:               none
+
+Processed 100 / 19,941 slices
+Processed 200 / 19,941 slices
+Processed 300 / 19,941 slices
+Processed 400 / 19,941 slices
+Processed 500 / 19,941 slices
+Processed 600 / 19,941 slices
+Processed 700 / 19,941 slices
+Processed 800 / 19,941 slices
+Processed 900 / 19,941 slices
+Processed 1,000 / 19,941 slices
+Processed 1,100 / 19,941 slices
+Processed 1,200 / 19,941 slices
+Processed 1,300 / 19,941 slices
+Processed 1,400 / 19,941 slices
+Processed 1,500 / 19,941 slices
+Processed 1,600 / 19,941 slices
+Processed 1,700 / 19,941 slices
+Processed 1,800 / 19,941 slices
+Processed 1,900 / 19,941 slices
+Processed 2,000 / 19,941 slices
+Processed 2,100 / 19,941 slices
+Processed 2,200 / 19,941 slices
+Processed 2,300 / 19,941 slices
+Processed 2,400 / 19,941 slices
+Processed 2,500 / 19,941 slices
+Processed 2,600 / 19,941 slices
+Processed 2,700 / 19,941 slices
+Processed 2,800 / 19,941 slices
+Processed 2,900 / 19,941 slices
+Processed 3,000 / 19,941 slices
+Processed 3,100 / 19,941 slices
+Processed 3,200 / 19,941 slices
+Processed 3,300 / 19,941 slices
+Processed 3,400 / 19,941 slices
+Processed 3,500 / 19,941 slices
+Processed 3,600 / 19,941 slices
+Processed 3,700 / 19,941 slices
+Processed 3,800 / 19,941 slices
+Processed 3,900 / 19,941 slices
+Processed 4,000 / 19,941 slices
+Processed 4,100 / 19,941 slices
+Processed 4,200 / 19,941 slices
+Processed 4,300 / 19,941 slices
+Processed 4,400 / 19,941 slices
+Processed 4,500 / 19,941 slices
+Processed 4,600 / 19,941 slices
+Processed 4,700 / 19,941 slices
+Processed 4,800 / 19,941 slices
+Processed 4,900 / 19,941 slices
+Processed 5,000 / 19,941 slices
+Processed 5,100 / 19,941 slices
+Processed 5,200 / 19,941 slices
+Processed 5,300 / 19,941 slices
+Processed 5,400 / 19,941 slices
+Processed 5,500 / 19,941 slices
+Processed 5,600 / 19,941 slices
+Processed 5,700 / 19,941 slices
+Processed 5,800 / 19,941 slices
+Processed 5,900 / 19,941 slices
+Processed 6,000 / 19,941 slices
+Processed 6,100 / 19,941 slices
+Processed 6,200 / 19,941 slices
+Processed 6,300 / 19,941 slices
+Processed 6,400 / 19,941 slices
+Processed 6,500 / 19,941 slices
+Processed 6,600 / 19,941 slices
+Processed 6,700 / 19,941 slices
+Processed 6,800 / 19,941 slices
+Processed 6,900 / 19,941 slices
+Processed 7,000 / 19,941 slices
+Processed 7,100 / 19,941 slices
+Processed 7,200 / 19,941 slices
+Processed 7,300 / 19,941 slices
+Processed 7,400 / 19,941 slices
+Processed 7,500 / 19,941 slices
+Processed 7,600 / 19,941 slices
+Processed 7,700 / 19,941 slices
+Processed 7,800 / 19,941 slices
+Processed 7,900 / 19,941 slices
+Processed 8,000 / 19,941 slices
+Processed 8,100 / 19,941 slices
+Processed 8,200 / 19,941 slices
+Processed 8,300 / 19,941 slices
+Processed 8,400 / 19,941 slices
+Processed 8,500 / 19,941 slices
+Processed 8,600 / 19,941 slices
+Processed 8,700 / 19,941 slices
+Processed 8,800 / 19,941 slices
+Processed 8,900 / 19,941 slices
+Processed 9,000 / 19,941 slices
+Processed 9,100 / 19,941 slices
+Processed 9,200 / 19,941 slices
+Processed 9,300 / 19,941 slices
+Processed 9,400 / 19,941 slices
+Processed 9,500 / 19,941 slices
+Processed 9,600 / 19,941 slices
+Processed 9,700 / 19,941 slices
+Processed 9,800 / 19,941 slices
+Processed 9,900 / 19,941 slices
+Processed 10,000 / 19,941 slices
+Processed 10,100 / 19,941 slices
+Processed 10,200 / 19,941 slices
+Processed 10,300 / 19,941 slices
+Processed 10,400 / 19,941 slices
+Processed 10,500 / 19,941 slices
+Processed 10,600 / 19,941 slices
+Processed 10,700 / 19,941 slices
+Processed 10,800 / 19,941 slices
+Processed 10,900 / 19,941 slices
+Processed 11,000 / 19,941 slices
+Processed 11,100 / 19,941 slices
+Processed 11,200 / 19,941 slices
+Processed 11,300 / 19,941 slices
+Processed 11,400 / 19,941 slices
+Processed 11,500 / 19,941 slices
+Processed 11,600 / 19,941 slices
+Processed 11,700 / 19,941 slices
+Processed 11,800 / 19,941 slices
+Processed 11,900 / 19,941 slices
+Processed 12,000 / 19,941 slices
+Processed 12,100 / 19,941 slices
+Processed 12,200 / 19,941 slices
+Processed 12,300 / 19,941 slices
+Processed 12,400 / 19,941 slices
+Processed 12,500 / 19,941 slices
+Processed 12,600 / 19,941 slices
+Processed 12,700 / 19,941 slices
+Processed 12,800 / 19,941 slices
+Processed 12,900 / 19,941 slices
+Processed 13,000 / 19,941 slices
+Processed 13,100 / 19,941 slices
+Processed 13,200 / 19,941 slices
+Processed 13,300 / 19,941 slices
+Processed 13,400 / 19,941 slices
+Processed 13,500 / 19,941 slices
+Processed 13,600 / 19,941 slices
+Processed 13,700 / 19,941 slices
+Processed 13,800 / 19,941 slices
+Processed 13,900 / 19,941 slices
+Processed 14,000 / 19,941 slices
+Processed 14,100 / 19,941 slices
+Processed 14,200 / 19,941 slices
+Processed 14,300 / 19,941 slices
+Processed 14,400 / 19,941 slices
+Processed 14,500 / 19,941 slices
+Processed 14,600 / 19,941 slices
+Processed 14,700 / 19,941 slices
+Processed 14,800 / 19,941 slices
+Processed 14,900 / 19,941 slices
+Processed 15,000 / 19,941 slices
+Processed 15,100 / 19,941 slices
+Processed 15,200 / 19,941 slices
+Processed 15,300 / 19,941 slices
+Processed 15,400 / 19,941 slices
+Processed 15,500 / 19,941 slices
+Processed 15,600 / 19,941 slices
+Processed 15,700 / 19,941 slices
+Processed 15,800 / 19,941 slices
+Processed 15,900 / 19,941 slices
+Processed 16,000 / 19,941 slices
+Processed 16,100 / 19,941 slices
+Processed 16,200 / 19,941 slices
+Processed 16,300 / 19,941 slices
+Processed 16,400 / 19,941 slices
+Processed 16,500 / 19,941 slices
+Processed 16,600 / 19,941 slices
+Processed 16,700 / 19,941 slices
+Processed 16,800 / 19,941 slices
+Processed 16,900 / 19,941 slices
+Processed 17,000 / 19,941 slices
+Processed 17,100 / 19,941 slices
+Processed 17,200 / 19,941 slices
+Processed 17,300 / 19,941 slices
+Processed 17,400 / 19,941 slices
+Processed 17,500 / 19,941 slices
+Processed 17,600 / 19,941 slices
+Processed 17,700 / 19,941 slices
+Processed 17,800 / 19,941 slices
+Processed 17,900 / 19,941 slices
+Processed 18,000 / 19,941 slices
+Processed 18,100 / 19,941 slices
+Processed 18,200 / 19,941 slices
+Processed 18,300 / 19,941 slices
+Processed 18,400 / 19,941 slices
+Processed 18,500 / 19,941 slices
+Processed 18,600 / 19,941 slices
+Processed 18,700 / 19,941 slices
+Processed 18,800 / 19,941 slices
+Processed 18,900 / 19,941 slices
+Processed 19,000 / 19,941 slices
+Processed 19,100 / 19,941 slices
+Processed 19,200 / 19,941 slices
+Processed 19,300 / 19,941 slices
+Processed 19,400 / 19,941 slices
+Processed 19,500 / 19,941 slices
+Processed 19,600 / 19,941 slices
+Processed 19,700 / 19,941 slices
+Processed 19,800 / 19,941 slices
+Processed 19,900 / 19,941 slices
+Processed 19,941 / 19,941 slices
+
+===== STAGE-7 VALIDATION =====
+Response rows:          139,587
+Inference conditions:   139,528
+Empty/skipped:          59
+Distance-profile rows:  2,232,448
+
+===== OUTPUTS =====
+Response: /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/perturbation_response/baseline_perturbation_response_catalog.csv
+Profiles: /home/bhanug/localized-medical-image-synthesis/results/baseline_mask_sensitivity/perturbation_response/baseline_perturbation_distance_profiles.csv
+
+PASS: Stage-7 baseline perturbation-response analysis completed.
+
+================================================
+STAGE 7 COMPLETE
+================================================
+End time: Sun Sep 27 09:19:14 PM EDT 2026
